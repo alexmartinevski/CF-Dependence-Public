@@ -1,0 +1,110 @@
+{
+ "9/7": 1.2857142857142858,
+ "min over k atoms": {
+  "2": {
+   "min price": 1.285714286,
+   "atoms z": [
+    0.0,
+    -0.4221
+   ],
+   "probs": [
+    0.25,
+    0.75
+   ]
+  },
+  "3": {
+   "min price": 1.285714286,
+   "atoms z": [
+    -1.7365,
+    -1.7365,
+    -0.0
+   ],
+   "probs": [
+    0.4168,
+    0.3332,
+    0.25
+   ]
+  },
+  "4": {
+   "min price": 1.285714286,
+   "atoms z": [
+    -0.8537,
+    0.0,
+    0.0,
+    -0.8537
+   ],
+   "probs": [
+    0.7272,
+    0.0146,
+    0.2354,
+    0.0228
+   ]
+  }
+ },
+ "small d, median split": {
+  "3": {
+   "0.1": {
+    "median-split sup_t D": 1.08615,
+    "lower half d-CM (M1)": true,
+    "beats uniform kappa_d": true
+   },
+   "0.15": {
+    "median-split sup_t D": 1.087335,
+    "lower half d-CM (M1)": true,
+    "beats uniform kappa_d": true
+   },
+   "0.2": {
+    "median-split sup_t D": 1.088107,
+    "lower half d-CM (M1)": false,
+    "beats uniform kappa_d": false
+   },
+   "0.25": {
+    "median-split sup_t D": 1.087542,
+    "lower half d-CM (M1)": false,
+    "beats uniform kappa_d": false
+   },
+   "0.3": {
+    "median-split sup_t D": 1.084399,
+    "lower half d-CM (M1)": false,
+    "beats uniform kappa_d": false
+   },
+   "0.35": {
+    "median-split sup_t D": 1.076949,
+    "lower half d-CM (M1)": false,
+    "beats uniform kappa_d": false
+   }
+  },
+  "4": {
+   "0.1": {
+    "median-split sup_t D": 1.193984,
+    "lower half d-CM (M1)": true,
+    "beats uniform kappa_d": true
+   },
+   "0.15": {
+    "median-split sup_t D": 1.196878,
+    "lower half d-CM (M1)": true,
+    "beats uniform kappa_d": true
+   },
+   "0.2": {
+    "median-split sup_t D": 1.199357,
+    "lower half d-CM (M1)": true,
+    "beats uniform kappa_d": true
+   },
+   "0.25": {
+    "median-split sup_t D": 1.200291,
+    "lower half d-CM (M1)": true,
+    "beats uniform kappa_d": true
+   },
+   "0.3": {
+    "median-split sup_t D": 1.19829,
+    "lower half d-CM (M1)": false,
+    "beats uniform kappa_d": false
+   },
+   "0.35": {
+    "median-split sup_t D": 1.191497,
+    "lower half d-CM (M1)": false,
+    "beats uniform kappa_d": false
+   }
+  }
+ }
+}

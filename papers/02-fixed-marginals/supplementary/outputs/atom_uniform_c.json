@@ -1,0 +1,78 @@
+{
+ "(b)": {
+  "w*": 0.25,
+  "min price": 1.28571429
+ },
+ "(c)": {
+  "5": {
+   "sup D (F_w)": 1.291874,
+   "p*": 0.5087,
+   "sup_t D(t,1/2)": 1.291483,
+   "kappa_d uniform": 1.279672,
+   "difference (median split - uniform)": 0.011811
+  },
+  "6": {
+   "sup D (F_w)": 1.365108,
+   "p*": 0.5098,
+   "sup_t D(t,1/2)": 1.364537,
+   "kappa_d uniform": 1.352081,
+   "difference (median split - uniform)": 0.012456
+  },
+  "8": {
+   "sup D (F_w)": 1.473782,
+   "p*": 0.5099,
+   "sup_t D(t,1/2)": 1.473108,
+   "kappa_d uniform": 1.460886,
+   "difference (median split - uniform)": 0.012222
+  },
+  "10": {
+   "sup D (F_w)": 1.550329,
+   "p*": 0.5093,
+   "sup_t D(t,1/2)": 1.549687,
+   "kappa_d uniform": 1.538245,
+   "difference (median split - uniform)": 0.011441
+  },
+  "14": {
+   "sup D (F_w)": 1.651129,
+   "p*": 0.5079,
+   "sup_t D(t,1/2)": 1.650619,
+   "kappa_d uniform": 1.640803,
+   "difference (median split - uniform)": 0.009816
+  },
+  "20": {
+   "sup D (F_w)": 1.738461,
+   "p*": 0.5064,
+   "sup_t D(t,1/2)": 1.738112,
+   "kappa_d uniform": 1.730171,
+   "difference (median split - uniform)": 0.007941
+  },
+  "30": {
+   "sup D (F_w)": 1.815171,
+   "p*": 0.5047,
+   "sup_t D(t,1/2)": 1.814968,
+   "kappa_d uniform": 1.809,
+   "difference (median split - uniform)": 0.005968
+  },
+  "45": {
+   "sup D (F_w)": 1.871514,
+   "p*": 0.5034,
+   "sup_t D(t,1/2)": 1.871404,
+   "kappa_d uniform": 1.867073,
+   "difference (median split - uniform)": 0.004331
+  },
+  "70": {
+   "sup D (F_w)": 1.914747,
+   "p*": 0.5023,
+   "sup_t D(t,1/2)": 1.914696,
+   "kappa_d uniform": 1.911728,
+   "difference (median split - uniform)": 0.002968
+  },
+  "100": {
+   "sup D (F_w)": 1.939254,
+   "p*": 0.5017,
+   "sup_t D(t,1/2)": 1.939227,
+   "kappa_d uniform": 1.937074,
+   "difference (median split - uniform)": 0.002153
+  }
+ }
+}

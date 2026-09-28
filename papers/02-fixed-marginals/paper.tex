@@ -1,0 +1,640 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amssymb,microtype,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\sinc}{\operatorname{sinc}}\newcommand{\E}{\mathbb E}\newcommand{\cx}{\le_{\mathrm{cx}}}
+\newcommand{\todo}[1]{\par\noindent\textbf{[TODO: #1]}\par}
+\begin{document}
+\title[Two-point extremals with fixed marginals]{Two-point extremals for characteristic-function dependence\\ with fixed marginals}
+\author{Alexandr Martinevski}
+\address{Independent Researcher, Lithuania}\email{\href{mailto:alex.martinevski@gmail.com}{alex.martinevski@gmail.com}}
+\thanks{ORCID: \href{https://orcid.org/0009-0000-4230-4414}{0009-0000-4230-4414}.}
+\date{September 2026}
+\begin{abstract}
+For random variables $X_1,\dots,X_d$ we study the largest characteristic-function defect $|\E e^{i\sum_jt_jX_j}-\prod_j\E e^{it_jX_j}|$. In every regime where we determine the exact constant,
+the extremal couplings make the phase sum two-point, and a certificate made of two tangent lines proves optimality. Without restrictions on the marginals, a companion paper establishes the sharp benchmark
+$C_d=\max_{0\le x\le\pi}\{\cos^d(x/d)-\cos x\}$ ($C_3=2/\sqrt3$, $C_4=9/7$) from an exact profile in the moduli of the means. Here the marginal laws are prescribed. For
+a common symmetric unimodal law $F$ we prove $K_d^F=\max_x\{\varphi(x/(d\,\E|X|))^d-\cos x\}$ under explicit conditions --- for the uniform and triangular laws for
+all $d\ge3$, for the B-spline and Epanechnikov laws for $d\ge4$ --- and show that, under strict versions of these conditions, attainment is equivalent to complete mixability of $|X|$;
+Gaussian marginals do not attain the bound. The uniform law is the least restrictive symmetric unimodal marginal for $d\ge4$ but not for $d=3$; without symmetry the law $\frac14\delta_0+\frac34U[0,1]$ beats it
+for every $d\ge4$ and is asymptotically extremal among all unimodal laws, through the sharp inequality $\mathrm{Var}X\ge\frac97(\E|X-\mathrm{med}X|)^2$. For every non-degenerate
+law with bounded support that is lattice or satisfies Cram\'er's condition, $K_d^F=2-\pi^2\mathrm{Var}X/(2d\,(\E|X-\mathrm{med}X|)^2)+O(d^{-3/2})$: the median replaces the centre, and no symmetry,
+unimodality or mixability is needed. Without symmetry the best two-point split is asymmetric; that it is optimal is conjectured. The finite verifications are short tables of explicit inequalities, checked by monotone brackets, and by interval arithmetic for the non-symmetric comparison.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+For random variables $X_1,\dots,X_d$ and frequencies $t\in\mathbb R^d$ consider the \emph{characteristic-function defect}
+\[\Delta=\E e^{i\sum_jt_jX_j}-\prod_j\E e^{it_jX_j}.\]
+It vanishes under independence, and its vanishing at all $t$ on the diagonal is sub-independence; it is the basic quantity behind characteristic-function
+measures of dependence. We ask how large $|\Delta|$ can be, in three settings of decreasing freedom: (a) free laws with $|Z_j|\le1$ in place of $e^{it_jX_j}$;
+(b) prescribed moduli $|\E Z_j|=r_j$; (c) prescribed marginal laws $X_j\sim F$ (or $F_j$), with the coupling and the frequencies free.
+
+\medskip\noindent\textbf{Results.} (a)--(b) are settled in the companion paper \cite{I}: the sharp profile $C_d(\vec r)=\prod r_j-\cos(\min\{\sum\arccos r_j,\pi\})$ and the constant
+$C_d=\max_{0\le x\le\pi}\{\cos^d(x/d)-\cos x\}$ (recalled as Theorem~\ref{thm:profile} and Corollary~\ref{cor:Cd}). (c): for symmetric unimodal $F$,
+\[K_d^F=\kappa_d^F:=\max_x\{\varphi(x/(d\,\E|X|))^d-\cos x\}\]
+under explicit conditions (Theorem~\ref{thm:main}), for all $d\ge3$ for the uniform and triangular laws and for $d\ge4$ for the B-spline and Epanechnikov laws
+(Table~\ref{tab:const}); the analogue for different laws holds under joint mixability (Theorem~\ref{thm:het}). Under strict versions of the hypotheses, attainment is equivalent to
+complete mixability of $|X|$ (Theorem~\ref{thm:att}); Gaussian marginals do not attain $\kappa_d^G$ (Corollary~\ref{cor:gauss}). The uniform law has the largest constant
+among symmetric unimodal marginals for $d\ge4$ but not for $d=3$ (Theorems~\ref{thm:ext} and~\ref{thm:d3}); without symmetry it is beaten for every $d\ge4$ by
+$\frac14\delta_0+\frac34U[0,1]$, which is asymptotically extremal among all unimodal laws (Theorem~\ref{thm:finite-d}, Corollary~\ref{cor:asym-ext}), by the sharp inequality
+$\mathrm{Var}X\ge\frac97(\E|X-\mathrm{med}X|)^2$ for unimodal laws, a moment form of the known worst-case expected shortfall (Proposition~\ref{prop:97}). For every non-degenerate law with bounded support that is lattice or satisfies Cram\'er's condition,
+$K_d^F=2-\pi^2\mathrm{Var}X/(2d\,(\E|X-\mathrm{med}X|)^2)+O(d^{-3/2})$ (Theorem~\ref{thm:price}); the factor $\mathrm{Var}X/(\E|X-\mathrm{med}X|)^2\ge1$ is the price of
+fixing the marginals. Without symmetry, the best two-point split is asymmetric; its optimality is Conjecture~\ref{conj:nonsym}.
+
+\medskip\noindent\textbf{The two-point principle.} In every exact regime proved here the extremal phase sum takes two values, and optimality is certified by two
+tangent lines; for non-symmetric laws the same structure gives the lower bound (Theorem~\ref{thm:nonsym-lb}) and is conjectured to be optimal:
+\begin{center}\footnotesize\begin{tabular}{p{3.2cm}p{4.3cm}p{4.6cm}}\toprule
+setting & the two points & certificate\\\midrule
+fixed moduli & $\pm\sum\arccos r_j$ (common sign) & concavity of $\log\cos$\\
+symmetric laws & $\pm t\sum\E|X_j|$ (sign, mixing) & a tent at $\pm x_0$ (Lemma~\ref{lem:window})\\
+general laws (lower bound) & means of the two quantile parts & two tangents (Lemma~\ref{lem:twotan})\\
+scales, unimodal class & two scales & majorant of $\sinc$ (Lemma~\ref{lem:maj})\\
+large $d$ & odd multiples of $\pi$ & odd-lattice threshold (Lemma~\ref{lem:thr})\\
+unimodal moment problem & two atoms of Khinchine's $Z$ & two-point decomposition (Lemma~\ref{lem:dec})\\\bottomrule
+\end{tabular}\end{center}
+The mechanism is the same throughout: a single linear constraint survives, extreme points are two-point, and equality in the certificate forces the
+coupling to be a mix of the two parts --- which is where complete and joint mixability (Wang--Wang, Puccetti--Wang--Wang) enter.
+
+\medskip\noindent\textbf{Organization.} Section~\ref{sec:prelim} collects tools; Section~\ref{sec:free} recalls the free-law results of \cite{I}; Section~\ref{sec:twopoint} develops the two-point principle;
+Sections~\ref{sec:main}--\ref{sec:att} treat fixed marginals; Section~\ref{sec:nonsym} records the non-symmetric phenomenon; Section~\ref{sec:unimodal} identifies the extremal unimodal marginal without symmetry;
+Section~\ref{sec:open} lists open problems. The finite
+verifications are in Appendix~\ref{app:fin}.
+
+\section{Preliminaries}\label{sec:prelim}
+\begin{definition}
+For laws $F_1,\dots,F_d$ with characteristic functions $\varphi_j$,
+\[K(F_1,\dots,F_d)=\sup\Bigl|\E e^{i\sum_jt_jX_j}-\prod_j\varphi_j(t_j)\Bigr|\]
+over $t\in\mathbb R^d$ and couplings with $X_j\sim F_j$; $K_d^F=K(F,\dots,F)$. For symmetric $F$ with $0<m=\E|X|<\infty$, $\kappa_d^F=\sup_{x>0}\{\varphi(x/(dm))^d-\cos x\}$.
+\end{definition}
+\noindent For symmetric $F$ we write $s_0\in(0,\infty]$ for the first positive zero of $\varphi$ ($s_0=\infty$ if there is none; first lobe $[0,s_0)$), $s^*=\sup_{s\ge s_0}|\varphi(s)|$, $\gamma=f(0)m$ when $F$ has a density $f$, and
+$x_c=2.3311\ldots$ for the root of $\cos x+x\sin x=1$ in $(\frac\pi2,\pi)$.
+
+\medskip\noindent\textbf{Convex order and mixability.} $Y\cx V$ means $\E g(Y)\le\E g(V)$ for all convex $g$. A $d$-tuple $(F_1,\dots,F_d)$ is \emph{jointly mixable} (JM) if some coupling
+has $\sum_jX_j$ constant; $F$ is $d$-\emph{completely mixable} ($d$-CM) if $(F,\dots,F)$ is JM. We use three criteria:
+\begin{enumerate}
+\item[(M1)] (Wang--Wang 2011 \cite{WW11}) A law with a nonincreasing density on $[0,b]$ is $d$-CM iff its mean is at least $b/d$.
+\item[(M2)] (Wang--Wang 2016 \cite{WW16}, Thms~2.1(a) and~3.2) Laws with nonincreasing densities on $[0,l_j]$ and means $\mu_j$ are JM iff $\sum_j\mu_j\ge\max_jl_j$.
+\item[(M3)] (Puccetti--Wang--Wang 2012 \cite{PWW12}, Thm~4.2) A law with a concave density on a bounded interval is $d$-CM for every $d\ge3$.
+\end{enumerate}
+\noindent\textbf{Unimodality.} By Khinchine's theorem (see \cite{DJ88}) a symmetric unimodal $X$ is $CW$ with $W\sim U[-1,1]$ independent of $C\ge0$, so
+$\varphi(s)=\E\sinc(sC)$; if $X$ has a density, $|X|$ has a nonincreasing density on $[0,b]$, $b=\operatorname{ess\,sup}C$, and $m=\E C/2\le b/2$.
+\begin{lemma}[the first lobe]\label{lem:lobe}
+$\sinc z\ge1-z/\pi$ for all $z\ge0$. Hence for symmetric unimodal $F$, $\varphi(s)\ge1-2sm/\pi$; for $d\ge3$ the interval $[0,\pi/(dm)]$ lies in the first lobe,
+$\varphi(\pi/(dm))\ge1-2/d>0$, and $\kappa_d^F\ge1+P_d(\pi)>1$, where $P_d(x)=\varphi(x/(dm))^d$.
+\end{lemma}
+\begin{proof}On $[0,\pi]$ let $q(z)=\sin z-z(\pi-z)/\pi$. Then $q(\pi-z)=q(z)$, $q(0)=q'(0)=0$ and $q'(\frac\pi2)=0$, and $q''=\frac2\pi-\sin z$ is
+positive on $[0,z_1)$ and negative on $(z_1,\frac\pi2]$, $z_1=\arcsin\frac2\pi$. On $[0,z_1]$, $q$ is convex with a double zero at $0$, so $q\ge0$; on $[z_1,\frac\pi2]$, $q$ is
+concave, so $q\ge\min\{q(z_1),q(\frac\pi2)\}\ge0$ ($q(\frac\pi2)=1-\frac\pi4$). By symmetry $q\ge0$ on $[0,\pi]$. On $[\pi,2\pi]$, $\sin z\ge-(z-\pi)\ge-z(z-\pi)/\pi$. For $z\ge2\pi$, $1-z/\pi\le-1\le\sinc z$. Then
+$\varphi(s)=\E\sinc(sC)\ge1-s\E C/\pi$, and $\E C=2m$.\end{proof}
+\begin{lemma}[lattice separation]\label{lem:latsep}
+For all real $y$: $1-\cos y\ge\frac2{\pi^2}\,\mathrm{dist}(y,2\pi\mathbb Z)^2$ and $1+\cos y\ge\frac2{\pi^2}\,\mathrm{dist}(y,\pi(2\mathbb Z+1))^2$.
+\end{lemma}
+\begin{proof}With $\delta$ the distance, $|\delta|\le\pi$ and $1-\cos\delta=2\sin^2(\delta/2)\ge2(\delta/\pi)^2$, since $\sin u\ge2u/\pi$ on $[0,\frac\pi2]$; and $1+\cos y=1-\cos(y-\pi)$.\end{proof}
+
+\section{Free laws: the profile and the constant $C_d$}\label{sec:free}
+For complex random variables with $|Z_j|\le1$ let $\Delta=\E\prod_jZ_j-\prod_j\E Z_j$. Put $r_j=|\E Z_j|$, $\theta_j=\arccos r_j\in[0,\frac\pi2]$, $R=\prod_jr_j$, $s=\sum_j\theta_j$, and
+\[C_d(r_1,\dots,r_d)=\sup\{|\Delta|:\ |Z_j|\le1,\ |\E Z_j|=r_j\}.\]
+The following results are proved in the companion paper \cite{I}; we recall them because the regimes with fixed marginals below are measured against them.
+\begin{theorem}[profile {\cite[Thm~2.1]{I}}]\label{thm:profile}
+For every $d\ge1$ and $r\in[0,1]^d$: $\ C_d(r_1,\dots,r_d)=R-\cos(\min\{s,\pi\})$. For $s\le\pi$ it is attained by $Z_j=e^{i\varepsilon\theta_j}$ with a common fair sign
+$\varepsilon$; for $s\ge\pi$ (value $1+R$) by a law with $\prod_jZ_j\equiv-1$.
+\end{theorem}
+\begin{corollary}[the constant $C_d$ {\cite[Cor.~2.2, Thm~2.4]{I}}]\label{cor:Cd}
+The supremum of $|\E\prod Z_j-\prod\E Z_j|$ over all $|Z_j|\le1$ is
+\[C_d=\max_{0\le x\le\pi}\{\cos^d(x/d)-\cos x\};\qquad C_2=1,\quad C_3=2/\sqrt3,\quad C_4=9/7,\]
+and for $d\ge3$ it is attained only when all $\arccos|\E Z_j|$ equal $x^*_d/d$, where $x^*_d\in(0,\pi)$ is the unique maximizer.
+\end{corollary}
+\begin{proof}Only the last assertion needs a comment: by Theorem~\ref{thm:profile} and strict concavity of $\log\cos$ on $[0,\frac\pi2)$, $\prod\cos\theta_j\le\cos^d(s/d)$ with
+equality iff the $\theta_j$ are equal, and the maximizer $x^*_d=d\theta^*_d$ is unique and interior by \cite[Thm~2.4]{I}.\end{proof}
+
+\section{The two-point principle}\label{sec:twopoint}
+Throughout this section $X_1,\dots,X_d\sim F$, $t\in\mathbb R^d$, $S=\sum_jt_jX_j$ and $z=\prod_j\varphi(t_j)$. The extremal couplings in every problem solved exactly in this paper
+make the phase sum two-point; this section collects the three facts behind that: a lower bound by two-point fusions, a dual certificate made of two
+tangent lines, and the fact that equality forces complete mixability.
+
+\subsection{Relaxation}
+Let $U$ be uniform on $(0,1)$ and $g_j$ the quantile function of $\mathrm{sgn}(t_j)X$. The \emph{comonotone sum} is $V=\sum_j|t_j|\,g_j(U)=h(U)$, with $h$
+nondecreasing. For symmetric $F$, $g_j=F^{-1}$ and $V=AX$ with $A=\sum_j|t_j|$.
+\begin{lemma}[comonotone domination]\label{lem:como}
+For every coupling, $S\cx V$. Consequently $|\E e^{iS}-z|\le R(V,z):=\sup\{|\E e^{iT}-z|:\ T\cx V\}$.
+\end{lemma}
+\begin{proof}Standard (Meilijson--N\'adas \cite{MN79}; Dhaene et al.\ \cite{Dh02}): $\E(S-k)_+\le\E(V-k)_+$ for all $k$ and $\E S=\E V$.\end{proof}
+
+\subsection{Quantile-split fusions and the lower bound}
+\begin{definition}\label{def:fusion}
+For $p\in(0,1)$ let $a_p=\E[V\mid U<p]$, $b_p=\E[V\mid U\ge p]$, $v_p=h(p)$. The \emph{fusion} $T_p$ equals $a_p$ on $\{U<p\}$ and $b_p$ on $\{U\ge p\}$; it satisfies
+$T_p\cx V$, and its characteristic value is $w_p=p\,e^{ia_p}+(1-p)\,e^{ib_p}$.
+\end{definition}
+For a law $F$ and $p\in(0,1)$ let $F_-^{(p)}$ and $F_+^{(p)}$ be the laws of $X_-^{(p)}=F^{-1}(pU)$ and $X_+^{(p)}=F^{-1}(p+(1-p)U)$ (the lower and upper $p$-parts).
+\begin{theorem}[fusions are attained under mixability of the parts]\label{thm:fusion-lb}
+Let $t_1=\dots=t_d=t>0$. If $F_-^{(p)}$ and $F_+^{(p)}$ are $d$-completely mixable, there is a coupling with $S=T_p$ (where $V=dtX$); hence
+$K_d^F\ge|w_p-\varphi(t)^d|$.
+\end{theorem}
+\begin{proof}Take an event $E$ with $\mathbb P(E)=p$, independent of two complete mixes $(L_1,\dots,L_d)$ of $F_-^{(p)}$ and $(R_1,\dots,R_d)$ of $F_+^{(p)}$, and put
+$X_j=L_j$ on $E$ and $X_j=R_j$ off $E$. Then $X_j\sim pF_-^{(p)}+(1-p)F_+^{(p)}=F$, and $t\sum_jX_j$ equals $dt\,\E L_1=a_p$ on $E$ and $b_p$ off $E$.\end{proof}
+\begin{corollary}[symmetric laws]\label{cor:sym-lb}
+Let $F$ be symmetric and $|X|$ be $d$-completely mixable. Then $K_d^F\ge\varphi(t)^d-\cos(dt\,\E|X|)$ for every $t$; hence $K_d^F\ge\kappa_d^F$. By
+Wang--Wang, this holds if $|X|$ has a nonincreasing density on $[0,b]$ and $d\ge b/\E|X|$.
+\end{corollary}
+\begin{proof}For $p=\frac12$ the parts are the laws of $-|X|$ and $|X|$, so $a_{1/2}=-dt\,\E|X|$, $b_{1/2}=dt\,\E|X|$ and $w_{1/2}=\cos(dt\,\E|X|)$. (Equivalently:
+a common random sign times a complete mix of $|X|$.)\end{proof}
+\begin{remark}If $F$ has a concave density on a bounded interval, both parts have concave densities for every $p$, hence are $d$-CM for $d\ge3$
+(Puccetti--Wang--Wang, Thm~4.2): every fusion is attained. This is the entry point of Sections~\ref{sec:nonsym} and~\ref{sec:unimodal}.
+\end{remark}
+
+\subsection{Two tangents}
+\begin{lemma}[two-tangent certificate]\label{lem:twotan}
+Let $f\in C^1(\mathbb R)$, $p\in(0,1)$, and let $\ell_a,\ell_b$ be the tangent lines to $f$ at $a=a_p$ and $b=b_p$, with $\ell_a'\le\ell_b'$ and $\ell_a(v_p)=\ell_b(v_p)$. If
+$G=\max(\ell_a,\ell_b)\ge f$ on the convex hull of the range of $V$, then $\sup_{T\cx V}\E f(T)=p\,f(a)+(1-p)\,f(b)$, attained by $T_p$.
+\end{lemma}
+\begin{proof}$T\cx V$ takes values in that convex hull and $G$ is convex, so $\E f(T)\le\E G(T)\le\E G(V)$. The lines cross at $v_p$ and $\ell_a'\le\ell_b'$, so $G(V)=\ell_a(V)$ on $\{U<p\}$ (where $V\le v_p$) and
+$G(V)=\ell_b(V)$ on $\{U\ge p\}$. By linearity $\E G(V)=p\,\ell_a(a)+(1-p)\,\ell_b(b)=p\,f(a)+(1-p)\,f(b)=\E f(T_p)$.\end{proof}
+\begin{lemma}[stationarity]\label{lem:stat}
+If $h$ is continuous at $p$, then $\frac{d}{dp}\bigl[p\,f(a_p)+(1-p)f(b_p)\bigr]=\ell_a(v_p)-\ell_b(v_p)$. In particular, at an interior maximizer in $p$ the
+tangent lines cross at the split point $v_p$, as required in Lemma~\ref{lem:twotan}; the slope condition $\ell_a'\le\ell_b'$ and the majorization must still be checked.
+\end{lemma}
+\begin{proof}$\frac{da_p}{dp}=\frac{v_p-a_p}p$ and $\frac{db_p}{dp}=\frac{b_p-v_p}{1-p}$, so the derivative is $f(a)-f(b)+f'(a)(v_p-a)+f'(b)(b-v_p)=\ell_a(v_p)-\ell_b(v_p)$.\end{proof}
+
+\subsection{The symmetric case: the window}
+For symmetric $F$ and equal frequencies the fusion at $p=\frac12$ is $\pm x_0$ with $x_0=dt\,\E|X|$, and in the direction of $-1$ Lemma~\ref{lem:twotan} becomes
+the classical ``tent''. Let $x_c\approx2.3311$ be the root in $(\frac\pi2,\pi)$ of $\cos x+x\sin x=1$.
+\begin{lemma}[window]\label{lem:window}
+For $x_0\in[x_c,\pi]$ and all real $s$: $\cos s\ge\cos x_0-\sin x_0\,(|s|-x_0)$, with equality only at $|s|=x_0$ if $x_c<x_0<\pi$.
+\end{lemma}
+\begin{proof}By symmetry let $s\ge0$ and put $L(s)=\cos x_0-\sin x_0(s-x_0)$, $g=\cos-L$; then $g(x_0)=g'(x_0)=0$ and $g''=-\cos$. On $[\frac\pi2,\frac{3\pi}2]$, $g$ is convex
+and tangent to $0$ at $x_0$, so $g\ge0$. On $[0,\frac\pi2]$, $g$ is concave, so its minimum is at an end: $g(\frac\pi2)\ge0$, and $g(0)=1-\cos x_0-x_0\sin x_0\ge0$
+because $x\mapsto\cos x+x\sin x$ decreases on $[\frac\pi2,\pi]$ and equals $1$ at $x_c$. For $s\ge\frac{3\pi}2$, $L(s)\le L(\frac{3\pi}2)\le-1$, since
+$1+\cos x_0\le\sin x_0(\frac{3\pi}2-x_0)$ is $\cot\frac{x_0}2\le\frac{3\pi}2-x_0$, true on $[x_c,\pi]$ ($\cot\frac{x_c}2<0.43<\frac\pi2$). Strictness away from $x_0$ follows
+from strict convexity or concavity on each piece when $x_c<x_0<\pi$.\end{proof}
+\begin{corollary}\label{cor:window}
+If $F$ is symmetric, $x_0=A\,\E|X|\in[x_c,\pi]$ and $T\cx AX$, then $\E\cos T\ge\cos x_0$, attained by the fusion $\pm x_0$.
+\end{corollary}
+\begin{proof}$\E\cos T\ge\cos x_0-\sin x_0(\E|T|-x_0)\ge\cos x_0$, since $\E|T|\le\E|AX|=x_0$.\end{proof}
+
+\subsection{Equality forces complete mixability}
+\begin{proposition}\label{prop:eq-mix}
+Let $t_1=\dots=t_d=t>0$, $V=dtX$, and suppose a coupling gives $S=T_p$ almost surely, i.e.\ $S$ equals $a_p$ on an event $E$ with $\mathbb P(E)=p$ and $b_p$ on
+$E^c$. If $F$ is continuous at $F^{-1}(p)$, then on $E$ every $X_j$ has law $F_-^{(p)}$ and on $E^c$ law $F_+^{(p)}$; in particular both parts are $d$-completely
+mixable.
+\end{proposition}
+\begin{proof}(Bathtub principle; $t>0$.) For any event $B$ with $\mathbb P(B)=p$, $\E[X;B]\ge\E[X;X<F^{-1}(p)]=p\,\E X_-^{(p)}$, with equality only if $B=\{X<F^{-1}(p)\}$ up to
+null sets. Summing over $j$: $\E[S;E]=t\sum_j\E[X_j;E]\ge p\,dt\,\E X_-^{(p)}=p\,a_p$, and $\E[S;E]=p\,a_p$ by assumption; so equality holds for every $j$.\end{proof}
+\begin{corollary}[symmetric case]\label{cor:eq-mix-sym}
+If $F$ is symmetric, $t>0$, $x_0=dt\,\E|X|\in(x_c,\pi)$ and a coupling gives $\E\cos S=\cos x_0$ with $S=t\sum X_j$, then $\sum_j|X_j|\equiv d\,\E|X|$ almost surely.
+\end{corollary}
+\begin{proof}By Lemma~\ref{lem:window} and Corollary~\ref{cor:window}, equality forces $\E|S|=x_0$ and $|S|=x_0$ a.s. Since $|S|\le t\sum|X_j|$ and both sides
+have mean $x_0$, $t\sum_j|X_j|\equiv x_0$.\end{proof}
+
+\section{Symmetric unimodal marginals: the main theorem}\label{sec:main}
+Let $F$ be symmetric and unimodal with density $f$, $m=\E|X|$, $\gamma=f(0)\,m$, and let $s_0\in(0,\infty]$ be the first positive zero of $\varphi$ (the \emph{first lobe}
+is $[0,s_0)$), $s^*=\sup_{s\ge s_0}|\varphi(s)|$ ($s^*=0$ if $s_0=\infty$), and $P_d(x)=\varphi(x/(dm))^d$. For $0<x_0\le\pi$ and $\eta\in[0,\pi]$ put $\hat x_0=\max\{x_0,x_c\}$ and
+\[B_d(x_0,\eta)=\min\Bigl\{1+P_d(x_0)\cos\eta,\ \ -\cos\hat x_0+\sin\hat x_0\bigl(x_0-\hat x_0+\min\{\tfrac{\gamma\eta^2}{x_0},\eta\}\bigr)+P_d(x_0)\cos\eta\Bigr\}.\]
+\noindent\textbf{Conditions.} (W$_d$) $\ \sup_{0<x_0\le\pi,\ 0\le\eta\le\pi}B_d(x_0,\eta)\le\kappa_d^F$; \quad (T$_d$) $\ 1+s^*\le\kappa_d^F$.
+\begin{theorem}[main theorem]\label{thm:main}
+Let $F$ be symmetric and unimodal with density, with $\log\varphi$ concave on its first lobe.
+\begin{enumerate}
+\item[(i)] If (W$_d$) and (T$_d$) hold, then $K_d^F\le\kappa_d^F$.
+\item[(ii)] If $F$ is supported on $[-b,b]$ and $d\ge b/m$, then $K_d^F\ge\kappa_d^F$.
+\item[(iii)] If $F$ has bounded support and $\gamma<\gamma_0:=\min_{x_c\le x\le\pi}\frac{2x}{\pi^2\sin x}=0.6519\ldots$, then there is $d_F$ with $K_d^F=\kappa_d^F$ for all $d\ge d_F$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}In the window $x_0\ge x_c$, if $\gamma\sin x_0\,\eta^2/x_0\le P_d(x_0)(1-\cos\eta)$ for all $\eta$, the second term of $B_d$ is at most $P_d(x_0)-\cos x_0\le\kappa_d^F$: this is
+the two-tangent certificate of Section~\ref{sec:twopoint} in every direction (``exactness''). The finite verifications of the Appendix check (W$_d$) by
+accepting each box either by a margin or by exactness.\end{remark}
+
+\begin{lemma}[shift of a unimodal law]\label{lem:shift}
+If $V$ is symmetric and unimodal with density $g$, then $\E|V-\eta|\le\E|V|+\min\{g(0)\eta^2,|\eta|\}$ for all $\eta$.
+\end{lemma}
+\begin{proof}$\E|V-\eta|-\E|V|=\int_0^{|\eta|}(2F_V(u)-1)\,du$, and $0\le2F_V(u)-1\le\min\{2g(0)u,1\}$ for $u\ge0$ because $g\le g(0)$.\end{proof}
+\begin{lemma}[clamped tent]\label{lem:clamped}
+Let $V$ be symmetric and unimodal with density $g$, $x_0=\E|V|\in(0,\pi]$, $\gamma_V=g(0)\,x_0$, and $S'\cx V$. Then for every real $\eta$,
+\[\E\cos(S'-\eta)\ \ge\ \cos\hat x_0-\sin\hat x_0\bigl(x_0-\hat x_0+\min\{\gamma_V\eta^2/x_0,|\eta|\}\bigr).\]
+For $V=TX$ with $T>0$, $\gamma_V=\gamma$.
+\end{lemma}
+\begin{proof}Lemma~\ref{lem:window} at $\hat x_0\in[x_c,\pi]$, applied pointwise at $s=S'-\eta$, gives $\cos(S'-\eta)\ge\cos\hat x_0-\sin\hat x_0(|S'-\eta|-\hat x_0)$. Take expectations,
+use $\E|S'-\eta|\le\E|V-\eta|$ (convex order) and Lemma~\ref{lem:shift}. For $V=TX$, $g(0)=f(0)/T$ and $x_0=Tm$.\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]\emph{(i) Reductions.} Replacing $X_j$ by $-X_j$ does not change the law, so let $t_j\ge0$; put $T=\sum_jt_j$, $x_0=Tm$ and
+$P=\prod_j\varphi(t_j)$ (real). By Lemma~\ref{lem:como}, $|\E e^{iS}-P|\le R(T,P):=\sup\{|w-P|:\ w\in W_T\}$, $W_T=\{\E e^{iS'}:S'\cx TX\}$; the map $P\mapsto R(T,P)$ is convex,
+$R(T,0)\le1$, and $W_T$ is invariant under conjugation.
+
+\emph{Tail.} If some $t_j\ge s_0$, then $|P|\le s^*$ and the defect is at most $1+s^*\le\kappa_d^F$ by (T$_d$).
+
+\emph{First lobe.} Otherwise all $t_j<s_0$ and $0<P\le P_d(x_0)$ by concavity of $\log\varphi$. By convexity, $R(T,P)\le\max\{R(T,0),R(T,P_d(x_0))\}\le\max\{1,R(T,P_d(x_0))\}$,
+and $1<\kappa_d^F$ (Lemma~\ref{lem:lobe}); so it suffices to bound $R(T,P_d(x_0))$.
+
+\emph{$x_0>\pi$.} Since $\log\varphi$ is concave with $(\log\varphi)'(0)=0$, $\varphi$ decreases on the first lobe, which contains $[\pi/(dm),x_0/(dm)]$ (Lemma~\ref{lem:lobe}); so $R\le1+P_d(x_0)\le1+P_d(\pi)$, the value of the formula at $x=\pi$, hence $\le\kappa_d^F$.
+
+\emph{$0<x_0\le\pi$.} For $w\in W_T$, $|w-P|=\sup_\eta\{-\mathrm{Re}(e^{-i\eta}w)+P\cos\eta\}$ (direction $\pi+\eta$), and by conjugation invariance $\eta\in[0,\pi]$ suffices. Now
+$-\mathrm{Re}(e^{-i\eta}w)=-\E\cos(S'-\eta)$ is at most $1$ and, by Lemma~\ref{lem:clamped}, at most $-\cos\hat x_0+\sin\hat x_0(x_0-\hat x_0+\min\{\gamma\eta^2/x_0,\eta\})$. Hence
+$R(T,P_d(x_0))\le\sup_\eta B_d(x_0,\eta)\le\kappa_d^F$ by (W$_d$).
+
+\emph{(ii)} $|X|$ has a nonincreasing density on $[0,b]$ with mean $m\ge b/d$, so it is $d$-completely mixable (Wang--Wang); apply Corollary~\ref{cor:sym-lb}.
+
+\emph{(iii)} Let $b<\infty$ bound the support. For $d\ge b/m$, (ii) applies. As $d\to\infty$, $P_d\to1$ uniformly on $[0,\pi]$ and $\kappa_d^F\ge1+P_d(\pi)\to2$, so (T$_d$) holds
+since $s^*<1$. In (W$_d$) with $x_0\ge x_c$: since $(1-\cos\eta)/\eta^2\ge2/\pi^2$ on $(0,\pi]$ and $\gamma<\gamma_0$, we get $\gamma\sin x_0\,\eta^2/x_0\le(1-\delta)(1-\cos\eta)$ for some
+$\delta>0$, hence exactness once $P_d\ge1-\delta$. For $x_0<x_c$ (where $\hat x_0=x_c$ and the second term is $-1+\sin x_c(x_0+\min\{\gamma\eta^2/x_0,\eta\})+P_d\cos\eta$, since $\cos x_c+x_c\sin x_c=1$):
+if $\eta\ge\frac12$, the first term is at most $1+\cos\frac12<1.88$; if $\eta\le\frac12$, then $x_0+\min\{\gamma\eta^2/x_0,\eta\}\le\max\{(1+\gamma)\eta,\ x_c+\gamma\eta^2/x_c\}\le2.41$,
+so the second term is at most $-1+2.41\sin x_c+1<1.75$. Hence $\sup B_d<1.88$ there, while $\kappa_d^F\to2$.\end{proof}
+
+\begin{lemma}[one frequency beyond the lobe]\label{lem:onebeyond}
+Let $F$ be symmetric, $t_1\ge0$ arbitrary and $t_2,\dots,t_d$ in the first lobe, $R'=\prod_{j\ge2}\varphi(t_j)$, $P=\varphi(t_1)R'$ and $\beta=m\sum_{j\ge2}t_j\le\pi$. Then for
+every coupling $|\E e^{iS}-P|\le|\varphi(t_1)|-|P|+2\sin(\beta/2)$.
+\end{lemma}
+\begin{proof}Let $Z_1=e^{it_1X_1}$, $Y=\sum_{j\ge2}t_jX_j$, $W=e^{iY}$. Then $\E e^{iS}-P=\varphi(t_1)(1-R')+\E[Z_1(W-1)]$, and $0<R'\le1$. Since $|W-1|=2|\sin(Y/2)|\le2g(|Y|)$
+with the concave nondecreasing $g(y)=\sin(y/2)$ for $y\le\pi$, $g=1$ beyond, Jensen gives $\E|W-1|\le2g(\E|Y|)\le2\sin(\beta/2)$, as $\E|Y|\le\beta$.\end{proof}
+\noindent When (T$_d$) fails, this lemma replaces it: in the region $|P|>\kappa_d^F-1$, log-concavity bounds $R'\le\varphi(\beta/((d-1)m))^{d-1}$, which caps $\beta$, while the lemma
+settles small $\beta$ (Theorem~\ref{thm:d3} and Lemma~\ref{lem:c3}).
+
+\begin{theorem}[different laws]\label{thm:het}
+Let $F_1,\dots,F_d$ be symmetric unimodal with densities $f_j$, $0<m_j=\E|X_j|<\infty$, $b_j=\operatorname{ess\,sup}|X_j|$, $\log\varphi_j$ concave on the first lobes, $\gamma=\max_jf_j(0)m_j$,
+$s^*=\max_js_j^*$, and
+\[K^*=\sup_{t\ge0}\Bigl\{\prod_j\varphi_j(t_j)-\cos\sum_jt_jm_j\Bigr\}.\]
+(i) If $1+s^*\le K^*$ and $B(x_0,\eta;P(t))\le K^*$ for all $t$ in the first lobes with $x_0=\sum t_jm_j\le\pi$ and all $\eta\in[0,\pi]$ (with $B$ as $B_d$ with $P_d(x_0)$ replaced by
+$P(t)=\prod\varphi_j(t_j)$), then $K(F_1,\dots,F_d)\le K^*$. (ii) If $K^*$ is attained at $t^*$ with $\sum_jt_j^*m_j\ge\max_jt_j^*b_j$, then $K(F_1,\dots,F_d)\ge K^*$.
+\end{theorem}
+\begin{proof}(i) By symmetry of each $F_j$ we may take $t\ge0$. As in Theorem~\ref{thm:main}, now with $V=\sum_jt_jF_j^{-1}(U)$. The quantile function of $V$ is a sum of quantile functions that are convex on $(\frac12,1)$ (for a symmetric unimodal density
+$q'(u)=1/f(q(u))$ increases there), so $V$ is symmetric and unimodal, with density $g(0)=1/\sum_jt_j/f_j(0)$ at $0$ and $g(0)\E|V|=\sum t_jm_j/\sum(t_j/f_j(0))\le\gamma$ (mediant inequality); so Lemma~\ref{lem:clamped} holds with $\gamma_V\le\gamma$, and $B$ increases in $\gamma$.
+No reduction of unequal frequencies is needed, because $K^*$ is a supremum over all $t$. If $x_0>\pi$, scaling $t$ to $x_0=\pi$ increases every $\varphi_j(t_j)$ on the first lobes, so
+$1+P(t)\le K^*$. (ii) The moduli $t_j^*|X_j|$ have nonincreasing densities on $[0,t_j^*b_j]$ with means $t_j^*m_j$; by (M2) they are JM, and a common random sign gives $S=\pm x_0^*$,
+hence the defect $P(t^*)-\cos x_0^*=K^*$.\end{proof}
+
+\section{Families and a table of constants}
+\begin{corollary}\label{cor:families}
+$K_d^F=\kappa_d^F$ for: the uniform law and the triangular law, all $d\ge3$; the cubic B-spline (sum of three $U[-\frac12,\frac12]$) and the Epanechnikov
+law, all $d\ge4$ (and $K_3^F\le\kappa_3^F$ for the B-spline). For the uniform law on $[-1,1]$, $\kappa_d=\max_x\{\sinc(2x/d)^d-\cos x\}$;
+$\kappa_3=1.0849633414$, $\kappa_4=1.1907222653$.
+\end{corollary}
+\begin{proof}Theorem~\ref{thm:main}(i)--(ii), with the hypotheses verified in Appendix~\ref{app:fin} (log-concavity, tail, (W$_d$)); where (T$_d$) fails
+(uniform, $d=3,4$) the tail is closed by Lemma~\ref{lem:onebeyond} and Lemma~\ref{lem:c3} for one frequency beyond the lobe, and by $|P|\le s^{*2}=0.0472<\kappa_d-1$ for two or more. Mixability: $b/m=2$ (uniform), $3$ (triangular), $48/13$ (B-spline),
+$8/3$ (Epanechnikov).\end{proof}
+\begin{table}[h]\centering\small
+\begin{tabular}{lccl}\toprule
+law & $d=3$ & $d=4$ & status\\\midrule
+free laws, $C_d$ & $1.1547005384=2/\sqrt3$ & $1.2857142857=9/7$ & sharp\\
+uniform $[-1,1]$ & $1.0849633414$ & $1.1907222653$ & $K_d=\kappa_d$, all $d\ge3$\\
+triangular & $1.0765878231$ & $1.1642014101$ & $K_d=\kappa_d$, all $d\ge3$\\
+cubic B-spline & $1.0808671327$ & $1.1656390998$ & $K_3\le\kappa_3$; $K_d=\kappa_d$, $d\ge4$\\
+Epanechnikov & $1.0800186407$ & $1.1758685660$ & $K_d=\kappa_d$, $d\ge4$ ($d=3$ open)\\
+$\frac34U[-5,5]+\frac14U[-9,9]$ & $1.0874848676$ & & $K_3=\kappa_3^{F}>\kappa_3$\\
+Gaussian & $1.0848101338$ & $1.1630296791$ & $K_d<\kappa_d^G$ (bound not attained)\\\bottomrule
+\end{tabular}
+\caption{Values of $\kappa_d^F=\max_x\{\varphi(x/(d\,\E|X|))^d-\cos x\}$ (and $C_d$), computed to 30 digits.}\label{tab:const}
+\end{table}
+
+\section{The price of fixing the marginals}\label{sec:price}
+Let $X$ have support in $[a,b]$, $\mu=\E X$, $m$ a median, $\sigma^2=\mathrm{Var}X>0$, $\tau=\E|X-m|$.
+\begin{theorem}\label{thm:price}
+If $F$ is lattice or satisfies Cram\'er's condition ($\sup_{|t|\ge T}|\varphi(t)|<1$ for every $T>0$), then
+\[K_d^F=2-\frac{\pi^2\sigma^2}{2d\,\tau^2}+O(d^{-3/2})\qquad(d\to\infty).\]
+\end{theorem}
+\noindent No symmetry, unimodality or mixability is assumed: the median replaces the centre of symmetry. Since $\sigma\ge\E|X-\mu|\ge\tau$, the factor
+$\sigma^2/\tau^2\ge1$ is the \emph{price of fixing the marginals}, with equality iff $X$ is two-point with probabilities $\frac12$ (the rate of $C_d$).
+\begin{corollary}For symmetric $F$ (bounded support, lattice or Cram\'er), $2-K_d^F=\frac{\pi^2}{2d}\frac{\mathrm{Var}X}{(\E|X|)^2}+O(d^{-3/2})$; for the uniform law
+the factor is $4/3$, for the triangular law $3/2$.\end{corollary}
+\begin{lemma}[odd lattice]\label{lem:odd}
+For integrable $Y$ and $|c|\le\pi$: $\E|Y-c|\ge\pi-|\E Y|-2\,\E\,\mathrm{dist}(Y,\pi(2\mathbb Z+1))$.
+\end{lemma}
+\begin{proof}Let $Y'$ be a nearest odd multiple of $\pi$, $D=|Y-Y'|$, $\nu=\E Y'$; then $|\nu|\le|\E Y|+\E D$ and $\E|Y-c|\ge\E|Y'-c|-\E D$. From
+$|y-c|\ge|y|-c\,\mathrm{sgn}\,y$ and, if $P_+=\mathbb P(Y'>0)\ge\frac12$, $\E|Y'|=2\E Y'_+-\nu\ge2\pi P_+-\nu$, we get $\E|Y'-c|\ge P_+(2\pi-2c)+c-\nu\ge\pi-\nu$;
+the case $P_-\ge\frac12$ is symmetric.\end{proof}
+\begin{lemma}[threshold]\label{lem:thr}
+Let $V=\sum_js_jg_j(U)$ with $s_j\ge0$, $A=\sum s_j$, each $g_j$ the quantile function of $X$ or $-X$. If $\E Y=0$ and $Y\cx V-\E V$, then
+$\E\cos Y\ge-1+\frac{\tau^2}{2\pi^2}(\pi/\tau-A)_+^2$.
+\end{lemma}
+\begin{proof}All $g_j(U)-g_j(\frac12)$ have the sign of $U-\frac12$, so $\mathrm{med}\,V=\sum s_jg_j(\frac12)$ and $\E|V-\mathrm{med}\,V|=A\tau$. With $c=\mathrm{med}\,V-\E V$ we
+have $|c|\le A\tau$ and, by convexity, $\E|Y-c|\le A\tau$. If $A\tau<\pi$, Lemma~\ref{lem:odd} gives $\E D\ge(\pi-A\tau)/2$ for $D=\mathrm{dist}(Y,\pi(2\mathbb Z+1))$, and
+Lemma~\ref{lem:latsep} gives $\E(1+\cos Y)\ge\frac2{\pi^2}(\E D)^2$.\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:price}]\emph{Lattice reduction.} If $X\in a+h\mathbb Z$ with maximal span $h$, replacing $t_j$ by $t_j+2\pi/h$ multiplies $\E e^{iS}$ and $z=\prod\varphi(t_j)$
+by the same unimodular constant; so we may take $|t_j|\le\pi/h$. In both cases there are $T_0>0$ and $q<1$ with $|\varphi(t)|\le q$ for $T_0\le|t|$ (in the reduced
+range), and near $0$: $\log|\varphi(t)|\le-\frac{\sigma^2}2t^2+C_1t^4$, $|\varphi(t)|\le e^{-\sigma^2t^2/4}$, $|\arg\varphi(t)-\mu t|\le C_2|t|^3$ ($|\varphi|^2$ is even).
+
+\emph{Upper bound.} Let $\Delta=|\E e^{iS}-z|$. (i) If some $|t_j|\ge T_0$, $\Delta\le1+q$. (ii) If all $|t_j|<T_0$ and $\sum t_j^2\ge M/d$ with $M>4\pi^2/\tau^2$,
+$\Delta\le1+e^{-\sigma^2M/(4d)}\le2-\sigma^2M/(8d)$. (iii) Otherwise $A=\sum|t_j|\le\sqrt M$; write $\E e^{iS}=e^{i\E S}u$ with $u=\E e^{iY}$, $Y=S-\E S\cx V-\E V$
+(Lemma~\ref{lem:como}), and $z=\rho\,e^{i(\E S+\varepsilon)}$, $|\varepsilon|\le C_2\sum|t_j|^3=O(d^{-3/2})$. By Lemma~\ref{lem:thr}, $\mathrm{Re}\,u\ge-1+\eta$ with
+$\eta=\kappa(\pi/\tau-A)_+^2$, $\kappa=\tau^2/(2\pi^2)$, so $|u-\rho|^2\le(1+\rho)^2-2\rho\eta$ and $\Delta\le1+\rho-\frac{\rho\eta}{1+\rho}+\rho|\varepsilon|$. Also
+$\rho\le\exp(-\sigma^2A^2/(2d)+O(d^{-2}))$ since $\sum t_j^2\ge A^2/d$. With $A^*=\pi/\tau$, $x=(A^*-A)_+$ and $\rho\ge\frac12$ (otherwise $\Delta\le\frac32$),
+\[\Delta\le1+e^{-\sigma^2A^{*2}/(2d)}\Bigl(1+\tfrac{2\sigma^2A^*x}d\Bigr)-\tfrac\kappa3x^2+O(d^{-3/2})\le2-\frac{\sigma^2A^{*2}}{2d}+O(d^{-3/2}),\]
+since $\max_{x\ge0}\{\frac{2\sigma^2A^*}dx-\frac\kappa3x^2\}=\frac{3\sigma^4A^{*2}}{\kappa d^2}=O(d^{-2})$ and $e^{-y}\le1-y+y^2/2$.
+
+\emph{Lower bound} (a fusion with approximate mixing, cf.\ Section~\ref{sec:twopoint}). Split at the median: $F_\mp$ are the laws of $F^{-1}(U/2)$ and $F^{-1}((1+U)/2)$,
+with means $\mu_\mp$; then $\mu_+-\mu_-=2\tau$ and $\mu-\mu_-=\tau$. On an event of probability $\frac12$, independent of the uniform variables $U,U'$, put $X_j=F_-^{-1}(\{U+j/d\})$, otherwise
+$X_j=F_+^{-1}(\{U'+j/d\})$: each $X_j\sim F$, and since a monotone function's Riemann sums at shifted grids are within its range of the integral, the two
+sums are $d\mu_\mp+e_\mp$ with $|e_\mp|\le b-a$. At $t=\pi/(d\tau)$, $e^{itd\mu_+}=e^{itd\mu_-}$ and $\E e^{iS}=e^{itd\mu_-}v$ with $\mathrm{Re}\,v\ge1-t^2(b-a)^2/2$, while
+$z=-\rho\,e^{itd\mu_-}e^{i\beta}$ with $\beta=O(d^{-2})$ and $\rho=\exp(-\pi^2\sigma^2/(2d\tau^2)+O(d^{-3}))$. Hence $\Delta\ge\mathrm{Re}(v+\rho e^{i\beta})\ge1+\rho-O(d^{-2})$.
+\end{proof}
+
+\section{Extremality of the uniform law}\label{sec:ext}
+By Khinchine's theorem a symmetric unimodal $X$ is $CW$ with $W\sim U[-1,1]$ independent of $C\ge0$, so $\varphi(t)=\E\sinc(tC)$, $m=\E C/2$ and $b=\operatorname{ess\,sup}C$; the
+uniform law with the same $m$ is $U[-2m,2m]$. With $Y=C/\E C$: $\ \varphi(x/(dm))=\E\sinc(zY)$, $z=2x/d$, and $b\le dm$ means $Y\le d/2$.
+\begin{lemma}[majorant of $\sinc$]\label{lem:maj}
+Let $\hat h=\sinc$ on $[0,\frac\pi2]$ and $\hat h(z)=\frac4{\pi^2}(\pi-z)$ on $[\frac\pi2,\pi]$. Then $\hat h$ is concave on $[0,\pi]$ and $\hat h\ge\sinc$.
+\end{lemma}
+\begin{proof}The line is the tangent to $\sinc$ at $\frac\pi2$ ($\sinc\frac\pi2=\frac2\pi$, $\sinc'\frac\pi2=-\frac4{\pi^2}$) and $\sinc$ is concave on $[0,\frac\pi2]$, so $\hat h$ is $C^1$ and
+concave. On $[\frac\pi2,\pi]$, $\hat h\ge\sinc$ is $p(z)=\frac4{\pi^2}z(\pi-z)-\sin z\ge0$. Now $p$ is symmetric about $\frac\pi2$ with $p(0)=p(\frac\pi2)=0=p'(\frac\pi2)$, and
+$p''=-\frac8{\pi^2}+\sin z$ increases on $[0,\frac\pi2]$: $p$ is concave then convex there, convex near $\frac\pi2$ with a double zero, hence $p\ge0$.\end{proof}
+\begin{lemma}[dominance]\label{lem:dom}
+If $Y\ge0$, $\E Y=1$, $0<z\le\frac\pi2$ and $zY\le\pi$, then $\E\sinc(zY)\le\sinc z$, with equality only if $Y\equiv1$.
+\end{lemma}
+\begin{proof}$\E\sinc(zY)\le\E\hat h(zY)\le\hat h(z)=\sinc z$ (Jensen). Equality in Jensen needs $zY$ inside an interval where $\hat h$ is affine and containing $z$; the only
+affine piece is $[\frac\pi2,\pi]$, which forces $z=\frac\pi2$ and $Y\ge1$, hence $Y\equiv1$.\end{proof}
+\begin{theorem}\label{thm:ext}
+Let $d\ge4$ and $F$ symmetric unimodal with $b\le dm$, $\varphi$ nonincreasing on its first lobe and $s^*\le\sinc(2\pi/d)$. Then $\kappa_d^F\le\kappa_d$, with equality
+iff $F$ is uniform. Hence, whenever $K_d^F=\kappa_d^F$ (Theorem~\ref{thm:main}), the uniform law has the largest constant among these symmetric unimodal marginals.
+\end{theorem}
+\begin{proof}For $0<x\le\pi$: $z=2x/d\le\pi/2$ because $d\ge4$, and $zY\le x\le\pi$ because $Y\le d/2$; so $0\le\varphi(x/(dm))\le\sinc(2x/d)$ by Lemma~\ref{lem:dom} ($\sinc\ge0$ on $[0,\pi]$),
+and $\varphi(x/(dm))^d-\cos x\le\sinc(2x/d)^d-\cos x\le\kappa_d$. For $x>\pi$: $|\varphi(x/(dm))|\le\max\{\varphi(\pi/(dm)),s^*\}\le\sinc(2\pi/d)$, so the value is at most
+$1+\sinc(2\pi/d)^d$, the uniform formula at $\pi$, which is $<\kappa_d$ since its maximizer lies in $(0,\pi)$. Equality forces a maximizer in $(0,\pi)$ and
+$Y\equiv1$ there.\end{proof}
+\begin{remark}[why $d\ge4$]The majorant $\hat h$ touches $\sinc$ exactly up to $\frac\pi2$, and $2\pi/d\le\frac\pi2$ iff $d\ge4$. For $d=3$ the relevant argument $2x^*/3\approx1.98$
+lies beyond $\frac\pi2$, where mixing two scales helps.\end{remark}
+\begin{remark}[symmetry is needed]\label{rem:symneeded}
+The symmetry assumption in Theorem~\ref{thm:ext} cannot be dropped. The law $F=\frac14\delta_0+\frac34U[0,1]$ is unimodal, and
+$\varphi(t)=\frac14+\frac34\frac{e^{it}-1}{it}$ satisfies $|\varphi(t)|<1$ for $t\ne0$ and $|\varphi(t)|\to\frac14$, so Cram\'er's condition holds. Its median is $\frac13$,
+$\E|X-\frac13|=\frac7{24}$ and $\mathrm{Var}X=\frac7{64}$, so $\mathrm{Var}X/(\E|X-\mathrm{med}X|)^2=\frac97<\frac43$. By Theorem~\ref{thm:price}, $K_d^F>K_d^U$ for all sufficiently
+large $d$. (In fact $\frac97$ is the smallest value of this ratio over unimodal laws, and $K_d^F>K_d^U$ already for every $d\ge4$; see Section~\ref{sec:unimodal}.)
+\end{remark}
+\begin{theorem}[different laws]\label{thm:ext-het}
+Let $d\ge4$ and let $F_1,\dots,F_d$ satisfy Theorem~\ref{thm:het}, with the maximum attained at $t^*$ where joint mixability holds. Then $K(F_1,\dots,F_d)\le\kappa_d$,
+with equality iff all $F_j$ are uniform.
+\end{theorem}
+\begin{proof}Scaling $t$ down to $x_0=\pi$ does not decrease the formula on the first lobes, so $x_0^*=\sum t_j^*m_j\le\pi$. With $u_j=t_j^*m_j$ and $Y_j=C_j/\E C_j$, joint mixability gives
+$2u_jY_j=t_j^*C_j\le t_j^*b_j\le x_0^*\le\pi$ and $2u_j\le t_j^*b_j$ (as $b_j\ge2m_j$). Hence $\varphi_j(t_j^*)\le\hat h(2u_j)$ (Jensen), and since $\hat h$ is concave and positive
+on $[0,\pi)$, $\log\hat h$ is concave: $\prod_j\hat h(2u_j)\le\hat h(2x_0^*/d)^d=\sinc(2x_0^*/d)^d$. So $K\le\sinc(2x_0^*/d)^d-\cos x_0^*\le\kappa_d$.
+
+\emph{Equality.} $\log\hat h$ is strictly concave on $[0,\pi)$ ($\log\sinc$ on $[0,\frac\pi2]$, $\log(\pi-z)$ on $[\frac\pi2,\pi)$), so $K=\kappa_d$ forces
+$u_j=x_0^*/d$ for all $j$. Then $2u_j=2x_0^*/d\le\frac\pi2$ and $\varphi_j(t_j^*)=\E\sinc(2u_jY_j)=\sinc(2u_j)$, so Lemma~\ref{lem:dom} gives $Y_j\equiv1$: each $F_j$ is uniform.
+Conversely, for uniform $F_j$ (of any scales) the formula reduces to $\max_x\{\sinc(2x/d)^d-\cos x\}=\kappa_d$ at equal $u_j$, where the moduli are identical uniforms and
+hence jointly mixable.\end{proof}
+\begin{theorem}[$d=3$: the threshold is sharp]\label{thm:d3}
+For $F^*=\frac34U[-5,5]+\frac14U[-9,9]$: $K_3^{F^*}=\kappa_3^{F^*}=1.087484867576\ldots>\kappa_3=1.084963341374\ldots$
+\end{theorem}
+\begin{proof}\emph{Lower bound.} $|X|$ has a nonincreasing density on $[0,9]$ and mean $3=9/3$, so it is $3$-CM (Wang--Wang); Corollary~\ref{cor:sym-lb} at $x=2.97$ gives the value.
+\emph{Upper bound.} Here $m=3$, $\gamma=4/15$, $\log\varphi$ is concave on the first lobe $[0,0.59949)$ (Appendix), and (W$_3$) holds (Appendix: 54 boxes). (T$_3$) fails
+($s^*\le0.13537$), so we use Lemma~\ref{lem:onebeyond}: with $\tau=\kappa_3^{F^*}-1$, the region $|P|>\tau$ needs $\varphi(\beta/6)^2\ge R'>\tau/s^*$, i.e.\ $\beta<\beta_{\max}=6\varphi^{-1}(\sqrt{\tau/s^*})=1.0891$,
+while $|\varphi(t_1)|-|P|+2\sin(\beta/2)\le s^*-\tau+2\sin(\beta/2)\le\kappa_3^{F^*}$ for $\beta\le\beta_1=1.0932$. Two frequencies beyond the lobe give $|P|\le s^{*2}<\tau$.\end{proof}
+\begin{proposition}[optimal $\kappa$-profile over the $d=3$ unimodal class]\label{prop:d3sup}
+Over symmetric unimodal laws with $3$-completely mixable $|X|$, $\sup_F\kappa_3^F=\sup_x\{\hat h_x(1)^3-\cos x\}=1.0874848690\ldots$, where $\hat h_x$ is the least concave majorant
+of $y\mapsto\sinc(2xy/3)$ on $[0,\frac32]$; it is attained by the normalized scale $Y=C/\E C\in\{0.83346,\frac32\}$ with probabilities $0.75014,0.24986$, and $F^*$ is within $1.4\cdot10^{-9}$.
+\end{proposition}
+\noindent This concerns the formula $\kappa_3^F$. Whether $\sup_FK_3^F$ over the same class equals this value is open (Section~\ref{sec:open}); it holds for $F^*$
+by Theorem~\ref{thm:d3}.
+\begin{proof}For fixed $x$ the constraint $\E Y=1$ on $Y\in[0,\frac32]$ is one linear constraint, so $\sup\E\sinc(2xY/3)$ is attained by two-point laws and equals the concave majorant at
+$1$ --- the two-point principle once more.\end{proof}
+
+\section{Attainment, Gaussian marginals and the mixability conjecture}\label{sec:att}
+\noindent\textbf{Strict conditions.} (W$_d^{\rm s}$): $B_d(x_0,\eta)<\kappa_d^F$ for all $(x_0,\eta)\ne(x_0^*,0)$, where $x_0^*\in(x_c,\pi)$ is the unique maximizer of $P_d(x)-\cos x$;
+(T$_d^{\rm s}$): $1+s^*<\kappa_d^F$.
+\begin{theorem}[attainment forces mixability]\label{thm:att}
+Let $F$ be symmetric unimodal with density, $\log\varphi$ strictly concave on its first lobe, and (W$_d^{\rm s}$), (T$_d^{\rm s}$). If $K_d^F=\kappa_d^F$, then some coupling has
+$\sum_j|X_j|\equiv d\,m$. Consequently, under these conditions, $K_d^F=\kappa_d^F$ if and only if $|X|$ is $d$-completely mixable.
+\end{theorem}
+\begin{proof}Take frequencies $t^{(n)}\ge0$ and couplings with defect $\to\kappa_d^F$. By (T$_d^{\rm s}$) all $t_j^{(n)}<s_0$ eventually. In the proof of Theorem~\ref{thm:main} the defect is at
+most $1+P_d(\pi)$ if $x_0>\pi$ (strictly below $\kappa_d^F$ since $x_0^*<\pi$) and, by convexity in $P$, at most $\lambda+(1-\lambda)\sup_\eta B_d(x_0,\eta)$ otherwise, where
+$\lambda=1-P/P_d(x_0)\in[0,1)$. Since the defect tends to $\kappa_d^F>1$, (W$_d^{\rm s}$) and compactness give $\lambda^{(n)}\to0$, $x_0^{(n)}\to x_0^*$ and maximizing directions $\eta\to0$;
+$\lambda^{(n)}\to0$ and strict concavity of $\log\varphi$ force the frequencies to the equal point $t^*$. Couplings with fixed
+marginals form a tight family; a limit coupling at $t^*$ has defect $\kappa_d^F$, attained only in the direction $\eta=0$: $P_d(x_0^*)-\E\cos S=\kappa_d^F$, i.e.\ $\E\cos S=\cos x_0^*$.
+Corollary~\ref{cor:eq-mix-sym} gives $\sum_j|X_j|\equiv dm$. Conversely, if $|X|$ is $d$-CM, Corollary~\ref{cor:sym-lb} and Theorem~\ref{thm:main}(i) give $K_d^F=\kappa_d^F$.\end{proof}
+\begin{corollary}[Gaussian marginals]\label{cor:gauss}
+For standard Gaussian marginals and every $d\ge3$,
+\[K_d^G<\kappa_d^G=\max_x\{e^{-\pi x^2/(4d)}-\cos x\};\]
+$\kappa_d^G$ is an upper bound that is not attained.
+\end{corollary}
+\begin{proof}$\varphi=e^{-t^2/2}$ has no zeros ($s^*=0$) and $\log\varphi$ is strictly concave; $\gamma=1/\pi$; (W$_d^{\rm s}$) holds for all $d\ge3$ (Appendix: brackets for $d\le19$; beyond, Lemma~\ref{lem:binf} and
+$\kappa_{20}^G=1.6926>1-\cos x_c$ with Lemma~\ref{lem:mono-d}; strict exactness at $x_0^*$, e.g.\ $\gamma\sin x_0^*/(x_0^*P_3(x_0^*))=0.168<4/\pi^2$). Since $|X|$ is unbounded, $\sum|X_j|$ cannot be constant.\end{proof}
+\begin{proposition}[the mixability conjecture fails for $d=3$]\label{prop:threepoint}
+Let $\mathbb P(X=0)=\mathbb P(X=1)=\mathbb P(X=-1)=\frac13$. Then $|X|$ is $3$-CM (one zero at a uniformly random place) and $\kappa_3^F=(5\sqrt5-7)/4=1.0450849719$, but $K_3^F\ge1.0673306671$.
+\end{proposition}
+\begin{proof}With probability $\frac13$ let $X_1=X_2=X_3=0$; otherwise let $\varepsilon=\pm1$ be a fair sign and $X_3=\varepsilon$, $X_1=X_2=-\varepsilon$; each $X_j$ has law $F$. At
+$t=(\frac{2\pi}5,\frac{2\pi}5,\frac{5\pi}6)$, $S=\varepsilon(t_3-t_1-t_2)=\varepsilon\,\frac\pi{30}$ off the event $\{X_1=X_2=X_3=0\}$, so $\E e^{iS}=\frac13+\frac23\cos\frac\pi{30}$, while $\prod\varphi(t_j)=\varphi(\frac{2\pi}5)^2\varphi(\frac{5\pi}6)<0$ with
+$\varphi(t)=\frac13+\frac23\cos t$; the difference is $1.0673306671$.\end{proof}
+\noindent Outside the unimodal class, attainment of the formula is therefore not characterized by mixability; a compensating coupling with frequencies of
+different sizes beats it. For $d\ge4$ the question is open (Section~\ref{sec:open}).
+
+\section{A new phenomenon without symmetry}\label{sec:nonsym}
+For a law without symmetry, the fusions of Section~\ref{sec:twopoint} at a split $p\ne\frac12$ put an imaginary part into the fused point, and this can increase the
+defect. For equal frequencies $t>0$ (by conjugation, $t<0$ gives nothing new) let $D(t,p)=|p\,e^{i\,dt\mu_-(p)}+(1-p)e^{i\,dt\mu_+(p)}-\varphi(t)^d|$, where $\mu_\mp(p)$ are the means of
+the lower and upper $p$-parts.
+\begin{theorem}\label{thm:nonsym-lb}
+If $F$ has a concave density on a bounded interval, then $K_d^F\ge\sup_{t,p}D(t,p)$ for every $d\ge3$.
+\end{theorem}
+\begin{proof}Both parts have concave densities, hence are $d$-completely mixable for $d\ge3$ (Puccetti--Wang--Wang, Thm~4.2); apply Theorem~\ref{thm:fusion-lb}.\end{proof}
+\noindent For Beta$(1,2)$ (density $2(1-x)$ on $[0,1]$) and $d=3$: $\sup D=1.0726392817$ at $t^*=5.18958$, $p^*=0.43813$, while the best symmetric split
+$p=\frac12$ gives $1.0681$. The optimal two-point split is asymmetric.
+\begin{conjecture}\label{conj:nonsym}If $F$ has a concave density on a bounded interval (possibly with analogues of the conditions of Theorem~\ref{thm:main}), then $K_d^F=\sup_{t,p}D(t,p)$ for $d\ge3$.\end{conjecture}
+\noindent Evidence: at $t^*$ the comonotone relaxation lies within $4\cdot10^{-7}$ of $D(t^*)$ (explicit two-tangent certificates in $3600$ directions) for
+Beta$(1,2)$ ($d=3,4$) and an asymmetric triangular law ($d=3$). The upper-bound tools (an equal-variable reduction of frequency splits, a monotone-path
+principle) will appear in a sequel.
+
+\section{Without symmetry: the extremal unimodal marginal}\label{sec:unimodal}
+By Theorem~\ref{thm:price}, for large $d$ the least restrictive marginal minimizes $\mathrm{Var}X/\tau^2$, $\tau=\E|X-\mathrm{med}X|$; among symmetric unimodal
+laws the minimum is $\frac43$, attained by the uniform law. Without symmetry it is smaller (Remark~\ref{rem:symneeded}), and the uniform law is not extremal at any $d\ge3$.
+
+\noindent\textbf{Unimodality.} $X$ is unimodal about $M$ if its distribution function is convex on $(-\infty,M)$ and concave on $(M,\infty)$ (an atom at $M$ is allowed);
+$M$ is then a mode. By Khinchine's theorem \cite{Kh38,DJ88} this holds iff $X=M+UZ$ with $U\sim U[0,1]$ independent of $Z$.
+\begin{proposition}[the $9/7$ inequality]\label{prop:97}
+Let $X$ be unimodal with $0<\mathrm{Var}X<\infty$ and $\tau=\E|X-\mathrm{med}X|$.
+\begin{enumerate}
+\item[(i)] $\mathrm{Var}X\ge\frac97\,\tau^2$, with equality if and only if $X$ is an affine image of $\frac14\delta_0+\frac34U[0,1]$.
+\item[(ii)] If some median of $X$ is a mode of $X$ (in particular, if $X$ is symmetric), then $\mathrm{Var}X\ge\frac43\,\tau^2$, with equality if and only if $X$ is uniform.
+\end{enumerate}
+\end{proposition}
+\noindent With $\mathrm{ES}_{1/2}(X)=2\int_{1/2}^1F^{-1}(u)\,du$ one has $\tau=\mathrm{ES}_{1/2}(X)-\E X$, so (i) is the case $p=\frac12$ of the worst-case expected shortfall
+over unimodal laws with given mean and variance, which is known in closed form: Li, Shao, Wang and Yang \cite{LSWY18} treat Range Value-at-Risk under mean, variance
+and unimodality; see also \cite{BKV20,ZBYS26}, and \cite[Remark~8]{ZY25} for the formula $\sup(\mathrm{ES}_p-\E X)=\sigma\sqrt{p(8-9p)}/(3(1-p))$, $p\le\frac12$, which equals
+$\frac{\sqrt7}3\sigma$ at $p=\frac12$. We include a short proof by the two-point principle; it also gives the uniqueness of the extremal law and part (ii), which we have not
+found stated. Part (ii) does not follow from the Gauss--Winckler inequality $\E(X-M)^2\ge\frac43(\E|X-M|)^2$ about a mode $M$ \cite{Wi1866}, since
+$\mathrm{Var}X=\E(X-M)^2-(\E X-M)^2$.
+\begin{lemma}[two-point decomposition]\label{lem:dec}
+Let $\nu$ be a probability law on $\mathbb R$ and $g$ measurable with values in $[0,1]$, $\int g\,d\nu=c$. Then $\nu$ is a mixture of laws with at most two atoms, each with
+$\int g=c$.
+\end{lemma}
+\begin{proof}Let $\mu$ be the law of $g(Z)$, $Z\sim\nu$, with restrictions $\mu_\pm$ to $\{y\gtrless c\}$ and $D=\int(y-c)\,d\mu_+=\int(c-y')\,d\mu_-$. Then
+\[\mu=\mu(\{c\})\delta_c+\iint\frac{(c-y')\delta_y+(y-c)\delta_{y'}}{y-y'}\cdot\frac{(y-y')\,\mu_+(dy)\,\mu_-(dy')}D,\]
+a mixture of two-point laws with mean $c$ (the marginals are $\mu_+$ and $\mu_-$). Disintegrating $\nu$ along $g(Z)$ and drawing $Z$ independently from the two
+conditional laws lifts each two-point law of $g(Z)$ to a mixture of two-point laws of $Z$ with the same $g$-mean.\end{proof}
+\begin{proof}[Proof of Proposition~\ref{prop:97}]\emph{Reduction.} Fix a mode $M$ of $X$ and write $X=M+UZ$. The ratio $\mathrm{Var}X/\tau^2$ is invariant under
+$X\mapsto\alpha X+\beta$ ($\alpha\ne0$), so let $M=0$. Then $\E X=\E Z/2$, $\E X^2=\E Z^2/3$, and $X$ has no atom except possibly at $0$.
+
+\emph{Median at the mode.} Suppose $0$ is a median of $X$; this is the situation of (ii) (a symmetric unimodal law has its centre as a mode and a median). Then
+$p_\pm=\mathbb P(\pm Z>0)=\mathbb P(\pm X>0)\le\frac12$. With $a=\E Z_+$, $b=\E Z_-$: $\E Z_\pm^2\ge(\E Z_\pm)^2/p_\pm\ge2(\E Z_\pm)^2$ by Cauchy--Schwarz, so
+$\mathrm{Var}X\ge\frac23(a^2+b^2)-\frac14(a-b)^2$ and $\tau=\frac{a+b}2>0$; with $a+b=1$, $a=s$, the ratio is at least $4(\frac13s^2-\frac13s+\frac5{12})=\frac43+\frac43(s-\frac12)^2\ge\frac43$.
+Equality forces $s=\frac12$ and equality in both Cauchy--Schwarz steps, i.e.\ $\mathbb P(Z>0)=\mathbb P(Z<0)=\frac12$ with $Z$ constant on each event; so $Z=\pm c$ with
+probability $\frac12$ each and $X$ is uniform. This proves (ii), and (i) when a mode is a median, since $\frac43>\frac97$.
+
+\emph{Median off the mode.} By reflection and scaling let the median be $1$. Since $X$ has no atom at $1$, $\mathbb P(X\le1)=\frac12$. For a value $z$ of $Z$ put
+$\psi(z)=\mathbb P(Uz\le1)$ ($=1$ for $z\le1$, $=1/z$ for $z\ge1$) and $\phi(z)=\E|Uz-1|$ ($=1-z/2$ for $z\le1$, $=z/2-1+1/z$ for $z\ge1$). With $\nu$ the law of $Z$: $\int\psi\,d\nu=\frac12$,
+$\tau=\int\phi\,d\nu$, and the claim is
+\[H(\nu):=\tfrac73\int z^2d\nu-\tfrac74\Bigl(\int z\,d\nu\Bigr)^2-9\Bigl(\int\phi\,d\nu\Bigr)^2\ge0 .\]
+By Lemma~\ref{lem:dec} with $g=\psi$, $\nu=\int\nu_s\,\pi(ds)$ with two-point $\nu_s$ satisfying $\int\psi\,d\nu_s=\frac12$; since $(\int L(\nu_s)\,d\pi)^2\le\int L(\nu_s)^2d\pi$ for linear $L$,
+$H(\nu)\ge\int H(\nu_s)\,\pi(ds)$. So let $\nu$ have a left atom $a\le2$ (probability $1-q$) and a right atom $b\ge2$ (probability $q$); the one-point law $Z\equiv2$ gives $H=\frac1{12}$.
+
+\emph{Case $a\le1$.} Here $q=\frac b{2(b-1)}$; $H$ is quadratic in $a$ with leading coefficient $\frac{(b-2)(b+5)}{6(b-1)^2}\ge0$ and minimizer $a^*(b)=-\frac{3(b-3)(b+3)}{4(b+5)}\le1$
+(equivalently $(3b+7)(b-1)\ge0$), and
+\[\min_aH=\frac{7(b-3)^2(b+6)}{96(b+5)}\ge0,\]
+with equality only at $b=3$, $a=0$, $q=\frac34$.
+
+\emph{Case $1\le a\le2$.} Here $q=\frac{b(2-a)}{2(b-a)}$ and $H=N(a,b)/12$ with $N=-12a^2b^2+34a^2b-20a^2+34ab^2-95ab+54a-20b^2+54b-27$. Then $N(a,2)\equiv1$, $N$ is convex
+in $b$ (leading coefficient $2(2-a)(6a-5)\ge0$), and $\partial_bN(a,2)=(2-a)(14a-13)\ge0$; hence $N\ge1$.
+
+\emph{Equality} in (i) forces $H(\nu_s)=0$ for $\pi$-a.e.\ $s$, so every component, hence $\nu$, is the law of $Z\in\{0,3\}$ with probabilities $(\frac14,\frac34)$;
+then $X$ has an atom $\frac14$ at $0$ and is uniform on $[0,3]$ otherwise, the image of $\frac14\delta_0+\frac34U[0,1]$ under $x\mapsto3x$. Conversely, for
+$\frac14\delta_0+\frac34U[0,1]$: median $\frac13$, $\tau=\frac14\cdot\frac13+\frac34\cdot\frac{1/9+4/9}2=\frac7{24}$, $\mathrm{Var}=\frac14-\frac9{64}=\frac7{64}$, ratio $\frac97$.\end{proof}
+\begin{corollary}[asymptotically extremal marginal]\label{cor:asym-ext}
+For every non-degenerate unimodal $F$ with bounded support, $\lim_{d\to\infty}d\,(2-K_d^F)=\frac{\pi^2}2\frac{\mathrm{Var}X}{\tau^2}\ge\frac{9\pi^2}{14}$, with equality iff $F$ is an
+affine image of $\frac14\delta_0+\frac34U[0,1]$; if a median is a mode (in particular for symmetric $F$), the bound is $\frac{2\pi^2}3$, attained by the uniform law.
+\end{corollary}
+\begin{proof}Cram\'er's condition is automatic: with $p_0=\mathbb P(Z=0)<1$, $\varphi(t)=e^{itM}(p_0+(1-p_0)\psi(t))$, where $\psi$ is the characteristic function of a mixture
+of uniform laws, hence absolutely continuous; so $|\varphi(t)|\to p_0<1$, and $|\varphi(t)|<1$ for $t\ne0$ since a law with an absolutely continuous component is not
+lattice. Apply Theorem~\ref{thm:price} and Proposition~\ref{prop:97}.\end{proof}
+\noindent For finite $d$ we use the fusions $D(t,p)$ of Section~\ref{sec:nonsym} and the mixability criterion (M1) of Section~\ref{sec:prelim}.
+\begin{lemma}[atoms at the left end]\label{lem:atom}
+Let $G=w_0\delta_0+(1-w_0)H$ with $H$ having a nonincreasing density on $[0,b]$. If the mean of $G$ is at least $b/d$, then $G$ is $d$-completely mixable.
+\end{lemma}
+\begin{proof}Replace $w_0\delta_0$ by $w_0U[0,\varepsilon]$: the result $G_\varepsilon$ has a nonincreasing density on $[0,b]$ and a larger mean, so it is $d$-CM by (M1). Complete mixes of
+$G_\varepsilon$ are tight (support in $[0,b]$); a subsequential limit in law has marginals $G$, and its coordinate sum is the limit of the constants $d\,\E G_\varepsilon$.\end{proof}
+\begin{theorem}[finite $d$]\label{thm:finite-d}
+Let $F=\frac14\delta_0+\frac34U[0,1]$ and $U$ the uniform law. Then $K_d^F>K_d^U$ for every $d\ge4$. For $d=3$, $F'=\frac{41}{250}\delta_0+\frac{209}{250}U[0,1]$ has
+$K_3^{F'}\ge1.0878685$, which exceeds $K_3^U=1.0849633$, $K_3^{F^*}=1.0874849$ (Theorem~\ref{thm:d3}) and the supremum $1.0874848690$ of $\kappa_3^F$ in
+Proposition~\ref{prop:d3sup}.
+\end{theorem}
+\begin{proof}[Proof of Theorem~\ref{thm:finite-d}]\emph{Attainable fusions.} For $F_w=w\delta_0+(1-w)U[0,1]$ and $p>w$, the lower $p$-part is $\frac wp\delta_0+\frac{p-w}pU[0,q]$, $q=\frac{p-w}{1-w}$, with mean $\frac{(1-w)q^2}{2p}$;
+the upper part $U[q,1]$ is $d$-CM for every $d\ge2$ by (M1). By Lemma~\ref{lem:atom} the lower part is $d$-CM if $\frac{(1-w)q^2}{2p}\ge\frac qd$. For $w=\frac14$, $p=\frac12$: $q=\frac13$, mean $\frac1{12}\ge\frac1{3d}$ for
+$d\ge4$. For $w=\frac{41}{250}$, $p=\frac{123}{250}$, $d=3$: mean $=\frac{82}{627}=\frac q3$ exactly. By Theorem~\ref{thm:fusion-lb}, $K_d^{F_w}\ge D(t,p)$ for all $t>0$.
+
+\emph{$d=3$ and $4\le d\le200$.} $D(t,p)$ is an explicit expression ($\varphi_w(t)=w+(1-w)\frac{e^{it}-1}{it}$, rational $\mu_\pm$) and is bounded below at explicit $t$ by interval
+arithmetic; $K_d^U=\kappa_d$ (Corollary~\ref{cor:families}) is bounded above by a grid with a Lipschitz bound (Appendix~\ref{app:unimodal}). All margins are positive (Table~\ref{tab:margins}).
+
+\emph{$d\ge200$.} Let $t_d=\frac{24\pi}{7d}$. Then $dt_d\mu_-=\frac{2\pi}7$ and $dt_d\mu_+=\frac{2\pi}7+2\pi$ ($\mu_-=\frac1{12}$, $\mu_+=\frac23$), so the fusion equals $e^{2\pi i/7}$; and with $\mu=\frac38$,
+$\psi(t)=e^{-i\mu t}\varphi(t)$: $\varphi(t_d)^d=e^{9\pi i/7}\psi(t_d)^d=-e^{2\pi i/7}\psi(t_d)^d$. Hence $D(t_d,\frac12)=|1+\psi(t_d)^d|\ge1+\mathrm{Re}\,\psi(t_d)^d$. By Lemma~\ref{lem:tail},
+\[D(t_d,\tfrac12)\ge1+e^{-a/d}-\frac{14.6}{d^2},\qquad \kappa_d\le1+e^{-b/d}+\frac{9.98}{d^2},\qquad a=\tfrac{9\pi^2}{14},\ b=\tfrac{2\pi^2}3 .\]
+Since $1-e^{-y}\ge ye^{-y}$, $d^2(e^{-a/d}-e^{-b/d})\ge d\,\frac{\pi^2}{42}e^{-b/d}\ge45.4>24.6$ for $d\ge200$.\end{proof}
+\begin{table}[ht]\centering\small
+\begin{tabular}{rccc}\toprule
+$d$ & lower bound for $K_d^F$ & upper bound for $K_d^U$ & margin\\\midrule
+3 ($F'$) & 1.0878685 & 1.0849652 & 0.0029 (vs.\ $F^*$: 0.00038)\\
+4 & 1.2002921 & 1.1907241 & 0.0096\\
+5 & 1.2914829 & 1.2796741 & 0.0118\\
+8 & 1.4731083 & 1.4608883 & 0.0122\\
+20 & 1.7381118 & 1.7301725 & 0.0079\\
+60 & 1.9014265 & 1.8980328 & 0.0034\\
+100 & & & 0.0022\\
+200 & & & 0.0011\\\bottomrule
+\end{tabular}
+\caption{Certified margins (interval arithmetic); $F=\frac14\delta_0+\frac34U[0,1]$, median split. The margin behaves like $\frac{\pi^2}{42d}$.}\label{tab:margins}
+\end{table}
+
+\section{Open problems}\label{sec:open}
+\begin{enumerate}
+\item The supremum of $K_3^F$ over symmetric unimodal laws with $3$-CM $|X|$: conjecturally equal to $\sup\kappa_3^F=1.0874848690$ (Proposition~\ref{prop:d3sup}), which
+$F^*$ approaches within $1.4\cdot10^{-9}$. Peaked limits of this class (an atom plus a spread-out part, $r=\varphi(t)\le\frac13$) give at most $1+r^3\le28/27$ by Theorem~\ref{thm:profile}.
+\item The three-point family $\mathbb P(X=0)=w$, $\mathbb P(X=\pm1)=\frac{1-w}2$ for $d\ge4$: is $K_d=\kappa_d$ exactly when $|X|$ is $d$-CM?
+\item The size of the Gaussian gap: numerically $K_3^G\approx1.081<\kappa_3^G=1.0848$.
+\item Conjecture~\ref{conj:nonsym}; exact identities $K_d^F=\sup D$ for $d\ge d_F$.
+\item Theorem~\ref{thm:price} for non-lattice laws without Cram\'er's condition.
+\item The exact value of $K_d^F$ for $F=\frac14\delta_0+\frac34U[0,1]$ (is it $\sup D$?), and the extremal unimodal marginal at a fixed $d$: is it an atom plus a uniform
+part for every $d\ge3$?
+\end{enumerate}
+
+\appendix
+\section{Finite verifications}\label{app:fin}
+\subsection{Method}
+Each remaining finite claim has the form $F\le\kappa$ on a box, where $F$ is built from elementary functions that are monotone in each variable on the box (or have
+explicit Lipschitz bounds). On a sub-box, an upper bound for $F$ is obtained by evaluating every piece at the corner that maximizes it. Sub-boxes are bisected until
+each is accepted \emph{by a margin} ($F<\kappa-10^{-3}$) or \emph{by exactness}: in the window, the inequality $\gamma\sin x_0\,\eta^2/x_0\le P(1-\cos\eta)$ on the box, which forces the
+second term of $B_d$ to be at most $P_d(x_0)-\cos x_0\le\kappa$; it is checked through $\gamma\sin x_a/(x_aP_d(x_b))\le(1-\cos\eta_b)/\eta_b^2$. Lower bounds for $\kappa$ are the
+values of the formula at explicit points. No interval library is used: margins are $\ge10^{-3}$ against rounding errors of order $10^{-15}$. In every box
+$\eta\ge\frac\pi2$ is trivial, since then $B_d\le1+P\cos\eta\le1<\kappa$.
+
+\subsection{Two general lemmas}
+\begin{lemma}[monotonicity in $d$]\label{lem:mono-d}
+If $\log\varphi$ is concave on the first lobe, then $P_d(x)=\varphi(x/(dm))^d$ is nondecreasing in $d\ge3$ for $0\le x\le\pi$ ($\pi/(dm)$ lies in the lobe by Lemma~\ref{lem:lobe}). Consequently
+$\kappa_d^F$ is nondecreasing, and exactness on the window, condition (T$_d$) and every inequality of the form $\kappa_d^F\ge c$ persist for all larger $d$ once they hold.
+\end{lemma}
+\begin{proof}With $\psi=\log\varphi$ concave and $\psi(0)=0$, $\psi(u)/u$ is nonincreasing, so $d\,\psi(x/(dm))=\frac xm\cdot\frac{\psi(x/(dm))}{x/(dm)}$ is nondecreasing in $d$. Exactness
+is monotone in $P$.\end{proof}
+\begin{lemma}[the region $x_0<x_c$ for large $d$]\label{lem:binf}
+If $\gamma\le\gamma_0$, then $B_d(x_0,\eta)\le1-\cos x_c=x_c\sin x_c=1.68915\ldots$ for all $0<x_0\le x_c$ and $\eta\in[0,\pi]$, whatever $P_d(x_0)\in[0,1]$. Hence this part of (W$_d$)
+holds as soon as $\kappa_d^F\ge1-\cos x_c$.
+\end{lemma}
+\begin{proof}For $x_0\le x_c$ the second term is $-1+\sin x_c\,(x_0+e)+P\cos\eta$ with $e=\min\{\gamma\eta^2/x_0,\eta\}$, and $x_0+e\le\max\{x_c+\gamma\eta^2/x_c,\ (1+\gamma)\eta\}$. If the first
+entry is the larger, the second term is at most $x_c\sin x_c+\gamma\sin x_c\,\eta^2/x_c-(1-\cos\eta)\le x_c\sin x_c$, since $(1-\cos\eta)/\eta^2\ge2/\pi^2$ and $\gamma\le\gamma_0$ (for $\cos\eta<0$
+the first term is already $\le1$). Otherwise $\eta\ge x_c/(1+\gamma)\ge1.41$ and the first term is at most $1+\cos1.41<1.16$.\end{proof}
+
+\subsection{The verifications, law by law}
+\begin{center}\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{2.1cm}p{2.3cm}p{2.9cm}p{3.3cm}p{2.6cm}}\toprule
+law & $\log\varphi$ concave & tail & window $[x_c,\pi]$ & $x_0<x_c$\\\midrule
+uniform & analytic ($\sinc$) & (T$_d$) for $d\ge5$; $d=4$: Lemma~\ref{lem:onebeyond} ($\beta_{\max}=0.762<\beta_1=1.243$); $d=3$: Lemma~\ref{lem:c3} & exactness at $d=3$ (C1), then all $d$ by Lemma~\ref{lem:mono-d} & boxes $3\le d\le16$ (5--25 each, margin $\ge0.005$); $d\ge17$ by Lemma~\ref{lem:binf}\\
+triangular & analytic ($\sinc^2$) & (T$_d$): $1+0.0472<1.0766$ & boxes $3\le d\le19$; exactness at $d=20$ (ratio $0.273$), then Lemma~\ref{lem:mono-d} & boxes $3\le d\le18$; $d\ge19$ by Lemma~\ref{lem:binf}\\
+cubic B-spline & analytic ($\sinc^3$) & (T$_d$): $s^*\le0.0103$ & boxes $d=3,4,5$; exactness for $d\ge6$ & boxes $3\le d\le19$; $d\ge20$ by Lemma~\ref{lem:binf}\\
+Epanechnikov & brackets ($\varphi\varphi''-\varphi'^2\le-0.021$) & (T$_d$) for $d\ge4$: $s^*\le0.0862$ & boxes $d=4$; exactness for $d\ge5$ & boxes $4\le d\le17$; $d\ge18$ by Lemma~\ref{lem:binf}\\
+$F^*$ ($d=3$) & brackets ($\le-0.949$ on $[0,0.599)$) & Lemma~\ref{lem:onebeyond}: $\beta_{\max}=1.0891<\beta_1=1.0932$; $s^{*2}<\tau$ & 25 boxes (18 by exactness) & 29 boxes\\
+Gaussian & analytic & none ($s^*=0$) & boxes $d=3,4,5$; exactness for $d\ge6$ (ratio $0.889$ at $d=6$); strict at $x_0^*$ ($0.168,0.126,0.101<4/\pi^2$) & boxes $3\le d\le19$; $d\ge20$ by Lemma~\ref{lem:binf}\\\bottomrule
+\end{tabular}\end{center}
+\noindent ``Exactness for $d\ge d_1$'' uses the crude form $\gamma\frac{\sin x_c}{x_c}\le\frac4{\pi^2}P_d(\pi)$, i.e.\ exactness on the whole window for $\eta\le\frac\pi2$ at once, then Lemma~\ref{lem:mono-d}.
+Mixability for the lower bound: uniform and triangular $d\ge3$ ($b/m=2,3$), B-spline $d\ge4$ ($b/m=48/13$), Epanechnikov $d\ge3$ ($b/m=8/3$), $F^*$ ($b/m=3$).
+
+\subsection{The uniform tail for $d=3$}
+\begin{lemma}\label{lem:c3}
+For uniform marginals on $[-1,1]$ and $d=3$, if exactly one frequency $t_1\in[\pi,3\pi]$ lies beyond the lobe and $\beta=\frac12(t_2+t_3)\in[0.993,1.599]$, the defect is at most $\kappa_3$.
+\end{lemma}
+\begin{proof}[Proof sketch]In every direction the defect is at most $1-\frac2{\pi^2}(\rho(\psi)-\beta)_+^2+Q\cos u$, where $\rho(\psi)=\E\,\mathrm{dist}(t_1X_1-\psi,2\pi\mathbb Z)$ (Lemma~\ref{lem:latsep} and
+Jensen), $u$ is the distance of $\psi$ from the dangerous direction and $Q\ge|P|$. Only $u\le\arccos(\tau/Q)$ matters; $\partial_\psi\rho=0$ at the dangerous direction by symmetry and
+$|\partial_\psi^2\rho|\le1/t_1\le1/\pi$, so $\rho\ge\rho^*-u^2/(2\pi)$ with $\rho^*$ in closed form; the resulting lower bound is linear in $v=u^2$, so two closed-form inequalities at
+$v=0$ and $v=u_0^2$ suffice. On 40 cells in $(t_1,\beta)$, with bounds from the monotonicity of $\rho^*$ (quasi-concave), $|\sinc|$ (unimodal on each lobe) and $\sinc(\cdot)^2$,
+both inequalities hold with slack $\ge0.0014$ (table in the supplementary material). Below $\beta=0.993$ Lemma~\ref{lem:onebeyond} applies; above $1.599$, $|P|\le\tau$. For $t_1\ge3\pi$, $|\varphi(t_1)|\le1/(3\pi)$, so $|P|>\tau$ forces $\beta<0.81$, while
+Lemma~\ref{lem:onebeyond} settles $\beta\le1.12$.\end{proof}
+
+\subsection{Reproducibility}
+All certificates run in about $8$ seconds (\texttt{run\_all\_certificates.py}, all passing); the $40$-cell table and the scripts for $F^*$ and the Gaussian law are in the supplementary material.
+
+\subsection{Certification for Section~\ref{sec:unimodal}}\label{app:unimodal}
+Unlike the rest of this appendix, the comparison of Theorem~\ref{thm:finite-d} uses interval arithmetic. \emph{Lower bounds.} $D(t,p)$ is evaluated with real interval arithmetic (mpmath, 40 digits): $\varphi_w(t)=w+(1-w)\frac{\sin t}t+i(1-w)\frac{1-\cos t}t$, the power $\varphi^d$ by repeated
+complex multiplication of intervals, and $|\cdot|$ by the square root of a sum of squares; the lower endpoint is reported.
+
+\emph{Upper bounds for $\kappa_d=\max_x\{\sinc(2x/d)^d-\cos x\}$.} On $[0,\pi]$: a grid of step $h=2\cdot10^{-6}$ ($d\le60$) or $10^{-6}$ ($61\le d\le200$) and $|g'|\le2\max|\sinc'|+1<1.88$. For $x>\pi$: $|\sinc(2x/d)|\le\sinc(2\pi/d)$ while
+$2x/d\le\pi$, and $|\sinc|\le0.2173$ beyond, so the value is at most $1+\sinc(2\pi/d)^d$, the value at $\pi$.
+\begin{lemma}[tail constants, $d\ge200$]\label{lem:tail}
+With $t_d=\frac{24\pi}{7d}$: $D(t_d,\frac12)\ge1+e^{-a/d}-14.6/d^2$ and $\kappa_d\le1+e^{-b/d}+9.98/d^2$.
+\end{lemma}
+\begin{proof}\emph{Lower.} $Y=X-\frac38\in[-\frac38,\frac58]$, $\E Y^2=\sigma^2=\frac7{64}$, $\E|Y|^3\le\frac58\sigma^2$. From $|e^{iy}-1-iy+\frac{y^2}2|\le\frac{|y|^3}6$: $\psi(t)=1-\frac{\sigma^2t^2}2+R$,
+$|R|\le r:=\frac{35}{3072}|t|^3$. With $u=\psi-1$, $|u|\le\frac{\sigma^2t^2}2+r\le\frac12$ and $|\log(1+u)-u|\le|u|^2$, so $d\log\psi(t_d)=-\frac ad+de_1$ with $d|e_1|\le d(r+|u|^2)\le\frac{14.24}{d^2}+\frac{41.2}{d^3}\le\frac{14.45}{d^2}$
+($\frac{\sigma^2t_d^2}2=\frac a{d^2}$, $dr=14.24/d^2$). Then $\mathrm{Re}\,\psi^d\ge e^{-a/d-\epsilon}\cos\epsilon\ge e^{-a/d}(1-\epsilon-\epsilon^2/2)$ with $\epsilon=d|e_1|$.
+
+\emph{Upper.} On $[0,\pi]$, $\sinc y\le e^{-y^2/6}$ ($|y|<\pi$; $\log\sinc y=\sum_k\log(1-\frac{y^2}{k^2\pi^2})\le-\frac{y^2}6$) gives $g(x)\le e^{-\alpha x^2}-\cos x$, $\alpha=\frac2{3d}$. For $x=\pi-\delta$,
+$\delta\le1$: $e^{-\alpha(\pi-\delta)^2}\le e^{-\alpha\pi^2}+2\alpha\pi e^{2\alpha\pi}\delta$ and $-\cos x=\cos\delta\le1-\frac{11}{24}\delta^2$, so $g\le1+e^{-b/d}+\frac6{11}(2\alpha\pi e^{2\alpha\pi})^2\le1+e^{-b/d}+9.98/d^2$. For
+$\delta\ge1$, $g\le1+\cos1<1.55<1+e^{-b/d}$; for $x>\pi$ see above.\end{proof}
+
+\section*{Use of AI tools}
+AI systems used in the research and manuscript workflow included OpenAI GPT-5.6 Sol and Anthropic Claude Opus 5.5. They were used for
+mathematical exploration, proof development and critique, symbolic and numerical verification, literature search, and manuscript drafting
+and editing. AI systems are not authors. The author reviewed the mathematical statements and proofs and takes full responsibility for the
+content.
+
+\begin{thebibliography}{9}
+\bibitem{I} A.~Martinevski, A sharp universal profile for multivariate characteristic-function factorization, preprint (2026).
+\bibitem{WW11} B.~Wang, R.~Wang, The complete mixability and convex minimization problems with monotone marginal densities,
+\emph{J.\ Multivariate Anal.} 102 (2011) 1344--1360.
+\bibitem{PWW12} G.~Puccetti, B.~Wang, R.~Wang, Advances in complete mixability, \emph{J.\ Appl.\ Probab.} 49 (2012) 430--440.
+\bibitem{MN79} I.~Meilijson, A.~N\'adas, Convex majorization with an application to the length of critical paths, \emph{J.\ Appl.\ Probab.} 16 (1979) 671--677.
+\bibitem{Dh02} J.~Dhaene, M.~Denuit, M.~J.~Goovaerts, R.~Kaas, D.~Vyncke, The concept of comonotonicity in actuarial science and finance: theory,
+\emph{Insurance Math.\ Econom.} 31 (2002) 3--33, doi:10.1016/S0167-6687(02)00134-8.
+\bibitem{WW16} B.~Wang, R.~Wang, Joint mixability, \emph{Math.\ Oper.\ Res.} 41 (2016) 808--826.
+\bibitem{DJ88} S.~Dharmadhikari, K.~Joag-Dev, \emph{Unimodality, Convexity, and Applications}, Academic Press, 1988.
+\bibitem{Kh38} A.~Ya.~Khinchine, On unimodal distributions, \emph{Izv.\ Nauchno-Issled.\ Inst.\ Mat.\ Mekh.\ Tomsk.\ Gos.\ Univ.} 2 (1938) 1--7.
+\bibitem{LSWY18} L.~Li, H.~Shao, R.~Wang, J.~Yang, Worst-case Range Value-at-Risk with partial information, \emph{SIAM J.\ Financial Math.} 9 (2018) 190--218.
+\bibitem{BKV20} C.~Bernard, R.~Kazzi, S.~Vanduffel, Range Value-at-Risk bounds for unimodal distributions under partial information, \emph{Insurance Math.\ Econom.} 94 (2020)
+9--24; Corrigendum and addendum, \emph{ibid.} 112 (2023) 110--119.
+\bibitem{ZBYS26} M.~Zhao, N.~Balakrishnan, C.~Yin, H.~Shao, Extremal cases of distortion risk measures with partial information, \emph{Stat.\ Methods Appl.} (2026),
+doi:10.1007/s10260-026-00867-8.
+\bibitem{ZY25} B.~Zuo, C.~Yin, Analyzing distortion riskmetrics and weighted entropy for unimodal and symmetric distributions under partial information constraints,
+arXiv:2504.19725 (2025).
+\bibitem{Wi1866} A.~Winckler, Allgemeine S\"atze zur Theorie der unregelm\"assigen Beobachtungsfehler, \emph{Sitzungsber.\ Math.-Naturwiss.\ Kl.\ Kais.\ Akad.\ Wiss.\ Wien}
+53 (1866) 6--41.
+\end{thebibliography}
+\end{document}

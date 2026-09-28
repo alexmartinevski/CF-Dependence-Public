@@ -1,0 +1,417 @@
+{
+ "d=3": {
+  "w": "41/250",
+  "p": "123/250",
+  "t": 3.46533644,
+  "lower part CM margin (mean - q/3)": 0.0,
+  "certified lower bound for K_3(F_w)": 1.0878685304850715,
+  "K_3(F*) (best symmetric, proven)": 1.087484867576,
+  "sup kappa_3 over symmetric CM class": 1.087484869,
+  "kappa_3 uniform (upper)": 1.0849652213747696,
+  "beats F*": true,
+  "beats symmetric kappa-supremum": true,
+  "beats uniform": true
+ },
+ "w=1/4, median split, d=4..60": {
+  "4": {
+   "t": 2.466611821,
+   "lower bound K_d(F)": 1.20029211,
+   "upper bound kappa_d(U)": 1.190724145,
+   "margin": 0.009567964,
+   "CM": true
+  },
+  "5": {
+   "t": 1.9670086044,
+   "lower bound K_d(F)": 1.291482889,
+   "upper bound kappa_d(U)": 1.279674145,
+   "margin": 0.011808744,
+   "CM": true
+  },
+  "6": {
+   "t": 1.6421292226,
+   "lower bound K_d(F)": 1.364537143,
+   "upper bound kappa_d(U)": 1.352083194,
+   "margin": 0.01245395,
+   "CM": true
+  },
+  "7": {
+   "t": 1.4125264283,
+   "lower bound K_d(F)": 1.423946325,
+   "upper bound kappa_d(U)": 1.411474947,
+   "margin": 0.012471379,
+   "CM": true
+  },
+  "8": {
+   "t": 1.2409748642,
+   "lower bound K_d(F)": 1.473108281,
+   "upper bound kappa_d(U)": 1.460888277,
+   "margin": 0.012220005,
+   "CM": true
+  },
+  "9": {
+   "t": 1.1075874834,
+   "lower bound K_d(F)": 1.514444411,
+   "upper bound kappa_d(U)": 1.502592011,
+   "margin": 0.0118524,
+   "CM": true
+  },
+  "10": {
+   "t": 1.0007168011,
+   "lower bound K_d(F)": 1.549686746,
+   "upper bound kappa_d(U)": 1.53824732,
+   "margin": 0.011439425,
+   "CM": true
+  },
+  "11": {
+   "t": 0.9130618796,
+   "lower bound K_d(F)": 1.580096178,
+   "upper bound kappa_d(U)": 1.5690804,
+   "margin": 0.011015778,
+   "CM": true
+  },
+  "12": {
+   "t": 0.8398011467,
+   "lower bound K_d(F)": 1.606609175,
+   "upper bound kappa_d(U)": 1.596010348,
+   "margin": 0.010598827,
+   "CM": true
+  },
+  "13": {
+   "t": 0.7776155997,
+   "lower bound K_d(F)": 1.629934776,
+   "upper bound kappa_d(U)": 1.619737619,
+   "margin": 0.010197157,
+   "CM": true
+  },
+  "14": {
+   "t": 0.7241422918,
+   "lower bound K_d(F)": 1.650619369,
+   "upper bound kappa_d(U)": 1.64080465,
+   "margin": 0.009814719,
+   "CM": true
+  },
+  "15": {
+   "t": 0.677651103,
+   "lower bound K_d(F)": 1.669090743,
+   "upper bound kappa_d(U)": 1.659637773,
+   "margin": 0.00945297,
+   "CM": true
+  },
+  "16": {
+   "t": 0.6368450142,
+   "lower bound K_d(F)": 1.685688629,
+   "upper bound kappa_d(U)": 1.676576616,
+   "margin": 0.009112014,
+   "CM": true
+  },
+  "17": {
+   "t": 0.600731804,
+   "lower bound K_d(F)": 1.700686285,
+   "upper bound kappa_d(U)": 1.691895056,
+   "margin": 0.008791229,
+   "CM": true
+  },
+  "18": {
+   "t": 0.5685390062,
+   "lower bound K_d(F)": 1.714306035,
+   "upper bound kappa_d(U)": 1.70581641,
+   "margin": 0.008489625,
+   "CM": true
+  },
+  "19": {
+   "t": 0.5396559475,
+   "lower bound K_d(F)": 1.726730647,
+   "upper bound kappa_d(U)": 1.7185246,
+   "margin": 0.008206048,
+   "CM": true
+  },
+  "20": {
+   "t": 0.5135933009,
+   "lower bound K_d(F)": 1.738111779,
+   "upper bound kappa_d(U)": 1.73017249,
+   "margin": 0.007939288,
+   "CM": true
+  },
+  "21": {
+   "t": 0.4899542551,
+   "lower bound K_d(F)": 1.74857635,
+   "upper bound kappa_d(U)": 1.740888196,
+   "margin": 0.007688154,
+   "CM": true
+  },
+  "22": {
+   "t": 0.4684134626,
+   "lower bound K_d(F)": 1.758231407,
+   "upper bound kappa_d(U)": 1.750779906,
+   "margin": 0.007451501,
+   "CM": true
+  },
+  "23": {
+   "t": 0.4487016484,
+   "lower bound K_d(F)": 1.767167879,
+   "upper bound kappa_d(U)": 1.759939625,
+   "margin": 0.007228254,
+   "CM": true
+  },
+  "24": {
+   "t": 0.4305939546,
+   "lower bound K_d(F)": 1.775463508,
+   "upper bound kappa_d(U)": 1.768446098,
+   "margin": 0.00701741,
+   "CM": true
+  },
+  "25": {
+   "t": 0.4139011059,
+   "lower bound K_d(F)": 1.783185171,
+   "upper bound kappa_d(U)": 1.776367125,
+   "margin": 0.006818046,
+   "CM": true
+  },
+  "26": {
+   "t": 0.3984626014,
+   "lower bound K_d(F)": 1.790390711,
+   "upper bound kappa_d(U)": 1.7837614,
+   "margin": 0.006629311,
+   "CM": true
+  },
+  "27": {
+   "t": 0.3841414521,
+   "lower bound K_d(F)": 1.797130426,
+   "upper bound kappa_d(U)": 1.790679999,
+   "margin": 0.006450427,
+   "CM": true
+  },
+  "28": {
+   "t": 0.3708199968,
+   "lower bound K_d(F)": 1.803448258,
+   "upper bound kappa_d(U)": 1.797167577,
+   "margin": 0.006280681,
+   "CM": true
+  },
+  "29": {
+   "t": 0.3583965912,
+   "lower bound K_d(F)": 1.809382773,
+   "upper bound kappa_d(U)": 1.803263352,
+   "margin": 0.006119421,
+   "CM": true
+  },
+  "30": {
+   "t": 0.3467829874,
+   "lower bound K_d(F)": 1.814967958,
+   "upper bound kappa_d(U)": 1.809001907,
+   "margin": 0.005966051,
+   "CM": true
+  },
+  "31": {
+   "t": 0.3359021603,
+   "lower bound K_d(F)": 1.820233887,
+   "upper bound kappa_d(U)": 1.814413861,
+   "margin": 0.005820026,
+   "CM": true
+  },
+  "32": {
+   "t": 0.3256865954,
+   "lower bound K_d(F)": 1.825207264,
+   "upper bound kappa_d(U)": 1.819526419,
+   "margin": 0.005680846,
+   "CM": true
+  },
+  "33": {
+   "t": 0.3160768564,
+   "lower bound K_d(F)": 1.829911891,
+   "upper bound kappa_d(U)": 1.824363836,
+   "margin": 0.005548055,
+   "CM": true
+  },
+  "34": {
+   "t": 0.3070203876,
+   "lower bound K_d(F)": 1.834369045,
+   "upper bound kappa_d(U)": 1.828947812,
+   "margin": 0.005421233,
+   "CM": true
+  },
+  "35": {
+   "t": 0.298470595,
+   "lower bound K_d(F)": 1.838597812,
+   "upper bound kappa_d(U)": 1.833297815,
+   "margin": 0.005299997,
+   "CM": true
+  },
+  "36": {
+   "t": 0.2903859472,
+   "lower bound K_d(F)": 1.842615356,
+   "upper bound kappa_d(U)": 1.837431363,
+   "margin": 0.005183993,
+   "CM": true
+  },
+  "37": {
+   "t": 0.2827293823,
+   "lower bound K_d(F)": 1.846437162,
+   "upper bound kappa_d(U)": 1.841364267,
+   "margin": 0.005072895,
+   "CM": true
+  },
+  "38": {
+   "t": 0.2754676455,
+   "lower bound K_d(F)": 1.850077231,
+   "upper bound kappa_d(U)": 1.845110826,
+   "margin": 0.004966404,
+   "CM": true
+  },
+  "39": {
+   "t": 0.2685709021,
+   "lower bound K_d(F)": 1.853548258,
+   "upper bound kappa_d(U)": 1.848684013,
+   "margin": 0.004864245,
+   "CM": true
+  },
+  "40": {
+   "t": 0.2620121943,
+   "lower bound K_d(F)": 1.856861781,
+   "upper bound kappa_d(U)": 1.85209562,
+   "margin": 0.004766162,
+   "CM": true
+  },
+  "41": {
+   "t": 0.2557672292,
+   "lower bound K_d(F)": 1.860028307,
+   "upper bound kappa_d(U)": 1.855356389,
+   "margin": 0.004671918,
+   "CM": true
+  },
+  "42": {
+   "t": 0.2498139285,
+   "lower bound K_d(F)": 1.863057428,
+   "upper bound kappa_d(U)": 1.858476131,
+   "margin": 0.004581297,
+   "CM": true
+  },
+  "43": {
+   "t": 0.244132288,
+   "lower bound K_d(F)": 1.865957917,
+   "upper bound kappa_d(U)": 1.861463821,
+   "margin": 0.004494095,
+   "CM": true
+  },
+  "44": {
+   "t": 0.2387040706,
+   "lower bound K_d(F)": 1.868737813,
+   "upper bound kappa_d(U)": 1.864327689,
+   "margin": 0.004410125,
+   "CM": true
+  },
+  "45": {
+   "t": 0.2335126575,
+   "lower bound K_d(F)": 1.871404501,
+   "upper bound kappa_d(U)": 1.86707529,
+   "margin": 0.004329211,
+   "CM": true
+  },
+  "46": {
+   "t": 0.2285428399,
+   "lower bound K_d(F)": 1.873964771,
+   "upper bound kappa_d(U)": 1.869713578,
+   "margin": 0.004251193,
+   "CM": true
+  },
+  "47": {
+   "t": 0.2237806967,
+   "lower bound K_d(F)": 1.876424881,
+   "upper bound kappa_d(U)": 1.872248963,
+   "margin": 0.004175918,
+   "CM": true
+  },
+  "48": {
+   "t": 0.2192134481,
+   "lower bound K_d(F)": 1.878790605,
+   "upper bound kappa_d(U)": 1.87468736,
+   "margin": 0.004103245,
+   "CM": true
+  },
+  "49": {
+   "t": 0.2148293466,
+   "lower bound K_d(F)": 1.881067284,
+   "upper bound kappa_d(U)": 1.877034241,
+   "margin": 0.004033043,
+   "CM": true
+  },
+  "50": {
+   "t": 0.2106175657,
+   "lower bound K_d(F)": 1.883259861,
+   "upper bound kappa_d(U)": 1.879294671,
+   "margin": 0.00396519,
+   "CM": true
+  },
+  "51": {
+   "t": 0.206568121,
+   "lower bound K_d(F)": 1.885372918,
+   "upper bound kappa_d(U)": 1.881473349,
+   "margin": 0.003899569,
+   "CM": true
+  },
+  "52": {
+   "t": 0.2026717933,
+   "lower bound K_d(F)": 1.887410711,
+   "upper bound kappa_d(U)": 1.883574638,
+   "margin": 0.003836073,
+   "CM": true
+  },
+  "53": {
+   "t": 0.1989200306,
+   "lower bound K_d(F)": 1.889377199,
+   "upper bound kappa_d(U)": 1.885602597,
+   "margin": 0.003774602,
+   "CM": true
+  },
+  "54": {
+   "t": 0.1953049325,
+   "lower bound K_d(F)": 1.891276064,
+   "upper bound kappa_d(U)": 1.887561004,
+   "margin": 0.00371506,
+   "CM": true
+  },
+  "55": {
+   "t": 0.191819133,
+   "lower bound K_d(F)": 1.893110741,
+   "upper bound kappa_d(U)": 1.889453382,
+   "margin": 0.003657359,
+   "CM": true
+  },
+  "56": {
+   "t": 0.1884558259,
+   "lower bound K_d(F)": 1.894884435,
+   "upper bound kappa_d(U)": 1.89128302,
+   "margin": 0.003601414,
+   "CM": true
+  },
+  "57": {
+   "t": 0.1852086428,
+   "lower bound K_d(F)": 1.89660014,
+   "upper bound kappa_d(U)": 1.893052992,
+   "margin": 0.003547149,
+   "CM": true
+  },
+  "58": {
+   "t": 0.1820716618,
+   "lower bound K_d(F)": 1.89826066,
+   "upper bound kappa_d(U)": 1.894766173,
+   "margin": 0.003494487,
+   "CM": true
+  },
+  "59": {
+   "t": 0.1790393623,
+   "lower bound K_d(F)": 1.899868617,
+   "upper bound kappa_d(U)": 1.896425257,
+   "margin": 0.00344336,
+   "CM": true
+  },
+  "60": {
+   "t": 0.1761065836,
+   "lower bound K_d(F)": 1.901426472,
+   "upper bound kappa_d(U)": 1.89803277,
+   "margin": 0.003393702,
+   "CM": true
+  }
+ },
+ "all d=4..60 certified": true
+}

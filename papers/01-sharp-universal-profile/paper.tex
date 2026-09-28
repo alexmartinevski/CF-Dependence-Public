@@ -1,0 +1,596 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\T}{\mathbb T}
+\title{A sharp universal profile for multivariate\\ characteristic-function factorization}
+\author{Alexandr Martinevski\\
+\small Independent Researcher, Lithuania\\
+\small \href{mailto:alex.martinevski@gmail.com}{\texttt{alex.martinevski@gmail.com}}\\
+\small ORCID: \href{https://orcid.org/0009-0000-4230-4414}{0009-0000-4230-4414}}
+\date{September 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For complex random variables $Z_1,\ldots,Z_d$ with $|Z_j|\le1$, prescribe the moduli
+$r_j=|\mathbb EZ_j|$, put $\theta_j=\arccos r_j$, $R=\prod_jr_j$ and $s=\sum_j\theta_j$. We prove the exact profile
+\[
+\sup\left\{\left|\mathbb E\prod_jZ_j-\prod_j\mathbb EZ_j\right|:|Z_j|\le1,\ |\mathbb EZ_j|=r_j\right\}
+=R-\cos(\min\{s,\pi\}).
+\]
+The sharp universal characteristic-function factorization constant is therefore the one-dimensional corollary
+\[
+C_d=\max_{0\le x\le\pi}\{\cos^d(x/d)-\cos x\}
+=\max_{0\le\theta\le\pi/d}\{\cos^d\theta-\cos(d\theta)\}
+=\|T_d-x^d\|_{\infty,[-1,1]}.
+\]
+It is attained by a common fair sign and is simultaneously sharp for mutual-independence, sub-independence and
+one-variable characteristic-function defects. The profile yields a short proof based only on Cauchy--Schwarz and
+log-concavity of cosine. We also record selected consequences of the real-parameter interpolation
+$C(p)=\max_{0\le\theta\le\pi/p}\{\cos^p\theta-\cos(p\theta)\}$: $C(p)$ is strictly increasing for $p>2$, every maximizer lies in
+$(\pi/(p+1),\pi/p)$, and the classical point $\pi/(p+1)$ is asymptotically sharp. In particular,
+\[
+C_d-\left\{\cos\frac\pi{d+1}+\cos^d\frac\pi{d+1}\right\}
+=\frac{\pi^6}{8d^4}+O(d^{-5}),
+\]
+which gives a four-term expansion of $C_d$. We retain exact real-valued and Gaussian comparison results and an
+algebraic description of the critical point.
+\end{abstract}
+
+\section{Introduction}
+Mutual independence of random blocks $X_j\in\mathbb R^{p_j}$ is equivalent to the factorization
+$\varphi_X(t_1,\dots,t_d)=\prod_j\varphi_{X_j}(t_j)$. Empirical-characteristic-function tests of total independence go
+back at least to \cite{Csorgo1985,Kankainen1995}; related $L^2$ constructions include distance multivariance and kernel
+criteria \cite{BKRS2019,Pfister2018}. For two blocks, Daniu\v{s}is et al.\ introduced the uniform Fourier dependence
+measure (UFDM), the $L^\infty$ norm of the joint-minus-product characteristic function, and proved the universal bound
+one \cite{Daniusis2025}. The weaker diagonal factorization property is sub-independence
+\cite{EHSV2010,Hamedani2013,Schennach2019}.
+
+The present line of work has an earlier origin. In an unpublished student research project of the author (1996),
+the uniform characteristic-function factorization defect was introduced as a dependence quantity, with particular
+motivation from cryptography; the limiting value $2$ and Gaussian calculations were already part of that project.
+The exact finite-$d$ profile, the sharp constants and all proofs in the present paper are new developments from 2026.
+
+The first question here is not estimation but the population extremal problem: how large can the uniform
+factorization defect be for $d$ blocks? A previous formulation of this paper answered this by a direct angular proof.
+The stronger result below gives the entire sharp profile after the marginal mean moduli are fixed. The universal
+constant $C_d$ then follows in a few lines. This reorganization has two advantages: the proof is shorter, and the
+geometry of the extremizer is visible before the final one-dimensional maximization.
+
+Our second aim is to record only those consequences of the continuous interpolation
+\[
+C(p)=\max_{0\le\theta\le\pi/p}\{\cos^p\theta-\cos(p\theta)\},\qquad p>2,
+\]
+that sharpen the original sequence $C_d=C(d)$. The broader two-parameter cosine/Chebyshev surface and its scaling
+limits are left for separate work. In particular, we use the interpolation to obtain continuous monotonicity and a
+sharp asymptotic correction to the elementary point $\pi/(d+1)$.
+
+The fixed-marginal problem is treated separately in \cite{MartinevskiMarginals}; in particular, that companion work gives exact results for several symmetric unimodal marginals, a general large-$d$ ``price of marginals'', and a non-symmetric extension. The local arithmetic, irreducibility and Galois theory of the critical polynomial introduced below are developed in \cite{MartinevskiCritical}.
+
+The identity $C_d=\|T_d-x^d\|_\infty$ should not be confused with the classical Chebyshev minimax problem for monic
+polynomials, where the optimally scaled polynomial is $2^{1-d}T_d$ \cite{Rivlin1990}. Our searches did not locate the
+profile theorem below, the sharp $d$-linear complex unit-ball constant, or the sequence $C_d$ for $d\ge3$; this is a
+statement about the searches performed, not a claim of priority. Abstract Gr\"uss and multiplicativity-defect
+inequalities form relevant background, but they do not by themselves give the constant below.
+
+\section{Exact fixed-mean profile and the universal constant}
+For $r=(r_1,\ldots,r_d)\in[0,1]^d$ define
+\[
+\mathcal C_d(r_1,\ldots,r_d)=\sup\left\{\left|\mathbb E\prod_{j=1}^dZ_j-\prod_{j=1}^d\mathbb EZ_j\right|:
+|Z_j|\le1,\ |\mathbb EZ_j|=r_j\right\}.
+\]
+Put
+\[
+\theta_j=\arccos r_j,\qquad R=\prod_{j=1}^dr_j,\qquad s=\sum_{j=1}^d\theta_j.
+\]
+
+\begin{theorem}[Exact profile]\label{thm:profile}
+For every $d\ge1$ and $r\in[0,1]^d$,
+\[
+\boxed{\mathcal C_d(r_1,\ldots,r_d)=R-\cos(\min\{s,\pi\}).}
+\]
+If $s\le\pi$, equality is attained by $Z_j=e^{i\varepsilon\theta_j}$ with a common fair sign
+$\mathbb P(\varepsilon=\pm1)=1/2$. If $s\ge\pi$, equality is attained by a coupling with
+$\prod_jZ_j\equiv-1$ and the prescribed means.
+\end{theorem}
+
+For random blocks $X=(X_1,\ldots,X_d)$ define
+\[
+\Delta_X(t)=\varphi_X(t_1,\ldots,t_d)-\prod_{j=1}^d\varphi_{X_j}(t_j),\qquad
+D_d(X)=\sup_t|\Delta_X(t)|,
+\]
+and let $D_d^\star$ be the supremum over all joint laws and all block dimensions.
+
+\begin{corollary}[Sharp universal constant]\label{thm:main}
+For every $d\ge2$,
+\[
+\boxed{
+D_d^\star=C_d:=\max_{0\le x\le\pi}\{\cos^d(x/d)-\cos x\}
+=\max_{0\le\theta\le\pi/d}\{\cos^d\theta-\cos(d\theta)\}
+=\|T_d-x^d\|_{L^\infty[-1,1]}.
+}
+\]
+Equivalently,
+\[
+\left|\mathbb E\prod_jZ_j-\prod_j\mathbb EZ_j\right|\le C_d\qquad(|Z_j|\le1),
+\]
+and the bound is sharp. It is attained by $Z_j=e^{i\varepsilon\theta_d^*}$, or by
+$X_1=\cdots=X_d=\varepsilon$ at the common frequency $\theta_d^*$.
+\end{corollary}
+
+\begin{corollary}\label{cor:forms}
+The same constant is sharp for the sub-independence defect
+\[
+D_d^{\rm sub}(X)=\sup_t\left|\varphi_{X_1+\cdots+X_d}(t)-\prod_j\varphi_{X_j}(t)\right|,
+\]
+for the one-variable defect $S_d(X)=\sup_t|\varphi_X(dt)-\varphi_X(t)^d|$, and after restricting $D_d$ to exchangeable
+laws or to laws with identical marginals.
+\end{corollary}
+
+\begin{theorem}\label{thm:unique}
+For $d\ge3$, $g_d(\theta)=\cos^d\theta-\cos(d\theta)$ has a unique maximizer $\theta_d^*\in(0,\pi/d)$. With
+$c_d^*=\cos\theta_d^*$,
+\[
+U_{d-1}(c_d^*)=(c_d^*)^{d-1}.
+\]
+The maximizers of $|T_d(x)-x^d|$ on $[-1,1]$ are exactly $\pm c_d^*$. Moreover $C_2<C_3<C_4<\cdots$ and $C_d\uparrow2$.
+\end{theorem}
+
+\section{Proof of the profile theorem and Corollary~\ref{thm:main}}
+\begin{proof}[Proof of Theorem~\ref{thm:profile}]
+Multiplying coordinates by deterministic unimodular constants, assume $\mathbb EZ_j=r_j\ge0$. We argue by induction on
+$d$; the case $d=1$ is trivial. Put
+\[
+W=\prod_{j<d}Z_j,\quad u=\mathbb EW,\quad R'=\prod_{j<d}r_j,\quad
+s'=\sum_{j<d}\theta_j,\quad r=r_d=\cos\theta,\quad \theta=\theta_d.
+\]
+Then
+\[
+\mathbb E(WZ_d)-rR'=\mathbb E[(W-u)(Z_d-r)]+r(u-R'),
+\]
+and Cauchy--Schwarz gives
+\begin{equation}\label{eq:csprofile}
+|\Delta|\le \sin\theta\sqrt{1-|u|^2}+r\,t,\qquad t:=|u-R'|,
+\end{equation}
+because $\mathbb E|Z_d-r|^2\le1-r^2$ and $\mathbb E|W-u|^2\le1-|u|^2$.
+
+By induction,
+\[
+0\le t\le R'-\cos(\min\{s',\pi\}).
+\]
+The reverse triangle inequality gives $|u|\ge|R'-t|$. Write
+$R'-t=\cos\phi$ with
+\[
+\phi\in[\arccos R',\min\{s',\pi\}].
+\]
+Then $\sqrt{1-|u|^2}\le\sin\phi$, and \eqref{eq:csprofile} yields
+\[
+|\Delta|\le \sin\theta\sin\phi+\cos\theta(R'-\cos\phi)
+=R-\cos(\theta+\phi).
+\]
+If $s\le\pi$, then $\theta+\phi\le s$ and the right-hand side is at most $R-\cos s$. If $s\ge\pi$, the admissible
+interval contains $\phi=\pi-\theta$ (since $\arccos R'\le\pi/2\le\pi-\theta$ and $s'\ge\pi-\theta$), so the upper bound is
+$R+1$. This proves the required upper bound.
+
+If $s\le\pi$, take a common fair sign $\varepsilon$ and $Z_j=e^{i\varepsilon\theta_j}$. Then
+$\mathbb EZ_j=r_j$ and $\mathbb E\prod_jZ_j=\cos s$, giving $R-\cos s$.
+
+Suppose $s\ge\pi$ and set
+\[
+Q=\left\{r\in[0,1]^d:\sum_j\arccos r_j\ge\pi\right\}.
+\]
+The set $Q$ is compact and convex because $\arccos$ is concave. Every extreme point is either on the boundary
+$\sum_j\arccos r_j=\pi$ or is a cube vertex: if the sum is strictly larger than $\pi$ and some coordinate lies in
+$(0,1)$, a sufficiently small perturbation of that coordinate in both directions stays in $Q$. A cube vertex belongs to
+$Q$ exactly when it has at least two zero coordinates. Boundary points are realized by the common-sign construction
+with $\sum_j\theta_j=\pi$, for which $\prod_jZ_j=-1$. A vertex with $k\ge2$ zero coordinates is realized by taking the
+remaining coordinates equal to $1$, choosing $U_1,\ldots,U_{k-1}$ independently uniform on the unit circle, and setting
+$U_k=-\overline{U_1\cdots U_{k-1}}$; then every zero-coordinate mean is $0$ and the product is identically $-1$.
+By the finite-dimensional Minkowski theorem, every $r\in Q$ is a convex combination of extreme points; mixing the
+corresponding couplings preserves the means and keeps the product identically $-1$. Hence the value $1+R$ is attained.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{thm:main}]
+Let $\theta_j=\arccos r_j$. If $s=\sum_j\theta_j\le\pi$, strict concavity of $\log\cos$ gives
+\[
+R=\prod_j\cos\theta_j\le\cos^d(s/d),
+\]
+with equality when the angles are equal. Thus Theorem~\ref{thm:profile} gives
+\[
+\mathcal C_d(r)\le\cos^d(s/d)-\cos s.
+\]
+If $s\ge\pi$, the same concavity and monotonicity give
+$R\le\cos^d(s/d)\le\cos^d(\pi/d)$, so
+$\mathcal C_d(r)=1+R\le1+\cos^d(\pi/d)$, the endpoint value at $s=\pi$. Therefore
+\[
+\sup_r\mathcal C_d(r)=\max_{0\le s\le\pi}\{\cos^d(s/d)-\cos s\}=C_d.
+\]
+Equal angles and the common fair sign attain every value in this one-dimensional family, hence in particular its
+maximum. Taking $Z_j=e^{i\langle t_j,X_j\rangle}$ proves the characteristic-function bound, while scalar angle-valued
+variables realize the extremizer.
+
+Finally, for $x\in[-1,1]$, parity reduces $|T_d(x)-x^d|$ to $x\ge0$; writing $x=\cos\theta$ gives the defect of the
+common-sign construction, so it is at most $C_d$. Equality occurs at $x=\cos\theta_d^*$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:forms}]
+Each restricted problem is bounded by the full one. For a common Rademacher sign $\varepsilon$,
+$\varphi_\varepsilon(d\theta)=\cos(d\theta)$ and $\varphi_\varepsilon(\theta)^d=\cos^d\theta$, so the one-variable problem
+already attains $C_d$; the same law is exchangeable and has identical marginals.
+\end{proof}
+
+\section{The optimizer and a continuous interpolation}
+\begin{proof}[Proof of Theorem~\ref{thm:unique}]
+Since $\sin d\theta=\sin\theta\,U_{d-1}(\cos\theta)$,
+\[
+g_d'(\theta)=d\sin\theta\,[U_{d-1}(\cos\theta)-\cos^{d-1}\theta].
+\]
+Using
+\[
+\frac{U_{d-1}(x)}{x^{d-1}}=2^{d-1}\prod_{k=1}^{\lfloor(d-1)/2\rfloor}
+\left(1-\frac{\cos^2(k\pi/d)}{x^2}\right),\qquad x>0,
+\]
+(with the usual central factor when $d$ is even), the ratio is strictly increasing on
+$(\cos(\pi/d),1]$, from $0$ to $d>1$. Hence it crosses $1$ exactly once, proving uniqueness.
+The assertion about $|T_d-x^d|$ follows from Corollary~\ref{thm:main} and parity.
+
+Strict growth of $C_d$ follows from Proposition~\ref{prop:continuous} below. Finally
+$C_d\ge1+\cos^d(\pi/d)\to2$ and $C_d\le2$.
+\end{proof}
+
+For real $p>2$ define
+\[
+C(p)=\max_{0\le\theta\le\pi/p}\{\cos^p\theta-\cos(p\theta)\}
+=\max_{0\le s\le\pi}\{\cos^p(s/p)-\cos s\}.
+\]
+Thus $C(d)=C_d$.
+
+\begin{proposition}[Selected continuous consequences]\label{prop:continuous}
+For $p>2$:
+\begin{enumerate}
+\item $C(p)$ is strictly increasing in $p$;
+\item every maximizer $\theta_p$ is interior and satisfies
+\[
+\frac{\pi}{p+1}<\theta_p<\frac\pi p,
+\qquad
+\sin(p\theta_p)=\sin\theta_p\,\cos^{p-1}\theta_p;
+\]
+\item with $a_p=\pi/(p+1)$,
+\[
+\theta_p=a_p+\frac{\pi^3}{2p^3}+O(p^{-4}),\qquad
+C(p)-\{\cos^pa_p+\cos a_p\}=\frac{\pi^6}{8p^4}+O(p^{-5}).
+\]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For fixed $s\in(0,\pi]$,
+\[
+\frac{\partial}{\partial p}\left[p\log\cos(s/p)\right]
+=\log\cos z+z\tan z>0,\qquad z=s/p\in(0,\pi/2),
+\]
+because the derivative of $\log\cos z+z\tan z$ is $z\sec^2z>0$ and the expression vanishes at $z=0$.
+Thus $\cos^p(s/p)$, and hence its maximum after subtracting $\cos s$, increases strictly with $p$.
+
+At an endpoint $\theta=\pi/p$ the derivative is negative, whereas the objective is positive for small $\theta>0$;
+therefore a maximizer is interior and satisfies the displayed stationary equation. Put
+$\delta=\pi-p\theta_p$. Then
+$\sin\delta=\sin\theta_p\cos^{p-1}\theta_p<\sin\theta_p$. Since
+$0<\theta_p<\pi/p<\pi/2$ and $\delta<\pi-\theta_p$, this forces $\delta<\theta_p$, hence
+$\theta_p>\pi/(p+1)$.
+
+For the last assertion, expand the stationarity equation around $a_p$. One obtains
+$f_p'(a_p)=\pi^3/(2p)+O(p^{-2})$ and $f_p''(a_p)=-p^2+O(p)$ for
+$f_p(\theta)=\cos^p\theta-\cos(p\theta)$, hence
+$\theta_p-a_p=-f_p'(a_p)/f_p''(a_p)+O(p^{-4})=\pi^3/(2p^3)+O(p^{-4})$.
+Taylor expansion at the maximizer then gives the value correction $\pi^6/(8p^4)+O(p^{-5})$.
+\end{proof}
+
+\begin{remark}
+The full continuous theory also gives a Gamma/Fourier realization and a two-parameter cosine/Chebyshev master
+surface. Those results are deliberately not imported here: Proposition~\ref{prop:continuous} contains only the pieces
+that sharpen the original sequence $C_d$.
+\end{remark}
+
+\section{Algebraic description and small dimensions}
+\begin{corollary}\label{cor:small}
+$C_2=1$, $C_3=2/\sqrt3$, $C_4=9/7$.
+\end{corollary}
+\begin{proof}
+For $d=2$, $g_2(\theta)=\sin^2\theta$. For $d=3$, $x^3-T_3(x)=3x(1-x^2)$, maximal at $x=1/\sqrt3$. For $d=4$,
+with $y=\cos^2\theta$, $g_4=-7y^2+8y-1$, maximal at $y=4/7$.
+\end{proof}
+
+\begin{proposition}\label{prop:alg}
+For $d\ge3$, $c_d^*=\cos\theta_d^*$ is algebraic and
+\[
+\boxed{C_d=U_{d-2}(c_d^*).}
+\]
+Moreover $y=(c_d^*)^2$ satisfies an integer polynomial of degree $\lfloor(d-1)/2\rfloor$ with leading coefficient
+$2^{d-1}-1$. In particular
+\[
+C_5=\tfrac4{15}(2\sqrt{21}-3)\sqrt{\tfrac{6+\sqrt{21}}{15}},\qquad
+C_6=\frac{225+140\sqrt{70}}{961}.
+\]
+\end{proposition}
+\begin{proof}
+The critical equation is $U_{d-1}(c)=c^{d-1}$. For odd $d$ it is even in $c$; for even $d$ both sides are odd and we
+divide by $c$, giving the stated polynomial in $y=c^2$. Finally
+$T_d(c)=cU_{d-1}(c)-U_{d-2}(c)=c^d-U_{d-2}(c)$ at a critical point, so
+$C_d=c^d-T_d(c)=U_{d-2}(c)$.
+\end{proof}
+
+\begin{remark}[The tangent-square critical polynomial]\label{rem:criticalpoly}
+Writing $x=\tan^2\theta$ in the critical equation $\sin(d\theta)=\sin\theta\cos^{d-1}\theta$ gives
+\[
+ A_d(x):=\sum_{k=0}^{\lfloor(d-1)/2\rfloor}(-1)^k\binom d{2k+1}x^k-1=0.
+\]
+Thus $A_d$ is not introduced ad hoc: its distinguished positive root is exactly
+$x_d^*=\tan^2\theta_d^*$, where $\theta_d^*$ is the optimizer defining $C_d$.
+The arithmetic of this family---irreducibility, local Newton polygons, ramification and Galois groups---is developed
+in \cite{MartinevskiCritical}. In particular, that work shows that the algebraic problem has substantial structure
+well beyond the small-dimensional formulas recorded here.
+\end{remark}
+
+\section{The real case}
+\begin{theorem}\label{thm:real}
+For real random variables with $|X_j|\le1$,
+\[
+\sup\Bigl|\mathbb E\prod_jX_j-\prod_j\mathbb EX_j\Bigr|=1+\Bigl(1-\frac2d\Bigr)^d,
+\]
+attained when exactly one coordinate equals $-1$, at a uniformly random position, and the others equal $1$. The value
+increases to $1+e^{-2}\approx1.1353$, which is strictly below $C_d$ for every $d\ge3$.
+\end{theorem}
+\begin{proof}
+Randomizing each $X_j$ to $\pm1$ with conditional mean $X_j$ reduces to $U_j\in\{\pm1\}$. Put $A=\mathbb E\prod U_j$,
+$a_j=\mathbb EU_j$, $B=\prod a_j$. If $AB\ge0$ then $|A-B|\le1$. Otherwise flipping $U_1$ changes $(A,B)$ to $(-A,-B)$, so
+we may assume $B>0>A$; flipping negative $a_j$ in pairs we may assume all $a_j>0$. With $q_j=\mathbb P(U_j=-1)<\frac12$,
+$N=\#\{j:U_j=-1\}$ and $\pi=\mathbb P(N\text{ even})$ we have $A=2\pi-1$ and $\sum_jq_j=\mathbb EN\ge1-\pi$. By AM--GM,
+$B=\prod(1-2q_j)\le(1-\frac2d\sum q_j)^d\le(1-\frac{2(1-\pi)}d)^d$, so $B-A\le1+\psi(\pi)$ with
+$\psi(\pi)=(1-2(1-\pi)/d)^d-2\pi$ non-increasing on $[0,\frac12]$; hence $B-A\le1+(1-2/d)^d$. The extremal law has $A=-1$,
+$a_j=1-2/d$.
+\end{proof}
+
+\begin{remark}
+For nonnegative factors a classical lemma of Ibragimov \cite{Ibragimov1962} controls the same functional under strong
+mixing. Deviations from the piling-up lemma of linear cryptanalysis \cite{Matsui1994} under dependence were studied by
+Kukorelly \cite{Kukorelly1999}; Theorem~\ref{thm:real} gives the sharp worst case for $\pm1$-valued variables.
+\end{remark}
+
+\section{Gaussian laws}
+\begin{proposition}\label{prop:gauss-all}
+If $X=(X_1,\dots,X_d)$ is Gaussian, then $D_d(X)\le1$, with strict inequality when the joint covariance
+matrix is nonsingular. The value $1$ is attained (as a supremum over $t$) by singular Gaussian laws, e.g.\ $X_1=Z$,
+$X_2=-Z$ with $Z\sim N(0,\sigma^2)$, for which $D_2=\sup_t(1-e^{-t^2\sigma^2})=1$.
+\end{proposition}
+\begin{proof}
+With mean $\mu$, joint covariance $\Sigma$ and block covariances $\Sigma_{jj}$, after removing the common factor
+$e^{i\langle t,\mu\rangle}$ both terms are real numbers in $(0,1]$:
+$|\Delta_X(t)|=|e^{-t^\top\Sigma t/2}-e^{-\sum_jt_j^\top\Sigma_{jj}t_j/2}|<1$. If $\Sigma$ is nonsingular both
+exponents tend to $+\infty$ together as $\|t\|\to\infty$ and stay bounded together on bounded sets, so the
+supremum is attained and is strictly below one.
+\end{proof}
+
+For two blocks the defect is explicit. Let
+$h(\lambda)=|\lambda-1|\lambda^{-\lambda/(\lambda-1)}$ for $\lambda>0$, $\lambda\ne1$, and $h(1)=0$.
+
+\begin{proposition}[explicit form of the supremum in {\cite[Thm.~1(4)]{Daniusis2025}}]\label{prop:gauss-two}
+Let $(X,Y)$ be jointly Gaussian with nonsingular block covariances and largest canonical correlation
+$\rho_1\in[0,1)$. Then
+\[
+D_2(X,Y)=h(1-\rho_1)=\rho_1(1-\rho_1)^{(1-\rho_1)/\rho_1}\qquad(\rho_1>0),
+\]
+and $D_2=0$ if $\rho_1=0$. In particular $D_2\sim\rho_1/e$ as $\rho_1\downarrow0$ and $D_2\to1$ as
+$\rho_1\uparrow1$.
+\end{proposition}
+\begin{proof}
+Blockwise whitening does not change $D_2$ and reduces the joint covariance to
+$R=\bigl(\begin{smallmatrix}I&C\\C^\top&I\end{smallmatrix}\bigr)$, whose eigenvalues lie in $[1-\rho_1,1+\rho_1]$
+with both endpoints attained. Writing $t=ru$ with $\|u\|=1$, $\lambda=u^\top Ru$ and $x=r^2/2$,
+$|\Delta(t)|=|e^{-\lambda x}-e^{-x}|$. For fixed $\lambda\ne1$ the maximum over $x\ge0$ is attained at
+$x=\log\lambda/(\lambda-1)$ and equals $h(\lambda)$. One checks $h(\lambda)=h(1/\lambda)$, and $h$ increases on
+$[1,\infty)$ because $e^{-x}-e^{-\lambda x}$ increases in $\lambda$ for each $x>0$. Since
+$(1-\rho_1)(1+\rho_1)<1$, i.e.\ $1/(1-\rho_1)>1+\rho_1$, the maximum over $\lambda$ is $h(1-\rho_1)$.
+\end{proof}
+
+\begin{remark}
+The same argument gives, for any two Gaussian laws with a common mean and positive definite covariances $A,B$,
+$\sup_t|\varphi_{N(\mu,A)}(t)-\varphi_{N(\mu,B)}(t)|=\max\{h(\lambda_{\min}),h(\lambda_{\max})\}$, where
+$\lambda_{\min},\lambda_{\max}$ are the extreme generalized eigenvalues of $Av=\lambda Bv$; equivalently it is an
+increasing function of the Thompson distance $\|\log(B^{-1/2}AB^{-1/2})\|_{\rm op}$.
+\end{remark}
+
+
+
+\section{Large-\texorpdfstring{$d$}{d} behaviour}\label{sec:larged}
+Let
+\[
+\widetilde C_d=\cos\frac{\pi}{d+1}+\cos^d\frac{\pi}{d+1}.
+\]
+The elementary point $\theta=\pi/(d+1)$ already gives $\widetilde C_d\le C_d$. We first record a
+uniform finite-$d$ estimate and then the sharper asymptotic correction.
+
+\begin{proposition}[Global approximant]\label{prop:globalapprox}
+For every $d\ge4$,
+\[
+0\le C_d-\widetilde C_d\le\frac{\pi^6}{4d^4}.
+\]
+Moreover, with $\delta_d^*=\pi-d\theta_d^*$,
+\[
+\left|\delta_d^*-\frac{\pi}{d+1}\right|\le\frac{\pi^3}{2d^2}.
+\]
+\end{proposition}
+\begin{proof}
+For $\delta\in[0,\pi]$ put
+\[
+x(\delta)=\frac{\pi-\delta}{d},\qquad G(\delta)=\cos^d x(\delta)+\cos\delta.
+\]
+Then $C_d=\max_{[0,\pi]}G$. On $[\pi/2,\pi]$, $G\le1<1+\cos^d(\pi/d)=G(0)$, while
+\[
+G'(\delta)=\sin x\,\cos^{d-1}x-\sin\delta.
+\]
+Thus every maximizer $\delta_*\in(0,\pi/2)$ satisfies
+$\sin\delta_*=\sin x_*\cos^{d-1}x_*$, where $x_*=x(\delta_*)\le\pi/d\le\pi/4$.
+
+From $\sin\delta_*\le x_*\le\pi/d$ and $\sin\delta\ge2\delta/\pi$ on $[0,\pi/2]$,
+$\delta_*\le\pi^2/(2d)$. Also $\sin\delta_*\ge\delta_*-\delta_*^3/6$ gives
+\[
+\delta_*\le\frac{\pi}{d+1}+\frac{\pi^6}{48d^3}.
+\]
+For the lower bound, Bernoulli's inequality and $x_*\le\pi/4$ give
+$\cos^{d-1}x_*\ge1-(d-1)x_*^2/2\ge0$, and hence
+\[
+\delta_*\ge\sin\delta_*
+\ge\left(x_*-\frac{x_*^3}{6}\right)
+      \left(1-\frac{(d-1)x_*^2}{2}\right)
+\ge x_*-\frac d2x_*^3
+\ge\frac{\pi-\delta_*}{d}-\frac{\pi^3}{2d^2}.
+\]
+Therefore
+\[
+\left|\delta_*-\frac{\pi}{d+1}\right|\le\frac{\pi^3}{2d^2}.
+\]
+Finally
+\[
+G''(\delta)=-\frac1d\left[\cos^d x-(d-1)\sin^2x\cos^{d-2}x\right]-\cos\delta,
+\]
+and $|G''|\le2$ for $d\ge4$. Taylor's formula at $\delta_*$ therefore yields
+\[
+G\!\left(\frac{\pi}{d+1}\right)
+\ge C_d-\left(\delta_*-\frac{\pi}{d+1}\right)^2
+\ge C_d-\frac{\pi^6}{4d^4}.
+\]
+Since $G(\pi/(d+1))=\widetilde C_d\le C_d$, the proof is complete.
+\end{proof}
+
+\begin{proposition}[Sharp asymptotic correction]\label{prop:approx}
+As $d\to\infty$,
+\[
+\theta_d^*=\frac{\pi}{d+1}+\frac{\pi^3}{2d^3}+O(d^{-4}),
+\qquad
+\boxed{C_d-\widetilde C_d=\frac{\pi^6}{8d^4}+O(d^{-5}).}
+\]
+Thus Proposition~\ref{prop:globalapprox} is sharp in order.
+\end{proposition}
+\begin{proof}
+This is Proposition~\ref{prop:continuous}(3) with $p=d$.
+\end{proof}
+
+\begin{corollary}[Four-term expansion]\label{cor:asymp}
+As $d\to\infty$,
+\[
+\begin{aligned}
+C_d={}&2-\frac{\pi^2}{2d}
++\frac{\pi^2(\pi^2+4)}{8d^2}
+-\frac{\pi^2(\pi^4+28\pi^2+24)}{48d^3}\\
+&+\frac{\pi^2(\pi^6+112\pi^4+624\pi^2+192)}{384d^4}
++O(d^{-5}).
+\end{aligned}
+\]
+Consequently
+\[
+C_{d+1}-C_d=\frac{\pi^2}{2d^2}-\frac{\pi^2(\pi^2+6)}{4d^3}+O(d^{-4}),
+\]
+and $C_d$ is strictly concave for all sufficiently large $d$.
+\end{corollary}
+
+\begin{remark}
+Numerically the discrete concavity appears to hold already from $d=2$; a proof for every $d$ remains open.
+\end{remark}
+
+\section{Remarks}
+\paragraph{Operator and dynamical forms.} Since $C_d=\|T_d-x^d\|_{\infty,[-1,1]}$ and the maximizers are $\pm c_d^*$
+(Theorem~\ref{thm:unique}), the spectral theorem gives $\|T_d(A)-A^d\|\le C_d$ for every self-adjoint contraction $A$,
+with equality for $A=c_d^*I$. This applies to reversible Markov operators on $L^2(\pi)$, where $T_d(P)$ describes
+discrete-wave (quantum-walk) dynamics and $P^d$ the $d$-step random walk \cite{AM2024}; equality holds for the symmetric
+two-state chain with eigenvalues $\{1,c_d^*\}$. Likewise $C_d=\sup_{|z|=1}|q(z^d)-q(z)^d|$ for $q(z)=(z+z^{-1})/2$, since
+$q(z^d)=T_d(q(z))$ \cite{Rivlin1990}. These are restatements of Corollary~\ref{thm:main} and Theorem~\ref{thm:unique}, not
+independent results.
+
+\paragraph{Quantum parity.} For commuting local unitaries $V_j=\mathrm{diag}(e^{i\theta},e^{-i\theta})$ and the
+Greenberger--Horne--Zeilinger state \cite{Mermin1990}, $\langle\otimes_jV_j\rangle=\cos d\theta$ and
+$\langle V_j\rangle=\cos\theta$, so the factorization defect in this single state is $|\cos d\theta-\cos^d\theta|$ and equals
+$C_d$ at $\theta=\theta_d^*$. For Hermitian observables with spectrum $\{\pm1\}$ the joint spectral law is
+$\pm1$-valued, and the relevant sharp constant is the real one, $1+(1-2/d)^d$ (Theorem~\ref{thm:real}).
+
+\paragraph{Normalization and estimation.} The ratio $D_d(X)/C_d$ lies in $[0,1]$ and vanishes exactly under mutual
+independence; for $d=2$ it is the UFDM \cite{Daniusis2025}. It should be used with care: it is not invariant under
+adding an independent coordinate (which leaves $D_d$ unchanged but replaces $C_d$ by $C_{d+1}$), it is not invariant under
+monotone transformations of the marginals, and Gaussian laws never exceed $1/C_d$. Moreover, the supremum over all
+frequencies cannot be estimated consistently from data: the empirical characteristic function is not uniformly
+consistent on all of $\mathbb R^d$ \cite{Csorgo1981,CsorgoTotik1983}, and the uniform estimator of \cite{Daniusis2025}
+restricts frequencies accordingly. In fact, if $N$ is even and, for each $j$, the observed values $x_{1j},\dots,x_{Nj}$
+are linearly independent over $\mathbb Q$ (almost surely for i.i.d.\ samples with absolutely continuous marginals), then
+the unrestricted empirical supremum equals $C_d$ for every such data set, by Kronecker's theorem and
+Corollary~\ref{thm:main}.
+
+\paragraph{Mixing.} Corollary~\ref{thm:main} is an unconditional ceiling for multi-factor covariance inequalities under
+strong mixing, such as the Volkonskii--Rozanov lemma \cite{VolkonskiiRozanov1959}; sharp mixing constants are treated
+separately.
+
+\section{Open problems}
+\begin{enumerate}
+\item Classify all extremizers of the profile/universal theorem for $d\ge3$ and prove a quantitative stability theorem.
+The $d=2$ extremal set is larger.
+\item Prove irreducibility of the critical polynomial $A_d$ for every $d$. A companion paper proves broad infinite families, local factorization theorems and large Galois-group results, but the all-$d$ conjecture remains open \cite{MartinevskiCritical}.
+\item Prove or refute global discrete concavity $C_{d+2}-2C_{d+1}+C_d<0$ for every $d\ge2$.
+\item Extend the structural restrictions beyond the classes already settled in \cite{MartinevskiMarginals}: finite phase alphabets, further fixed-marginal families, and broader Gaussian/elliptical classes.
+\end{enumerate}
+
+\section*{Supplementary material}
+A table of $C_d$, $\theta_d^*$ and $c_d^*$ for $2\le d\le100$, computation scripts, and the previous independent
+phase-shift/angular proof of Corollary~\ref{thm:main} accompany this manuscript. The older proof is retained as an
+independent verification route, not as the primary proof.
+
+\section*{Historical note}
+The uniform characteristic-function factorization defect and the question of its extremal constants, including the
+limit $2$, go back to an unpublished student research project of the author (1996), originally motivated in part by
+cryptographic applications. The exact finite-$d$ formula, fixed-mean profile, proofs, continuous refinements and the
+critical-polynomial formulation in this paper were obtained in 2026.
+
+\section*{Author information and AI assistance}
+\noindent
+\textbf{Author.} Alexandr Martinevski, Independent Researcher, Lithuania. ORCID:
+\href{https://orcid.org/0009-0000-4230-4414}{0009-0000-4230-4414}.
+Email: \href{mailto:alex.martinevski@gmail.com}{alex.martinevski@gmail.com}.
+Manuscript date: September 2026.
+
+\medskip
+\noindent
+\textbf{AI assistance disclosure.} AI systems used in the research and manuscript workflow included
+\href{https://openai.com/index/gpt-5-6/}{OpenAI GPT-5.6 Sol} and
+\href{https://www.anthropic.com/claude-opus-5-5}{Anthropic Claude Opus 5.5}.
+They were used for mathematical exploration, proof development and critique, symbolic and numerical verification,
+literature search, and manuscript drafting and editing. AI systems are not authors. The author reviewed the
+mathematical statements and proofs and takes full responsibility for the content.
+
+\begin{thebibliography}{99}\small
+\bibitem{AM2024} S. Apers and L. Miclo, Quantum walks, the discrete wave equation and Chebyshev polynomials, arXiv:2402.07809 (2024).
+\bibitem{BKRS2019} B. B\"ottcher, M. Keller-Ressel and R.~L. Schilling, Distance multivariance: new dependence measures for random vectors, \emph{Ann. Statist.} 47 (2019) 2757--2789.
+\bibitem{Csorgo1981} S. Cs\"org\H{o}, Limit behaviour of the empirical characteristic function, \emph{Ann. Probab.} 9 (1981) 130--144.
+\bibitem{Csorgo1985} S. Cs\"org\H{o}, Testing for independence by the empirical characteristic function, \emph{J. Multivariate Anal.} 16 (1985) 290--299.
+\bibitem{CsorgoTotik1983} S. Cs\"org\H{o} and V. Totik, On how long interval is the empirical characteristic function uniformly consistent?, \emph{Acta Sci. Math. (Szeged)} 45 (1983) 141--149.
+\bibitem{Daniusis2025} P. Daniu\v{s}is, S. Juneja, L. Kuzma and V. Marcinkevi\v{c}ius, Measuring statistical dependence via characteristic function IPM, \emph{Entropy} 27(12) (2025) 1254.
+\bibitem{EHSV2010} N. Ebrahimi, G.~G. Hamedani, E.~S. Soofi and H. Volkmer, A class of models for uncorrelated random variables, \emph{J. Multivariate Anal.} 101 (2010) 1859--1871.
+\bibitem{Hamedani2013} G.~G. Hamedani, Sub-independence: an expository perspective, \emph{Comm. Statist. Theory Methods} 42 (2013) 3615--3638.
+\bibitem{Ibragimov1962} I.~A. Ibragimov, Some limit theorems for stationary processes, \emph{Theory Probab. Appl.} 7 (1962) 349--382.
+\bibitem{Kankainen1995} A. Kankainen, \emph{Consistent Testing of Total Independence Based on the Empirical Characteristic Function}, PhD thesis, University of Jyv\"askyl\"a, 1995.
+\bibitem{Kukorelly1999} Z. Kukorelly, The piling-up lemma and dependent random variables, in \emph{Cryptography and Coding}, LNCS 1746, Springer, 1999, 186--190.
+\bibitem{Matsui1994} M. Matsui, Linear cryptanalysis method for DES cipher, \emph{EUROCRYPT '93}, LNCS 765 (1994) 386--397.
+\bibitem{Mermin1990} N.~D. Mermin, Extreme quantum entanglement in a superposition of macroscopically distinct states, \emph{Phys. Rev. Lett.} 65 (1990) 1838--1840.
+\bibitem{MartinevskiMarginals} A. Martinevski, \emph{Two-point extremals for characteristic-function dependence with fixed marginals}, companion manuscript (2026).
+\bibitem{MartinevskiCritical} A. Martinevski, \emph{Chebyshev--Lucas critical polynomials: local blocks, irreducibility and Galois groups}, companion manuscript (2026).
+\bibitem{Pfister2018} N. Pfister, P. B\"uhlmann, B. Sch\"olkopf and J. Peters, Kernel-based tests for joint independence, \emph{J. R. Stat. Soc. Ser. B} 80 (2018) 5--31.
+\bibitem{Rivlin1990} T.~J. Rivlin, \emph{Chebyshev Polynomials}, 2nd ed., Wiley, 1990.
+\bibitem{Schennach2019} S.~M. Schennach, Convolution without independence, \emph{J. Econometrics} 211(1) (2019) 308--318.
+\bibitem{VolkonskiiRozanov1959} V.~A. Volkonskii and Yu.~A. Rozanov, Some limit theorems for random functions I, \emph{Theory Probab. Appl.} 4 (1959) 178--197.
+\end{thebibliography}
+\end{document}

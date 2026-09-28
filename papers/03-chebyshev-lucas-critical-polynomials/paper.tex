@@ -1,0 +1,627 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amssymb,microtype,booktabs}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}[section]\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{theoremA}{Theorem}\renewcommand{\thetheoremA}{\Alph{theoremA}}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}\newcommand{\Z}{\mathbb Z}\newcommand{\F}{\mathbb F}
+\newcommand{\Gal}{\operatorname{Gal}}\newcommand{\disc}{\operatorname{disc}}\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\lead}{\operatorname{lc}}\newcommand{\ur}{\mathrm{ur}}\newcommand{\supp}{\operatorname{supp}}
+\begin{document}
+\title[Chebyshev--Lucas critical polynomials]{Chebyshev--Lucas critical polynomials:\\ local blocks, irreducibility and Galois groups}
+\author{Alexandr Martinevski}
+\address{Independent Researcher, Lithuania}\email{\href{mailto:alex.martinevski@gmail.com}{alex.martinevski@gmail.com}}
+\thanks{ORCID: \href{https://orcid.org/0009-0000-4230-4414}{0009-0000-4230-4414}. Companion to \cite{I,A}.}
+\date{September 2026}
+\begin{abstract}
+For $d\ge3$ let $A_d(x)=\sum_{k\ge0}(-1)^k\binom d{2k+1}x^k-1$, of degree $m=\lfloor(d-1)/2\rfloor$. Its roots are $\tan^2\theta$ at the solutions of
+$\sin d\theta=\sin\theta\cos^{d-1}\theta$, the critical points of the extremal problem of \cite{I}, and $A_d+1$ is the Lucas polynomial $U_d(2,1+x)$.
+We conjecture that $A_d$ is irreducible over $\Q$ for all $d$ and develop the tools for this problem. For even $d$ the $2$-adic Newton polygon
+proves irreducibility whenever $\gcd(v_2(d),d/2-1)=1$ (about $94.5\%$ of even $d$). For odd $d$ we exclude rational roots, prove irreducibility
+for $d=2p+1$ with $2$ a primitive root mod $p$, and show, via an explicit primitive divisor theorem, that factors of any fixed degree
+disappear for large $d$. The central new tool is a local block lemma: for $\ell^a\Vert d-1$ the $\ell$-adic Newton polygon has vertices
+$((\ell^b-1)/2,a-b)$, the reduction is $x^{(\ell^a-1)/2}H$, and $H$ is separable iff $\ell$ does not divide an explicit resultant $N_k$; for
+even $d$ there is a dual block at every odd prime power $q^b\Vert d$, $b\ge1$, with no such condition. With these we compute Galois groups: $\Gal(A_{2p+1})\cong S_p$
+when $2$ is a primitive root mod $p$; $\Gal(A_{2p+2})\supseteq A_p$ whenever $p+1\notin\{2^s,3\cdot2^s\}$; and
+$\Gal(A_{2p+2})\cong S_p$ for every prime $p\equiv\pm3\pmod8$, an unconditional infinite family. Computations certify irreducibility for $d\le400$ and $\Gal(A_{2p+2})\cong S_p$ for all primes $p\le3000$. All roots of $A_d$ are real, and
+irreducibility of $A_d$ determines the degree of the sharp constant: $[\Q(C_d):\Q]=d-1$ for odd $d$ and $d/2-1$ for even $d$. We explain why local methods alone cannot settle odd prime $d$.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+\subsection*{The polynomials}
+For an integer $d\ge3$ put $m=\lfloor(d-1)/2\rfloor$ and
+\begin{equation}\label{eq:Ad}
+A_d(x)=\sum_{k=0}^{m}(-1)^k\binom d{2k+1}x^k-1,\qquad Q_d(y)=y^mA_d\!\Bigl(\frac{1-y}{y}\Bigr).
+\end{equation}
+Thus $A_3=2-x$, $A_4=3-4x$, $A_5=x^2-10x+4$, $A_6=6x^2-20x+5$. With $x=\tan^2\theta$,
+\begin{equation}\label{eq:trig}
+A_d(\tan^2\theta)+1=\frac{\sin d\theta}{\sin\theta\,\cos^{d-1}\theta},
+\end{equation}
+so the roots of $A_d$ correspond to the solutions of $\sin d\theta=\sin\theta\cos^{d-1}\theta$. These are the critical points of
+$\theta\mapsto\cos^d\theta-\cos d\theta$, whose maximum is the sharp constant $C_d=\|T_d-x^d\|_{\infty,[-1,1]}$ for multivariate
+characteristic-function factorization \cite{I}. There $y=(c_d^*)^2$, with $c_d^*$ the maximizing cosine, is shown to be a root of an integer polynomial of degree $m$ with
+leading coefficient $2^{d-1}-1$ \cite[Prop.~5.2]{I}; dividing the critical equation $U_{d-1}(c)=c^{d-1}$ by $c^{d-1}$ shows that this polynomial is exactly $Q_d$.
+The polynomial $A_d$ appears in \cite[Remark~5.3]{I}, where its irreducibility for all $d$ is posed as an open problem \cite[Sec.~10]{I}. Irreducibility of $Q_d$ fixes the degree
+of $y$; a separate field-degree argument then gives the degree of $C_d$. Equivalently, $A_d+1=U_d(2,1+x)$, where $U_n(P,Q)=(\alpha^n-\beta^n)/(\alpha-\beta)$, $\alpha+\beta=P$, $\alpha\beta=Q$,
+is the Lucas polynomial. We call $A_d$ the \emph{Chebyshev--Lucas critical polynomials}.
+
+\begin{conjecture}\label{conj:main}
+$A_d$ is irreducible over $\Q$ for every $d\ge3$. Moreover $\Gal(A_d/\Q)\cong S_m$.
+\end{conjecture}
+
+The conjecture has the flavour of classical open irreducibility problems for binomial-type families (Cauchy--Mirimanoff polynomials,
+truncated binomial expansions) and of recent work on Chebyshev-like sequences \cite{DKS}. We found no known theorem that covers $A_d$.
+
+\subsection*{Main results}
+Write $a=v_2(d)$ for even $d$. Our results fall into four groups.
+
+\begin{theoremA}[even $d$]\label{thmA}
+If $d$ is even, every irreducible factor of $A_d$ over $\Q_2$ has degree divisible by $m/\gcd(a,m)$. In particular $A_d$ is irreducible if
+$\gcd(a,m)=1$, and also if $d-1$ is prime. Among even $d\le10^5$ these criteria cover $48015$ of $49999$ values.
+\end{theoremA}
+
+\begin{theoremA}[odd $d$]\label{thmB}
+Let $d\ge5$ be odd. Then $A_d$ has no rational root. If $A_d$ has an irreducible factor of degree $k$, then
+$d<\max\{2^{2k+1},10^{30}(2k)^9\}$. If $d=2p+1$ with $p$ prime and $2$ a primitive root modulo $p$, then $A_d$ is irreducible.
+\end{theoremA}
+
+\begin{theoremA}[local blocks]\label{thmC}
+Let $\ell$ be an odd prime and $\ell^a\Vert d-1$. The $\ell$-adic Newton polygon of $A_d$ on the roots of positive valuation has vertices
+$((\ell^b-1)/2,\,a-b)$, $b=0,\dots,a$; the first block is tamely and totally ramified of degree $(\ell-1)/2$ and the others are wild.
+The reduction is $A_d\equiv x^{(\ell^a-1)/2}H\pmod\ell$ with explicit $H$, and $H$ is separable iff $\ell\nmid N_k$, $k=(d-1)/\ell^a$.
+For even $d$ and an odd prime power $q^b\Vert d$, $b\ge1$, there is a dual block on the roots of negative valuation (the reversed polygon has
+vertices $((q^c-1)/2,b-c)$), and the remaining reduction is always separable. Inertia at such primes acts as an explicit cycle, or product of cycles, and fixes all other roots.
+\end{theoremA}
+
+\begin{theoremA}[Galois groups]\label{thmD}
+Let $p$ be a prime.
+\begin{enumerate}
+\item If $p\ge5$ and $2$ is a primitive root modulo $p$, then $\Gal(A_{2p+1}/\Q)\cong S_p$.
+\item If $p+1\notin\{2^s,3\cdot2^s\}$, then $\Gal(A_{2p+2}/\Q)\supseteq A_p$.
+\item If $p\equiv\pm3\pmod8$, then $\Gal(A_{2p+2}/\Q)\cong S_p$. By Dirichlet's theorem this family is infinite.
+\end{enumerate}
+\end{theoremA}
+
+\begin{theoremA}[the degree of $C_d$]\label{thmE}
+All roots of $A_d$ are real and positive. If $A_d$ is irreducible, then $[\Q(C_d):\Q]=d-1$ for odd $d$ and $[\Q(C_d):\Q]=d/2-1$ for even $d$.
+This holds unconditionally for every $d$ covered by Theorems~\ref{thmA} and \ref{thmB} and for all $d\le400$.
+\end{theoremA}
+Since $\deg Q_d=m$, \cite[Prop.~5.2]{I} gives only $[\Q(y):\Q]\le m$; Theorem~\ref{thmE} determines the degree of $C_d$ itself for these $d$ and reduces it
+to Conjecture~\ref{conj:main} in general.
+
+In Theorem~\ref{thmD}, part (1) is unconditional for each $p$; the infinitude of such $p$ is Artin's conjecture for the base $2$, known under GRH \cite{Hooley}.
+Part (3) needs no hypothesis at all. Theorem~\ref{thmD} is proved without the classification of finite simple groups (CFSG): besides the
+Jordan--Marggraff theorem we use only Burnside's theorem on groups of prime degree and Bochert's bound on the minimal degree of doubly transitive
+groups. The minimal degree theorem of Liebeck and Saxl \cite{LS}, which relies on CFSG, gives a stronger alternative (Remark~\ref{rem:LS}).
+
+\subsection*{Computation}
+Irreducibility is certified for all $3\le d\le400$ (Section~\ref{sec:comp}). Moreover $\Gal(A_d)\cong S_m$ for $17\le d\le82$,
+$\Gal(A_{2p+1})\cong S_p$ for all primes $3\le p\le199$, and $\Gal(A_{2p+2})\cong S_p$ for all primes $3\le p\le3000$, the last with a
+per-prime certificate table.
+
+\subsection*{Limits of local methods}
+For odd $d$ the question is the \emph{macroscopic} range of factor degrees. Periodicity of short cycles mod $p$ (Proposition~\ref{prop:period})
+does not help: on explicit progressions of $d$ every fixed finite set of primes sees all short cycles (Proposition~\ref{prop:obstruction}).
+For odd prime $d$ all local data at the structured primes are compatible with a factorization; see Example~\ref{ex:47} for $d=47$.
+A proof for all $d$ needs a global argument.
+
+\subsection*{Organization}
+Section~\ref{sec:struct} collects identities. Section~\ref{sec:even} treats even $d$ and Section~\ref{sec:odd} odd $d$. Section~\ref{sec:blocks}
+proves the local block lemmas and Section~\ref{sec:galois} the results on Galois groups. Section~\ref{sec:limits} discusses periodicity and the
+limits of local methods, Section~\ref{sec:comp} the computations, and Section~\ref{sec:open} open problems.
+
+\section{Structure}\label{sec:struct}
+Put $a_k(x)=A_k(x)+1=\sum_i(-1)^i\binom k{2i+1}x^i$ and $b_k(x)=\sum_i(-1)^i\binom k{2i}x^i$, so that, with $x=-s^2$,
+\begin{equation}\label{eq:ab}
+(1+s)^k=b_k(x)+s\,a_k(x).
+\end{equation}
+The leading coefficient of $A_d$ is $(-1)^m$ for odd $d$ and $(-1)^md$ for even $d$; moreover $A_d(0)=d-1$ and $A_d(-1)=2^{d-1}-1$.
+
+\begin{proposition}\label{prop:identities}
+\begin{enumerate}
+\item $2s\,(A_d(-s^2)+1)=(1+s)^d-(1-s)^d$ in $\Z[s]$.
+\item $A_d(x)+1=U_d(2,1+x)=\sum_{j}(-1)^j\binom{d-1-j}{j}2^{d-1-2j}(1+x)^j$.
+\item $\sum_{j=0}^{d-1}(2u-1)^j-u^{d-1}=u^{d-1}A_d\bigl(-(u-1)^2/u^2\bigr)$.
+\item $A_d+1=c_d\prod_{e\mid d,\,e\ge3}\Psi_e$, where $\Psi_e\in\Z[x]$ is the minimal polynomial of $\tan^2(\pi/e)$, of degree $\varphi(e)/2$, and
+$c_d\in\Q^\times$. For odd $d$ all $\tan^2(j\pi/d)$ are algebraic integers; for even $d$ the factor $\Psi_e$ is non-monic exactly when
+$e=2q^c$ with $q$ an odd prime.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) is \eqref{eq:ab} for $k=d$. For (2), in (1) put $\alpha=1+s$, $\beta=1-s$, so $\alpha+\beta=2$ and $\alpha\beta=1+x$. For (3), substitute
+$s=(u-1)/u$ in (1): $1-s=1/u$ and $1+s=(2u-1)/u$. For (4), the roots of $A_d+1$ are $\tan^2(j\pi/d)$, $1\le j\le m$, by \eqref{eq:trig}; the
+Galois orbits of these numbers are indexed by $e=d/\gcd(j,d)$. For the last statement write $\tan^2(\pi j/e)=-((\zeta-1)/(\zeta+1))^2$ with $\zeta$ a
+primitive $e$-th root of unity. Then $1+\zeta$ is a unit unless $-\zeta$ has odd prime power order, i.e.\ unless $e=2q^c$.
+\end{proof}
+
+\begin{lemma}[real roots]\label{lem:real}
+Put $\Phi(\theta)=A_d(\tan^2\theta)+1=\sin d\theta/(\sin\theta\cos^{d-1}\theta)$ on $(0,\pi/2)$. The equation $\Phi=1$ has exactly $m$ solutions, all simple:
+one in $(\pi/(2d),\pi/d)$; one in each half of every positive lobe $(2i\pi/d,(2i+1)\pi/d)$ with $i\ge1$ and $(2i+1)\pi/d<\pi/2$; and, if $d\equiv1,2\pmod4$, one
+in the first half of the last positive lobe, which reaches $\pi/2$. Hence $A_d$ has $m$ distinct positive roots $x_j=\tan^2\theta_j$, and $\Q(x_j)$
+is totally real.
+\end{lemma}
+\begin{proof}
+At the midpoint of a positive lobe $\sin d\theta=1>\sin\theta\cos^{d-1}\theta$, so $\Phi>1$ there, while $\Phi=0$ at the ends of the lobe. Hence each
+half of a full positive lobe contains a solution. On $(0,\pi/d)$ we have $\Phi(0^+)=d$, $\Phi(\pi/(2d))>1$ and $\Phi(\pi/d)=0$. For $d=4k+1$ the last
+lobe is $(2k\pi/d,\pi/2)$, its first half, with $\Phi\to+\infty$ at $\pi/2$. For $d=4k+2$ the last lobe ends at $\pi/2$, where again
+$\Phi\to+\infty$. Counting over the four classes of $d$ modulo $4$ gives at least $1+2(k-1)+1=m$ ($d=4k+1,4k+2$), $1+2k=m$ ($d=4k+3$) and
+$1+2(k-1)=m$ ($d=4k$) solutions in the stated intervals. Since $\deg A_d=m$, these are all the roots, and they are simple.
+\end{proof}
+
+\section{Even degree}\label{sec:even}
+\begin{theorem}\label{thm:even}
+Let $d$ be even, $a=v_2(d)$ and $m=d/2-1$. The $2$-adic Newton polygon of $A_d$ is the single segment from $(0,0)$ to $(m,a)$, and every
+interior point lies strictly above it. Hence every irreducible factor of $A_d$ over $\Q_2$ has degree divisible by $m/\gcd(a,m)$, and $A_d$ is
+irreducible over $\Q$ when $\gcd(a,m)=1$.
+\end{theorem}
+\begin{proof}
+The constant term $d-1$ is odd and the leading coefficient is $\pm d$. For $1\le k<m$ the coefficient is $\pm\binom d{2k+1}$, and for odd $j$,
+$\binom dj=\frac dj\binom{d-1}{j-1}$ has $2$-adic valuation at least $a>ak/m$. Dumas' theorem \cite{Dumas} gives the rest.
+\end{proof}
+If $a\ge2$ then $m$ is odd, so $\gcd(a,m)=1$ whenever $a$ is a power of $2$; this covers $d\equiv2\pmod4$ and $d\equiv4\pmod8$.
+
+\begin{proposition}\label{prop:eis}
+If $p$ is an odd prime, then $A_{p+1}$ is Eisenstein at $p$.
+\end{proposition}
+\begin{proof}
+$A_{p+1}(0)=p$; for $3\le j\le p-2$, $\binom{p+1}j=\binom pj+\binom p{j-1}\equiv0\pmod p$; the leading coefficient is $\pm(p+1)$.
+\end{proof}
+
+\begin{definition}
+The \emph{exceptional even set} is $\mathcal E=\{d \text{ even}: \gcd(v_2(d),d/2-1)>1 \text{ and } d-1\text{ not prime}\}$.
+\end{definition}
+It begins $56,248,296,320,344,352,392,512,\dots$ and has $1984$ elements up to $10^5$. The $2$-adic factorization is in fact explicit.
+
+\begin{proposition}\label{prop:ore}
+Let $d$ be even with $a=v_2(d)\ge2$, and put $g=\gcd(a,m)$ (odd, since $m$ is odd) and $Q=m/g$. Over $\Q_2$,
+\[A_d=\prod_{\psi}F_\psi,\]
+where $\psi$ runs over the irreducible factors of $y^g-1$ in $\F_2[y]$ and $F_\psi$ is irreducible of degree $Q\deg\psi$. Consequently every proper
+factor of $A_d$ over $\Q$ has degree $Q\,s$, where $s$ is the sum of $\deg\psi$ over a proper nonempty set of these $\psi$. For $g=3$ the only possible
+degrees are $Q$ and $2Q$; for $g=5$ they are $Q$ and $4Q$.
+\end{proposition}
+\begin{proof}
+Apply Ore's theorem on the residual polynomial \cite{Ore,GMN} to $x^mA_d(1/x)$, whose Newton polygon is the single segment from $(0,a)$ to $(m,0)$
+(Theorem~\ref{thm:even}). Its lattice points are at the abscissae $iQ$, $0\le i\le g$, and all interior coefficients lie strictly above the segment, so
+the residual polynomial is $c_0+c_gy^g$ with $c_0\equiv d/2^a\equiv1$ and $c_g\equiv d-1\equiv1\pmod2$, i.e.\ $y^g+1$. It is separable because $g$
+is odd, so $A_d$ is regular and its $\Q_2$-factors correspond to the irreducible factors of $y^g+1=y^g-1$ over $\F_2$, each of degree $Q$ times the
+degree of the factor.
+\end{proof}
+
+\begin{remark}\label{rem:Estruct}
+For $d\in\mathcal E$, the degrees allowed by Proposition~\ref{prop:ore} can be tested against the local data at the other structured primes: the
+dual blocks and the separable reduction at each odd $q\mid d$ (Lemma~\ref{lem:dual}), and the blocks and $H$ at each odd $\ell\mid d-1$
+(Lemma~\ref{lem:block}). For the $15$ elements of $\mathcal E$ below $1000$ this excludes every proper degree except for $d=248$ (degrees
+$41,82$) and $d=352$ (degrees $35,140$), which are settled by the general certificates of Section~\ref{sec:comp}. The exclusions depend on the
+factorization patterns of these reductions, so they give no uniform argument for $\mathcal E$.
+\end{remark} For $d=\ell^c+1$ with $c\ge2$, Lemma~\ref{lem:block}
+shows that the $\ell$-adic polygon is never a single segment, so Proposition~\ref{prop:eis} does not extend to prime powers.
+
+\section{Odd degree}\label{sec:odd}
+\begin{lemma}\label{lem:mod2}
+For odd $d$, $A_d(x-1)\equiv x^m-1\pmod 2$.
+\end{lemma}
+\begin{proof}
+Modulo $2$ we have $(2u-1)^j\equiv1$, so Proposition~\ref{prop:identities}(3) gives $u^{2m}\bar A(-(u-1)^2/u^2)=1+u^{2m}$ in $\F_2[u]$, where
+$\bar A=A_d\bmod 2$. Since $(u+1)^{2k}=(u^2+1)^k$ in characteristic $2$, with $U=u^2$ this reads $U^m\bar A(1+1/U)=1+U^m$, i.e.
+$\bar A(1+Y)=1+Y^m$.
+\end{proof}
+
+\begin{lemma}\label{lem:units}
+Let $d$ be odd, $x$ a root of $A_d$, $s^2=-x$, $\alpha=1+s$, $\beta=1-s$, $\gamma=\alpha/\beta$, $K=\Q(s)$. Then $\alpha,\beta$ are units at every
+prime of $K$ above $2$, and $\gamma$ is not a root of unity.
+\end{lemma}
+\begin{proof}
+All these numbers are algebraic integers, because $A_d$ is monic up to sign. Let $\mathfrak P\mid2$. By Lemma~\ref{lem:mod2},
+$A_d(t-1)=t^m-1+2R(t)$ with $R\in\Z[t]$, so $t=1+x=\alpha\beta$ satisfies $t^m\equiv1\pmod{\mathfrak P}$ and $\alpha,\beta$ are $\mathfrak P$-units.
+Hence $\gamma+1=2/\beta$ has $\nu_{\mathfrak P}(\gamma+1)=\nu_{\mathfrak P}(2)>0$. Suppose $\gamma$ is a root of unity. Then $\gamma\ne-1$, since
+$\alpha+\beta=2$, so $\eta=-\gamma\ne1$ is a root of unity with $\nu(1-\eta)=\nu(2)$. If the order of $\eta$ is not a power of $2$, then $1-\eta$
+is a $2$-unit. If the order is $2^c$, then $\nu(1-\eta)=\nu(2)/2^{c-1}$, which equals $\nu(2)$ only for $c=1$, i.e.\ $\gamma=1$ and $x=0$. But
+$A_d(0)=d-1\ne0$.
+\end{proof}
+
+\begin{proposition}\label{prop:norational}
+For odd $d\ge5$, $A_d$ has no rational root.
+\end{proposition}
+\begin{proof}
+A rational root is an integer $r\mid d-1$. For $z\ge0$, $A_d(-z)=\sum_k\binom d{2k+1}z^k-1\ge d-1>0$, so $r>0$. By Lemma~\ref{lem:mod2},
+$A_d(r)\equiv(r+1)^m+1\pmod2$, so $r$ is even. Then $(1\pm\sqrt{-r})$ is a Lucas pair: $\alpha+\beta=2$ and $\alpha\beta=1+r$ are coprime, and
+$\alpha/\beta$ is not a root of unity by Lemma~\ref{lem:units}. By Proposition~\ref{prop:identities}(1), $A_d(r)=0$ iff $u_d(\alpha,\beta)=1$. For
+$d>30$ the number $u_d$ has a primitive divisor \cite[Thm~1.4]{BHV}, so $|u_d|>1$. For $5\le d\le30$ one checks the divisors of $d-1$ directly.
+\end{proof}
+
+\begin{theorem}\label{thm:2p1}
+Let $p$ be an odd prime with $\operatorname{ord}_p(2)=p-1$ and $d=2p+1$. Then $A_d$ is irreducible.
+\end{theorem}
+\begin{proof}
+Here $m=p$ and $A_d(x-1)\equiv(x-1)\Phi_p(x)\pmod2$, where $\Phi_p$ is irreducible over $\F_2$ because $2$ has order $p-1$. The leading
+coefficient is odd, so a proper factorization over $\Z$ would have a factor of degree $1$, i.e.\ a rational root. This contradicts
+Proposition~\ref{prop:norational}.
+\end{proof}
+
+\begin{theorem}[small factors]\label{thm:small}
+Let $d$ be odd. If $A_d$ has an irreducible factor of degree $k$ over $\Q$, then $d<\max\{2^{2k+1},10^{30}(2k)^9\}$.
+\end{theorem}
+\begin{proof}
+Let $x$ be a root of such a factor, with $s,\alpha,\beta,\gamma$ as in Lemma~\ref{lem:units}. Since $s=(\gamma-1)/(\gamma+1)$, $\Q(\gamma)=\Q(s)$
+has degree $D\le2k$, and $\beta=2/(\gamma+1)$ is an algebraic integer of $\Q(\gamma)$. Also $x\ne0,-1$, so $\gamma\ne0,1$. By
+Proposition~\ref{prop:identities}(1), $\alpha^d-\beta^d=\alpha-\beta$, i.e.\ $\gamma^d-1=(\gamma-1)\beta^{1-d}$. Hence for every prime
+$\mathfrak p$ of $\Q(\gamma)$,
+\[\nu_{\mathfrak p}(\gamma^d-1)=\nu_{\mathfrak p}(\gamma-1)+(1-d)\nu_{\mathfrak p}(\beta)\le\nu_{\mathfrak p}(\gamma-1),\]
+so $\gamma^d-1$ has no primitive divisor. Since $\gamma$ is not a root of unity (Lemma~\ref{lem:units}), the explicit form \cite[Thm~4.2]{BL} of Schinzel's
+theorem \cite{Schinzel} gives $d<\max\{2^{D+1},10^{30}D^9\}$.
+\end{proof}
+\begin{remark}
+The argument uses that the constant is $-1$. For $U_d(2,t)-c$ one gets $\gamma^d-1=c(\gamma-1)\beta^{1-d}$, and a primitive divisor may divide
+$c$. Numerically, $U_d(2,t)-c$ is irreducible for $c\in\{\pm1,\pm2,3,4\}$ and $d\le50$.
+\end{remark}
+
+\section{Local blocks}\label{sec:blocks}
+Put $N_k=\prod_{\zeta^k=1,\,\zeta\ne1}\bigl((2-\zeta)^k-1\bigr)\in\Z\setminus\{0\}$; it is nonzero because $|2-\zeta|>1$ for $\zeta\ne1$ on the
+unit circle. Equivalently, $N_k=\Res\bigl((x^k-1)/(x-1),\,(2-x)^k-1\bigr)$, and $\Res(R_k,S_k)=\pm N_k/k$ for $R_k(z)=((1+z)^k-1)/z$ and
+$S_k(z)=((1-z)^k-1)/z$.
+
+\begin{lemma}[block at $\ell^a\Vert d-1$]\label{lem:block}
+Let $\ell$ be an odd prime, $d=k\ell^a+1$ with $\ell\nmid k$, $N=\ell^a$, $E=(N-1)/2$ and $E_b=(\ell^b-1)/2$.
+\begin{enumerate}
+\item[(A)] $v_\ell\binom d{2i+1}=a-v_\ell\bigl(i(2i+1)\bigr)$ for $1\le i\le E$.
+\item[(B)] The $\ell$-adic Newton polygon of $A_d$ on its positive-valuation part has vertices $(E_b,a-b)$, $b=0,\dots,a$. Its segments have height
+$1$ and lengths $\ell^{b-1}(\ell-1)/2$. The first block is tamely and totally ramified of degree $e=(\ell-1)/2$; for $b\ge2$ the blocks are wild.
+\item[(C)] $A_d\equiv x^EH\pmod\ell$, with $H=(-1)^Ea_k^N+x^{E+1}w^N$, $w=(b_k-1)/x$ and $H(0)\equiv(-1)^Ek\not\equiv0$.
+\item[(D)] $H$ is separable iff $\ell\nmid N_k$, iff there are no $\zeta_1\ne\zeta_2$ in $\mu_k(\overline{\F}_\ell)$ with $\zeta_1+\zeta_2=2$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(A) We have $\binom dj=\frac dj\binom{d-1}{j-1}$ and $v_\ell(d)=0$. For $1\le t<N$, $v_\ell\binom{kN}t=a-v_\ell(t)$, since
+$\binom{kN-1}{t-1}\not\equiv0$ by Lucas' theorem. Finally $j=2i+1$ and $j-1=2i$ are not both divisible by $\ell$.
+(B) A point with $v_\ell(i(2i+1))=t$ has $i\ge E_t$, so it lies on or to the right of the vertex $(E_t,a-t)$ at the same height. The slopes
+$-2/(\ell^{b-1}(\ell-1))$ increase. Each segment has height $1$, so each block is irreducible over $\Q_\ell^\ur$ and totally ramified, of degree
+$\ell^{b-1}e$.
+(C) In $\F_\ell[s]$, $(1\pm s)^d=(1\pm s)(1\pm s^N)^k$. By \eqref{eq:ab} and $a_k(x^N)=a_k(x)^N$,
+$A_d+1\equiv(-x)^Ea_k^N+b_k^N$, and $b_k-1=xw$.
+(D) Modulo $\ell$, $H'\equiv(E+1)x^Ew^N$ with $E+1=(N+1)/2\not\equiv0$. A repeated root $r$ of $H$ has $r\ne0$, hence $w(r)=0$ and then
+$a_k(r)=0$. With $s^2=-r$ this means $(1\pm s)^k=1$; conversely such $s$ gives a repeated root. Reducing $\mu_k$ modulo a prime above $\ell$
+gives the resultant form.
+\end{proof}
+
+\begin{lemma}[tame subfield]\label{lem:contain}
+In Lemma~\ref{lem:block}, let $K_0=\Q_\ell^\ur$ and $T=K_0(\ell^{1/e})$. Then $K_0(\beta)\supseteq T$ for every root $\beta$ of every block.
+\end{lemma}
+\begin{proof}
+$K_0(\beta)/K_0$ is totally ramified of degree $\ell^{b-1}e$. Its maximal tamely ramified subextension has degree equal to the prime-to-$\ell$
+part of the ramification index, namely $e$ \cite[Ch.~IV]{Serre}. Since the residue field of $K_0$ is algebraically closed and $\ell\nmid e$,
+$T$ is the only tamely ramified extension of $K_0$ of degree $e$.
+\end{proof}
+
+\begin{corollary}[inertia at $\ell$]\label{cor:inertia}
+In Lemma~\ref{lem:block}:
+\begin{enumerate}
+\item if $a=1$ and $\ell\nmid N_k$, inertia at $\ell$ contains an $e$-cycle that fixes every other root;
+\item if $a\ge2$ and $\ell\nmid N_k$, an element of order $e$ that generates the tame part of inertia is a product of $(\ell^a-1)/(\ell-1)$ disjoint
+$e$-cycles on the block roots and fixes the other roots; no inertia element is a single $e$-cycle;
+\item inertia at $\ell$ contains an odd permutation iff $\ell\equiv1\pmod4$ and $a$ is odd.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+If $\ell\nmid N_k$, then by Hensel the roots outside the blocks lie in $K_0$ and are fixed by inertia. Now $T/K_0$ is cyclic of degree $e$ and
+acts simply transitively on the roots of the first block. By Lemma~\ref{lem:contain}, an element that is nontrivial on $T$ fixes no root of any
+block, which gives (1) and (2). For (3), wild inertia has odd order $\ell^r$, and the number of $e$-cycles is $\equiv a\pmod2$.
+\end{proof}
+
+\begin{lemma}[dual block]\label{lem:dual}
+Let $d$ be even, $q$ an odd prime, $q^b\Vert d$, $N=q^b$, $E=(N-1)/2$ and $e=d/N$.
+\begin{enumerate}
+\item $A_d\equiv(-x)^Ea_e(x)^N-1\pmod q$, a polynomial of degree $m-E$.
+\item This reduction is separable.
+\item The $q$-adic polygon of $x^mA_d(1/x)$ has vertices $((q^c-1)/2,\,b-c)$, $c=0,\dots,b$, on its positive-slope part. Thus $A_d$ has exactly
+$E$ roots of negative valuation, forming blocks of degrees $q^{c-1}(q-1)/2$.
+\end{enumerate}
+Consequently inertia at $q$ fixes all roots of non-negative valuation; for $b=1$ and $q\ge5$ it contains an $E$-cycle fixing all other roots;
+for $b\ge2$ its elements move at most $E$ roots; and it contains an odd permutation iff $q\equiv1\pmod4$ and $b$ is odd.
+\end{lemma}
+\begin{proof}
+(1) In $\F_q[s]$, $(1\pm s)^d=(1\pm s^N)^e=b_e(x)^N\pm s^Na_e(x)^N$. Take the difference and divide by $2s$. (2) The derivative is
+$\equiv-E(-x)^{E-1}a_e^N$, which is nonzero at every root, since a root has $x\ne0$ and $a_e(x)\ne0$. (3) The coefficient of $x^j$ in the
+reversed polynomial is $\pm\binom d{2j+1}$, and $v_q\binom{eN}t=b-v_q(t)$ for $1\le t<N$ while $v_q\binom{eN}N=0$; argue as in
+Lemma~\ref{lem:block}(B). The inertia statements follow from Lemma~\ref{lem:contain} and Corollary~\ref{cor:inertia} applied to $y=1/x$.
+\end{proof}
+For odd $d$ the leading coefficient is $\pm1$; the reduction (1) then has full degree and is separable, so $q\mid d$ is unramified.
+
+\begin{lemma}[support bound]\label{lem:support}
+Let $\ell$ be prime. Take $f=A_d$ if $\ell$ does not divide its leading coefficient and $f=x^mA_d(1/x)$ otherwise. Write
+$\bar f=c\prod_i\phi_i^{e_i}$ over $\F_\ell$ and put $M_\ell(d)=\sum_{e_i\ge2}e_i\deg\phi_i$. Then every element of every inertia group above
+$\ell$ moves at most $M_\ell(d)$ roots of $A_d$.
+\end{lemma}
+\begin{proof}
+A simple root of $\bar f$ lifts by Hensel to exactly one root of $f$ in an unramified extension; these $m-M_\ell$ roots are fixed by inertia.
+\end{proof}
+
+\section{Galois groups}\label{sec:galois}
+We use the following facts about a transitive group $G\le S_n$.
+\begin{enumerate}
+\item[(a)] If $n$ is prime, $G$ is primitive.
+\item[(b)] (Jordan--Marggraff) If $G$ is primitive and contains a subgroup with an orbit of length $k$, $1<k<n/2$, fixing the remaining points,
+then $G\supseteq A_n$ \cite[Thms~13.4--13.5]{Wielandt}; see \cite{LT} for a short proof of Marggraff's theorem and \cite{Jones} for its history.
+\item[(c)] (Jones) If $G$ is primitive and contains a cycle fixing at least three points, then $G\supseteq A_n$ \cite[Cor.~1.3]{Jones}.
+\item[(d)] (Burnside--Bochert) If $n=p\ge41$ is prime and $G$ contains $g\ne1$ moving fewer than $p/4$ points, then $G\supseteq A_p$.
+\end{enumerate}
+For (d): by Burnside's theorem a transitive group of prime degree $p$ that is not doubly transitive is a subgroup of $\mathrm{AGL}(1,p)$ \cite{Muller}.
+A nonidentity element of $\mathrm{AGL}(1,p)$ moves at least $p-1$ points, so $g$ excludes this case. By Schomburg's classification-free form of
+Bochert's theorem \cite[Thm~3.1]{Schomburg} (see also \cite{Bochert97}), a doubly transitive group of degree $n\ge38$ not containing $A_n$ has
+minimal degree at least $n/4$. Items (a), (b), (d) do not use CFSG; (c) does, and it is not needed in the proofs below.
+
+\begin{remark}[Liebeck--Saxl]\label{rem:LS}
+Using CFSG, a primitive group of minimal degree $<n/3$ has $n=\binom{m'}{k}^r$ and $A_{m'}^r\le G\le S_{m'}\wr S_r$ in the product action on
+$k$-sets \cite{LS}. For $n=p$ prime this forces $r=1$ and $k\in\{1,m'-1\}$. Hence in (d) one may replace $p/4$ by $p/3$ and drop $p\ge41$. This is
+needed only in one subcase of Theorem~\ref{thm:Geven}(2), which Theorem~\ref{thmD} does not use.
+\end{remark}
+
+\begin{theorem}\label{thm:Gstar}
+Let $p\ge5$ be prime, $d=2p+1$, and suppose $A_d$ is irreducible. Then $\Gal(A_d)\supseteq A_p$. If moreover $p\equiv1\pmod4$ or
+$p\equiv3\pmod8$, then $\Gal(A_d)\cong S_p$.
+\end{theorem}
+\begin{proof}
+$G$ is transitive of prime degree $p$, hence primitive. Apply Lemma~\ref{lem:block} with $\ell=p$, $a=1$, $k=2$: here $N_2=8$, so the block
+is clean for every odd $p$. (Directly, $A_d\equiv(-x)^e((-x)^{e+1}+2)\pmod p$ with $e=(p-1)/2$.) Corollary~\ref{cor:inertia}(1) gives an
+$e$-cycle, $1<e<p/2$, fixing $e+1\ge3$ roots, and (b) gives $A_p\subseteq G$. If $p\equiv1\pmod4$, the $e$-cycle is odd. If $p\equiv3\pmod8$,
+then $(2/p)=-1$, so $f=\operatorname{ord}_p(2)$ is even and $(p-1)/f$ is odd. The Frobenius at $2$ (Lemma~\ref{lem:mod2}, $m=p$ odd) has one fixed
+point and $(p-1)/f$ cycles of length $f$, so it is odd.
+\end{proof}
+\begin{corollary}\label{cor:G}
+If $p\ge5$ is prime and $\operatorname{ord}_p(2)=p-1$, then $\Gal(A_{2p+1}/\Q)\cong S_p$.
+\end{corollary}
+\begin{proof}
+Irreducibility is Theorem~\ref{thm:2p1}. The Frobenius at $2$ has cycle type $(1,p-1)$, which is odd.
+\end{proof}
+
+\begin{theorem}\label{thm:Geven}
+Let $p\ge5$ be prime and $d=2p+2$ (so $m=p$); $A_d$ is irreducible by Theorem~\ref{thm:even}.
+\begin{enumerate}
+\item If $p+1\notin\{2^s,3\cdot2^s\}$, then $\Gal(A_d)\supseteq A_p$.
+\item If some $\ell^a\Vert2p+1$ has $\ell^a\ge5$, $k=(2p+1)/\ell^a\ge3$ and $\ell\nmid N_k$, then $\Gal(A_d)\supseteq A_p$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(1) Suppose $p+1$ has a prime $q\ge5$ to the first power. Then $q\Vert d$, and Lemma~\ref{lem:dual} gives an $E$-cycle, $2\le E=(q-1)/2<p/2$,
+fixing at least three roots, so (b) applies. Otherwise some odd $q^b\Vert p+1$ has $b\ge2$. Its inertia is nontrivial, since the polygon has a segment of non-integral slope, and moves at most
+$E=(q^b-1)/2\le(p-1)/4<p/4$ roots. For $p\ge41$, (d) applies. The only prime $p<41$ in this case is $p=17$; there $2p+1=35$, and part (2) applies with
+$\ell=7$, $a=1$, $k=5$, $N_5\not\equiv0\pmod7$ (Jordan--Marggraff).
+(2) If $a=1$, Corollary~\ref{cor:inertia}(1) gives an $e$-cycle with $2\le e<p/2$ fixing at least three roots. If $a\ge2$, inertia is nontrivial and moves at most $E=(\ell^a-1)/2$ roots by Lemma~\ref{lem:support}. Now $E<p/4$ iff $k\ge5$, so (d) applies
+when $k\ge5$ and $p\ge41$. For $k=3$ we have $E=(p-1)/3<p/3$, and Remark~\ref{rem:LS} applies (this subcase uses CFSG).
+\end{proof}
+
+\begin{theorem}[$2$-adic square class]\label{thm:T2}
+Let $d$ be even with $a=v_2(d)\ge2$ and $\gcd(a,m)=1$. Then $\disc(A_d)\in(\Q_2^\times)^2$ iff $m\equiv\pm1\pmod8$.
+\end{theorem}
+\begin{proof}
+By Theorem~\ref{thm:even} all roots have valuation $-a/m$, so $K=\Q_2(\text{root})$ is totally and tamely ramified of odd degree $m$. Such a field
+is $\Q_2(\varpi^{1/m})$ for a uniformizer $\varpi=2u$ \cite[Ch.~IV]{Serre}. Every unit of $\Z_2$ is an $m$-th power: this is clear for $\pm1$, and on
+$1+4\Z_2\cong\Z_2$ the map $v\mapsto mv$ is bijective. Hence $K=\Q_2(2^{1/m})$. The reversed polynomial has unit leading coefficient $d-1$ and the
+same discriminant, so modulo squares $\disc(A_d)\equiv\disc(\mathcal O_K)\equiv\disc(x^m-2)=(-1)^{(m-1)/2}m^m2^{m-1}\equiv(-1)^{(m-1)/2}m$. This is
+a $2$-adic square iff it is $\equiv1\pmod8$, i.e.\ iff $m\equiv\pm1\pmod8$.
+\end{proof}
+
+\begin{corollary}\label{cor:Sp}
+For every prime $p\equiv\pm3\pmod8$, $\Gal(A_{2p+2}/\Q)\cong S_p$.
+\end{corollary}
+\begin{proof}
+Here $v_2(2p+2)\ge2$. If $p\equiv5\pmod8$ and $p\ge13$, then $p+1=2\cdot o$ with $o\ge7$ odd. If $p\equiv3\pmod8$ and $p\ge19$, then
+$p+1=4\cdot o$ with $o\ge5$ odd. In both cases $p+1\notin\{2^s,3\cdot2^s\}$, and Theorem~\ref{thm:Geven}(1) gives $A_p\subseteq G$.
+Theorem~\ref{thm:T2} with $m=p\equiv\pm3$ gives a non-square discriminant, so $G=S_p$. The remaining primes $p=3,5,11$ are covered by
+Section~\ref{sec:comp}.
+\end{proof}
+
+For the other residues the parity comes from closed-form local square classes. The decomposition group at $q$ lies in $A_m$ iff
+$\disc\in(\Q_q^\times)^2$. Inertia alone does not detect this: for $d=64$ and $d=76$ the odd valuations $v_3=7$ and $v_5=17$ come from wild
+blocks. Let $\chi_q$ be the Legendre symbol.
+
+\begin{proposition}[dual square class]\label{prop:PD}
+In Lemma~\ref{lem:dual} let $b=1$, and put $n=m-E$, $\delta=e/2-1$, $L=(-1)^\delta e$ and
+$\bar D=-(-1)^{n(n-1)/2+(n+1)\delta}(-E)^nL^{n-1}$. Then $\disc(A_d)\notin(\Q_q^\times)^2$ iff $E$ is even, or $E$ is odd and
+$\chi_q\bigl((-1)^{(E-1)/2}E\bigr)\chi_q(\bar D)=-1$.
+\end{proposition}
+\begin{proof}
+The reversed polynomial $R$ has unit leading coefficient and $\disc R=\disc A_d$. Over $\Z_q$, $R=(d-1)R_BR_C$, where $R_B$ is Eisenstein of degree
+$E$ and $R_C$ is monic with $\bar R_C$ proportional to the reversal of $\bar A=(-x)^Ea_e^q-1$. Modulo squares, $\disc R\equiv\disc R_B\disc R_C$.
+
+For the block, $\disc R_B=(-1)^{E(E-1)/2}N(R_B'(\beta))$ and $R_B'(\beta)=E\beta^{E-1}(1+\varepsilon)$ with $v(\varepsilon)>0$. The norm of $1+\varepsilon$
+is a square, so the class is $(-1)^{E(E-1)/2}E^EN(\beta)^{E-1}$. Since $N(\beta)$ has valuation $1$, this has odd valuation for even $E$ and
+class $(-1)^{(E-1)/2}E$ for odd $E$.
+
+For the rest, $\disc R_C$ is a unit congruent, modulo squares, to $\disc\bar A$. In $\F_q[x]$ we have $\bar A'=-E(-x)^{E-1}a_e^q$, of degree $n-1$,
+and $\bar A=-1$ at the roots of $a_e$. So $\Res(\bar A,\bar A')=(-E)^n(-1)^{E-1}(-1)^{(n+1)\delta}L^n$ and $\lead\bar A=(-1)^EL$, which gives
+$\disc\bar A=\bar D$.
+\end{proof}
+
+\begin{proposition}[square class at $\ell\Vert d-1$]\label{prop:PL}
+Let $d$ be even, $\ell\Vert d-1$, $k=(d-1)/\ell\ge3$ and $\ell\nmid N_k$. Put $e=(\ell-1)/2$, $n=\ell(k-1)/2$, $\delta_a=(k-1)/2$,
+$\delta_w=(k-3)/2$, $\lambda=(-1)^{\delta_a}k$, $\lambda_H=(-1)^{e+\delta_a}$ and $\rho=\Res(w,a_k)\bmod\ell\ne0$. Let
+\[\bar D_H=(-1)^{n(n-1)/2}\lambda_H^{\,e-1}(e+1)^n\bigl((-1)^{n+e}k\bigr)^e(-1)^{(n+e)\delta_w}\lambda^{n-\delta_a}\rho .\]
+Then $\disc(A_d)\notin(\Q_\ell^\times)^2$ iff $e$ is even, or $e$ is odd and $\chi_\ell\bigl((-1)^{(e-1)/2}e\bigr)\chi_\ell(\bar D_H)=-1$.
+\end{proposition}
+\begin{proof}
+The argument is the same as for Proposition~\ref{prop:PD}, with the Eisenstein block of degree $e$ at $0$ and $H$ from Lemma~\ref{lem:block}(C).
+Here $H'\equiv(e+1)x^ew^\ell$ has degree $n-1-e$, so $\disc H=(-1)^{n(n-1)/2}\lead(H)^{e-1}\Res(H,H')$. Moreover
+\[\Res(H,x)=(-1)^nH(0),\qquad \Res(H,w)=(-1)^{n\delta_w}\lambda^n\!\!\prod_{w(r)=0}\!\!H(r),\]
+with $H(r)=(-1)^ea_k(r)^\ell$ at the roots of $w$ and $\prod_{w(r)=0}a_k(r)=\rho\lambda^{-\delta_a}$.
+\end{proof}
+Theorem~\ref{thm:T2} and Propositions~\ref{prop:PD}, \ref{prop:PL} agree with the square class of the exact discriminant in $63$, $144$ and $125$ of
+$63$, $144$ and $125$ cases respectively (all admissible even $d\le290$ in the tested ranges).
+
+\section{Periodicity and the limits of local methods}\label{sec:limits}
+\begin{proposition}[periodicity]\label{prop:period}
+Let $p$ be an odd prime and $\ell\ge1$. The set of nonzero roots of $A_d\bmod p$ in $\F_{p^\ell}$ depends only on $d\bmod(p^{2\ell}-1)$, and
+$x=0$ is a root iff $p\mid d-1$. Hence the number of distinct monic irreducible factors of degree $\ell$, other than $x$, is periodic in $d$ with
+period dividing $p^{2\ell}-1$.
+\end{proposition}
+\begin{proof}
+For $x\in\F_{p^\ell}^\times$ choose $s\in\F_{p^{2\ell}}$ with $s^2=-x$. By Proposition~\ref{prop:identities}(1), $A_d(x)=0$ iff
+$(1+s)^d-(1-s)^d=2s$, which depends only on $d\bmod(p^{2\ell}-1)$. For $s=\pm1$ the condition is $2^{d-1}=1$, which depends on $d$ modulo a
+divisor of $p-1$.
+\end{proof}
+
+\begin{proposition}[obstruction]\label{prop:obstruction}
+If $d\equiv1\pmod{p^{2\ell}-1}$, then every $x\in\F_{p^\ell}^\times$ is a root of $A_d\bmod p$. Hence, for any finite set $P$ of odd primes, on the
+progression $d\equiv1\pmod{\operatorname{lcm}_{p\in P}p(p^{2\ell}-1)}$ the factorization pattern at every $p\in P$ contains all cycles of length
+dividing $\ell$; for odd $d$ the reduction mod $2$ also has a root. Cycle-type data at finitely many primes can therefore never exclude linear
+factors for all $d$, and small factors need global input such as Proposition~\ref{prop:norational} and Theorem~\ref{thm:small}.
+\end{proposition}
+\begin{proof}
+For $s\in\F_{p^{2\ell}}$ we have $(1\pm s)^d=1\pm s$.
+\end{proof}
+
+\begin{example}[$d=47$]\label{ex:47}
+Here $m=23$, and the structured primes are $2$ and the prime divisors of $d(d-1)=47\cdot46$. Modulo $2$ the Frobenius has cycle type $(1,11,11)$,
+since $2$ has order $11$ modulo $23$. At $23$ there is a tame Eisenstein block of degree $11$ and an unramified rest of degree $12$. At $47=d$,
+$A_d\equiv(-x)^{23}-1$ splits completely, so the Frobenius is trivial. All these data are compatible with a factorization of degrees $11+12$ in
+which the degree-$11$ factor is the $23$-adic block. Hence no argument that uses only these primes can prove irreducibility here (it holds by
+computation). The same holds for $d=83,383,479$. For the composite $d=2p+1$ with $\operatorname{ord}_p(2)=(p-1)/2$ and $d\le400$, the Frobenius at
+the primes $q\mid d$ closes every case except $d=15$.
+\end{example}
+
+\begin{remark}[orbit norms]
+Let $d$ be odd and $A_d=FG$ in $\Z[x]$. Proposition~\ref{prop:identities}(4) gives $\prod_{x^0\in O_e}F(x^0)=\pm1$ for every orbit $O_e$ of
+$\tan^2(j\pi/d)$, because $A_d(x^0)=-1$. This is the algebraic-integer analogue of Schur's argument for $\prod(x-a_i)-1$. It is, however,
+automatic (it equals $\Res(\Psi_e,F)\Res(\Psi_e,G)=\pm1$), so it is only a necessary condition on the root set of a putative factor. For prime
+$d$ it is a single real equation.
+\end{remark}
+
+\section{The degree of the sharp constant}\label{sec:degree}
+Let $g(\theta)=\cos^d\theta-\cos d\theta$. By \cite[Thm~2.4]{I}, $C_d=\max_{[0,\pi/d]}g$ is attained at a unique interior critical point; since
+$g'=d(\sin d\theta-\sin\theta\cos^{d-1}\theta)$, the critical points in $(0,\pi/2)$ are the $\theta_j$ of Lemma~\ref{lem:real}, and $C_d=g(\theta_1)$.
+Put $c_j=\cos\theta_j$ and $y_j=c_j^2$; the $y_j$ are the roots of $Q_d$.
+
+\begin{lemma}\label{lem:gvalues}
+\begin{enumerate}
+\item $g(\theta_j)=U_{d-2}(c_j)$.
+\item If $\cos d\theta_j<0$ then $1<g(\theta_j)<2$; if $\cos d\theta_j>0$ then $-1<g(\theta_j)<0$.
+\item Along the roots with $\cos d\theta_j<0$ the values $g(\theta_j)$ strictly decrease; along those with $\cos d\theta_j>0$ the values
+$|g(\theta_j)|$ strictly increase.
+\end{enumerate}
+In particular the numbers $|g(\theta_j)|$, $1\le j\le m$, are nonzero and pairwise distinct.
+\end{lemma}
+\begin{proof}
+(1) $\sin d\theta=\sin\theta\,U_{d-1}(\cos\theta)$, so at a critical point $U_{d-1}(c)=c^{d-1}$; with $T_d=cU_{d-1}-U_{d-2}$ we get
+$g=c^d-T_d(c)=U_{d-2}(c)$.
+(2) Put $u=\cos^d\theta$, $t=\tan\theta$ and $s=\sin\theta\cos^{d-1}\theta=ut=\sin d\theta$, so $\cos d\theta=\pm\sqrt{1-s^2}$. With $x=t^2$ we have
+$ut^2=x(1+x)^{-d/2}\le M_d:=\frac2{d-2}(1-\frac2d)^{d/2}\le\frac2{e(d-2)}<1$. If $\cos d\theta<0$ then $g-1=u-s^2/(1+\sqrt{1-s^2})\ge u(1-M_d)>0$.
+If $\cos d\theta>0$ then $g<0$ because $u^2+s^2=\cos^{2d-2}\theta<1$.
+(3) By Lemma~\ref{lem:real}, consecutive roots of the same type satisfy $\theta'-\theta>h:=3\pi/(2d)$. Since
+$\cos\theta'\le\cos\theta\cos(\theta'-\theta)$, the value $u'=\cos^d\theta'$ satisfies $u'/u\le\cos^dh\le e^{-dh^2/2}=e^{-9\pi^2/(8d)}$. For the first
+type, $g-1\in[u(1-M_d),u]$, and for the second, $1-|g|\in[u,u(1+M_d)]$. So both claims follow from
+\[e^{-9\pi^2/(8d)}<1-\frac2{e(d-2)}\qquad(d\ge3),\]
+which also gives $e^{-9\pi^2/(8d)}(1+M_d)<1$. For $d\ge20$ it follows from $e^{-a}\le1-a+a^2/2$ with $a=9\pi^2/(8d)$; for $3\le d\le19$ it is checked
+directly (the margin at $d=3$ is $0.239$).
+\end{proof}
+
+\begin{theorem}\label{thm:degree}
+If $A_d$ is irreducible, then $[\Q(C_d):\Q]=d-1$ for odd $d$ and $[\Q(C_d):\Q]=d/2-1$ for even $d$.
+\end{theorem}
+\begin{proof}
+$Q_d$ is irreducible of degree $m$, since $A_d$ is. For even $d$, $U_{d-2}$ is even, so $C_d=S(y_1)$ with $S\in\Q[y]$. The embeddings of $\Q(y_1)$ send
+$C_d$ to $S(y_j)=g(\theta_j)$, which are distinct by Lemma~\ref{lem:gvalues}; hence the degree is $m=d/2-1$.
+
+For odd $d$, $U_{d-2}$ is odd. The norm of $y_1$ is $\prod_jy_j=|Q_d(0)|/(2^{d-1}-1)=1/(4^m-1)$. This is not the square of a rational number,
+because $4^m-1$ lies strictly between $(2^m-1)^2$ and $(2^m)^2$. So $c_1\notin\Q(y_1)$, $[\Q(c_1):\Q]=2m$, and the embeddings send $c_1$ to all
+$\pm c_j$. Then $C_d=U_{d-2}(c_1)$ has the $2m$ conjugates $\pm g(\theta_j)$, which are distinct by Lemma~\ref{lem:gvalues}. Hence the degree is
+$2m=d-1$.
+\end{proof}
+As a consistency check, exact minimal-polynomial computations for $3\le d\le12$ give precisely the degrees in Theorem~\ref{thm:degree};
+for example, $C_4=9/7$ and $C_6=(225+140\sqrt{70})/961$ \cite[Cor.~5.1, Prop.~5.2]{I}.
+The distinctness statement in Lemma~\ref{lem:gvalues} was also checked numerically for $4\le d\le400$.
+
+\begin{corollary}\label{cor:degree}
+$[\Q(C_d):\Q]$ equals $d-1$ (odd $d$) or $d/2-1$ (even $d$) for all $3\le d\le400$, for all even $d$ with $\gcd(v_2(d),d/2-1)=1$ or $d-1$ prime, and
+for all $d=2p+1$ with $p$ prime and $\operatorname{ord}_p(2)=p-1$.
+\end{corollary}
+
+\section{Computations}\label{sec:comp}
+All computations use Python 3.12.3, SymPy 1.14.0 and mpmath 1.3.0; the scripts and outputs are in the supplementary archive.
+
+\subsection*{Irreducibility for $3\le d\le400$}
+If $A_d=FG$ with $\deg F=k$, then for every prime $p$ not dividing the leading coefficient, $k$ is a sum of a sub-multiset of the degrees of the
+irreducible factors of $A_d\bmod p$. We intersect these sets over primes until no $k\in[1,m/2]$ survives. The $398$ values split as follows:
+$185$ by Theorem~\ref{thm:even}, $6$ by Proposition~\ref{prop:eis}, $22$ by Theorem~\ref{thm:2p1}, $2$ of degree $\le1$, and $183$ by such
+certificates ($176$ odd $d$ and the exceptional $d=56,248,296,320,344,352,392$). All primes used are $\le53$. Exact factorization over $\Z$ for
+$d\le120$ agrees.
+
+\subsection*{Galois groups}
+For $17\le d\le82$, $\Gal(A_d)\cong S_m$, certified by Frobenius elements at unramified primes: an $m$-cycle, a $(m-1,1)$-element, an element with
+a cycle of prime length in $(m/2,m-3]$, and an odd element (Jordan's theorem). For $d=2p+1$ and all primes $3\le p\le199$, $\Gal\cong S_p$:
+irreducibility holds by the above, Theorem~\ref{thm:Gstar} applies for $p\ge5$, and for $p\equiv7\pmod8$ an odd Frobenius is found at some
+$q\in\{3,5,11\}$.
+
+\subsection*{The family $d=2p+2$}
+For every prime $5\le p\le3000$ a table records both local sides, with $\ell,a,k$, the exact residue $N_k\bmod\ell$, $E_\ell$, $M_\ell$, and the
+dual $q,b,E_q,M_q$. It also records the certificate used and its exact margin. We find $424$ of $428$ primes certified by local blocks: $381$
+by the dual block with Jordan--Marggraff, $31$ by the $\ell$-block with Jordan--Marggraff, and $12$ by a dual block with $b\ge2$ and (d). All
+$424$ are free of CFSG. The minimal margin is $3/14$ for Jordan--Marggraff ($1/2-s/p$) and $1/4$ for (d) ($p/4-s$). The value $1/4$ occurs exactly when $p+1=2q^b$ (here $p=53,337$), since then $s=(p-1)/4$. The Liebeck--Saxl margin $1/3-s/p$
+(Remark~\ref{rem:LS}) is at least $85/1011$. The four exceptions $p\in\{5,11,23,191\}$ are the primes
+with $p=3\cdot2^s-1$ and $2p+1=3\cdot2^{s+1}-1$ both prime. For them $S_p$ is certified directly by Frobenius elements.
+
+Parity was settled for every row: Theorem~\ref{thm:T2} in $216$ cases, Proposition~\ref{prop:PD} in $161$, Proposition~\ref{prop:PL} in $34$, and a
+Stickelberger witness in $13$. A Stickelberger witness is a prime $q$ with $(\disc A_d/q)=-1$, which by Stickelberger--Swan \cite{Swan} gives an odd
+Frobenius. Here $\disc A_d\bmod q$ is computed as a resultant over $\F_q$, cross-checked against exact discriminants in $366$ cases. Hence
+$\Gal(A_{2p+2})\cong S_p$ for all primes $3\le p\le3000$ ($p=3$: a cubic with non-square discriminant).
+
+For $p\le10^6$, Theorem~\ref{thm:Geven}(1) covers $78482$ of $78496$ primes. The other $14$ are exactly those with $p+1\in\{2^s,3\cdot2^s\}$:
+nine are covered by Theorem~\ref{thm:Geven}(2), four are the exceptions above, and $p=524287$ was not checked. The local parity results alone give
+$S_p$ for $98.2\%$ of these $p$.
+
+\section{Open problems}\label{sec:open}
+\begin{enumerate}
+\item Conjecture~\ref{conj:main}; in particular the \emph{macroscopic} range of factor degrees for odd $d$. Example~\ref{ex:47} shows that a global
+argument is needed for odd prime $d$.
+\item The exceptional even set $\mathcal E$: find a uniform argument excluding the degrees $Q\,s$ allowed by Proposition~\ref{prop:ore}
+(for $g=3$ only $Q$ and $2Q$). Remark~\ref{rem:Estruct} shows that local data at the structured primes do so for most, but not all, $d\in\mathcal E$.
+\item Prove $\Gal(A_d)\supseteq A_m$ for composite $m$. Primitivity is the difficulty; the local cycles of Section~\ref{sec:blocks} restrict
+block sizes but not the large ones.
+\item Closed-form square classes for $a\ge2$, for unclean $\ell$, and for $q^b$ with $b\ge2$.
+\item Related families: $U_d(2,t)-c$ for integers $c\ne0$ (irreducible for $c\in\{\pm1,\pm2,3,4\}$, $d\le50$), and the cosine analogue
+$(V_d(2,t)-2)/(t-1)$ with $V_d=\alpha^d+\beta^d$ (the equation $\cos d\theta=\cos^d\theta$; irreducible for $d\le50$). In all neighbouring
+families we tested, reducibility comes only from three mechanisms: a degenerate point $\beta=0$, $\alpha/\beta$ a root of unity, or
+divisibility $U_k\mid U_d$.
+\end{enumerate}
+
+\section*{Use of AI tools}
+AI systems used in the research and manuscript workflow included OpenAI GPT-5.6 Sol and Anthropic Claude Opus 5.5. They were used for
+mathematical exploration, proof development and critique, symbolic and numerical verification, literature search, and manuscript drafting
+and editing. AI systems are not authors. The author reviewed the mathematical statements and proofs and takes full responsibility for the
+content.
+
+\section*{Supplementary material}
+Scripts, certificate tables and their checksums are provided in the supplementary archive accompanying this manuscript.
+
+\begin{thebibliography}{99}
+\bibitem{A} A.~Martinevski, \emph{Two-point extremals for characteristic-function dependence with fixed marginals}, preprint (2026).
+\bibitem{Bochert97} A.~Bochert, \emph{Ueber die Classe der transitiven Substitutionengruppen II}, Math. Ann. \textbf{49} (1897), 133--144.
+\bibitem{BHV} Yu.~Bilu, G.~Hanrot, P.~M.~Voutier, \emph{Existence of primitive divisors of Lucas and Lehmer numbers}, J. reine angew. Math.
+\textbf{539} (2001), 75--122.
+\bibitem{BL} Yu.~Bilu, F.~Luca, \emph{Binary polynomial power sums vanishing at roots of unity}, Acta Arith. \textbf{198} (2021), 195--217.
+\bibitem{DKS} K.~Dilcher, S.-H.~Kim, K.~B.~Stolarsky, \emph{Properties of two Chebyshev-like polynomial sequences}, arXiv:2607.16940 (2026).
+\bibitem{Dumas} G.~Dumas, \emph{Sur quelques cas d'irr\'eductibilit\'e des polyn\^omes \`a coefficients rationnels}, J. Math. Pures Appl. (6)
+\textbf{2} (1906), 191--258.
+\bibitem{GMN} J.~Gu\`ardia, J.~Montes, E.~Nart, \emph{Newton polygons of higher order in algebraic number theory}, Trans. Amer. Math. Soc.
+\textbf{364} (2012), 361--416.
+\bibitem{Hooley} C.~Hooley, \emph{On Artin's conjecture}, J. reine angew. Math. \textbf{225} (1967), 209--220.
+\bibitem{I} A.~Martinevski, \emph{A sharp universal profile for multivariate characteristic-function factorization}, preprint (2026).
+\bibitem{Jones} G.~A.~Jones, \emph{Primitive permutation groups containing a cycle}, Bull. Aust. Math. Soc. \textbf{89} (2014), 159--165.
+\bibitem{LS} M.~W.~Liebeck, J.~Saxl, \emph{Minimal degrees of primitive permutation groups, with an application to monodromy groups of covers of
+Riemann surfaces}, Proc. London Math. Soc. (3) \textbf{63} (1991), 266--314.
+\bibitem{LT} R.~Levingston, D.~E.~Taylor, \emph{The theorem of Marggraff on primitive permutation groups which contain a cycle}, Bull. Austral. Math.
+Soc. \textbf{15} (1976), 125--128.
+\bibitem{Muller} P.~M\"uller, \emph{Permutation groups of prime degree, a quick proof of Burnside's theorem}, Arch. Math. \textbf{85} (2005), 15--17.
+\bibitem{Ore} \O.~Ore, \emph{Newtonsche Polygone in der Theorie der algebraischen K\"orper}, Math. Ann. \textbf{99} (1928), 84--117.
+\bibitem{Schinzel} A.~Schinzel, \emph{Primitive divisors of the expression $A^n-B^n$ in algebraic number fields}, J. reine angew. Math.
+\textbf{268/269} (1974), 27--33.
+\bibitem{Schomburg} B.~Schomburg, \emph{Bochert's results on the minimal degree of multiply transitive permutation groups}, arXiv:2209.12049 (2022).
+\bibitem{Serre} J.-P.~Serre, \emph{Local Fields}, Graduate Texts in Mathematics \textbf{67}, Springer, 1979.
+\bibitem{Swan} R.~G.~Swan, \emph{Factorization of polynomials over finite fields}, Pacific J. Math. \textbf{12} (1962), 1099--1106.
+\bibitem{Wielandt} H.~Wielandt, \emph{Finite Permutation Groups}, Academic Press, 1964.
+\end{thebibliography}
+\end{document}

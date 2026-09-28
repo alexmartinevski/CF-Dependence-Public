@@ -1,0 +1,31 @@
+{
+ "N(a,2) simplifies to": "1",
+ "coef b^2 factored": "-2*(a - 2)*(6*a - 5)",
+ "dN/db at b=2 factored": "-(a - 2)*(14*a - 13)",
+ "min H over random feasible two-point laws": 9.867282171782676e-06,
+ "max |H - N/12| in case B": 6.252776074688882e-13,
+ "random unimodal laws: min ratio by number of atoms": [
+  [
+   2,
+   1.285727399726598
+  ],
+  [
+   3,
+   1.2857195059119095
+  ],
+  [
+   5,
+   1.2870784662606984
+  ],
+  [
+   10,
+   1.296104886511868
+  ],
+  [
+   30,
+   1.605114818516499
+  ]
+ ],
+ "9/7": 1.2857142857142858,
+ "extremal ratio (delta0/4 + 3U/4)": 1.2857142857142854
+}
