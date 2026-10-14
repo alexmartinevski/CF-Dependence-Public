@@ -5,7 +5,7 @@ import re
 import unittest
 from pathlib import Path
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(__file__).resolve().parents[1]
 REPO=ROOT.parent
 DOI=re.compile(r"^10\.5281/zenodo\.\d+$")
 CODE=re.compile(r"^P\d{2,}$")
