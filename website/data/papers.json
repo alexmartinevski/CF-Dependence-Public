@@ -1,0 +1,61 @@
+{
+  "schema": "cf-publications-public/v1",
+  "source_repo": "alexmartinevski/CF-Dependence-Public",
+  "last_curated_on": "2026-10-14",
+  "papers": [
+    {
+      "code": "P01",
+      "title": "A Sharp Universal Profile for Multivariate Characteristic-Function Factorization",
+      "summary": {
+        "en": "Determines a sharp universal profile for characteristic-function factorization defects, its extremizers, and the associated sharp constants.",
+        "ru": "Точный универсальный профиль отклонения от факторизации характеристических функций, экстремали и соответствующие точные константы."
+      },
+      "topics": [
+        "Characteristic functions",
+        "Sharp inequalities",
+        "Extremal probability"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23021780",
+      "concept_doi": "10.5281/zenodo.23021779",
+      "source_path": "papers/01-sharp-universal-profile",
+      "changes": []
+    },
+    {
+      "code": "P02",
+      "title": "Two-Point Extremals for Characteristic-Function Dependence with Fixed Marginals",
+      "summary": {
+        "en": "Develops fixed-marginal dependence theory through two-point extremals, convex-order certificates, mixability, and sharp bounds for prescribed marginal laws.",
+        "ru": "Теория зависимости при фиксированных маргиналях: двухточечные экстремали, сертификаты выпуклого порядка, совместная смешиваемость и точные оценки."
+      },
+      "topics": [
+        "Fixed marginals",
+        "Extremal probability",
+        "Mixability"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23022043",
+      "concept_doi": "10.5281/zenodo.23022042",
+      "source_path": "papers/02-fixed-marginals",
+      "changes": []
+    },
+    {
+      "code": "P03",
+      "title": "Chebyshev–Lucas Critical Polynomials: Local Blocks, Irreducibility and Galois Groups",
+      "summary": {
+        "en": "Investigates arithmetic structures of critical Chebyshev–Lucas polynomials, including local Newton polygons, irreducibility criteria, and Galois groups.",
+        "ru": "Арифметические свойства критических полиномов Чебышёва—Люкаса: локальные многоугольники Ньютона, критерии неприводимости и группы Галуа."
+      },
+      "topics": [
+        "Chebyshev–Lucas polynomials",
+        "Algebraic number theory",
+        "Galois theory"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23022245",
+      "concept_doi": "10.5281/zenodo.23022244",
+      "source_path": "papers/03-chebyshev-lucas-critical-polynomials",
+      "changes": []
+    }
+  ]
+}
