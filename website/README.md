@@ -39,6 +39,9 @@ python -m http.server 8000 --directory website
 ```
 
 GitHub Pages: merge approved PR, then Settings → Pages → Source: GitHub Actions.
-Expected URL after successful deploy:
-`https://alexmartinevski.github.io/CF-Dependence-Public/`.
-This URL is not a confirmed live site until GitHub Pages is enabled and deployed.
+The public site will use the custom domain **`math.a-martinevski.com`**.
+See [DOMAIN_SETUP_RU.md](DOMAIN_SETUP_RU.md) for the DNS and GitHub Settings steps.
+Target URL after successful deploy and domain verification:
+`https://math.a-martinevski.com/`.
+This URL is not confirmed live until GitHub Pages is enabled and DNS/HTTPS checks pass.
+For GitHub Actions deployments, no `CNAME` file is required or read by GitHub Pages.

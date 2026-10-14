@@ -52,6 +52,23 @@ class PublicSiteTests(unittest.TestCase):
             self.assertEqual(event["source"],"RELEASE_NOTES.md")
             self.assertTrue((REPO/event["source"]).is_file())
 
+    def test_custom_domain_assets(self):
+        from xml.etree import ElementTree as ET
+        hostname = "https://math.a-martinevski.com/"
+        homepage = (ROOT/"index.html").read_text(encoding="utf-8")
+        self.assertIn(f'href="{hostname}"', homepage)
+        self.assertIn(f'content="{hostname}"', homepage)
+        robot_text = (ROOT/"robots.txt").read_text(encoding="utf-8")
+        self.assertIn(hostname+"sitemap.xml", robot_text)
+        sitemap = ET.fromstring((ROOT/"sitemap.xml").read_text(encoding="utf-8"))
+        ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+        urls = [node.text for node in sitemap.iter(ns+"loc")]
+        self.assertIn(hostname, urls)
+        self.assertEqual(len(urls), len(self.site["papers"])+1)
+        for paper in self.site["papers"]:
+            self.assertIn(hostname+"paper.html?code="+paper["code"], urls)
+        self.assertTrue(all(u.startswith(hostname) for u in urls))
+
     def test_static_entrypoints_present(self):
         for rel in ("index.html","paper.html","assets/site.css","assets/site.js"):
             self.assertTrue((ROOT/rel).is_file(),rel)
