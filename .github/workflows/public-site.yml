@@ -25,6 +25,8 @@ jobs:
           python-version: '3.12'
       - name: Validate public records
         run: python website/tests/test_public.py
+      - name: Check JavaScript syntax
+        run: node --check website/assets/site.js
   deploy:
     if: github.event_name != 'pull_request'
     needs: validate
@@ -38,8 +40,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Prepare public-only site artifact
+        run: |
+          mkdir -p _site/assets _site/data
+          cp website/index.html website/paper.html _site/
+          cp website/assets/site.css website/assets/site.js _site/assets/
+          cp website/data/papers.json website/data/news.json _site/data/
+          touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: website
+          path: _site
       - uses: actions/deploy-pages@v4
         id: deployment
