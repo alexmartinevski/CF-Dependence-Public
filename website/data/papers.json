@@ -56,6 +56,321 @@
       "concept_doi": "10.5281/zenodo.23022244",
       "source_path": "papers/03-chebyshev-lucas-critical-polynomials",
       "changes": []
+    },
+    {
+      "code": "P04",
+      "title": "Sharp constants for Fourier factorization defects: universal ceilings, strong mixing and interaction measures",
+      "summary": {
+        "en": "Sharp constants connecting characteristic-function factorization defects with strong mixing, Grothendieck-type covariance inequalities and multipartite interaction measures.",
+        "ru": "Точные константы для дефектов факторизации характеристических функций, сильного перемешивания, ковариационных неравенств типа Гротендика и многомерных взаимодействий."
+      },
+      "topics": [
+        "strong mixing",
+        "Grothendieck constants",
+        "sharp covariance inequalities",
+        "Fourier factorization defects"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23356092",
+      "concept_doi": "10.5281/zenodo.23356091",
+      "record_url": "https://zenodo.org/records/23356092",
+      "pdf_filename": "P04_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P06",
+      "title": "Contact fibres, exact gluing, and residual geometry of finite interaction laws",
+      "summary": {
+        "en": "The inverse geometry of finite interaction laws: contact transports, positive representatives of fibres and quantitative estimates from relative entropy.",
+        "ru": "Обратная геометрия конечных законов взаимодействия: контактные транспорты, положительные представители слоёв и количественные оценки через относительную энтропию."
+      },
+      "topics": [
+        "interaction tensor",
+        "prescribed marginals",
+        "contact transport",
+        "relative entropy"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355615",
+      "concept_doi": "10.5281/zenodo.23355614",
+      "record_url": "https://zenodo.org/records/23355615",
+      "pdf_filename": "P06_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P07",
+      "title": "Observable quotients and deterministic inverse tomography for characteristic-function interactions",
+      "summary": {
+        "en": "Identifies what characteristic-function and Laplace-type measurements can recover, then develops finite-spectrum reconstruction using Prony data and exact observable quotients.",
+        "ru": "Определяет, какие данные можно восстановить из характеристических функций и преобразований Лапласа, и исследует восстановление конечных спектров методом Прони."
+      },
+      "topics": [
+        "characteristic functions",
+        "Laplace transforms",
+        "Prony method",
+        "inverse problems"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355619",
+      "concept_doi": "10.5281/zenodo.23355618",
+      "record_url": "https://zenodo.org/records/23355619",
+      "pdf_filename": "P07_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P08",
+      "title": "Critical values, resultants and norms of the Chebyshev defect",
+      "summary": {
+        "en": "Connects critical values of the Chebyshev factorization defect to cyclotomic resultants, polynomial discriminants and algebraic norm identities.",
+        "ru": "Связывает критические значения дефекта Чебышёва с циклотомическими результантами, дискриминантами многочленов и алгебраическими нормами."
+      },
+      "topics": [
+        "Chebyshev polynomials",
+        "critical values",
+        "resultants",
+        "discriminants"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355626",
+      "concept_doi": "10.5281/zenodo.23355625",
+      "record_url": "https://zenodo.org/records/23355626",
+      "pdf_filename": "P08_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P09",
+      "title": "Deformations and local arithmetic of Lucas polynomial observations",
+      "summary": {
+        "en": "Studies deformations of Lucas polynomials and their arithmetic observations, including integral coefficient identities, Frobenius reduction and Newton polygons.",
+        "ru": "Изучает деформации многочленов Люкаса и их арифметику: целочисленные тождества коэффициентов, редукцию Фробениуса и многоугольники Ньютона."
+      },
+      "topics": [
+        "Lucas polynomials",
+        "deformations",
+        "Newton polygons",
+        "interlacing"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355634",
+      "concept_doi": "10.5281/zenodo.23355633",
+      "record_url": "https://zenodo.org/records/23355634",
+      "pdf_filename": "P09_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P11",
+      "title": "Truncation, Sampling, and Huber Geometry for Supremum Characteristic-Function Independence Testing",
+      "summary": {
+        "en": "Examines supremum characteristic-function tests for independence, finite frequency windows, uniform deviation bounds and Huber contamination geometry.",
+        "ru": "Исследует тесты независимости через супремум характеристических функций, конечные частотные окна, оценки отклонений и геометрию загрязнения Хьюбера."
+      },
+      "topics": [
+        "independence testing",
+        "empirical characteristic function",
+        "supremum metric",
+        "Huber contamination"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355657",
+      "concept_doi": "10.5281/zenodo.23355656",
+      "record_url": "https://zenodo.org/records/23355657",
+      "pdf_filename": "P11_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P12",
+      "title": "Harmonic observation quotients and stable recovery from translated class portraits",
+      "summary": {
+        "en": "Gives matrix-spanning criteria for reconstructing probability laws on finite groups from translated conjugacy-class observations, including dihedral examples.",
+        "ru": "Даёт матричные критерии восстановления распределений на конечных группах по сдвинутым наблюдениям классов сопряжённости, включая диэдральные группы."
+      },
+      "topics": [
+        "finite groups",
+        "harmonic analysis",
+        "conjugacy classes",
+        "translated characters"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355669",
+      "concept_doi": "10.5281/zenodo.23355668",
+      "record_url": "https://zenodo.org/records/23355669",
+      "pdf_filename": "P12_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P13",
+      "title": "Sharp Wasserstein stability of a multivariate characteristic-function defect",
+      "summary": {
+        "en": "Quantifies how a small deficit in the extremal characteristic-function inequality forces closeness to equality configurations in Wasserstein distance.",
+        "ru": "Получает количественную устойчивость экстремального неравенства для характеристических функций: малый дефицит обеспечивает близость к экстремалям в расстоянии Васерштейна."
+      },
+      "topics": [
+        "characteristic functions",
+        "sharp inequalities",
+        "quantitative extremizers",
+        "Wasserstein distance"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355678",
+      "concept_doi": "10.5281/zenodo.23355677",
+      "record_url": "https://zenodo.org/records/23355678",
+      "pdf_filename": "P13_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P14",
+      "title": "Global irreducibility and Galois groups of Chebyshev–Lucas level polynomials",
+      "summary": {
+        "en": "Establishes irreducibility criteria for Lucas level polynomials and determines specialized and generic symmetric Galois groups under explicit hypotheses.",
+        "ru": "Устанавливает критерии неприводимости уровневых многочленов Люкаса и определяет специальные и общие симметрические группы Галуа при явных условиях."
+      },
+      "topics": [
+        "irreducibility",
+        "Galois groups",
+        "Lucas polynomials",
+        "monodromy"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355688",
+      "concept_doi": "10.5281/zenodo.23355687",
+      "record_url": "https://zenodo.org/records/23355688",
+      "pdf_filename": "P14_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P15",
+      "title": "Partition interactions and sharp binary rigidity",
+      "summary": {
+        "en": "Compares partition interaction measures, derives sharp binary bounds and relates four-variable Streitberg interactions to joint cumulants.",
+        "ru": "Сравнивает меры взаимодействия по разбиениям, выводит точные оценки для бинарного случая и связывает взаимодействия Штрайтберга с совместными кумулянтами."
+      },
+      "topics": [
+        "Partition interaction",
+        "joint cumulant",
+        "Lancaster interaction",
+        "Streitberg interaction"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355701",
+      "concept_doi": "10.5281/zenodo.23355700",
+      "record_url": "https://zenodo.org/records/23355701",
+      "pdf_filename": "P15_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P16",
+      "title": "Query-Relative Walsh Compression: Sharp Punctured Norms and Signed Bent-Orbit Recovery",
+      "summary": {
+        "en": "Studies sharp relations between total variation and punctured Walsh spectra, together with deterministic recovery from signed bent-function orbit observations.",
+        "ru": "Исследует точные оценки между полной вариацией и усечёнными спектрами Уолша, а также детерминированное восстановление по наблюдениям орбит бент-функций."
+      },
+      "topics": [
+        "Walsh–Hadamard transform",
+        "total variation",
+        "punctured spectrum",
+        "bent function"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355709",
+      "concept_doi": "10.5281/zenodo.23355708",
+      "record_url": "https://zenodo.org/records/23355709",
+      "pdf_filename": "P16_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P17",
+      "title": "Transport distance to joint mixability and quantitative characteristic-function gaps",
+      "summary": {
+        "en": "Measures the failure of joint mixability using optimal residuals, Wasserstein projection identities and quantitative characteristic-function gaps.",
+        "ru": "Измеряет отклонение от совместной смешиваемости через оптимальные остатки, проекции в метрике Васерштейна и количественные разрывы характеристических функций."
+      },
+      "topics": [
+        "joint mixability",
+        "prescribed marginals",
+        "Wasserstein distance",
+        "characteristic functions"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355715",
+      "concept_doi": "10.5281/zenodo.23355714",
+      "record_url": "https://zenodo.org/records/23355715",
+      "pdf_filename": "P17_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P18",
+      "title": "Rational moment algebras: spectral reconstruction, factorization and arithmetic rigidity",
+      "summary": {
+        "en": "Reconstructs finite rational moment algebras from spectral and Hankel data, separating positivity, factorization and arithmetic rigidity conditions.",
+        "ru": "Восстанавливает конечные рациональные алгебры моментов по спектральным данным и матрицам Ганкеля, различая положительность, факторизацию и арифметическую жёсткость."
+      },
+      "topics": [
+        "moment problems",
+        "Hankel matrices",
+        "rational algebras",
+        "polynomial factorization"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355723",
+      "concept_doi": "10.5281/zenodo.23355722",
+      "record_url": "https://zenodo.org/records/23355723",
+      "pdf_filename": "P18_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P19",
+      "title": "Prescribed-marginal dependence synthesis with moment and Fourier constraints",
+      "summary": {
+        "en": "Constructs joint distributions with prescribed marginals while simultaneously enforcing moment constraints, Fourier targets and spectral zeros.",
+        "ru": "Строит совместные распределения с заданными маргиналями, одновременно удовлетворяющие ограничениям на моменты, значения преобразования Фурье и спектральные нули."
+      },
+      "topics": [
+        "Prescribed marginals",
+        "dependence synthesis",
+        "characteristic function",
+        "finite moment constraints"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355731",
+      "concept_doi": "10.5281/zenodo.23355730",
+      "record_url": "https://zenodo.org/records/23355731",
+      "pdf_filename": "P19_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
+    },
+    {
+      "code": "P20",
+      "title": "Statistical Estimation of Extremal Characteristic-Function Functionals: Growing L^p Profiles, Random Frequency Banks, and Walsh Calibration",
+      "summary": {
+        "en": "Studies estimation of extremal characteristic-function dependence using growing frequency windows, L^p profiles, random frequency banks and Walsh calibration.",
+        "ru": "Исследует оценивание экстремальной зависимости через характеристические функции с помощью растущих частотных окон, L^p-профилей, случайных наборов частот и калибровки Уолша."
+      },
+      "topics": [
+        "characteristic function",
+        "dependence estimation",
+        "random frequencies",
+        "L^(p) approximation"
+      ],
+      "status": "published",
+      "version_doi": "10.5281/zenodo.23355739",
+      "concept_doi": "10.5281/zenodo.23355738",
+      "record_url": "https://zenodo.org/records/23355739",
+      "pdf_filename": "P20_CF_V6_S8.pdf",
+      "published_on": "2026-10-14",
+      "changes": []
     }
   ]
 }
