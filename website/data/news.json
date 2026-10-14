@@ -1,0 +1,18 @@
+{
+  "schema": "cf-publication-updates/v1",
+  "entries": [
+    {
+      "date": "2026-09-28",
+      "kind": "public_collection_release",
+      "source": "RELEASE_NOTES.md",
+      "title": {
+        "en": "Initial public manuscript collection",
+        "ru": "Первый публичный набор рукописей"
+      },
+      "summary": {
+        "en": "The public repository released three research manuscripts (P01–P03), with reproducibility scripts and recorded outputs accompanying the fixed-marginals paper.",
+        "ru": "В публичный репозиторий выложены три исследовательские рукописи (P01–P03). Для работы о фиксированных маргиналях доступны скрипты воспроизводимости и результаты вычислений."
+      }
+    }
+  ]
+}
