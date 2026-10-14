@@ -19,10 +19,18 @@ The scientific research workspace remains private at `alexmartinevski/CF-Depende
 6. Review the PR and merge to main to deploy via GitHub Pages; Zenodo Publish is a separate **manual action**.
 
 ## Current publication scope
-P01–P03 are the three released records on the site. Current CF V6 draft reservations are
-not published entries. `P10` is not currently cleared as a standalone publication.
-The September 28 repository release is recorded as repository news, **not** a new
-version of any Zenodo paper.
+The public catalogue contains **18 released works**: the previously published P01–P03 versions
+and fifteen further CF V6 articles (P04, P06–P09, P11–P20) verified as published in Zenodo
+on 2026-10-14. The P19/P20 PDF and DOIs were checked against their Zenodo public records.
+
+**P05 and P10 remain excluded** because their drafts were not published.
+The *new-version drafts* of P01–P03 are not yet independently confirmed as public records;
+the site therefore retains the earlier published version DOIs and public PDF/TeX links.
+Newer published papers link to their Zenodo records with PDF downloads instead of to
+private research files. Individual version-change notes are not fabricated from
+a change of title or an unpublished draft.
+
+The September 28 repository release remains repository news, not a new Zenodo version.
 
 ## Site structure
 - `website/index.html`: bilingual catalogue/search, public updates and project overview.

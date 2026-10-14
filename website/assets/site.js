@@ -137,7 +137,14 @@ function renderDetail() {
   $("paper-doi").replaceChildren(doiLink(p.version_doi));
   $("paper-concept").replaceChildren(doiLink(p.concept_doi));
   const links=$("paper-downloads");links.replaceChildren();
-  const downloads=[["PDF",publicRepoLink(p,"paper.pdf")],["TeX",publicRepoLink(p,"paper.tex")],[COPY[language].source,publicRepoLink(p,null)]];
+  const downloads=[];
+  if (p.source_path) {
+    downloads.push(["PDF",publicRepoLink(p,"paper.pdf")]);
+    downloads.push(["TeX",publicRepoLink(p,"paper.tex")]);
+    downloads.push([COPY[language].source,publicRepoLink(p,null)]);
+  } else if (typeof p.record_url==="string" && /^https:\/\/zenodo\.org\/records\/\d+$/.test(p.record_url)) {
+    downloads.push([COPY[language].pdf+" · Zenodo",p.record_url]);
+  }
   for(const [name,url] of downloads){const a=node("a",null,name+" ↗");a.href=url;a.target="_blank";a.rel="noopener noreferrer";links.appendChild(a);}
   const history=$("paper-history");history.replaceChildren();
   const changes=(p.changes||[]).filter(x=>DOI.test(x.doi)).sort((a,b)=>b.date.localeCompare(a.date));

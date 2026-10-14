@@ -2,6 +2,45 @@
   "schema": "cf-publication-updates/v1",
   "entries": [
     {
+      "date": "2026-10-14",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23355731",
+      "title": {
+        "en": "P19: dependence synthesis with prescribed marginals",
+        "ru": "P19: синтез зависимости при заданных маргиналях"
+      },
+      "summary": {
+        "en": "New preprint: joint distributions are constructed under simultaneous moment, spectral-zero and Fourier constraints.",
+        "ru": "Новый препринт: конструкции совместных распределений при одновременных ограничениях на моменты, спектральные нули и преобразование Фурье."
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23355739",
+      "title": {
+        "en": "P20: statistical estimation of extremal dependence",
+        "ru": "P20: статистическое оценивание экстремальной зависимости"
+      },
+      "summary": {
+        "en": "New preprint: growing frequency profiles, random frequency banks and Walsh-based calibration for characteristic-function dependence.",
+        "ru": "Новый препринт: растущие частотные профили, случайные частотные наборы и калибровка Уолша для оценки зависимости."
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "kind": "collection_update",
+      "source": "https://doi.org/10.5281/zenodo.23356092",
+      "title": {
+        "en": "CF V6: fifteen new research papers added",
+        "ru": "CF V6: добавлено пятнадцать новых научных работ"
+      },
+      "summary": {
+        "en": "The publication catalogue expands from three to eighteen released works, covering sharp inequalities, inverse and algebraic methods, transport and statistical estimation.",
+        "ru": "Публичный каталог расширен с трёх до восемнадцати опубликованных работ: точные неравенства, обратные и алгебраические методы, транспорт и статистическое оценивание."
+      }
+    },
+    {
       "date": "2026-09-28",
       "kind": "public_collection_release",
       "source": "RELEASE_NOTES.md",

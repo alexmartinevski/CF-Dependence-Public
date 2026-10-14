@@ -30,11 +30,23 @@ class PublicSiteTests(unittest.TestCase):
             self.assertTrue(p["summary"]["ru"].strip())
 
     def test_sources_are_already_public(self):
-        for p in self.site["papers"]:
-            source=p["source_path"]
-            self.assertRegex(source,r"^papers/[a-z0-9-]+$")
-            self.assertTrue((REPO/source/"paper.pdf").is_file(),source)
-            self.assertTrue((REPO/source/"paper.tex").is_file(),source)
+        papers=self.site["papers"]
+        self.assertEqual(len(papers),18)
+        codes={p["code"] for p in papers}
+        self.assertNotIn("P05",codes)
+        self.assertNotIn("P10",codes)
+        for p in papers:
+            if p.get("source_path"):
+                source=p["source_path"]
+                self.assertRegex(source,r"^papers/[a-z0-9-]+$")
+                self.assertTrue((REPO/source/"paper.pdf").is_file(),source)
+                self.assertTrue((REPO/source/"paper.tex").is_file(),source)
+            else:
+                record_url=p.get("record_url")
+                doi=p.get("version_doi")
+                self.assertEqual(record_url,"https://zenodo.org/records/"+doi.split(".")[-1])
+                self.assertRegex(p["pdf_filename"],r"^P\d{2}_CF_V6_S8\.pdf$")
+                self.assertEqual(p["pdf_filename"][:3],p["code"])
 
     def test_change_log_entries_refer_to_doi(self):
         for p in self.site["papers"]:
@@ -49,8 +61,12 @@ class PublicSiteTests(unittest.TestCase):
             self.assertRegex(event["date"],r"^\d{4}-\d{2}-\d{2}$")
             self.assertTrue(event["title"]["en"].strip())
             self.assertTrue(event["summary"]["ru"].strip())
-            self.assertEqual(event["source"],"RELEASE_NOTES.md")
-            self.assertTrue((REPO/event["source"]).is_file())
+            source=event["source"]
+            if source=="RELEASE_NOTES.md":
+                self.assertTrue((REPO/source).is_file())
+            else:
+                self.assertRegex(source,r"^https://doi.org/10\.5281/zenodo\.\d+$")
+                self.assertIn(source.removeprefix("https://doi.org/"),{p["version_doi"] for p in self.site["papers"]})
 
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
