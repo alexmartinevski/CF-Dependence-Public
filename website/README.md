@@ -250,8 +250,7 @@ a consistent narrative:
 Every achievement has its **own visible list of 6 or 7 source links**, 39
 bibliographic appearances in total (sources can recur where relevant).
 References are labeled as the CF research publication, history of the problem,
-previous results, scientific background, a related paper, or an independent
-reproducible verification supplement. One section's sources are not inherited
+previous results, scientific background, or a related public article. One section's sources are not inherited
 from a global bibliography: each claim is tied to directly visible references
 in its own section.
 
@@ -270,3 +269,5 @@ The detailed page continues to distinguish exact theorems from bounds and
 conjectures: the GHZ case `n=3` is not claimed solved; the broad 1985 complex
 multilinear question is not claimed solved; historical priority and proof remain
 awaiting external review.
+
+Public citation hygiene: never link a private CF-Dependence repository path from this public site. The GHZ three-party section cites Werner–Wolf (2001) as a public seventh reference instead of the private internal K7 supplement; the public P04 Zenodo DOI remains its main result source. The computer-assisted nature of the K7 proof is clearly disclosed in text.
