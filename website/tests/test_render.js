@@ -58,7 +58,7 @@ for(const entry of articles){
   for(const highlight of paper.highlights) {
     assert.ok(entry.textContent.includes(highlight.ru),"Russian mathematical result missing for "+code);
   }
-  assert.equal(entry.children[0].children[2].children.length,3,
+  assert.equal(entry.children[0].children[3].children.length,3,
     "Each paper should have exactly three visible key results");
 
 }
