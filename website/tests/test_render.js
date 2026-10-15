@@ -37,7 +37,7 @@ const document = {
   addEventListener: () => {}
 };
 const context = vm.createContext({
-  document, location:{search:"?lang=ru"}, __papers:papers,
+  document, location:{search:"?lang=ru"}, URLSearchParams, URL, __papers:papers,
   console,
 });
 const code = fs.readFileSync(path.join(ROOT,"assets","site.js"),"utf8");
