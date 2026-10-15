@@ -115,6 +115,33 @@ class PublicSiteTests(unittest.TestCase):
         old["links"]["latest"]="https://other.example.org/api/records/23355587"
         self.assertIsNone(sync.latest_record_id(old))
 
+    def test_immutable_asset_urls_and_fingerprint(self):
+        import hashlib
+        import shutil
+        import sys
+        import tempfile
+        sys.path.insert(0,str(ROOT/"tools"))
+        from fingerprint_assets import stamp_site
+        for page in ("index.html","paper.html"):
+            html=(ROOT/page).read_text(encoding="utf-8")
+            self.assertRegex(html, r'href="assets/site\\.css\\?v=[A-Za-z0-9._-]+"')
+            self.assertRegex(html, r'src="assets/site\\.js\\?v=[A-Za-z0-9._-]+"')
+        with tempfile.TemporaryDirectory() as tmp:
+            base=Path(tmp)
+            (base/"assets").mkdir()
+            for asset in ("assets/site.js","assets/site.css"):
+                shutil.copyfile(ROOT/asset,base/asset)
+            for page in ("index.html","paper.html"):
+                shutil.copyfile(ROOT/page,base/page)
+            stamp_site(base)
+            digest=hashlib.sha256((base/"assets/site.js").read_bytes()).hexdigest()[:16]
+            first=(base/"index.html").read_text(encoding="utf-8")
+            self.assertIn("assets/site.js?v="+digest,first)
+            self.assertIn("assets/site.js?v="+digest,(base/"paper.html").read_text(encoding="utf-8"))
+            (base/"assets/site.js").write_bytes((base/"assets/site.js").read_bytes()+b"\\n/* changed */")
+            stamp_site(base)
+            self.assertNotIn("assets/site.js?v="+digest,(base/"index.html").read_text(encoding="utf-8"))
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
