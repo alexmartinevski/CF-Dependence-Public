@@ -86,3 +86,21 @@
  .area-highlights li{font-size:13px}
  .detail-key-results{padding:18px 17px 18px 34px}
 }
+
+/* First publication / latest public revision / published version metadata. */
+.area-row-meta .area-metadata-line:nth-child(-n+3) .area-meta-value{
+  color:#263e5b;font-weight:650;font-size:13px;
+}
+.area-row-meta .area-metadata-line:nth-child(3) .area-meta-value{
+  font-weight:750;
+}
+.area-row-meta .area-metadata-line:nth-child(4){
+  padding-top:9px;border-top:1px solid #e9eef3;width:100%;
+}
+.metadata dd[id="paper-version-number"]{
+  font-weight:700;color:#233c63;
+}
+@media(max-width:780px){
+  .area-row-meta .area-metadata-line:nth-child(-n+3){align-items:baseline}
+  .area-row-meta .area-meta-label{line-height:1.5}
+}
