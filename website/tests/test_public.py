@@ -599,6 +599,55 @@ class PublicSiteTests(unittest.TestCase):
         for key in set(re.findall(r'data-i18n="(newsPage[A-Za-z0-9]+)"',html)):
             self.assertEqual(script.count(key+':'),2,key)
 
+    def test_paper_summaries_are_short_priority_focused_and_source_accurate(self):
+        """Concise 18-paper bilingual summaries; no extra card length or result count."""
+        papers={p["code"]:p for p in self.site["papers"]}
+        original_lengths={
+            "P01":(140,130),"P02":(156,146),"P03":(152,136),
+            "P04":(173,166),"P06":(153,162),"P07":(176,159),
+            "P08":(144,136),"P09":(160,139),"P11":(150,148),
+            "P12":(158,148),"P13":(150,171),"P14":(153,147),
+            "P15":(138,154),"P16":(159,152),"P17":(146,158),
+            "P18":(148,164),"P19":(143,161),"P20":(158,173)
+        }
+        self.assertEqual(set(papers),set(original_lengths))
+        self.assertEqual(len(papers),18)
+        for code,p in papers.items():
+            old_en,old_ru=original_lengths[code]
+            self.assertLessEqual(len(p["summary"]["en"]),old_en,code)
+            self.assertLessEqual(len(p["summary"]["ru"]),old_ru,code)
+            self.assertEqual(len(p["highlights"]),3,code)
+            self.assertTrue(all(h.get("en") and h.get("ru") and h.get("evidence")
+                                for h in p["highlights"]),code)
+        self.assertLessEqual(sum(len(p["summary"]["en"]) for p in papers.values()),2757)
+        self.assertLessEqual(sum(len(p["summary"]["ru"]) for p in papers.values()),2750)
+        self.assertLessEqual(sum(len(h["en"]) for p in papers.values()
+                                 for h in p["highlights"]),7734)
+        self.assertLessEqual(sum(len(h["ru"]) for p in papers.values()
+                                 for h in p["highlights"]),8298)
+        self.assertEqual(sum(len(p["highlights"]) for p in papers.values()),54)
+        # The site must use the currently released Zenodo titles, not old branches.
+        self.assertEqual(papers["P02"]["title"],
+            "The price of prescribed marginals in characteristic-function dependence: phase contact and complete mixability")
+        self.assertEqual(papers["P03"]["title"],
+            "Local factor profiles and arithmetic resolution of Chebyshev–Lucas critical polynomials")
+        # Put the leading results first and retain limits on novelty/attainability.
+        self.assertIn("GHZ",papers["P04"]["summary"]["en"])
+        self.assertIn("n≥4",papers["P04"]["highlights"][0]["en"])
+        self.assertIn("not exactly determined",papers["P04"]["highlights"][1]["en"])
+        self.assertIn("full symmetric group",papers["P14"]["highlights"][0]["en"])
+        self.assertIn("density one",papers["P14"]["highlights"][1]["en"])
+        self.assertIn("1−1/√2",papers["P11"]["highlights"][0]["en"])
+        self.assertIn("uniformly consistent",papers["P20"]["highlights"][0]["en"])
+        self.assertIn("Uniform marginals",papers["P02"]["highlights"][0]["en"])
+        self.assertIn("Gaussian",papers["P02"]["highlights"][1]["en"])
+        self.assertIn("remains open",papers["P03"]["highlights"][2]["en"])
+        self.assertIn("cycle rank",papers["P07"]["highlights"][0]["en"])
+        self.assertIn("already known",papers["P16"]["highlights"][0]["en"])
+        self.assertNotIn("Epanechnikov",str(papers["P02"]["highlights"]))
+        self.assertNotIn("thm:even",str(papers["P03"]["highlights"]))
+        self.assertNotIn("thm:2p1",str(papers["P03"]["highlights"]))
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
