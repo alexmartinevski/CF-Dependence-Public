@@ -68,6 +68,53 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertRegex(source,r"^https://doi.org/10\.5281/zenodo\.\d+$")
                 self.assertIn(source.removeprefix("https://doi.org/"),{p["version_doi"] for p in self.site["papers"]})
 
+    def test_subject_directory_and_release_metadata(self):
+        from datetime import date
+        areas={"extremal","transport","algebra","harmonic","statistics"}
+        entries=self.site["papers"]
+        self.assertEqual({p["area"] for p in entries},areas)
+        self.assertEqual(len([p["code"] for p in entries]),len(set(p["code"] for p in entries)))
+        self.assertRegex(self.site["last_curated_on"],r"^\d{4}-\d{2}-\d{2}$")
+        for p in entries:
+            self.assertTrue(p["area"] in areas)
+            if p.get("published_on"):
+                self.assertEqual(date.fromisoformat(p["published_on"]).isoformat(),p["published_on"])
+            else:
+                self.assertIn(p["code"],{"P01","P02","P03"}, "Publication date may not be invented")
+
+    def test_latest_version_links_and_directory_present(self):
+        homepage=(ROOT/"index.html").read_text(encoding="utf-8")
+        detail=(ROOT/"paper.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertIn('id="areas"',homepage)
+        self.assertIn('id="area-groups"',homepage)
+        self.assertIn("function renderAreas()",script)
+        self.assertIn("doiLink(p.concept_doi,COPY[language].openLatest)",script)
+        self.assertIn("paper-latest",detail)
+        self.assertIn("paper-version",detail)
+        self.assertIn("COPY[language].olderPdf",script)
+        self.assertNotIn('id="paper-concept"',detail)
+
+    def test_public_zenodo_metadata_validated_before_display(self):
+        import sys
+        sys.path.insert(0, str(ROOT/"tools"))
+        import resolve_zenodo as sync
+        paper=self.site["papers"][0]
+        old={"doi":paper["version_doi"],"conceptdoi":paper["concept_doi"],
+             "metadata":{"publication_date":"2026-10-01","version":"v0.1"},
+             "links":{"latest":"https://zenodo.org/api/records/23355587"}}
+        latest={"doi":"10.5281/zenodo.23355587","conceptdoi":paper["concept_doi"],
+                "metadata":{"publication_date":"2026-10-15","version":"v0.2"}}
+        resolved=sync.extract_release(paper,old,latest)
+        self.assertEqual(resolved["version_doi"],"10.5281/zenodo.23355587")
+        self.assertEqual(resolved["published_on"],"2026-10-15")
+        self.assertEqual(resolved["version_label"],"v0.2")
+        self.assertEqual(sync.latest_record_id(old),23355587)
+        bad={**latest,"conceptdoi":"10.5281/zenodo.9999"}
+        self.assertIsNone(sync.extract_release(paper,old,bad))
+        old["links"]["latest"]="https://other.example.org/api/records/23355587"
+        self.assertIsNone(sync.latest_record_id(old))
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"

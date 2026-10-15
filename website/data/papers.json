@@ -19,7 +19,8 @@
       "version_doi": "10.5281/zenodo.23021780",
       "concept_doi": "10.5281/zenodo.23021779",
       "source_path": "papers/01-sharp-universal-profile",
-      "changes": []
+      "changes": [],
+      "area": "extremal"
     },
     {
       "code": "P02",
@@ -37,7 +38,8 @@
       "version_doi": "10.5281/zenodo.23022043",
       "concept_doi": "10.5281/zenodo.23022042",
       "source_path": "papers/02-fixed-marginals",
-      "changes": []
+      "changes": [],
+      "area": "transport"
     },
     {
       "code": "P03",
@@ -55,7 +57,8 @@
       "version_doi": "10.5281/zenodo.23022245",
       "concept_doi": "10.5281/zenodo.23022244",
       "source_path": "papers/03-chebyshev-lucas-critical-polynomials",
-      "changes": []
+      "changes": [],
+      "area": "algebra"
     },
     {
       "code": "P04",
@@ -76,7 +79,8 @@
       "record_url": "https://zenodo.org/records/23356092",
       "pdf_filename": "P04_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "extremal"
     },
     {
       "code": "P06",
@@ -97,7 +101,8 @@
       "record_url": "https://zenodo.org/records/23355615",
       "pdf_filename": "P06_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "transport"
     },
     {
       "code": "P07",
@@ -118,7 +123,8 @@
       "record_url": "https://zenodo.org/records/23355619",
       "pdf_filename": "P07_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "harmonic"
     },
     {
       "code": "P08",
@@ -139,7 +145,8 @@
       "record_url": "https://zenodo.org/records/23355626",
       "pdf_filename": "P08_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "algebra"
     },
     {
       "code": "P09",
@@ -160,7 +167,8 @@
       "record_url": "https://zenodo.org/records/23355634",
       "pdf_filename": "P09_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "algebra"
     },
     {
       "code": "P11",
@@ -181,7 +189,8 @@
       "record_url": "https://zenodo.org/records/23355657",
       "pdf_filename": "P11_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "statistics"
     },
     {
       "code": "P12",
@@ -202,7 +211,8 @@
       "record_url": "https://zenodo.org/records/23355669",
       "pdf_filename": "P12_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "harmonic"
     },
     {
       "code": "P13",
@@ -223,7 +233,8 @@
       "record_url": "https://zenodo.org/records/23355678",
       "pdf_filename": "P13_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "extremal"
     },
     {
       "code": "P14",
@@ -244,7 +255,8 @@
       "record_url": "https://zenodo.org/records/23355688",
       "pdf_filename": "P14_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "algebra"
     },
     {
       "code": "P15",
@@ -265,7 +277,8 @@
       "record_url": "https://zenodo.org/records/23355701",
       "pdf_filename": "P15_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "extremal"
     },
     {
       "code": "P16",
@@ -286,7 +299,8 @@
       "record_url": "https://zenodo.org/records/23355709",
       "pdf_filename": "P16_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "harmonic"
     },
     {
       "code": "P17",
@@ -307,7 +321,8 @@
       "record_url": "https://zenodo.org/records/23355715",
       "pdf_filename": "P17_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "transport"
     },
     {
       "code": "P18",
@@ -328,7 +343,8 @@
       "record_url": "https://zenodo.org/records/23355723",
       "pdf_filename": "P18_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "algebra"
     },
     {
       "code": "P19",
@@ -349,7 +365,8 @@
       "record_url": "https://zenodo.org/records/23355731",
       "pdf_filename": "P19_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "transport"
     },
     {
       "code": "P20",
@@ -370,7 +387,8 @@
       "record_url": "https://zenodo.org/records/23355739",
       "pdf_filename": "P20_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
-      "changes": []
+      "changes": [],
+      "area": "statistics"
     }
   ]
 }

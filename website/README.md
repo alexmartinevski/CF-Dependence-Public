@@ -53,3 +53,36 @@ Target URL after successful deploy and domain verification:
 `https://math.a-martinevski.com/`.
 This URL is not confirmed live until GitHub Pages is enabled and DNS/HTTPS checks pass.
 For GitHub Actions deployments, no `CNAME` file is required or read by GitHub Pages.
+
+## Research-area directory and current-version links (October 2026)
+The home page now has a bilingual subject directory with exactly one primary area per
+published paper, and shows each paper's existing verified summary, the date of its
+last verified public release (if available), and the specific Version DOI from this
+curated snapshot. As of 2026-10-14, P01–P03 do not have independently verified Zenodo
+publication dates in the catalogue, so the interface explicitly says so instead of
+reusing a repository release date.
+
+**Primary links always use `concept_doi`**, which Zenodo resolves to the latest
+published release. **The displayed `version_doi` is a fixed, independently
+verifiable citation reference** and is only refreshed after the newer Zenodo
+release is confirmed public. The Zenodo PDF action opens the concept landing page
+so readers can select the current PDF. Older GitHub snapshots are clearly marked
+"Archived PDF / Archived TeX"; they are not advertised as the newest release.
+The site intentionally does not invent semantic version labels (v1, v0.19, etc.)
+when Zenodo version metadata has not been independently checked.
+
+To curate a new published version, update the specific DOI, the checked date and
+the appropriate summary/change notes in a reviewed PR. The subject classification
+(`area`) uses one of: `extremal`, `transport`, `algebra`, `harmonic`, `statistics`.
+P05/P10 remain excluded.
+
+### Automatic latest-version metadata (public Zenodo API)
+During every Pages deploy and a daily read-only scheduled workflow, the standard-library
+script `website/tools/resolve_zenodo.py` retrieves **published** Zenodo REST records,
+follows only same-origin `links.latest` pointers, verifies the exact Concept DOI
+lineage and emits `_site/data/zenodo_latest.json`. The browser merges that
+same-origin metadata into the grouped directory and article pages. This enables
+public release dates, semantic version labels (when present in Zenodo), and current
+specific version DOIs without storing an API token. If the API cannot confirm a
+record, the hand-curated metadata remains and the latest link still uses the
+Zenodo Concept DOI. The read-only process cannot publish or change any Zenodo record.

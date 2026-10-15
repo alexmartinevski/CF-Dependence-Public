@@ -10,6 +10,8 @@ on:
       - 'website/**'
       - '.github/workflows/public-site.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '27 3 * * *'
 permissions:
   contents: read
 concurrency:
@@ -46,6 +48,8 @@ jobs:
           cp website/index.html website/paper.html _site/
           cp website/assets/site.css website/assets/site.js _site/assets/
           cp website/data/papers.json website/data/news.json _site/data/
+          # Read-only public metadata; failures retain the verified catalogue.
+          python3 website/tools/resolve_zenodo.py website/data/papers.json _site/data/zenodo_latest.json
           cp website/robots.txt website/sitemap.xml _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
