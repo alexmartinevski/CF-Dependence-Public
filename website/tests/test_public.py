@@ -124,8 +124,8 @@ class PublicSiteTests(unittest.TestCase):
         from fingerprint_assets import stamp_site
         for page in ("index.html","paper.html"):
             html=(ROOT/page).read_text(encoding="utf-8")
-            self.assertRegex(html, r'href="assets/site\\.css\\?v=[A-Za-z0-9._-]+"')
-            self.assertRegex(html, r'src="assets/site\\.js\\?v=[A-Za-z0-9._-]+"')
+            self.assertRegex(html, r'href="assets/site\.css\?v=[A-Za-z0-9._-]+"')
+            self.assertRegex(html, r'src="assets/site\.js\?v=[A-Za-z0-9._-]+"')
         with tempfile.TemporaryDirectory() as tmp:
             base=Path(tmp)
             (base/"assets").mkdir()
@@ -138,7 +138,7 @@ class PublicSiteTests(unittest.TestCase):
             first=(base/"index.html").read_text(encoding="utf-8")
             self.assertIn("assets/site.js?v="+digest,first)
             self.assertIn("assets/site.js?v="+digest,(base/"paper.html").read_text(encoding="utf-8"))
-            (base/"assets/site.js").write_bytes((base/"assets/site.js").read_bytes()+b"\\n/* changed */")
+            (base/"assets/site.js").write_bytes((base/"assets/site.js").read_bytes()+b"\n/* changed */")
             stamp_site(base)
             self.assertNotIn("assets/site.js?v="+digest,(base/"index.html").read_text(encoding="utf-8"))
 
