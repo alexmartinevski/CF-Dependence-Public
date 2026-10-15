@@ -1,6 +1,70 @@
 "use strict";
 const COPY = {
  en: {
+  "achievementNav":"Achievements",
+  "achievementHighlightLabel":"SELECTED RESULTS",
+  "achievementHighlightHeading":"Major research achievements",
+  "achievementHighlightIntro":"A concise overview of the strongest published results, with a detailed mathematical account, historical sources and explicit limits of current claims.",
+  "achievementHighlight1Name":"Exact planar GHZ threshold for n≥4",
+  "achievementHighlight1Text":"A general formula for the sharp XY full-correlation GHZ threshold; for four parties the critical visibility is 34/105.",
+  "achievementHighlight2Name":"Three-party GHZ: narrower rigorous bounds",
+  "achievementHighlight2Text":"Both bounds improve the 2024 interval, while the proposed exact value 105ζ(3)/(2π³) remains a conjecture.",
+  "achievementHighlight3Name":"Sharp complex covariance coefficient",
+  "achievementHighlight3Text":"The coefficient 4√2 in a strong-mixing covariance inequality improves the classical 2π estimate.",
+  "achievementHighlight4Name":"Exact universal dependence profile",
+  "achievementHighlight4Text":"An explicit extremal profile for characteristic-function factorization defects and sharp constants C₃=2/√3, C₄=9/7.",
+  "achievementHighlightCTA":"Read the detailed achievements →",
+  "achievementCaution":"Exact mathematical results and improvements in still-open problems are identified separately. External proof and priority reviews have not yet been completed.",
+  "achievementBack":"← Overview",
+  "achievementCatalogue":"All papers",
+  "achievementPageEyebrow":"SELECTED SCIENTIFIC RESULTS",
+  "achievementPageHeading":"Research achievements",
+  "achievementPageLead":"Exact extremal theorems, progress on historically studied bounds, and a tightly bounded open problem in planar quantum correlations.",
+  "achievementContextTitle":"What these claims mean",
+  "achievementContextText":"The results below are stated in released CF Dependence manuscripts. An exact formula inside its stated mathematical class is distinguished from a partial improvement or an unsolved conjecture. Independent proof and historical-priority reviews remain pending; we do not claim that every broader classical problem has been solved.",
+  "achievementTocGhzExact":"GHZ: exact n≥4",
+  "achievementTocGhzThree":"GHZ: three parties",
+  "achievementTocMixing":"Sharp covariance",
+  "achievementTocMultilinear":"1985 multilinear question",
+  "achievementTocProfile":"Universal CF profile",
+  "achievementTocStability":"Sharp stability",
+  "achievementStateExact":"Exact result in the stated class",
+  "achievementStatePartial":"Strict bounds; exact value remains open",
+  "achievementStateRestricted":"Partial response in a restricted class",
+  "achievementGhzExactTitle":"Exact planar GHZ threshold for n ≥ 4",
+  "achievementGhzExactDescription":"The paper derives a closed formula for the optimal local-hidden-variable threshold in the planar XY, full-correlation GHZ scenario, allowing arbitrary finite sets of measurement angles.",
+  "achievementExample":"Example",
+  "achievementGhzExactImportance":"Unlike finite-setting numerical estimates, this is an expression for the full continuum-of-settings optimization in the specified full-correlator model. The earlier 2024 work by Designolle, Vértesi and Pokutta supplied rigorous bounds rather than this general closed formula.",
+  "achievementGhzExactScope":"Scope: planar XY measurements and full correlations. This is not a claim about every Bell scenario or arbitrary measurements. Independent verification of the proof and of historical priority has not yet been completed.",
+  "achievementReadP04":"P04 — published series (Zenodo) ↗",
+  "achievementReadDvp":"Designolle–Vértesi–Pokutta (2024) ↗",
+  "achievementGhzThreeTitle":"Three-party GHZ: a narrow interval and an exact-value conjecture",
+  "achievementGhzThreeDescription":"For three parties the sharp value is not yet proved. The published paper provides a new finite-harmonic Bell lower bound and an analytical upper bound from an explicit square-wave/Möbius local model.",
+  "achievementGhzThreeComparison":"These two visibility bounds improve both ends of the interval 0.49129–0.49143 reported by Designolle, Vértesi and Pokutta in 2024. The remaining κ₃ interval is only about 0.01775% of its upper bound.",
+  "achievementGhzThreeConjecture":"Conjecture: the upper bound is exact, κ₃ = 105ζ(3)/(2π³). This equality has not been proved.",
+  "achievementGhzThreeProof":"The lower bound uses an analytic reduction followed by 272 reproducible rational inequalities in the K7 certificate. This is computer-assisted proof, not an independent external proof-review.",
+  "achievementGhzThreeZeta":"The remaining dual Bell-functional construction encounters arithmetic oscillations linked to the Möbius function and zeros of the Riemann zeta function. This does not make the conjecture equivalent to the Riemann hypothesis.",
+  "achievementMixingTitle":"Optimal covariance constant under strong mixing",
+  "achievementMixingDescription":"For bounded complex random variables measurable with respect to two σ-fields, P04 establishes the sharp coefficient in the covariance inequality with the classical strong-mixing coefficient α.",
+  "achievementMixingHistory":"The literature contains Dvoretzky's historical bound 2π, discussed in Bradley–Bryc (1985). The constant 4√2 is smaller and is claimed sharp in P04, with an equality construction; for real scalars the constant is 4.",
+  "achievementMixingScope":"This comparison uses the strong-mixing coefficient and the same bounded-observable normalization. A complete search for equivalent earlier sharp results and an independent proof review are still outstanding, so no first-ever priority is claimed.",
+  "achievementReadBradley":"Bradley–Bryc (1985) ↗",
+  "achievementMultilinearTitle":"Sharper multilinear estimates and the question from 1985",
+  "achievementMultilinearDescription":"Bradley and Bryc observed in 1985 that their general multilinear coefficients were not optimal. P04 derives sharp real and complex factors 2ⁿ and 2ⁿκₙ for a natural class of multilinear forms real-valued on real arguments.",
+  "achievementMultilinearScope":"Important distinction: the 1985 result allowed general complex multilinear forms, whereas the sharp factors in P04 concern a real-on-real subclass. Consequently the old problem is not solved in its full generality. The n=3 complex sharp factor also remains open.",
+  "achievementProfileTitle":"Universal characteristic-function dependence profile",
+  "achievementProfileDescription":"An extremum over joint laws of bounded complex random variables is reduced to a formula in the prescribed moduli of their means. This unifies several characteristic-function factorization problems.",
+  "achievementProfileImportance":"The universal constant has explicit values C₂=1, C₃=2/√3, C₄=9/7. Extremal constructions use a common fair sign in the corresponding regime; C_d increases to 2. This is a proven exact profile, not a claim that an independently documented century-old open question was solved.",
+  "achievementReadP01":"P01 — published series (Zenodo) ↗",
+  "achievementStabilityTitle":"Sharp quantitative stability near extremal dependence",
+  "achievementStabilityDescription":"P13 strengthens the sharp inequality into a stability theorem: if the dependence defect is close to its maximum, the joint distribution must be close to the entire family of equality cases.",
+  "achievementStabilityScope":"For d≥3, any finite p≥1 and sufficiently small deficit Δ, the displayed Wasserstein exponent is optimal, even after optimizing coordinate phases. A structured discrepancy separating location and mass errors admits an optimal square-root rate.",
+  "achievementStabilityPriority":"The theorem is highlighted for its exact exponent and extremal geometry, not as an independently verified solution of an older externally posed question.",
+  "achievementReadP13":"P13 — published series (Zenodo) ↗",
+  "achievementEditorialTitle":"Proof, novelty and priority",
+  "achievementEditorialText":"A result may be mathematically precise yet still require an independent check of its proof or literature priority. The links above are to public papers or historical sources. The displayed categories refer to the claims made in the publications and their proved or unresolved scope; they are not independent peer-review certifications.",
+  "achievementEditorialSecond":"The three-party GHZ formula remains a conjecture. The broad 1985 complex multilinear problem is not claimed solved. We do not present any result as the first-ever solution of a long-standing problem without both a proof review and a documented priority comparison.",
+  "achievementAllPapers":"Explore all published papers →",
   papers:"Publications",updates:"What's new",about:"About",eyebrow:"EXTREMAL PROBABILITY · ANALYSIS · ALGEBRA",
   hero:"A research programme on dependence via characteristic functions, sharp inequalities, and the mathematical structures behind their extremizers.",
   programmeLabel:"THE SCIENTIFIC PROGRAMME",programmeHeading:"What CF Dependence studies",
@@ -46,6 +110,70 @@ const COPY = {
   searchPlaceholder:"Search by title, code, result or topic",otherLang:"Русский"
  },
  ru: {
+  "achievementNav":"Достижения",
+  "achievementHighlightLabel":"ГЛАВНЫЕ РЕЗУЛЬТАТЫ",
+  "achievementHighlightHeading":"Важные научные достижения",
+  "achievementHighlightIntro":"Краткий обзор наиболее значимых опубликованных результатов. На отдельной странице — формулы, историческое сравнение, первоисточники и границы научных утверждений.",
+  "achievementHighlight1Name":"Точный планарный порог GHZ при n≥4",
+  "achievementHighlight1Text":"Общая формула порога планарной GHZ-нелокальности по полным корреляциям: для четырёх участников критическая видимость 34/105.",
+  "achievementHighlight2Name":"GHZ для трёх участников: новые строгие границы",
+  "achievementHighlight2Text":"Обе границы улучшены по сравнению с опубликованным интервалом 2024 года. Предполагаемое точное значение 105ζ(3)/(2π³) пока не доказано.",
+  "achievementHighlight3Name":"Точная комплексная ковариационная константа",
+  "achievementHighlight3Text":"Константа 4√2 в оценке ковариации через сильное перемешивание улучшает классическую оценку 2π.",
+  "achievementHighlight4Name":"Универсальный точный профиль зависимости",
+  "achievementHighlight4Text":"Явная формула экстремального дефекта факторизации характеристических функций и точные константы C₃=2/√3, C₄=9/7.",
+  "achievementHighlightCTA":"Подробнее о достижениях →",
+  "achievementCaution":"Точные теоремы и продвижение в ещё открытых задачах отмечены раздельно. Независимая проверка доказательств и научного приоритета ещё не завершена.",
+  "achievementBack":"← Обзор",
+  "achievementCatalogue":"Все публикации",
+  "achievementPageEyebrow":"ИЗБРАННЫЕ НАУЧНЫЕ РЕЗУЛЬТАТЫ",
+  "achievementPageHeading":"Важные научные достижения",
+  "achievementPageLead":"Точные экстремальные теоремы, продвижение в исторически исследуемых задачах и существенно суженный интервал открытой задачи о планарной квантовой нелокальности.",
+  "achievementContextTitle":"Как читать заявления о результатах",
+  "achievementContextText":"Ниже представлены результаты опубликованных рукописей CF Dependence. Точная формула для указанного класса объектов не смешивается с частичным улучшением или недоказанной гипотезой. Независимая проверка доказательств и исторического приоритета ещё не завершена; решения всех более широких классических задач мы не заявляем.",
+  "achievementTocGhzExact":"GHZ: точно при n≥4",
+  "achievementTocGhzThree":"GHZ: три участника",
+  "achievementTocMixing":"Точная ковариация",
+  "achievementTocMultilinear":"Мультлинейный вопрос 1985 года",
+  "achievementTocProfile":"Универсальный CF-профиль",
+  "achievementTocStability":"Точная устойчивость",
+  "achievementStateExact":"Точный результат в указанном классе",
+  "achievementStatePartial":"Строгие границы; точное значение открыто",
+  "achievementStateRestricted":"Частичный ответ в ограниченном классе",
+  "achievementGhzExactTitle":"Точный порог планарной GHZ-нелокальности при n ≥ 4",
+  "achievementGhzExactDescription":"В работе выведена замкнутая формула оптимального порога локальной модели для GHZ-корреляций в плоскости XY при произвольных конечных наборах углов измерения и рассмотрении полных корреляций.",
+  "achievementExample":"Пример",
+  "achievementGhzExactImportance":"В отличие от численных оценок для конечных наборов измерений, это формула для оптимизации по всем наборам в указанной модели полных корреляций. Работа Designolle–Vértesi–Pokutta (2024) содержала строгие границы, но не эту общую аналитическую формулу.",
+  "achievementGhzExactScope":"Область применимости: планарные XY-измерения и полные корреляции. Речь не обо всех неравенствах Белла или произвольных измерениях. Независимое ревью доказательства и исторического приоритета пока не завершено.",
+  "achievementReadP04":"P04 — серия публикаций (Zenodo) ↗",
+  "achievementReadDvp":"Designolle–Vértesi–Pokutta (2024) ↗",
+  "achievementGhzThreeTitle":"GHZ для трёх участников: узкий интервал и гипотеза о точной формуле",
+  "achievementGhzThreeDescription":"Для трёх участников точное значение пока не доказано. Статья даёт новую нижнюю границу из конечногармонического неравенства Белла и аналитическую верхнюю границу из явной локальной модели на основе меандров и функции Мёбиуса.",
+  "achievementGhzThreeComparison":"Обе границы для порога видимости строже интервала 0.49129–0.49143, опубликованного Designolle–Vértesi–Pokutta в 2024 году. Ширина оставшегося интервала для κ₃ составляет лишь около 0.01775% его верхней границы.",
+  "achievementGhzThreeConjecture":"Гипотеза: верхняя граница точна, κ₃ = 105ζ(3)/(2π³). Равенство пока не доказано.",
+  "achievementGhzThreeProof":"Нижняя граница основана на аналитической редукции и 272 воспроизводимых рациональных неравенствах сертификата K7. Это компьютерно-ассистированное доказательство, но не независимая внешняя рецензия.",
+  "achievementGhzThreeZeta":"При построении двойственного функционала Белла возникают арифметические осцилляции, связанные с функцией Мёбиуса и нулями дзета-функции Римана. Это не означает эквивалентности гипотезы о κ₃ гипотезе Римана.",
+  "achievementMixingTitle":"Оптимальная ковариационная константа при сильном перемешивании",
+  "achievementMixingDescription":"Для ограниченных комплексных случайных величин, измеримых относительно двух σ-алгебр, P04 доказывает точный коэффициент ковариационного неравенства через классический коэффициент сильного перемешивания α.",
+  "achievementMixingHistory":"В литературе известна историческая граница Дворецкого 2π, обсуждаемая в Bradley–Bryc (1985). Константа 4√2 меньше; в P04 обоснована её точность конструкцией равенства. Для вещественных скаляров точная константа равна 4.",
+  "achievementMixingScope":"Сравнение относится к одной нормировке коэффициента сильного перемешивания и ограниченных наблюдений. Исчерпывающий поиск более ранних эквивалентных точных результатов и независимое ревью ещё не завершены; мировой приоритет не заявляется.",
+  "achievementReadBradley":"Bradley–Bryc (1985) ↗",
+  "achievementMultilinearTitle":"Уточнение мультлинейных оценок и вопрос 1985 года",
+  "achievementMultilinearDescription":"В 1985 году Bradley и Bryc указали, что коэффициенты их общего мультлинейного неравенства неоптимальны. В P04 получены точные вещественные и комплексные множители 2ⁿ и 2ⁿκₙ для естественного класса форм, принимающих вещественные значения на вещественных аргументах.",
+  "achievementMultilinearScope":"Существенное ограничение: исходная работа 1985 года допускает произвольные комплексные мультлинейные формы, а теорема P04 относится к более узкому классу. Поэтому старая задача в общей постановке не решена. Точный комплексный множитель для n=3 также остаётся открытым.",
+  "achievementProfileTitle":"Универсальный профиль зависимости через характеристические функции",
+  "achievementProfileDescription":"Экстремальная задача по совместным законам ограниченных комплексных величин сведена к явной формуле через заданные модули их средних. Это объединяет несколько задач факторизации характеристических функций.",
+  "achievementProfileImportance":"Точная универсальная константа имеет значения C₂=1, C₃=2/√3, C₄=9/7. В соответствующем режиме экстремаль реализует общий симметричный знак; C_d возрастает к 2. Это доказанный точный профиль, но не заявление о решении независимо сформулированной вековой открытой проблемы.",
+  "achievementReadP01":"P01 — серия публикаций (Zenodo) ↗",
+  "achievementStabilityTitle":"Точная количественная устойчивость вблизи экстремальной зависимости",
+  "achievementStabilityDescription":"P13 усиливает точное неравенство теоремой об устойчивости: если дефект зависимости близок к максимуму, совместное распределение близко ко всему семейству случаев равенства.",
+  "achievementStabilityScope":"При d≥3, любом конечном p≥1 и достаточно малом дефиците Δ показатель степени в оценке Васерштейна оптимален даже после оптимизации фаз. Для структурированного отклонения с раздельным учётом положения и масс получен оптимальный порядок √Δ.",
+  "achievementStabilityPriority":"Результат выделен за точный показатель устойчивости и экстремальную геометрию, а не как независимо подтверждённое решение старой внешней задачи.",
+  "achievementReadP13":"P13 — серия публикаций (Zenodo) ↗",
+  "achievementEditorialTitle":"Доказательства, новизна и приоритет",
+  "achievementEditorialText":"Математически точный результат может требовать независимой проверки доказательства и сопоставления с предшествующей литературой. Ссылки выше ведут на опубликованные статьи и исторические источники. Приведённые категории отражают математические утверждения и их границы, а не подтверждают независимое рецензирование.",
+  "achievementEditorialSecond":"Точная формула GHZ для трёх участников остаётся гипотезой. Широкая комплексная мультлинейная задача 1985 года не объявляется решённой. Без независимого proof-review и документального сопоставления приоритета мы не используем формулировку «впервые в мире решена давняя открытая проблема».",
+  "achievementAllPapers":"Посмотреть все опубликованные статьи →",
   papers:"Работы",updates:"Что изменилось",about:"О проекте",eyebrow:"ЭКСТРЕМАЛЬНАЯ ВЕРОЯТНОСТЬ · АНАЛИЗ · АЛГЕБРА",
   hero:"Исследовательская программа по зависимости через характеристические функции, точным неравенствам и математической структуре экстремалей.",
   programmeLabel:"НАУЧНАЯ ПРОГРАММА",programmeHeading:"Что исследует CF Dependence",
@@ -151,6 +279,14 @@ function applyLanguage() {
     if(COPY[language][key])el.textContent=COPY[language][key];
   }
   const search=$("search"); if(search) search.placeholder=COPY[language].searchPlaceholder;
+  for (const link of document.querySelectorAll("[data-achievements-link]"))
+    link.href="achievements.html?lang="+language+(link.hash||"");
+  for (const link of document.querySelectorAll("[data-achievement-home-link]"))
+    link.href="index.html?lang="+language+"#achievements";
+  for (const link of document.querySelectorAll("[data-catalogue-home-link]"))
+    link.href="index.html?lang="+language+"#areas";
+  for (const link of document.querySelectorAll("[data-home-link]"))
+    link.href="index.html?lang="+language;
   for (const btn of document.querySelectorAll("[data-lang-switch]")) btn.textContent=COPY[language].otherLang;
   const url=new URL(location.href); url.searchParams.set("lang",language);
   history.replaceState(null,"",url);
@@ -310,8 +446,9 @@ function renderDetail() {
 }
 async function init() {
   const buttons=document.querySelectorAll("[data-lang-switch]");
-  for(const b of buttons)b.addEventListener("click",()=>{language=language==="en"?"ru":"en";if(document.body.dataset.page==="index")renderIndex();else renderDetail();});
+  for(const b of buttons)b.addEventListener("click",()=>{language=language==="en"?"ru":"en";if(document.body.dataset.page==="index")renderIndex();else if(document.body.dataset.page==="paper")renderDetail();else applyLanguage();});
   applyLanguage();
+  if(document.body.dataset.page==="achievements")return;
   try{
     const [a,b]=await Promise.all([fetch("data/papers.json",{cache:"no-store"}),fetch("data/news.json",{cache:"no-store"})]);
     if(!a.ok||!b.ok)throw new Error("Unable to load");
