@@ -5,6 +5,7 @@ const COPY = {
   hero:"A research programme on dependence via characteristic functions, sharp inequalities, and the mathematical structures behind their extremizers.",
   areasNav:"By field",areasLabel:"RESEARCH MAP",areasHeading:"Publications by research area",
   areasIntro:"An overview of published articles grouped by their principal research topic. Each entry shows what it covers, the last verified release date and version DOI.",
+  areasUnavailable:"The subject index is temporarily unavailable. See the complete research papers list below.",
   verifiedAsOf:"Catalogue curated on",zenodoUpdated:"Public Zenodo metadata refreshed on",missingDate:"Date not independently verified",releaseDate:"Publication date",
   versionIdentifier:"Verified version DOI",openLatest:"Open latest version",
   latestPublished:"Latest published record (Concept DOI)",lastVerifiedDate:"Last verified release date",
@@ -31,6 +32,7 @@ const COPY = {
   hero:"Исследовательская программа по зависимости через характеристические функции, точным неравенствам и математической структуре экстремалей.",
   areasNav:"По областям",areasLabel:"КАРТА ИССЛЕДОВАНИЙ",areasHeading:"Публикации по научным областям",
   areasIntro:"Все опубликованные статьи сгруппированы по основной тематике. Для каждой приведены содержание, дата и DOI последней проверенной опубликованной версии.",
+  areasUnavailable:"Тематический список временно недоступен. Полный список статей приведён ниже.",
   verifiedAsOf:"Каталог сверён по состоянию на",zenodoUpdated:"Публичные данные Zenodo обновлены",missingDate:"Дата не подтверждена",releaseDate:"Дата публикации",
   versionIdentifier:"DOI проверенной версии",openLatest:"Открыть актуальную версию",
   latestPublished:"Актуальная публикация (Concept DOI)",lastVerifiedDate:"Дата последней проверенной публикации",
@@ -167,10 +169,19 @@ function renderAreas() {
     group.append(heading,rows);
     container.appendChild(group);
   }
+  if(!container.children.length)
+    container.appendChild(node("p","muted",COPY[language].areasUnavailable));
 }
 function renderIndex() {
   applyLanguage();
-  renderAreas();
+  try { renderAreas(); }
+  catch (error) {
+    // Never leave a permanent "Loading…" placeholder if only the optional
+    // subject directory fails; the main paper catalogue must still render.
+    const areaContainer=$("area-groups");
+    if(areaContainer)areaContainer.replaceChildren(node("p","muted",COPY[language].areasUnavailable));
+    console.error("Subject directory rendering failed",error);
+  }
   const query=($("search")?.value||"").trim().toLocaleLowerCase();
   const matching=papers.filter(p=>[p.code,p.title,p.summary.en,p.summary.ru,...(p.topics||[])].join(" ").toLocaleLowerCase().includes(query));
   const list=$("paper-list"); list.replaceChildren(...matching.map(renderCard));
@@ -239,7 +250,7 @@ async function init() {
   for(const b of buttons)b.addEventListener("click",()=>{language=language==="en"?"ru":"en";if(document.body.dataset.page==="index")renderIndex();else renderDetail();});
   applyLanguage();
   try{
-    const [a,b]=await Promise.all([fetch("data/papers.json"),fetch("data/news.json")]);
+    const [a,b]=await Promise.all([fetch("data/papers.json",{cache:"no-store"}),fetch("data/news.json",{cache:"no-store"})]);
     if(!a.ok||!b.ok)throw new Error("Unable to load");
     const pdata=await a.json(), ndata=await b.json();
     papers=verifiedPapers(pdata.papers).sort((x,y)=>Number(x.code.slice(1))-Number(y.code.slice(1)));
