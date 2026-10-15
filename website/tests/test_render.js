@@ -53,11 +53,16 @@ const elements = {
   "paper-downloads": new FakeElement("div"),
   "paper-history": new FakeElement("div")
 };
+const brandHome = new FakeElement("a");
+const brandPaper = new FakeElement("a");
+const brandAchievements = new FakeElement("a");
+const brandNews = new FakeElement("a");
+const homeLinks=[brandHome,brandPaper,brandAchievements,brandNews];
 const document = {
   documentElement: {lang: "en"},
   getElementById: id => elements[id] || null,
   createElement: tag => new FakeElement(tag),
-  querySelectorAll: () => [],
+  querySelectorAll: selector => selector==="[data-home-link]" ? homeLinks : [],
   addEventListener: () => {}
 };
 const context = vm.createContext({
@@ -66,6 +71,12 @@ const context = vm.createContext({
 });
 const code = fs.readFileSync(path.join(ROOT,"assets","site.js"),"utf8");
 vm.runInContext(code, context, {filename:"site.js"});
+vm.runInContext('language="ru"; applyLanguage();',context);
+for(const link of homeLinks)
+  assert.equal(link.href,"index.html?lang=ru","Russian brand links must retain locale");
+vm.runInContext('language="en"; applyLanguage();',context);
+for(const link of homeLinks)
+  assert.equal(link.href,"index.html?lang=en","English brand links must retain locale");
 vm.runInContext('language="ru"; papers=__papers; catalogueDate="2026-10-14"; renderAreas();', context);
 let sections=elements["area-groups"].children;
 assert.equal(sections.length,5,"There must be five subject areas");
@@ -152,4 +163,4 @@ assert.equal(elements["news-full-list"].children[0],previousHistory,
   "Keep the full history visible if the optional feed fails");
 assert.equal(vm.runInContext('updateSource("https://evil.example/test")',context),null);
 assert.equal(vm.runInContext('updateSource("https://github.com/unknown/repo/pull/12")',context),null);
-console.log("PASS: four latest home updates, six full-history events, bilingual source links and full paper catalogue.");
+console.log("PASS: language-preserving brand across 4 pages, ordered navigation, four latest news, full history and paper catalogue.");
