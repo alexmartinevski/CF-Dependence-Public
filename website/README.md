@@ -109,3 +109,27 @@ the research cycle moves from exploratory examples and invariants to rigorous
 proofs and tests across heterogeneous problems. The introduction describes
 scope, not a claim of novelty for the bare measure. The publication listing and
 DOI/publication status policy are unchanged.
+
+## Annotated publication catalogue (15 October 2026)
+The grouped subject map is now the **single primary list**, replacing the redundant
+18-card grid. Its integrated search filters article codes, titles, bilingual summaries,
+subject names and bilingual result statements. The old `#papers` navigation anchor
+is preserved at the search controls; individual `paper.html?code=Pxx` pages continue
+to work and now show the same key results.
+
+Every published record has **three bilingual scientific results**, kept in
+`website/data/papers.json` under `highlights`. Each result includes an editorial
+`evidence` key naming a matching LaTeX theorem/corollary/proposition/lemma label,
+or `abstract` for a result expressly stated in the release abstract.
+The `highlights_source_doi` is fixed to the **specific public version whose
+manuscript was read**; an automatically discovered newer version DOI is never
+silently substituted as the source of an unchecked result. A provenance link
+appears automatically if the article's current version and highlight source
+differ. The source manuscripts used were the published public P01–P03 TeX files
+and the V6 S8 article sources for the other 15 public Zenodo releases.
+
+Results distinguish proved from conditional bounds, do not advertise conjectures
+as theorems, and explicitly retain important gaps (e.g. exact κ₃).
+Future revisions should only change these claims following a fresh textual check.
+Search, publication-count display, dated news and immutable Zenodo concept links
+continue without a second bibliography grid.
