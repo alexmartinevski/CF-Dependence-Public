@@ -21,6 +21,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+from latex2mathml.converter import convert as latex_to_mathml
+
 DOMAIN = "https://math.a-martinevski.com"
 ORCID = "0009-0000-4230-4414"
 AUTHOR = "Alexandr Martinevski"
@@ -92,6 +94,18 @@ def sanitized_abstract(source):
     plain=text_parser.text()
     if len(plain)<300 or not rendered.startswith("<p>"):
         raise ValueError("Scholarly abstract is incomplete")
+    # Render LaTeX into native, semantic MathML on the server. This avoids
+    # exposing raw TeX to readers and requires no browser JavaScript or fonts.
+    def inline_math(match):
+        source_tex=html.unescape(match.group(1))
+        mathml=latex_to_mathml(source_tex)
+        if not mathml.startswith("<math"):
+            raise ValueError("MathML converter returned unexpected HTML")
+        return '<span class="math inline" aria-label="'+esc(source_tex)+'">'+mathml+'</span>'
+    rendered,count=re.subn(r'<span class="math inline">\\\((.*?)\\\)</span>',
+                           inline_math,rendered,flags=re.DOTALL)
+    if '<span class="math inline">\\(' in rendered:
+        raise ValueError("Unconverted LaTeX in published abstract")
     return rendered, plain
 
 
@@ -347,7 +361,6 @@ def author_page(papers,records,assets):
         canonical,"../",assets)
     data={"@context":"https://schema.org",**person(),
           "email":"mailto:"+EMAIL,
-          "worksFor":{"@type":"Organization","name":"Independent Researcher"},
           "subjectOf":[{"@type":"ScholarlyArticle","@id":f"{DOMAIN}/publications/{p['code']}/#article"}
                        for p in papers]}
     rows=[]
