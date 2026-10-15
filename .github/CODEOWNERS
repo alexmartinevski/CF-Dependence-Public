@@ -1,0 +1,8 @@
+# Requires owner-review branch protection to be enforced by GitHub.
+# Until then CODEOWNERS is advisory. Protect main and require reviews.
+* @alexmartinevski
+/.github/workflows/ @alexmartinevski
+/.github/CODEOWNERS @alexmartinevski
+/website/tools/ @alexmartinevski
+/website/data/ @alexmartinevski
+/website/tests/ @alexmartinevski

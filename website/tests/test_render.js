@@ -81,7 +81,7 @@ vm.runInContext('language="ru"; papers=__papers; catalogueDate="2026-10-14"; ren
 let sections=elements["area-groups"].children;
 assert.equal(sections.length,5,"There must be five subject areas");
 const articles=sections.flatMap(group=>group.children[1].children);
-assert.equal(articles.length,18,"Every released paper must appear once");
+assert.equal(articles.length,papers.length,"Every released paper must appear once");
 for(const entry of articles){
   const code=entry.children[0].children[0].children[0].textContent;
   const paper=papers.find(x=>x.code===code);

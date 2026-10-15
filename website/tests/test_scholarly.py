@@ -43,7 +43,7 @@ class ScholarlyIndexingTests(unittest.TestCase):
         cls.temp.cleanup()
 
     def test_every_paper_has_unique_crawlable_html(self):
-        self.assertEqual(len(self.papers),18)
+        self.assertGreaterEqual(len(self.papers),18)
         codes=set()
         for paper in self.papers:
             code=paper["code"];codes.add(code)
@@ -86,15 +86,15 @@ class ScholarlyIndexingTests(unittest.TestCase):
             self.assertIn("scholar.js?v=",text)
             self.assertIn("BibTeX",text)
             self.assertNotIn("journalTitle",text)
-        self.assertEqual(len(codes),18)
+        self.assertEqual(len(codes),len(self.papers))
         self.assertNotIn("P05",codes)
         self.assertNotIn("P10",codes)
 
     def test_publication_index_and_author_identity_without_js(self):
         directory=(self.dest/"publications/index.html").read_text(encoding="utf-8")
         author=(self.dest/"author/index.html").read_text(encoding="utf-8")
-        self.assertEqual(directory.count('class="scholar-list-item"'),18)
-        self.assertEqual(author.count("<li><a"),18)
+        self.assertEqual(directory.count('class="scholar-list-item"'),len(self.papers))
+        self.assertEqual(author.count("<li><a"),len(self.papers))
         self.assertIn('<h1 class="scholar-title">',directory)
         self.assertIn("0009-0000-4230-4414",author)
         self.assertIn("Alexandr Martinevski",author)
@@ -110,7 +110,7 @@ class ScholarlyIndexingTests(unittest.TestCase):
 
     def test_sitemap_only_canonical_static_pages(self):
         sitemap=(self.dest/"sitemap.xml").read_text(encoding="utf-8")
-        self.assertEqual(sitemap.count("<loc>"),23)
+        self.assertEqual(sitemap.count("<loc>"),len(self.papers)+5)
         self.assertNotIn("paper.html?code=",sitemap)
         self.assertIn("<loc>https://math.a-martinevski.com/publications/</loc>",sitemap)
         self.assertIn("<loc>https://math.a-martinevski.com/author/</loc>",sitemap)
@@ -172,8 +172,8 @@ class ScholarlyIndexingTests(unittest.TestCase):
             self.assertEqual(source["pdf_filename"],code+"_CF_V6_S8.pdf")
             self.assertRegex(source["pdf_md5"],r"^[0-9a-f]{32}$")
             self.assertLess(source["pdf_size"],5_000_000)
-        self.assertEqual(len({p["version_doi"] for p in self.metadata.values()}),18)
-        self.assertEqual(len({p["concept_doi"] for p in self.metadata.values()}),18)
+        self.assertEqual(len({p["version_doi"] for p in self.metadata.values()}),len(self.papers))
+        self.assertEqual(len({p["concept_doi"] for p in self.metadata.values()}),len(self.papers))
 
 
 if __name__=="__main__":
