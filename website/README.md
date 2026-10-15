@@ -1,3 +1,24 @@
+# Release automation R2 — 16 October 2026
+
+New publications are driven by three public data sources only:
+website/data/papers.json, website/data/scholarly/part-*.json, and
+website/data/news.json. Counts, archive pages, sitemap and static bilingual
+news fallback cards are generated automatically during Pages deployment.
+
+The scholarly builder discovers any numbered metadata shards and supports
+safe release PDF filenames rather than only CF_V6_S8. Verified PDF mirrors
+require exact MD5 and bytes and a PDF header, with a 64 MiB limit.
+Otherwise the fixed published Zenodo PDF is linked without a false
+citation_pdf_url. All math abstracts remain HTML+MathML without JS.
+
+CI simulates a synthetic nineteenth paper (P21) with fake identifiers, a
+fourth metadata shard, a different PDF suffix and a new publication event
+in temporary directories without network or GitHub/Zenodo writes.
+
+See website/NEW_PAPER_SITE_RUNBOOK_RU.md R2 for instructions. CODEOWNERS
+does not enforce owner review until real main branch protection is enabled.
+
+---
 # Выпуск новой научной статьи на сайте — актуальная инструкция (16.10.2026)
 
 **Основной регламент:** [NEW_PAPER_SITE_RUNBOOK_RU.md](NEW_PAPER_SITE_RUNBOOK_RU.md). Zenodo и ручной Publish: [private OPS/API/NEW_ARTICLE_PUBLICATION_RUNBOOK_RU.md](https://github.com/alexmartinevski/CF-Dependence/blob/main/OPS/API/NEW_ARTICLE_PUBLICATION_RUNBOOK_RU.md) (ссылка доступна только с доступом к закрытому репозиторию). ZIP передачи и новый чат: private OPS/API/START_NEW_CHAT_NEW_ARTICLE_RU.md.
