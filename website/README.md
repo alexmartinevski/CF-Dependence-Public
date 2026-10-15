@@ -1,3 +1,14 @@
+# Verified PDF cache R2.1 — 16.10.2026
+
+The optional public Zenodo mirror is now resumable across Pages builds:
+a previously complete public artifact and GitHub Actions cache may supply
+PDF bytes, but every file is revalidated against the currently approved
+Zenodo version's MD5, exact byte length, PDF header and filename.
+No stale or corrupt file is served. New verified downloads replenish
+the cache. See website/PDF_MIRROR_CACHE_R2_1.md for retention limits,
+read-only artifact trust boundaries, tests and final deployment QA.
+
+---
 # Release automation R2 — 16 October 2026
 
 New publications are driven by three public data sources only:
