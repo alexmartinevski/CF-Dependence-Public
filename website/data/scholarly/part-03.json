@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "verified_scope": "Approved Zenodo abstracts and PDF checksums, no internal claims",
+  "papers": {
+    "P18": {
+      "title": "Rational moment algebras: spectral reconstruction, factorization and arithmetic rigidity",
+      "description_html": "<p>For rational characteristic functions with finite symmetric Laplace-mixture representations, simple poles and positive residues, we connect truncated moments to exact rational factorization data. Residue-weighted Hankel determinants recover a normalized numerator–denominator resultant, while equal spectral weights recover a polynomial discriminant. The associated finite rational spectral algebra is reconstructed from the Hankel pencil; its idempotents identify rational partitions of poles.</p>\n<p>For integral logarithmic-derivative selectors on real simple spectra, we prove a discriminant-quantized variance gap: the defect is either zero, corresponding to a genuine integral factor, or at least <span class=\"math inline\">\\(2/\\Delta\\)</span> under the stated positivity hypotheses. Smith-normal-form denominators yield an exact local reconstruction threshold. We also give explicit limits of positive-moment inference: an everywhere locally soluble factor-degree problem can fail globally, and smoothly varying positive Fourier models may have densely alternating rational splitting types and discontinuous minimal contact radii. These results distinguish recoverability of a finite algebra from certification of its arithmetic factorization. No general-purpose factorization algorithm or claim about all positive rational characteristic functions is made.</p>",
+      "keywords": [
+        "Rational moment problems",
+        "Hankel determinants",
+        "Polynomial resultants",
+        "Rational spectral algebras",
+        "Idempotent factor selectors",
+        "Discriminant gap",
+        "Smith normal form",
+        "Local–global obstruction",
+        "Laplace mixture models",
+        "Arithmetic rigidity"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355723",
+      "concept_doi": "10.5281/zenodo.23355722",
+      "pdf_filename": "P18_CF_V6_S8.pdf",
+      "pdf_md5": "74788d5cc98c978bb4f01ae8eb4d4647",
+      "pdf_size": 361990,
+      "license": "cc-by-4.0",
+      "record_id": 23355723
+    },
+    "P03": {
+      "title": "Local factor profiles and arithmetic resolution of Chebyshev–Lucas critical polynomials",
+      "description_html": "<p>We study rational factorization of the Chebyshev–Lucas critical polynomials <span class=\"math inline\">\\(A_d(X)=\\sum_j(-1)^j\\binom d{2j+1}X^j-1\\)</span>, whose roots encode nonzero critical points of the characteristic-function factorization profile. A dyadic Newton polygon constrains possible factor degrees, while cyclotomic decomposition and archimedean norm bounds force hypothetical rational factors to contain complete local levels. Lagrange inversion converts inverse-root moments into a finite collection of cyclotomic logarithmic signatures; explicit denominator and height estimates then turn selected nonintegral moments into irreducibility obstructions.</p>\n<p>This method proves two infinite families of irreducible critical polynomials, including <span class=\"math inline\">\\(A_{(4758+7180\\nu)^{1795}}\\)</span> and <span class=\"math inline\">\\(A_{(746+1148\\nu)^{287}}\\)</span> for every integer <span class=\"math inline\">\\(\\nu\\ge0\\)</span>. We also establish conditional criteria for prime-power indices, including a non-Wieferich branch, and describe the distinction between required moment order and arithmetic precision. The general irreducibility problem for all <span class=\"math inline\">\\(A_d\\)</span> remains open. Classical Newton polygons, Lagrange inversion and cyclotomic fields are tools; the contribution is their explicit local-to-global obstruction in this polynomial family.</p>",
+      "keywords": [
+        "Chebyshev–Lucas critical polynomials",
+        "Irreducibility criteria",
+        "2-adic Newton polygons",
+        "Cyclotomic factor blocks",
+        "Lagrange inversion",
+        "p-adic moment obstructions",
+        "Algebraic number theory",
+        "Perfect-power indices",
+        "Logarithmic signatures",
+        "Polynomial factorization"
+      ],
+      "publication_date": "2026-10-12",
+      "version_doi": "10.5281/zenodo.23309603",
+      "concept_doi": "10.5281/zenodo.23022244",
+      "pdf_filename": "P03_CF_V6_S8.pdf",
+      "pdf_md5": "7d10e10293c404e94ab47cc136ba0b00",
+      "pdf_size": 388117,
+      "license": "cc-by-4.0",
+      "record_id": 23309603
+    },
+    "P07": {
+      "title": "Observable quotients and deterministic inverse tomography for characteristic-function interactions",
+      "description_html": "<p>We study inverse reconstruction from characteristic-function interactions and Laplace-type semigroup measurements, beginning with the observable quotient: the complete profile identifies precisely the pushforward of spectral energy under the joint generator-rate map, and no fixed finite set of scalar observations can identify an arbitrary positive spectrum. Under finite atomicity, the classical consecutive Prony protocol gives exact recovery from <span class=\"math inline\">\\(2k\\)</span> values for a positive <span class=\"math inline\">\\(k\\)</span>-atomic spectrum, or <span class=\"math inline\">\\(2k-1\\)</span> additional positive-time values for a probability spectrum; these counts are sharp for that specified protocol.</p>\n<p>The emphasis is on structural query design beyond classical Prony reconstruction. With known finite bipartite support and complete axis profiles, exactly <span class=\"math inline\">\\(\\beta\\)</span> additional mixed Laplace queries are necessary and sufficient, where <span class=\"math inline\">\\(\\beta\\)</span> is the support graph&#x27;s cycle rank. A maximum-volume selection supplies a stable minimal-size design. For rational fixed-marginal grids, we prove a sharp deterministic number–precision exponent <span class=\"math inline\">\\(\\Theta(N^{-\\max\\{\\beta/m,1\\}})\\)</span> for <span class=\"math inline\">\\(m\\)</span> fixed queries and give explicit decoders. A Gaussian example identifies the dependence defect from canonical-correlation geometry. Deterministic exact data, finite precision and statistical sampling are treated as distinct problems.</p>",
+      "keywords": [
+        "Inverse spectral tomography",
+        "Laplace transforms",
+        "Characteristic-function interactions",
+        "Observable quotient",
+        "Cycle-rank identifiability",
+        "Prony reconstruction",
+        "Optimal query design",
+        "Finite-precision recovery",
+        "Spectral collisions",
+        "Canonical correlation"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355619",
+      "concept_doi": "10.5281/zenodo.23355618",
+      "pdf_filename": "P07_CF_V6_S8.pdf",
+      "pdf_md5": "1d34416f8ee3ae73e3ee6bafa925d3ff",
+      "pdf_size": 354476,
+      "license": "cc-by-4.0",
+      "record_id": 23355619
+    },
+    "P15": {
+      "title": "Partition interactions and sharp binary rigidity",
+      "description_html": "<p>Higher-order dependence depends on which partition-based signed interaction measure is used. At four variables, we express the Streitberg interaction exactly as the Lancaster interaction minus the three tensor products of paired dependence defects. Thus agreement on the pure-interaction stratum does not imply that the two operators coincide for arbitrary laws.</p>\n<p>For four balanced sign variables, the fourth joint cumulant satisfies the sharp inequality <span class=\"math inline\">\\(|\\kappa_4|\\le2\\)</span>. We characterize all eight common-sign equality laws, and obtain an exact formula for total-variation distance to the full equality family through the relative-sign distribution. An exact local expansion yields the optimal leading stability coefficient <span class=\"math inline\">\\(1/4\\)</span>, while an explicit family rules out a corresponding global linear bound. We additionally compare normalized partition interactions via lower-order marginal dependence defects. Classical partition and cumulant identities provide the setting; the contribution is the sharp balanced-sign extremal geometry, complete equality classification and local quantitative rigidity.</p>",
+      "keywords": [
+        "Fourth-order joint cumulant",
+        "Streitberg interaction",
+        "Lancaster interaction",
+        "Partition interactions",
+        "Sharp cumulant bounds",
+        "Balanced Rademacher variables",
+        "Equality cases",
+        "Total variation stability",
+        "Higher-order dependence",
+        "Quantitative rigidity"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355701",
+      "concept_doi": "10.5281/zenodo.23355700",
+      "pdf_filename": "P15_CF_V6_S8.pdf",
+      "pdf_md5": "528e3cd13c1e25a7dd2cbaf73e987c77",
+      "pdf_size": 317991,
+      "license": "cc-by-4.0",
+      "record_id": 23355701
+    },
+    "P09": {
+      "title": "Deformations and local arithmetic of Lucas polynomial observations",
+      "description_html": "<p>Lucas recurrence polynomials with a variable product admit several different observations whose factorization and root geometry need not agree. For the zero-companion polynomial <span class=\"math inline\">\\(W_n(X)=(V_n(2,1+X)-2)/X\\)</span>, we determine the complete negative-slope Newton polygon at every odd prime. The terminal segment depends on a Frobenius-reduced index, demonstrating why a parameter derivative alone does not determine the finite polynomial&#x27;s local arithmetic. We also give an exact odd-prime Eisenstein classification for this family.</p>\n<p>For the level polynomials <span class=\"math inline\">\\(U_n(2,1+X)-q\\)</span>, we determine the exact real interval of levels <span class=\"math inline\">\\(q\\)</span> where positive zeros are simple and strictly interlace with those of the neighbouring level polynomial at index <span class=\"math inline\">\\(n+2\\)</span>, including root-motion and endpoint-asymptotic formulas. Integral coefficient identities and finite-field Frobenius reduction permit transfer of specified small-degree factor profiles; known periodicity of reversed Dickson polynomials is used rather than claimed new. The paper distinguishes local Newton geometry and real interlacing from global rational irreducibility; no general factorization theorem for all Lucas levels is asserted.</p>",
+      "keywords": [
+        "Lucas polynomials",
+        "Newton polygons",
+        "p-adic valuations",
+        "Frobenius reduction",
+        "Real-root interlacing",
+        "Polynomial deformations",
+        "Eisenstein criterion",
+        "Recurrence polynomials",
+        "Finite-field factor profiles",
+        "Arithmetic specialization"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355634",
+      "concept_doi": "10.5281/zenodo.23355633",
+      "pdf_filename": "P09_CF_V6_S8.pdf",
+      "pdf_md5": "4ceefafc7f0853df337562970fe4e22c",
+      "pdf_size": 342264,
+      "license": "cc-by-4.0",
+      "record_id": 23355634
+    },
+    "P04": {
+      "title": "Sharp constants for Fourier factorization defects: universal ceilings, strong mixing and interaction measures",
+      "description_html": "<p><strong>1. Exact planar GHZ nonlocality threshold for all n ≥ 4.</strong></p>\n<p>We determine the sharp supremum of violations of full-correlation Bell inequalities by the n-qubit GHZ state under planar (XY) measurements, over arbitrary finite numbers of measurement settings. The result is the exact formula</p>\n<p><strong>κₙ = (π/2)ⁿ ζ(n) / [2(1 + 2⁻ⁿ) ζ(2n)], n ≥ 4.</strong></p>\n<p>In particular, κ₄ = 105/34, corresponding to the critical visibility v₄ = 34/105. The result replaces bounds for particular finite measurement configurations with an exact analytic expression for the stated class.</p>\n<p><strong>2. Substantially improved rigorous bounds for the open three-party GHZ problem.</strong></p>\n<p>We establish</p>\n<p><strong>2.0349681535… ≤ κ₃ ≤ 105 ζ(3)/(2π³) = 2.0353294291… .</strong></p>\n<p>Both bounds improve the previously published 2024 interval. The lower bound comes from a finite-harmonic Bell witness supported by 272 reproducible exact inequalities; the upper bound follows from an explicit square-wave/Möbius local model.</p>\n<p>The conjecture that the upper bound is attained remains open. The paper discusses an obstruction involving the Möbius function and zeros of the Riemann zeta function.</p>\n<p><strong>3. Sharp covariance inequalities under strong mixing.</strong></p>\n<p>We establish the optimal coefficient 4√2 for bounded complex-valued observations, improving the classical bound 2π. More generally, the optimal Hilbert-space coefficient is 4K_G(k), where K_G(k) is the real Grothendieck constant of order k. For real scalar observations, the sharp coefficient is 4.</p>\n<p><strong>4. Sharp multilinear dependence inequalities.</strong></p>\n<p>For n-linear forms that are real-valued on real inputs, we identify the optimal real and complex comparison factors</p>\n<p><strong>2ⁿ and 2ⁿ κₙ.</strong></p>\n<p>These results strengthen classical estimates in a natural restricted class. They do not settle the more general problem for arbitrary complex multilinear forms considered by Bradley and Bryc (1985).</p>\n<p><strong>5. Asymptotically sharp growth of higher-order interaction measures.</strong></p>\n<p>For the centred Fourier–Lancaster interaction functional, we derive explicit finite-dimensional bounds and establish</p>\n<p><strong>L_d = 2ᵈ/(ed) · (1 + O(d⁻¹)).</strong></p>\n<p>Thus, unlike the universal characteristic-function factorization defect, this higher-order interaction functional admits no dimension-independent bound.</p>\n<p><strong>6. Further structural results.</strong></p>\n<p>The paper also develops restrictions to discrete phase groups, centred-interaction comparisons and quantitative links between universal Fourier factorization ceilings, strong mixing and multilinear dependence.</p>",
+      "keywords": [
+        "Planar GHZ nonlocality",
+        "Bell inequalities",
+        "Exact critical visibility",
+        "Multipartite quantum correlations",
+        "Sharp multilinear inequalities",
+        "Strong mixing coefficients",
+        "Grothendieck constants",
+        "Sharp covariance inequalities",
+        "Fourier factorization defects",
+        "Möbius inversion and Riemann zeta function",
+        "Lancaster interaction measures",
+        "Extremal probability theory"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23356092",
+      "concept_doi": "10.5281/zenodo.23356091",
+      "pdf_filename": "P04_CF_V6_S8.pdf",
+      "pdf_md5": "e78f2d101773e635d00c60a8733969e2",
+      "pdf_size": 436914,
+      "license": "cc-by-4.0",
+      "record_id": 23356092
+    }
+  }
+}
