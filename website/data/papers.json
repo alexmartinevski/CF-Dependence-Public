@@ -1,7 +1,7 @@
 {
   "schema": "cf-publications-public/v1",
   "source_repo": "alexmartinevski/CF-Dependence-Public",
-  "last_curated_on": "2026-10-14",
+  "last_curated_on": "2026-10-15",
   "papers": [
     {
       "code": "P01",
@@ -152,7 +152,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23356092"
+      "highlights_source_doi": "10.5281/zenodo.23356092",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P06",
@@ -192,7 +194,9 @@
           "evidence": "thm:rank"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355615"
+      "highlights_source_doi": "10.5281/zenodo.23355615",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P07",
@@ -232,7 +236,9 @@
           "evidence": "cor:canonical"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355619"
+      "highlights_source_doi": "10.5281/zenodo.23355619",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P08",
@@ -272,7 +278,9 @@
           "evidence": "thm:norm"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355626"
+      "highlights_source_doi": "10.5281/zenodo.23355626",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P09",
@@ -312,7 +320,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355634"
+      "highlights_source_doi": "10.5281/zenodo.23355634",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P11",
@@ -352,7 +362,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355657"
+      "highlights_source_doi": "10.5281/zenodo.23355657",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P12",
@@ -392,7 +404,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355669"
+      "highlights_source_doi": "10.5281/zenodo.23355669",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P13",
@@ -432,7 +446,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355678"
+      "highlights_source_doi": "10.5281/zenodo.23355678",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P14",
@@ -472,7 +488,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355688"
+      "highlights_source_doi": "10.5281/zenodo.23355688",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P15",
@@ -512,7 +530,9 @@
           "evidence": "prop:TV"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355701"
+      "highlights_source_doi": "10.5281/zenodo.23355701",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P16",
@@ -552,7 +572,9 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355709"
+      "highlights_source_doi": "10.5281/zenodo.23355709",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P17",
@@ -592,7 +614,9 @@
           "evidence": "thm:gap"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355715"
+      "highlights_source_doi": "10.5281/zenodo.23355715",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P18",
@@ -632,7 +656,9 @@
           "evidence": "thm:quantum"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355723"
+      "highlights_source_doi": "10.5281/zenodo.23355723",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P19",
@@ -672,7 +698,9 @@
           "evidence": "thm:threeprofile"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355731"
+      "highlights_source_doi": "10.5281/zenodo.23355731",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     },
     {
       "code": "P20",
@@ -712,7 +740,9 @@
           "evidence": "thm:bank"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23355739"
+      "highlights_source_doi": "10.5281/zenodo.23355739",
+      "first_published_on": "2026-10-14",
+      "last_version_on": "2026-10-14"
     }
   ],
   "highlights_editorial_policy": {

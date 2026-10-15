@@ -133,3 +133,34 @@ as theorems, and explicitly retain important gaps (e.g. exact κ₃).
 Future revisions should only change these claims following a fresh textual check.
 Search, publication-count display, dated news and immutable Zenodo concept links
 continue without a second bibliography grid.
+
+## Publication chronology (15 October 2026)
+Every grouped item and individual article page distinguishes three different
+metadata fields: **first public release date**, **date of the latest public
+revision**, and **latest published version**. The primary DOI still uses the
+Zenodo Concept DOI, and a specific Version DOI remains visible for citation.
+
+- Publication dates are **per-version `metadata.publication_date` values** from
+  Zenodo's published version history; they do not refer to edits of the website,
+  reserved drafts, or repository commits. Version dates in Zenodo are supplied
+  as publication metadata, not proven to be the exact clock time of a Publish
+  action.
+- The version label is taken from Zenodo `metadata.version`. If that optional
+  text is absent but a verified 1-based `versions.index` exists, the catalogue
+  explicitly says "Zenodo release №N". The ordinal is not a guessed semantic
+  version number.
+- `website/tools/resolve_zenodo.py` consults the public versions endpoint
+  (pagination enabled), validates every version's Concept DOI, rejects drafts,
+  and orders releases by the authoritative version index or record creation time.
+  A direct latest-public-version endpoint is used when the lineage API cannot
+  supply a complete and ordered history.
+- The static, independently curated first-publication snapshot for the 15 new
+  release lineages P04, P06–P09, P11–P20 is 2026-10-14. P01–P03 remain
+  explicitly unverified until their first release metadata can be resolved;
+  published dates and version names are never extrapolated from reserved DOIs.
+- The nightly/automatic build runs only public read-only GET requests and
+  publishes a JSON snapshot used by the site; failures preserve the dated,
+  verified catalogue metadata.
+- The highlights' `highlights_source_doi` is not changed when live Zenodo
+  metadata points to a newer version: scientific claims still cite their
+  actual reviewed source version.
