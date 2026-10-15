@@ -81,6 +81,14 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertEqual(date.fromisoformat(p["published_on"]).isoformat(),p["published_on"])
             else:
                 self.assertIn(p["code"],{"P01","P02","P03"}, "Publication date may not be invented")
+            for key in ("first_published_on","last_version_on"):
+                if p.get(key):
+                    self.assertEqual(date.fromisoformat(p[key]).isoformat(),p[key])
+            if p.get("first_published_on") and p.get("last_version_on"):
+                self.assertLessEqual(p["first_published_on"],p["last_version_on"])
+            if p["code"] not in {"P01","P02","P03"}:
+                self.assertEqual(p["first_published_on"],"2026-10-14")
+                self.assertEqual(p["last_version_on"],"2026-10-14")
 
     def test_latest_version_links_and_directory_present(self):
         homepage=(ROOT/"index.html").read_text(encoding="utf-8")
@@ -100,20 +108,78 @@ class PublicSiteTests(unittest.TestCase):
         sys.path.insert(0, str(ROOT/"tools"))
         import resolve_zenodo as sync
         paper=self.site["papers"][0]
-        old={"doi":paper["version_doi"],"conceptdoi":paper["concept_doi"],
-             "metadata":{"publication_date":"2026-10-01","version":"v0.1"},
-             "links":{"latest":"https://zenodo.org/api/records/23355587"}}
-        latest={"doi":"10.5281/zenodo.23355587","conceptdoi":paper["concept_doi"],
-                "metadata":{"publication_date":"2026-10-15","version":"v0.2"}}
-        resolved=sync.extract_release(paper,old,latest)
+        first={
+            "doi":paper["version_doi"],"conceptdoi":paper["concept_doi"],
+            "versions":{"index":1},
+            "created":"2026-09-21T12:00:00Z",
+            "updated":"2026-09-30T12:00:00Z",
+            "metadata":{"publication_date":"2026-09-21","version":"0.1"},
+            "links":{"latest":"https://zenodo.org/api/records/23355587"}
+        }
+        newest={
+            "doi":"10.5281/zenodo.23355587","conceptdoi":paper["concept_doi"],
+            "versions":{"index":2},
+            "created":"2026-10-14T12:00:00Z",
+            "updated":"2026-10-16T12:00:00Z",
+            "metadata":{"publication_date":"2026-10-14","version":"0.2"}
+        }
+        resolved=sync.extract_release(
+            paper,first,latest=newest,versions=[newest,first],history_complete=True
+        )
         self.assertEqual(resolved["version_doi"],"10.5281/zenodo.23355587")
-        self.assertEqual(resolved["published_on"],"2026-10-15")
-        self.assertEqual(resolved["version_label"],"v0.2")
-        self.assertEqual(sync.latest_record_id(old),23355587)
-        bad={**latest,"conceptdoi":"10.5281/zenodo.9999"}
-        self.assertIsNone(sync.extract_release(paper,old,bad))
-        old["links"]["latest"]="https://other.example.org/api/records/23355587"
-        self.assertIsNone(sync.latest_record_id(old))
+        self.assertEqual(resolved["first_published_on"],"2026-09-21")
+        self.assertEqual(resolved["last_version_on"],"2026-10-14")
+        self.assertEqual(resolved["published_on"],"2026-10-14")
+        self.assertEqual(resolved["version_label"],"0.2")
+        self.assertEqual(resolved["version_index"],2)
+        self.assertEqual(resolved["release_count"],2)
+        self.assertEqual(sync.latest_record_id(first),23355587)
+        self.assertTrue(sync.is_public_version(first,paper["concept_doi"]))
+        wrong={**newest,"conceptdoi":"10.5281/zenodo.9999"}
+        self.assertIsNone(sync.extract_release(paper,first,latest=wrong))
+        first["links"]["latest"]="https://another-domain.org/api/records/23355587"
+        self.assertIsNone(sync.latest_record_id(first))
+
+    def test_zenodo_first_date_and_release_number_not_invented(self):
+        import sys
+        sys.path.insert(0, str(ROOT/"tools"))
+        import resolve_zenodo as sync
+        paper=self.site["papers"][0]
+        original={
+            "doi":paper["version_doi"],"conceptdoi":paper["concept_doi"],
+            "metadata":{"publication_date":"2026-09-21"},
+            "created":"2026-09-21T12:00:00Z",
+            "versions":{"index":2}
+        }
+        # An old record with index=2 cannot establish the date of first release.
+        fallback=sync.extract_release(paper,original)
+        self.assertNotIn("first_published_on",fallback)
+        self.assertNotIn("version_label",fallback)
+        self.assertEqual(fallback["version_index"],2)
+        self.assertEqual(fallback["last_version_on"],"2026-09-21")
+        self.assertEqual(sync.version_index({"versions":{"index":True}}),None)
+        # A complete dated history can establish first publication without index.
+        initial={**original,"versions":{},"created":"2026-09-01T12:00:00Z",
+                 "metadata":{"publication_date":"2026-09-01"}}
+        result=sync.extract_release(paper,original,versions=[initial,original],history_complete=True)
+        self.assertEqual(result["first_published_on"],"2026-09-01")
+        # Drafts from another lineage must never be shown as public versions.
+        draft={**initial,"is_draft":True}
+        self.assertFalse(sync.is_public_version(draft,paper["concept_doi"]))
+
+    def test_public_metadata_display_labels(self):
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        detail=(ROOT/"paper.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        for name in ("firstPublished","lastChanged","latestVersionNumber"):
+            self.assertIn(name+":",script)
+            self.assertIn('data-i18n="'+name+'"',detail)
+        for element in ("paper-first-published","paper-last-updated","paper-version-number"):
+            self.assertIn('id="'+element+'"',detail)
+        self.assertIn('item.first_published_on',script)
+        self.assertIn('item.version_index',script)
+        self.assertIn('function versionName(p)',script)
+        self.assertIn('lastVersionDate(p)',script)
 
     def test_immutable_asset_urls_and_fingerprint(self):
         import hashlib
