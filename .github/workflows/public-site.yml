@@ -30,7 +30,9 @@ jobs:
       - name: Check JavaScript syntax and runtime directory rendering
         run: |
           node --check website/assets/site.js
+          node --check website/assets/scholar.js
           node website/tests/test_render.js
+          python website/tests/test_scholarly.py
   deploy:
     if: github.event_name != 'pull_request'
     needs: validate
@@ -48,12 +50,15 @@ jobs:
         run: |
           mkdir -p _site/assets _site/data
           cp website/index.html website/paper.html website/achievements.html website/news.html _site/
-          cp website/assets/site.css website/assets/site.js _site/assets/
+          cp website/assets/site.css website/assets/site.js website/assets/scholar.js _site/assets/
           cp website/data/papers.json website/data/news.json _site/data/
           # Read-only public metadata; failures retain the verified catalogue.
           python3 website/tools/resolve_zenodo.py website/data/papers.json _site/data/zenodo_latest.json
           cp website/robots.txt website/sitemap.xml _site/
           python3 website/tools/fingerprint_assets.py _site
+          # Public-only descriptions, stable DOI identities and ORCID.
+          # Optional verified Zenodo PDF mirror; never emit a broken citation_pdf_url.
+          python3 website/tools/build_scholarly_pages.py website _site --repo-root . --fetch-pdfs
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:

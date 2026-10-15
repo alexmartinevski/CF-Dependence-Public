@@ -660,15 +660,21 @@ class PublicSiteTests(unittest.TestCase):
         ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
         urls = [node.text for node in sitemap.iter(ns+"loc")]
         self.assertIn(hostname, urls)
-        self.assertEqual(len(urls), len(self.site["papers"])+3)
+        self.assertEqual(len(urls), len(self.site["papers"])+5)
         self.assertIn(hostname+"news.html",urls)
+        self.assertIn(hostname+"publications/",urls)
+        self.assertIn(hostname+"author/",urls)
+        self.assertNotIn(hostname+"paper.html?code=P01",urls)
         self.assertIn(hostname+"achievements.html",urls)
         for paper in self.site["papers"]:
-            self.assertIn(hostname+"paper.html?code="+paper["code"], urls)
+            self.assertIn(hostname+"publications/"+paper["code"]+"/", urls)
         self.assertTrue(all(u.startswith(hostname) for u in urls))
 
     def test_static_entrypoints_present(self):
-        for rel in ("index.html","paper.html","achievements.html","news.html","assets/site.css","assets/site.js"):
+        for rel in ("index.html","paper.html","achievements.html","news.html",
+                    "assets/site.css","assets/site.js","assets/scholar.js",
+                    "tools/build_scholarly_pages.py","data/scholarly/part-01.json",
+                    "data/scholarly/part-02.json","data/scholarly/part-03.json"):
             self.assertTrue((ROOT/rel).is_file(),rel)
 
 if __name__=="__main__":

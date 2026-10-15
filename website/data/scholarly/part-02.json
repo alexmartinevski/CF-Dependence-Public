@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "verified_scope": "Approved Zenodo abstracts and PDF checksums, no internal claims",
+  "papers": {
+    "P13": {
+      "title": "Sharp Wasserstein stability of a multivariate characteristic-function defect",
+      "description_html": "<p>For laws <span class=\"math inline\">\\(P\\)</span> on the closed unit polydisk, let <span class=\"math inline\">\\(D(P)\\)</span> denote the product-moment factorization defect and <span class=\"math inline\">\\(\\Delta(P)=C_d-D(P)\\)</span> its deficit from the sharp universal constant. We prove a quantitative inverse theorem: for each fixed <span class=\"math inline\">\\(d\\ge3\\)</span> and every finite <span class=\"math inline\">\\(p\\ge1\\)</span>, there are positive constants such that <span class=\"math inline\">\\(\\operatorname{dist}_{W_p}(P,\\mathcal E_d)\\le K_{d,p}\\Delta(P)^{1/(2p)}\\)</span> whenever the deficit is sufficiently small. Here <span class=\"math inline\">\\(\\mathcal E_d\\)</span> is the entire equality orbit of common fair-sign two-point laws, including coordinate rotations.</p>\n<p>The exponent <span class=\"math inline\">\\(1/(2p)\\)</span> is optimal even after minimizing over all phase rotations. A family of biased two-point extremizers gives matching asymptotics and an exact formula for its <span class=\"math inline\">\\(W_2\\)</span>-distance to the equality orbit. The proof identifies distinct position and mass errors; when these are measured separately, a natural structured discrepancy admits the sharper and again optimal square-root rate. We also treat nonidentical prescribed mean moduli under explicit hypotheses. The statement is a stability theorem for near-extremizers, not an unqualified global Wasserstein estimate.</p>",
+      "keywords": [
+        "Sharp stability inequalities",
+        "Wasserstein distance",
+        "Characteristic-function factorization",
+        "Extremal probability",
+        "Quantitative rigidity",
+        "Optimal exponent",
+        "Two-point extremizers",
+        "Equality orbit",
+        "Phase synchronization",
+        "Probability transport"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355678",
+      "concept_doi": "10.5281/zenodo.23355677",
+      "pdf_filename": "P13_CF_V6_S8.pdf",
+      "pdf_md5": "90c2621db9b6aa7458dc1a07429a4b25",
+      "pdf_size": 321510,
+      "license": "cc-by-4.0",
+      "record_id": 23355678
+    },
+    "P19": {
+      "title": "Prescribed-marginal dependence synthesis with moment and Fourier constraints",
+      "description_html": "<p>We address an inverse dependence problem: construct joint probability laws with prescribed marginals while enforcing finite moment constraints, selected Fourier values and specified spectral zeros simultaneously. A centered-tensor interpolation lemma yields explicit rational lattice constructions with a computable positivity region and local complex interpolation for marginal densities bounded below on intervals. The exact feasible body is distinguished from simpler sufficient inner bounds.</p>\n<p>We construct examples with any prescribed pure Fourier-factorization defect between zero and one while matching independence through an arbitrarily chosen finite moment order and retaining two algebraic contacts. A sharp support-radius statement is provided for the specified rational signed-measure construction, not asserted for all positive couplings. For three fair signs we derive an exact dependence profile when pair correlations are equal and identify the dominant-pair regime <span class=\"math inline\">\\(2q^2\\ge R_2+\\tau^2\\)</span> for unequal correlations, where <span class=\"math inline\">\\(q=\\max|r_{ij}|\\)</span>, <span class=\"math inline\">\\(R_2=\\sum r_{ij}^2\\)</span>, and <span class=\"math inline\">\\(\\tau=\\mathbb E[X_1X_2X_3]\\)</span>. At its transition the frequency contact can be quartic along one direction and quadratic transversally. The paper makes simultaneous feasibility and the geometry of its constraints explicit rather than proposing a universal unrestricted synthesis algorithm.</p>",
+      "keywords": [
+        "Inverse dependence synthesis",
+        "Prescribed marginals",
+        "Fourier interpolation",
+        "Finite moment masking",
+        "Spectral zero constraints",
+        "Constructive probability couplings",
+        "Centered tensor perturbations",
+        "Three-sign dependence",
+        "Extremal Fourier defects",
+        "Positivity geometry"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355731",
+      "concept_doi": "10.5281/zenodo.23355730",
+      "pdf_filename": "P19_CF_V6_S8.pdf",
+      "pdf_md5": "f1e84dcc3ad04a61bd72ddb0634b9ae1",
+      "pdf_size": 344833,
+      "license": "cc-by-4.0",
+      "record_id": 23355731
+    },
+    "P16": {
+      "title": "Query-Relative Walsh Compression: Sharp Punctured Norms and Signed Bent-Orbit Recovery",
+      "description_html": "<p>For signed differences of measures on <span class=\"math inline\">\\(\\mathbb F_2^m\\)</span>, we determine sharp comparisons between total variation and punctured (zero-frequency-deleted) Walsh <span class=\"math inline\">\\(L^p\\)</span> spectra. For every <span class=\"math inline\">\\(m\\)</span> and <span class=\"math inline\">\\(1\\le p\\le2\\)</span>, the optimal constant is <span class=\"math inline\">\\(\\Lambda_{m,p}=2^{m/p-1}\\)</span>. For all dimensions <span class=\"math inline\">\\(m\\le5\\)</span> we also give analytical sharp formulas throughout <span class=\"math inline\">\\(2\\le p\\le\\infty\\)</span>; in particular the five-bit formula is <span class=\"math inline\">\\(\\Lambda_{5,p}=\\frac{32^{1/p-1}}2(16\\cdot4^q+12\\cdot8^q)^{1/q}\\)</span>, where <span class=\"math inline\">\\(q=p/(p-1)\\)</span>. The result is a continuous-exponent punctured-norm theorem, not a claim that the classical five-bit endpoint value 160 or the underlying Boolean spectral catalogues were first discovered here.</p>\n<p>For observations of a known quadratic bent-function translation/sign orbit, exact identification is equivalent to affine spanning by sampled frequencies. The first-order Reed–Muller code determines optimal worst-case sign-error, erasure and Euclidean-noise thresholds. We also identify a sharp six-bit bent regime for <span class=\"math inline\">\\(p\\ge2.5590297\\ldots\\)</span> and an explicit counterexample to bent optimality for <span class=\"math inline\">\\(2\\le p&lt;2.1269266\\ldots\\)</span>; the intermediate regime remains unresolved. Sharpness for arbitrary signed differences is not automatically claimed for the more restricted class of characteristic-function dependence defects.</p>",
+      "keywords": [
+        "Walsh–Hadamard transform",
+        "Sharp punctured Walsh norms",
+        "Total variation distance",
+        "Bent Boolean functions",
+        "Signed orbit recovery",
+        "Reed–Muller codes",
+        "Spectral compression",
+        "Finite Fourier analysis",
+        "Noise and erasure correction",
+        "Boolean spectral geometry"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355709",
+      "concept_doi": "10.5281/zenodo.23355708",
+      "pdf_filename": "P16_CF_V6_S8.pdf",
+      "pdf_md5": "d28fd2b3595d42609100bf472797baaf",
+      "pdf_size": 362094,
+      "license": "cc-by-4.0",
+      "record_id": 23355709
+    },
+    "P12": {
+      "title": "Harmonic observation quotients and stable recovery from translated class portraits",
+      "description_html": "<p>Scalar characters on a non-Abelian group observe only the conjugacy-class quotient of a probability law. We investigate whether complete translated conjugacy-class portraits recover the original law and how many translations are needed for stable inversion. For every dihedral group <span class=\"math inline\">\\(D_{2m}\\)</span>, <span class=\"math inline\">\\(m\\ge3\\)</span>, the four portraits translated by <span class=\"math inline\">\\(1,r,s,rs\\)</span> recover every law and are minimal. Their exact design-normalized smallest Gram eigenvalue is <span class=\"math inline\">\\(\\frac12(1-\\cos(\\pi/L))\\)</span>, where <span class=\"math inline\">\\(L=m/\\gcd(m,2)\\)</span>, demonstrating that a minimal exact design becomes ill-conditioned as <span class=\"math inline\">\\(m\\)</span> increases.</p>\n<p>For fixed nonadaptive equally weighted full-portrait designs, we prove that a stable, dimension-independent condition number requires and can be achieved with <span class=\"math inline\">\\(\\Theta(\\log m)\\)</span> portraits. A general representation-theoretic spanning criterion explains which shifts identify a law and separates scalar-class information from full matrix Fourier observations. That general criterion follows standard finite-group harmonic analysis; the emphasis here is on minimal dihedral recovery, exact conditioning and optimal logarithmic redundancy. A portrait means a complete conjugacy-class distribution, not a single character evaluation or empirical sample.</p>",
+      "keywords": [
+        "Non-Abelian harmonic analysis",
+        "Dihedral groups",
+        "Conjugacy-class tomography",
+        "Translated class portraits",
+        "Exact inverse reconstruction",
+        "Matrix coefficient spanning",
+        "Optimal experiment design",
+        "Spectral conditioning",
+        "Logarithmic redundancy",
+        "Finite group representations"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355669",
+      "concept_doi": "10.5281/zenodo.23355668",
+      "pdf_filename": "P12_CF_V6_S8.pdf",
+      "pdf_md5": "1590c32efb3165b4dabfe9daf856aede",
+      "pdf_size": 485042,
+      "license": "cc-by-4.0",
+      "record_id": 23355669
+    },
+    "P06": {
+      "title": "Contact fibres, exact gluing, and residual geometry of finite interaction laws",
+      "description_html": "<p>For a finite joint law <span class=\"math inline\">\\(P\\)</span>, the nonlinear interaction observation <span class=\"math inline\">\\(\\mu(P)=P-\\bigotimes_jP_j\\)</span> generally does not determine <span class=\"math inline\">\\(P\\)</span> uniquely. We describe the geometry of its inverse fibre. Under positive-marginal conditions, existence of a transport supported on the zero cells characterizes the absence of a strictly positive law in that fibre. An exact relative-entropy identity controls the fibre&#x27;s diameter when the negative interaction shadow meets every coordinate state.</p>\n<p>When a contact transport has positive mass on all zero cells, a contact-incidence rank defect <span class=\"math inline\">\\(r\\)</span> characterizes local inverse stability: a local Lipschitz estimate holds exactly when <span class=\"math inline\">\\(r=0\\)</span>, and for <span class=\"math inline\">\\(r&gt;0\\)</span> the general square-root exponent is sharp. Exactly <span class=\"math inline\">\\(r\\)</span> additional smooth observations are necessary and sufficient to recover a linear local estimate. For a structured negative symmetric shadow we also obtain an exact positivity and minimum-budget criterion. A saturated four-state example yields the full feasible body (a rectangle intersected with a diamond) and exact affine-query optimization; maximum entropy need not select a maximizer. Full interaction fibres and coarser symmetric shadows are not interchangeable.</p>",
+      "keywords": [
+        "Inverse probability problems",
+        "Finite interaction laws",
+        "Contact transport",
+        "Interaction fibres",
+        "Relative entropy",
+        "Local Lipschitz stability",
+        "Incidence rank",
+        "Identifiability",
+        "Prescribed marginals",
+        "Optimal query design"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355615",
+      "concept_doi": "10.5281/zenodo.23355614",
+      "pdf_filename": "P06_CF_V6_S8.pdf",
+      "pdf_md5": "8a98f48d916788ff3a3957f91448f9db",
+      "pdf_size": 356944,
+      "license": "cc-by-4.0",
+      "record_id": 23355615
+    },
+    "P08": {
+      "title": "Critical values, resultants and norms of the Chebyshev defect",
+      "description_html": "<p>For the Chebyshev factorization defect <span class=\"math inline\">\\(F_d(x)=x^d-T_d(x)\\)</span>, we give an unconditional discriminant identity valid for every <span class=\"math inline\">\\(d\\ge3\\)</span>. With <span class=\"math inline\">\\(N=d-1\\)</span>, it is <span class=\"math inline\">\\(\\operatorname{disc}F_d=d^d(2^N-1)P_d\\)</span>, where <span class=\"math inline\">\\(P_d=\\prod_{\\omega^N=1,\\,\\omega\\ne1}[2^N-(1+\\omega)^N]\\)</span>. The expression connects the real critical geometry of a sharp characteristic-function bound to a cyclotomic resultant. We also prove that distinct positive critical points have distinct absolute critical values.</p>\n<p>The same product yields precise algebraic-degree and absolute-norm formulas for the extremal constant <span class=\"math inline\">\\(C_d\\)</span> when the associated critical polynomial <span class=\"math inline\">\\(A_d\\)</span> is irreducible; this hypothesis is proved for extensive index families in companion arithmetic work. We factor the resultant into cyclotomic norms, characterize its prime divisors via a torsion-line condition, and determine exact dyadic and selected odd-prime valuations. The degree/norm conclusions are explicitly conditional where irreducibility has not been established. The contribution is the explicit critical-value/resultant chain, not a new definition of polynomial discriminants.</p>",
+      "keywords": [
+        "Chebyshev polynomials",
+        "Polynomial discriminants",
+        "Cyclotomic resultants",
+        "Critical values",
+        "Algebraic norms",
+        "Extremal constants",
+        "Arithmetic valuations",
+        "Torsion points",
+        "Chebyshev approximation",
+        "Irreducibility conditions"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355626",
+      "concept_doi": "10.5281/zenodo.23355625",
+      "pdf_filename": "P08_CF_V6_S8.pdf",
+      "pdf_md5": "6db92fa4abb6bea214931b594005c675",
+      "pdf_size": 355660,
+      "license": "cc-by-4.0",
+      "record_id": 23355626
+    }
+  }
+}

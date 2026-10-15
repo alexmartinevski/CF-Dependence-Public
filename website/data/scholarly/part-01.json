@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "verified_scope": "Approved Zenodo abstracts and PDF checksums, no internal claims",
+  "papers": {
+    "P01": {
+      "title": "A sharp universal profile for multivariate characteristic-function factorization",
+      "description_html": "<p>For complex random variables <span class=\"math inline\">\\(Z_1,\\ldots,Z_d\\)</span> with <span class=\"math inline\">\\(|Z_j|\\le1\\)</span> and prescribed mean moduli <span class=\"math inline\">\\(r_j=|\\mathbb E Z_j|\\)</span>, we determine the exact supremum of the product-factorization defect <span class=\"math inline\">\\(|\\mathbb E\\prod_jZ_j-\\prod_j\\mathbb E Z_j|\\)</span>. Writing <span class=\"math inline\">\\(R=\\prod_jr_j\\)</span> and <span class=\"math inline\">\\(S=\\sum_j\\arccos r_j\\)</span>, the answer is <span class=\"math inline\">\\(\\mathcal C_d(r)=R-\\cos(\\min\\{S,\\pi\\})\\)</span>. We give explicit attaining couplings, and in integer dimensions classify all extremizers through a single common symmetric sign and coordinate phases.</p>\n<p>Maximizing over the mean moduli yields the sharp universal characteristic-function bound <span class=\"math inline\">\\(C_d=\\max_{0\\le\\theta\\le\\pi/d}(\\cos^d\\theta-\\cos(d\\theta))=\\|T_d-x^d\\|_{\\infty}\\)</span>, including <span class=\"math inline\">\\(C_3=2/\\sqrt3\\)</span>, <span class=\"math inline\">\\(C_4=9/7\\)</span>, and <span class=\"math inline\">\\(C_d\\uparrow2\\)</span>. The continuous extension <span class=\"math inline\">\\(C(p)\\)</span> has a unique nondegenerate optimizer for <span class=\"math inline\">\\(p&gt;2\\)</span> and exactly one inflection point in <span class=\"math inline\">\\((2,3)\\)</span>; consequently the integer sequence is strictly concave. We also derive quantitative approximation and endpoint asymptotics, a Gamma-law interpretation, and a comparison with the real-valued case. The contribution is the sharp profile and extremal structure, not the introduction of a previously unknown dependence statistic.</p>",
+      "keywords": [
+        "Characteristic-function factorization",
+        "Sharp universal dependence bound",
+        "Extremal probability",
+        "Prescribed mean moduli",
+        "Equality cases",
+        "Chebyshev polynomials",
+        "Continuous dimension profile",
+        "Strict concavity",
+        "Gamma distributions",
+        "Fourier dependence"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355587",
+      "concept_doi": "10.5281/zenodo.23021779",
+      "pdf_filename": "P01_CF_V6_S8.pdf",
+      "pdf_md5": "db0f6a1513c42d959641c001c9a9fabb",
+      "pdf_size": 339634,
+      "license": "cc-by-4.0",
+      "record_id": 23355587
+    },
+    "P14": {
+      "title": "Global irreducibility and Galois groups of Chebyshev–Lucas level polynomials",
+      "description_html": "<p>For the Chebyshev–Lucas level polynomials <span class=\"math inline\">\\(B_n(X)-q\\)</span>, we establish that the generic Galois group over <span class=\"math inline\">\\(\\mathbb Q(q)\\)</span> (and over <span class=\"math inline\">\\(\\mathbb C(q)\\)</span>) is the full symmetric group <span class=\"math inline\">\\(S_m\\)</span>, where <span class=\"math inline\">\\(m=\\lfloor(n-1)/2\\rfloor\\)</span>, for every <span class=\"math inline\">\\(n\\ge5\\)</span>. The argument uses the geometry of critical amplitudes and distinguishes generic monodromy from arithmetic specialization.</p>\n<p>For the critical level <span class=\"math inline\">\\(A_n=B_n-1\\)</span>, we further prove irreducibility for a density-one set of even indices: among even <span class=\"math inline\">\\(n\\le X\\)</span>, the number of reducible cases is <span class=\"math inline\">\\(O(X^{1/3})\\)</span>. In particular, sufficiently large even indices that are not perfect odd powers satisfy an explicit irreducibility criterion. We obtain two-prime local criteria, infinitely many specialized groups <span class=\"math inline\">\\(\\operatorname{Gal}(A_{2p+2}/\\mathbb Q)=S_p\\)</span> for primes <span class=\"math inline\">\\(p\\equiv3,5\\pmod8\\)</span>, and dense sets of rational levels with full symmetric Galois group. Reducible and irreducible specializations may coexist densely within one real-interlacing interval. These results do not claim universal irreducibility of every Chebyshev–Lucas critical polynomial.</p>",
+      "keywords": [
+        "Galois groups",
+        "Generic monodromy",
+        "Chebyshev–Lucas polynomials",
+        "Density-one irreducibility",
+        "Arithmetic specialization",
+        "Symmetric groups",
+        "Newton polygons",
+        "Local–global irreducibility",
+        "Critical values",
+        "Hilbert irreducibility"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355688",
+      "concept_doi": "10.5281/zenodo.23355687",
+      "pdf_filename": "P14_CF_V6_S8.pdf",
+      "pdf_md5": "099e9e7fad77278a1c78bf2ee66889d6",
+      "pdf_size": 361741,
+      "license": "cc-by-4.0",
+      "record_id": 23355688
+    },
+    "P02": {
+      "title": "The price of prescribed marginals in characteristic-function dependence: phase contact and complete mixability",
+      "description_html": "<p>For identical prescribed one-dimensional marginals <span class=\"math inline\">\\(F\\)</span>, we maximize the characteristic-function factorization defect over all couplings and signed frequency vectors. A convex-order and cosine-contact argument produces a scalar phase profile, but we carefully distinguish this upper profile <span class=\"math inline\">\\(\\kappa_d(F)\\)</span> from the actual coupling optimum <span class=\"math inline\">\\(K_d(F)\\)</span>. Under specified Fourier log-concavity, spectral-gap and anti-concentration assumptions, equality for all sufficiently large dimensions holds exactly when the absolute-value marginal <span class=\"math inline\">\\(|X|\\)</span> is completely mixable, i.e. admits a constant-sum coupling.</p>\n<p>We obtain finite-dimensional conclusions: the scalar profile is attained for uniform marginals in every <span class=\"math inline\">\\(d\\ge3\\)</span>; for Gaussian marginals it is strictly unattainable in every such dimension. For sums of three and four independent uniform variables (B-spline marginals), attainment begins exactly at dimensions four and five, respectively. We also quantify the asymptotic cost of fixing the marginal law: in the symmetric regular regime, <span class=\"math inline\">\\(C_d-K_d(F)=\\frac{\\pi^2}{2d}(\\operatorname{Var}(X)/(\\mathbb E|X|)^2-1)+o(d^{-1})\\)</span>. A median-based construction supplies a nonsymmetric lower bound. No universal equality between the scalar profile and the fixed-marginal optimum is claimed.</p>",
+      "keywords": [
+        "Prescribed marginals",
+        "Characteristic-function dependence",
+        "Complete mixability",
+        "Sharp coupling bounds",
+        "Uniform and Gaussian marginals",
+        "B-spline distributions",
+        "Convex order",
+        "Fourier log-concavity",
+        "Extremal dependence",
+        "Asymptotic coupling gap"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355597",
+      "concept_doi": "10.5281/zenodo.23022042",
+      "pdf_filename": "P02_CF_V6_S8.pdf",
+      "pdf_md5": "d9d01bdf649060495bae883385df44e7",
+      "pdf_size": 384945,
+      "license": "cc-by-4.0",
+      "record_id": 23355597
+    },
+    "P17": {
+      "title": "Transport distance to joint mixability and quantitative characteristic-function gaps",
+      "description_html": "<p>Joint mixability asks whether prescribed marginals admit a coupling whose weighted sum is constant. We quantify the failure of this compatibility condition by the smallest possible <span class=\"math inline\">\\(L^p\\)</span> residual of the weighted sum. For fixed <span class=\"math inline\">\\(1\\le p&lt;\\infty\\)</span> and each <span class=\"math inline\">\\(1\\le q\\le\\infty\\)</span>, we prove an exact identity between that residual <span class=\"math inline\">\\(J_{a,p}\\)</span> and the product-Wasserstein distance from the marginal tuple to the set of mean-preserving jointly mixable tuples, with the precise factor <span class=\"math inline\">\\(\\|a\\|_{\\ell^{q^*}}\\)</span>; both optima are attained. This is stronger than treating the residual merely as an upper or lower stability estimate.</p>\n<p>Under explicit frequency-isolation, Fourier log-concavity and quadratic phase-margin hypotheses, nonmixability yields a strictly positive quantitative gap below the scalar fixed-marginal characteristic-function profile. The hypotheses are verified for nondegenerate Gaussian marginals in every dimension <span class=\"math inline\">\\(d\\ge3\\)</span>, with an explicit positive lower bound expressed using a half-normal tail. An exact Bernoulli residual and smooth perturbative obstructions complement the theory. The paper does not determine the exact Gaussian coupling optimum; the projection identity and the quantitative Fourier transfer are its central contributions.</p>",
+      "keywords": [
+        "Joint mixability",
+        "Wasserstein projection",
+        "Constant-sum couplings",
+        "Prescribed marginal distributions",
+        "Optimal transport",
+        "Mean-preserving transport",
+        "Quantitative Fourier gap",
+        "Gaussian marginals",
+        "Multimarginal coupling",
+        "Dependence geometry"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355715",
+      "concept_doi": "10.5281/zenodo.23355714",
+      "pdf_filename": "P17_CF_V6_S8.pdf",
+      "pdf_md5": "0ebc9c6c590b7758b1305bd5b0da1801",
+      "pdf_size": 354162,
+      "license": "cc-by-4.0",
+      "record_id": 23355715
+    },
+    "P20": {
+      "title": "Statistical Estimation of Extremal Characteristic-Function Functionals: Growing L^p Profiles, Random Frequency Banks, and Walsh Calibration",
+      "description_html": "<p>Consider the extremal characteristic-function dependence functional <span class=\"math inline\">\\(D_\\infty(P)=\\sup_t|\\varphi_P(t)-\\prod_j\\varphi_{P_j}(t_j)|\\)</span>. Unrestricted empirical maximization can saturate the universal extremal ceiling on generic finite samples, making a naive plug-in statistic misleading. We prove a stronger statistical limitation: no estimator of <span class=\"math inline\">\\(D_\\infty\\)</span> is uniformly consistent over all laws on <span class=\"math inline\">\\([0,1]^2\\)</span> without regularity or support-complexity restrictions, although pointwise estimation is possible.</p>\n<p>We establish two consistent regularized alternatives. For a fixed full-support frequency distribution <span class=\"math inline\">\\(W\\)</span>, an exact-integral <span class=\"math inline\">\\(L^{p_n}(W)\\)</span> estimator converges almost surely when <span class=\"math inline\">\\(p_n\\to\\infty\\)</span> and <span class=\"math inline\">\\(p_n=o(n)\\)</span>. An independent random bank of <span class=\"math inline\">\\(K_n\\)</span> frequencies provides explicit finite-sample uncertainty brackets and almost-sure consistency when <span class=\"math inline\">\\(\\log K_n=o(n)\\)</span> and <span class=\"math inline\">\\(p_n/\\log K_n\\to\\infty\\)</span>. We also derive near-maximum rates, an exact Gaussian Morse–Bott peak exponent and normal-Hessian determinant, and simultaneous Walsh confidence bounds. The guarantees distinguish deterministic Fourier observations, random frequency sampling and iid statistical estimation; they do not claim uniform consistency on the unrestricted model.</p>",
+      "keywords": [
+        "Characteristic-function dependence estimation",
+        "Uniform consistency impossibility",
+        "Empirical characteristic functions",
+        "Growing Lp norms",
+        "Random frequency banks",
+        "Supremum functional estimation",
+        "Nonparametric statistics",
+        "Finite-sample confidence bounds",
+        "Morse–Bott geometry",
+        "Walsh calibration"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355739",
+      "concept_doi": "10.5281/zenodo.23355738",
+      "pdf_filename": "P20_CF_V6_S8.pdf",
+      "pdf_md5": "3c9578ff8294fbac1557ff895286648f",
+      "pdf_size": 543483,
+      "license": "cc-by-4.0",
+      "record_id": 23355739
+    },
+    "P11": {
+      "title": "Truncation, Sampling, and Huber Geometry for Supremum Characteristic-Function Independence Testing",
+      "description_html": "<p>We analyze supremum characteristic-function tests of mutual independence, including their behavior under sampling and robust contamination. The choice of frequency window is essential: for generic finite scalar samples of even size, an unrestricted empirical supremum attains the universal population ceiling regardless of the true dependence. A fixed window instead admits explicit uniform deviations of order <span class=\"math inline\">\\(n^{-1/2}\\)</span>.</p>\n<p>For Huber contamination of two-block independence, we determine the sharp contaminated-null envelope <span class=\"math inline\">\\(b_{\\rm null}(\\varepsilon)=4\\varepsilon(1-\\varepsilon)\\)</span> when <span class=\"math inline\">\\(\\varepsilon\\le1/2\\)</span>, and <span class=\"math inline\">\\(1\\)</span> above that level. More importantly, we identify the distinct, exact clean-law nonidentifiability threshold <span class=\"math inline\">\\(\\varepsilon_c=1-1/\\sqrt2\\)</span>: at or above this contamination level, even maximally dependent clean laws can be observationally indistinguishable from independent ones. Under specified fixed-support and frequency assumptions, the local minimax separation rate is <span class=\"math inline\">\\(\\Theta(\\varepsilon+n^{-1/2})\\)</span>; the complete-row replacement model has the analogous rate <span class=\"math inline\">\\(\\Theta(\\eta+n^{-1/2})\\)</span>. The general finite-contamination clean-law overlap profile remains open. The results separate statistical consistency, robustness and geometric identifiability.</p>",
+      "keywords": [
+        "Independence testing",
+        "Characteristic-function supremum",
+        "Huber contamination",
+        "Robust statistics",
+        "Minimax separation rates",
+        "Identifiability threshold",
+        "Frequency-window truncation",
+        "Empirical processes",
+        "Total variation overlap",
+        "Row replacement contamination"
+      ],
+      "publication_date": "2026-10-14",
+      "version_doi": "10.5281/zenodo.23355657",
+      "concept_doi": "10.5281/zenodo.23355656",
+      "pdf_filename": "P11_CF_V6_S8.pdf",
+      "pdf_md5": "e6f154c3cbeba79484326fd4c73c88b0",
+      "pdf_size": 507456,
+      "license": "cc-by-4.0",
+      "record_id": 23355657
+    }
+  }
+}
