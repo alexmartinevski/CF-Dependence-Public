@@ -350,3 +350,28 @@ The standalone page is included in the public GitHub Pages workflow,
 sitemap and SHA256 asset fingerprinting. Regression tests verify the new
 information architecture, permanent legacy section anchors, layout,
 exact recent vs historical counts, source citations and bilingual rendering.
+
+## Catalogue header, navigation and language retention (2026-10-15)
+
+Following direct editorial feedback, the research catalogue **retains**
+the bilingual small overline `RESEARCH AREAS & PUBLICATIONS /
+НАПРАВЛЕНИЯ И ПУБЛИКАЦИИ` but removes the redundant large About title
+and the descriptive paragraph above search. The catalogue still has
+an accessible hidden `h2`, intact search, publication count and
+last-verified Zenodo metadata.
+
+The five main navigation links follow the actual visual section order:
+**Achievements → What's new → Publications → About → Author** (also in
+Russian). The `#papers` section anchors the catalogue at its beginning,
+while `#about` now points to the scientific programme immediately
+above the author; older `#areas` and `#programme` deep links remain
+as compatible anchors.
+
+On **all four pages** (`index.html`, `paper.html`,
+`achievements.html`, `news.html`), the CF Dependence brand link has
+`data-home-link` and is rewritten to `index.html?lang=<locale>`
+by the shared language controller. This fixes Russian visitors being
+sent back to the English homepage by the top-left brand. A static
+English fallback is retained for visitors without JavaScript.
+Public-source data, mathematical manuscripts, versions and disclosures
+are unchanged.

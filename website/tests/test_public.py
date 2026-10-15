@@ -505,26 +505,64 @@ class PublicSiteTests(unittest.TestCase):
             self.assertTrue(entry["summary"]["en"])
         self.assertEqual(len([e for e in self.news["entries"] if e["kind"]!="site_update"]),4)
 
-    def test_about_and_author_layout(self):
+    def test_catalogue_is_compact_and_project_nav_follows_section_order(self):
+        import re
         page=(ROOT/"index.html").read_text(encoding="utf-8")
         script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        css=(ROOT/"assets/site.css").read_text(encoding="utf-8")
+        self.assertEqual(page.count('id="papers"'),1)
         self.assertEqual(page.count('id="about"'),1)
         self.assertEqual(page.count('id="areas"'),1)
-        self.assertEqual(page.count('id="area-groups"'),1)
-        self.assertNotIn('href="#areas" data-i18n="areasNav"',page)
-        self.assertIn('href="#about" data-i18n="about"',page)
-        self.assertIn('id="about-heading" data-i18n="aboutHeading"',page)
-        self.assertIn('class="section areas-section project-catalogue"',page)
-        self.assertNotIn('class="about project-about"',page)
-        self.assertEqual(page.count('class="science-intro"'),1)
         self.assertEqual(page.count('id="programme"'),1)
-        self.assertLess(page.index('id="updates"'),page.index('id="about"'))
-        self.assertLess(page.index('id="about"'),page.index('id="papers"'))
-        self.assertLess(page.index('id="papers"'),page.index('id="programme"'))
-        self.assertLess(page.index('id="programme"'),page.index('id="author"'))
+        self.assertEqual(page.count('id="area-groups"'),1)
+        self.assertEqual(page.count('class="science-intro"'),1)
+        self.assertIn('class="section areas-section project-catalogue" id="papers"',page)
+        self.assertIn('class="project-science-section" id="about"',page)
+        self.assertNotIn('id="about-heading"',page)
+        self.assertNotIn('data-i18n="aboutHeading"',page)
+        self.assertNotIn('data-i18n="aboutText"',page)
+        self.assertIn('data-i18n="catalogueLabel"',page)
+        self.assertIn('class="section-heading catalogue-heading"',page)
+        self.assertIn('class="sr-only" data-i18n="papersHeading"',page)
+        self.assertEqual(script.count('catalogueLabel:'),2)
+        self.assertEqual(script.count('aboutHeading:'),0)
+        self.assertEqual(script.count('aboutText:'),0)
         self.assertIn('НАПРАВЛЕНИЯ И ПУБЛИКАЦИИ',script)
+        self.assertIn('RESEARCH AREAS & PUBLICATIONS',script)
+        self.assertIn('.project-catalogue>.catalogue-heading{margin:0 0 8px}',css)
+        self.assertIn('.project-science-section{position:relative}',css)
+        positions=[page.index('id="'+x+'"') for x in
+                   ("achievements","updates","papers","about","author")]
+        self.assertEqual(positions,sorted(positions))
+        main=page[page.index('<div class="nav-actions">'):
+                  page.index('<button class="language"')]
+        links=re.findall(r'<a href="#([^"]+)" data-i18n="([^"]+)"',main)
+        self.assertEqual(links,[
+            ("achievements","achievementNav"),
+            ("updates","updates"),
+            ("papers","papers"),
+            ("about","about"),
+            ("author","authorNav")
+        ])
+        self.assertNotIn('href="#areas" data-i18n="areasNav"',page)
         self.assertIn('Расположенные выше публикации',script)
-        self.assertEqual(script.count('aboutText:'),2)
+        self.assertLess(page.index('id="papers"'),page.index('id="about"'))
+        self.assertLess(page.index('id="about"'),page.index('id="author"'))
+
+    def test_brand_links_preserve_chosen_language(self):
+        import re
+        for path in ("index.html","paper.html","achievements.html","news.html"):
+            html=(ROOT/path).read_text(encoding="utf-8")
+            matches=re.findall(r'<a class="brand"[^>]*>',html)
+            self.assertEqual(len(matches),1,path)
+            link=matches[0]
+            self.assertIn('data-home-link',link,path)
+            self.assertIn('href="index.html?lang=en"',link,path)
+            self.assertNotIn('href="index.html"',link,path)
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertIn('document.querySelectorAll("[data-home-link]")',script)
+        self.assertIn('link.href="index.html?lang="+language',script)
+        self.assertIn('link.href="index.html?lang="+language+"#papers"',script)
 
     def test_news_history_page_and_translations(self):
         import re

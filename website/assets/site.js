@@ -169,8 +169,7 @@ const COPY = {
   authorRole:"Independent Researcher",
   aiDisclosureLabel:"RESEARCH TRANSPARENCY",aiDisclosureHeading:"AI collaboration disclosure",
   aiDisclosureText:"CF Dependence research was conducted by the author in collaboration with artificial intelligence (AI) systems. AI assisted with mathematical exploration, developing and critically examining ideas and proofs, and preparing manuscripts. AI systems are not listed as co-authors. The author is responsible for the published mathematical statements, proofs, and conclusions.",
-  aboutLabel:"RESEARCH AREAS & PUBLICATIONS",aboutHeading:"About CF Dependence",
-  aboutText:"Five connected mathematical research areas. Browse published papers by subject, with three selected results, release dates and links to the current versions.",
+  catalogueLabel:"RESEARCH AREAS & PUBLICATIONS",
   footer:"Only verified published works are listed. Draft DOI ≠ publication.",
   back:"← All papers",researchSummary:"RESEARCH SUMMARY",summary:"Overview",topics:"Research areas",
   versionHistory:"What changed in published versions",bibliography:"BIBLIOGRAPHY",author:"Author",
@@ -349,8 +348,7 @@ const COPY = {
   authorRole:"Независимый исследователь",
   aiDisclosureLabel:"ПРОЗРАЧНОСТЬ ИССЛЕДОВАНИЙ",aiDisclosureHeading:"Участие искусственного интеллекта",
   aiDisclosureText:"Исследования CF Dependence выполнялись автором совместно с системами искусственного интеллекта (ИИ). ИИ участвовал в математическом поиске, разработке и критическом анализе идей и доказательств, а также в подготовке рукописей. Системы ИИ не указаны в качестве соавторов. За опубликованные утверждения, доказательства и выводы отвечает автор.",
-  aboutLabel:"НАПРАВЛЕНИЯ И ПУБЛИКАЦИИ",aboutHeading:"О проекте CF Dependence",
-  aboutText:"Пять взаимосвязанных направлений математики. Ниже — опубликованные статьи по областям с тремя выбранными результатами, датами выпусков и ссылками на актуальные версии.",
+  catalogueLabel:"НАПРАВЛЕНИЯ И ПУБЛИКАЦИИ",
   footer:"Только подтверждённые опубликованные работы. Зарезервированный DOI ≠ публикация.",
   back:"← Все работы",researchSummary:"СОДЕРЖАНИЕ",summary:"Обзор",topics:"Области исследований",
   versionHistory:"Изменения в опубликованных версиях",bibliography:"БИБЛИОГРАФИЯ",author:"Автор",
@@ -427,7 +425,7 @@ function applyLanguage() {
   for (const link of document.querySelectorAll("[data-achievement-home-link]"))
     link.href="index.html?lang="+language+"#achievements";
   for (const link of document.querySelectorAll("[data-catalogue-home-link]"))
-    link.href="index.html?lang="+language+"#areas";
+    link.href="index.html?lang="+language+"#papers";
   for (const link of document.querySelectorAll("[data-home-link]"))
     link.href="index.html?lang="+language;
   for (const link of document.querySelectorAll("[data-news-link]"))
