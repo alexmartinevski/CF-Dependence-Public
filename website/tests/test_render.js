@@ -86,6 +86,9 @@ for(const entry of articles){
   const code=entry.children[0].children[0].children[0].textContent;
   const paper=papers.find(x=>x.code===code);
   assert.ok(paper,"Unknown paper code "+code);
+  const publicPage=entry.children[0].children[0].children[1];
+  assert.equal(publicPage.href,"publications/"+paper.code+"/index.html?lang=ru",
+    "Each research article must link to the static, crawlable abstract");
   const meta=entry.children[1];
   const action=meta.children.find(x=>x.className==="area-latest-link");
   assert.ok(action,"Every publication must offer a latest-version action");
