@@ -112,7 +112,7 @@ def splice(source,beg,end,replacement):
     j=source.find(end,i+len(beg))
     if j<0 or source.find(end,j+1)>=0:
         raise ValueError("Expected unique news closing marker")
-    return source[:i+len(beg)]+"\n"+replacement+"\n      "+source[j:]
+    return source[:i+len(beg)]+"\n"+replacement+"\n      </div>\n      "+source[j:]
 
 
 def build(root):
