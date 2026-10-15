@@ -142,6 +142,13 @@ const COPY = {
   olderPdf:"Archived PDF",olderTex:"Archived TeX",zenodoPDF:"PDF on Zenodo",
   publishedLabel:"PUBLISHED RESEARCH",papersHeading:"Research papers",publishedCount:"published records",
   searchLabel:"Search publications",noMatches:"No publications match your search.",
+  newsAllLink:"All news and updates →",
+  newsPageBack:"← Homepage",newsPageEyebrow:"RESEARCH & PUBLICATION CHRONICLE",
+  newsPageHeading:"News and updates",
+  newsPageLead:"Published research and verified public website improvements, with dates and original source links.",
+  newsPageListHeading:"Complete update history",
+  newsPageIntro:"All verified public updates, newest first. Site improvements and published research are labeled separately.",
+  newsPageNote:"Links point to published Zenodo records, public GitHub changes or public release notes. Drafts and private reviews are not counted as releases.",
   newsLabel:"PROJECT UPDATES",updatesHeading:"What's new",
   updatesInfo:"Verified website improvements and published research releases, in reverse chronological order.",
   siteUpdateKind:"Website update",publicationUpdateKind:"Publication",
@@ -315,6 +322,13 @@ const COPY = {
   olderPdf:"Архивный PDF",olderTex:"Архивный TeX",zenodoPDF:"PDF в Zenodo",
   publishedLabel:"ОПУБЛИКОВАННЫЕ РАБОТЫ",papersHeading:"Научные статьи",publishedCount:"опубликованные работы",
   searchLabel:"Поиск работ",noMatches:"Ничего не найдено.",
+  newsAllLink:"Все новости и изменения →",
+  newsPageBack:"← На главную",newsPageEyebrow:"ХРОНИКА НАУЧНЫХ РАБОТ И САЙТА",
+  newsPageHeading:"Новости проекта",
+  newsPageLead:"Опубликованные научные работы и проверяемые изменения сайта — с датами и ссылками на первоисточники.",
+  newsPageListHeading:"Полная история обновлений",
+  newsPageIntro:"Все подтверждённые публичные события, начиная с последних. Выпуски статей и изменения сайта отмечены отдельно.",
+  newsPageNote:"Ссылки ведут на опубликованные записи Zenodo, изменения открытого GitHub или публичные примечания к выпускам. Черновики и внутренние рецензии не считаются публикациями.",
   newsLabel:"ОБНОВЛЕНИЯ ПРОЕКТА",updatesHeading:"Что изменилось",
   updatesInfo:"Подтверждённые изменения сайта и выпуски научных работ в обратном хронологическом порядке.",
   siteUpdateKind:"Обновление сайта",publicationUpdateKind:"Публикация",
@@ -416,6 +430,10 @@ function applyLanguage() {
     link.href="index.html?lang="+language+"#areas";
   for (const link of document.querySelectorAll("[data-home-link]"))
     link.href="index.html?lang="+language;
+  for (const link of document.querySelectorAll("[data-news-link]"))
+    link.href="news.html?lang="+language;
+  for (const link of document.querySelectorAll("[data-news-home-link]"))
+    link.href="index.html?lang="+language+"#updates";
   for (const btn of document.querySelectorAll("[data-lang-switch]")) btn.textContent=COPY[language].otherLang;
   const url=new URL(location.href); url.searchParams.set("lang",language);
   history.replaceState(null,"",url);
@@ -543,26 +561,27 @@ function allUpdates() {
   }
   return items.sort((a,b)=>b.date.localeCompare(a.date));
 }
-// Keep the home-page news grid exactly two rows × two columns on desktop.
-// Earlier events remain accessible in the native expandable archive.
+// Keep exactly four latest news items on the homepage; display all updates
+// on news.html. Both pages retain meaningful static cards if data fails.
 const HOME_NEWS_LIMIT=4;
 function renderUpdates(parent, includeSiteNews) {
   const events=includeSiteNews?allUpdates():[];
-  const history=$("older-news-items");
-  const archive=$("news-archive");
   parent.replaceChildren();
-  if(history)history.replaceChildren();
   if(!events.length) {
     parent.appendChild(node("p","muted",COPY[language].newsEmpty));
-    if(archive)archive.hidden=true;
     return;
   }
-  for(const e of events.slice(0,HOME_NEWS_LIMIT))
-    parent.appendChild(story(e.date,e.title,e.summary,e.source,e.kind));
-  const older=events.slice(HOME_NEWS_LIMIT);
-  if(history)for(const e of older)
-    history.appendChild(story(e.date,e.title,e.summary,e.source,e.kind));
-  if(archive)archive.hidden=older.length===0;
+  for(const event of events.slice(0,HOME_NEWS_LIMIT))
+    parent.appendChild(story(event.date,event.title,event.summary,event.source,event.kind));
+}
+function renderNewsPage() {
+  const full=$("news-full-list");
+  if(!full || !newsLoaded)return;
+  const events=allUpdates();
+  if(!events.length)return;
+  full.replaceChildren();
+  for(const event of events)
+    full.appendChild(story(event.date,event.title,event.summary,event.source,event.kind));
 }
 function renderDetail() {
   applyLanguage();
@@ -605,9 +624,42 @@ function renderDetail() {
 }
 async function init() {
   const buttons=document.querySelectorAll("[data-lang-switch]");
-  for(const b of buttons)b.addEventListener("click",()=>{language=language==="en"?"ru":"en";if(document.body.dataset.page==="index")renderIndex();else if(document.body.dataset.page==="paper")renderDetail();else applyLanguage();});
+  for(const b of buttons)b.addEventListener("click",()=>{
+    language=language==="en"?"ru":"en";
+    if(document.body.dataset.page==="index")renderIndex();
+    else if(document.body.dataset.page==="paper")renderDetail();
+    else if(document.body.dataset.page==="news") {
+      applyLanguage();
+      renderNewsPage();
+    } else applyLanguage();
+  });
   applyLanguage();
   if(document.body.dataset.page==="achievements")return;
+  if(document.body.dataset.page==="news") {
+    // This page never depends on the live Zenodo resolver. News metadata
+    // comes from the same public file that supplies homepage updates.
+    try {
+      const response=await fetch("data/news.json",{cache:"no-store"});
+      if(response.ok) {
+        const data=await response.json();
+        if(Array.isArray(data.entries)) {
+          news=data.entries;
+          newsLoaded=true;
+          try {
+            const paperResponse=await fetch("data/papers.json",{cache:"no-store"});
+            if(paperResponse.ok) {
+              const catalogue=await paperResponse.json();
+              papers=verifiedPapers(catalogue.papers);
+            }
+          }catch(error) { /* News remains available without the papers catalogue. */ }
+          renderNewsPage();
+        }
+      }
+    }catch(error) {
+      console.warn("News feed unavailable; retaining all six dated HTML updates",error);
+    }
+    return;
+  }
   try{
     // Publications are mandatory, but a temporary news.json failure must never
     // hide either the catalogue or the two static, dated update cards.
