@@ -542,7 +542,7 @@ class PublicSiteTests(unittest.TestCase):
             ("updates","updates"),
             ("papers","papers"),
             ("about","about"),
-            ("author","author")
+            ("author","authorNav")
         ])
         self.assertNotIn('href="#areas" data-i18n="areasNav"',page)
         self.assertIn('Расположенные выше публикации',script)
