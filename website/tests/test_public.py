@@ -206,7 +206,7 @@ class PublicSiteTests(unittest.TestCase):
         import tempfile
         sys.path.insert(0,str(ROOT/"tools"))
         from fingerprint_assets import stamp_site
-        for page in ("index.html","paper.html"):
+        for page in ("index.html","paper.html","achievements.html"):
             html=(ROOT/page).read_text(encoding="utf-8")
             self.assertRegex(html, r'href="assets/site\.css\?v=[A-Za-z0-9._-]+"')
             self.assertRegex(html, r'src="assets/site\.js\?v=[A-Za-z0-9._-]+"')
@@ -215,13 +215,14 @@ class PublicSiteTests(unittest.TestCase):
             (base/"assets").mkdir()
             for asset in ("assets/site.js","assets/site.css"):
                 shutil.copyfile(ROOT/asset,base/asset)
-            for page in ("index.html","paper.html"):
+            for page in ("index.html","paper.html","achievements.html"):
                 shutil.copyfile(ROOT/page,base/page)
             stamp_site(base)
             digest=hashlib.sha256((base/"assets/site.js").read_bytes()).hexdigest()[:16]
             first=(base/"index.html").read_text(encoding="utf-8")
             self.assertIn("assets/site.js?v="+digest,first)
             self.assertIn("assets/site.js?v="+digest,(base/"paper.html").read_text(encoding="utf-8"))
+            self.assertIn("assets/site.js?v="+digest,(base/"achievements.html").read_text(encoding="utf-8"))
             (base/"assets/site.js").write_bytes((base/"assets/site.js").read_bytes()+b"\n/* changed */")
             stamp_site(base)
             self.assertNotIn("assets/site.js?v="+digest,(base/"index.html").read_text(encoding="utf-8"))
@@ -299,6 +300,57 @@ class PublicSiteTests(unittest.TestCase):
         self.assertNotIn("GPT-5.6",page)
         self.assertNotIn("Claude Opus",page)
 
+    def test_research_achievements_page_and_status_boundaries(self):
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        article=(ROOT/"achievements.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertIn('id="achievements"',home)
+        self.assertIn('id="achievements-preview-heading"',home)
+        self.assertEqual(home.count('class="achievement-preview-item"'),4)
+        self.assertIn('href="#achievements" data-i18n="achievementNav"',home)
+        self.assertIn('href="achievements.html?lang=en"',home)
+        self.assertIn('data-page="achievements"',article)
+        self.assertIn('href="https://math.a-martinevski.com/achievements.html"',article)
+        self.assertEqual(article.count('class="achievement-feature"'),6)
+        for anchor in ("ghz-exact","ghz-three","mixing","multilinear",
+                       "cf-profile","stability"):
+            self.assertIn('id="'+anchor+'"',article)
+        self.assertIn("34/105",article)
+        self.assertIn("105ζ(3)/(2π",article)
+        self.assertIn("2.034968153548",article)
+        self.assertIn("2.035329429153",article)
+        self.assertIn("4√2",article)
+        self.assertIn("2π",article)
+        self.assertIn("Conjecture",article)
+        self.assertIn("not solved in its full generality",article)
+        self.assertIn("Independent verification",article)
+        self.assertIn('href="https://doi.org/10.1103/PhysRevA.109.022205"',article)
+        self.assertIn('href="https://doi.org/10.1016/0047-259X(85)90025-9"',article)
+        concepts={p["code"]:p["concept_doi"] for p in self.site["papers"]}
+        for code in ("P01","P04","P13"):
+            self.assertIn('href="https://doi.org/'+concepts[code]+'"',article)
+        self.assertNotIn("P05 —",article)
+        self.assertNotIn("P10 —",article)
+        self.assertIn('if(document.body.dataset.page==="achievements")return;',script)
+        self.assertIn("data-achievements-link",script)
+
+    def test_research_achievements_are_fully_bilingual(self):
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        article=(ROOT/"achievements.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        import re
+        labels=set(re.findall(r'data-i18n="(achievement[A-Za-z0-9]+)"',home+article))
+        self.assertGreaterEqual(len(labels),50)
+        for label in labels:
+            # Source keys are JSON-quoted so a colon outside quoted text
+            # differentiates a declaration from an ordinary string reference.
+            self.assertEqual(script.count('"'+label+'":'),2,label)
+        for name in ("achievementContextText","achievementGhzThreeZeta",
+                     "achievementMultilinearScope","achievementEditorialSecond"):
+            self.assertIn(name,labels)
+        self.assertIn("гипотезе Римана",script)
+        self.assertIn("не объявляется решённой",script)
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
@@ -311,13 +363,14 @@ class PublicSiteTests(unittest.TestCase):
         ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
         urls = [node.text for node in sitemap.iter(ns+"loc")]
         self.assertIn(hostname, urls)
-        self.assertEqual(len(urls), len(self.site["papers"])+1)
+        self.assertEqual(len(urls), len(self.site["papers"])+2)
+        self.assertIn(hostname+"achievements.html",urls)
         for paper in self.site["papers"]:
             self.assertIn(hostname+"paper.html?code="+paper["code"], urls)
         self.assertTrue(all(u.startswith(hostname) for u in urls))
 
     def test_static_entrypoints_present(self):
-        for rel in ("index.html","paper.html","assets/site.css","assets/site.js"):
+        for rel in ("index.html","paper.html","achievements.html","assets/site.css","assets/site.js"):
             self.assertTrue((ROOT/rel).is_file(),rel)
 
 if __name__=="__main__":
