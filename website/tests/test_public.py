@@ -406,6 +406,63 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("Задача",script)
         self.assertIn("доказана",script)
 
+    def test_achievement_mathematical_setups_and_sharpness(self):
+        """Every public achievement states the mathematical object before its theorem."""
+        import re
+        from math import pi, isclose, sqrt
+        page=(ROOT/"achievements.html").read_text(encoding="utf-8")
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        articles=re.findall(
+            r'<article class="achievement-feature" id="([^"]+)">([\s\S]*?)</article>',
+            page
+        )
+        self.assertEqual(len(articles),6)
+        self.assertEqual(home.count('class="achievement-preview-formula"'),4)
+        expected={
+            "ghz-exact":("κ<sub>n</sub>", "ζ(s)"),
+            "ghz-three":("L<sub>3</sub>", "105ζ(3)"),
+            "mixing":("α(ℱ,𝒢)", "K<sub>G</sub>(2)"),
+            "multilinear":("d<sub>∞</sub>(B)", "‖B‖<sub>ℂ</sub>"),
+            "cf-profile":("𝒞<sub>d</sub>(r)", "ℙ(ε=1)"),
+            "stability":("Δ(P)", "dist<sub>W<sub>p</sub></sub>")
+        }
+        for identifier,body in articles:
+            self.assertIn(identifier,expected)
+            self.assertEqual(body.count('class="achievement-math-context"'),1,identifier)
+            self.assertEqual(body.count('achievement-equation-setup"'),1,identifier)
+            self.assertEqual(body.count('achievement-equation-extra"'),1,identifier)
+            self.assertEqual(body.count('class="math-line"'),3,identifier)
+            self.assertIn('data-i18n="achievementMathSetupTitle"',body)
+            self.assertIn('data-i18n="achievementMathResultTitle"',body)
+            self.assertEqual(body.count('class="achievement-math-notation"'),2,identifier)
+            self.assertLess(body.index('class="achievement-explanation"'),
+                            body.index('class="achievement-math-context"'),identifier)
+            self.assertLess(body.index('class="achievement-equation-setup"'),
+                            body.index('class="achievement-equation" role="math"'),identifier)
+            self.assertLess(body.index('class="achievement-equation-extra"'),
+                            body.index('class="achievement-sources"'),identifier)
+            for symbol in expected[identifier]:
+                self.assertIn(symbol,body,identifier)
+        self.assertIn("K<sub>G</sub>(2) = √2",page)
+        self.assertIn("π<sup>3</sup>/16",page)
+        self.assertIn("b<sub>d</sub>η<sup>2</sup>",page)
+        self.assertIn("n≥4",page)
+        self.assertIn("S ≤ π",page)
+        self.assertIn("sup<sub>m,L≠0</sub>",page)
+        self.assertIn("𝔼(XY) − (𝔼X)(𝔼Y)",page)
+        self.assertEqual(script.count('"achievementMathSetupTitle":'),2)
+        self.assertEqual(script.count('"achievementMathResultTitle":'),2)
+        self.assertEqual(script.count('"achievementStabilityMathDetail":'),2)
+        # Regression arithmetic, not a proof or a numerical certificate.
+        q=(11,13,17,19,23,29,31)
+        low=(pi**3/16)*((28/27)*(126/125)*(344/343)+sum(z**-3 for z in q))
+        self.assertTrue(isclose(low,2.034968153548,abs_tol=1e-9))
+        self.assertTrue(isclose(4*sqrt(2),5.65685424949,abs_tol=1e-8))
+        self.assertTrue(isclose(105/34,3.088235294117647,abs_tol=1e-11))
+        self.assertNotIn("mathjax",page.lower())
+        self.assertNotIn("cdn.jsdelivr.net",page)
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
