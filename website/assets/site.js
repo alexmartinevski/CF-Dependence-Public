@@ -168,7 +168,7 @@ const COPY = {
   staticUpdateMathText:"Definitions, hypotheses and precise formulas were added to all six achievements, and four concise formulas now appear on the homepage.",
   staticUpdateSourcesTitle:"Results explained with separate references",
   staticUpdateSourcesText:"Each achievement now explains its problem, history, importance and mathematical result, with 6–7 sources specific to that result.",
-  scholarlyIndexLink:"Browse scholarly abstracts and citations (18) ↗",
+  scholarlyIndexLink:"Browse scholarly abstracts and citations ↗",
   scholarlyAuthorLink:"Researcher profile and publications ↗",
   authorNav:"Author",authorLabel:"RESEARCHER",authorHeading:"About the author",
   authorRole:"Independent Researcher",
@@ -352,7 +352,7 @@ const COPY = {
   staticUpdateMathText:"Во всех шести достижениях появились определения, условия теорем и точные формулы; на главной размещены четыре короткие формулы.",
   staticUpdateSourcesTitle:"Каждый результат получил своё объяснение и источники",
   staticUpdateSourcesText:"В каждом из шести разделов объяснены задача, её происхождение, значимость и результат, а также приведены 6–7 отдельных источников.",
-  scholarlyIndexLink:"Научные аннотации и библиографические ссылки (18) ↗",
+  scholarlyIndexLink:"Научные аннотации и библиографические ссылки ↗",
   scholarlyAuthorLink:"Профиль исследователя и публикации ↗",
   authorNav:"Об авторе",authorLabel:"ИССЛЕДОВАТЕЛЬ",authorHeading:"Об авторе",
   authorRole:"Независимый исследователь",
@@ -428,6 +428,12 @@ function applyLanguage() {
   for (const el of document.querySelectorAll("[data-i18n]")) {
     const key=el.dataset.i18n;
     if(COPY[language][key])el.textContent=COPY[language][key];
+  }
+  // Generated static news cards remain fully bilingual when fetch(news.json)
+  // fails. Content is static HTML, without requiring a live API or JS render.
+  for (const el of document.querySelectorAll("[data-news-en][data-news-ru]")) {
+    const copy=el.getAttribute("data-news-"+language);
+    if(copy!==null)el.textContent=copy;
   }
   const search=$("search"); if(search) search.placeholder=COPY[language].searchPlaceholder;
   for (const link of document.querySelectorAll("[data-achievements-link]"))
@@ -659,6 +665,7 @@ async function init() {
   applyLanguage();
   if(document.body.dataset.page==="achievements")return;
   if(document.body.dataset.page==="news") {
+    // The static fallback has the entire audited news history, even offline.
     // This page never depends on the live Zenodo resolver. News metadata
     // comes from the same public file that supplies homepage updates.
     try {
@@ -679,13 +686,13 @@ async function init() {
         }
       }
     }catch(error) {
-      console.warn("News feed unavailable; retaining all six dated HTML updates",error);
+      console.warn("News feed unavailable; retaining all generated dated HTML updates",error);
     }
     return;
   }
   try{
     // Publications are mandatory, but a temporary news.json failure must never
-    // hide either the catalogue or the two static, dated update cards.
+    // hide the catalogue or the four latest generated static updates.
     const [a,b]=await Promise.all([
       fetch("data/papers.json",{cache:"no-store"}),
       fetch("data/news.json",{cache:"no-store"}).catch(()=>null)
