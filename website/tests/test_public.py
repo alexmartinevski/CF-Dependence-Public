@@ -89,6 +89,9 @@ class PublicSiteTests(unittest.TestCase):
             if p["code"] not in {"P01","P02","P03"}:
                 self.assertEqual(p["first_published_on"],"2026-10-14")
                 self.assertEqual(p["last_version_on"],"2026-10-14")
+            else:
+                self.assertEqual(p["first_published_on"],"2026-09-28")
+                self.assertEqual(p["last_version_on"],"2026-10-12" if p["code"]=="P03" else "2026-10-14")
 
     def test_latest_version_links_and_directory_present(self):
         homepage=(ROOT/"index.html").read_text(encoding="utf-8")
@@ -114,10 +117,10 @@ class PublicSiteTests(unittest.TestCase):
             "created":"2026-09-21T12:00:00Z",
             "updated":"2026-09-30T12:00:00Z",
             "metadata":{"publication_date":"2026-09-21","version":"0.1"},
-            "links":{"latest":"https://zenodo.org/api/records/23355587"}
+            "links":{"latest":"https://zenodo.org/api/records/24444444"}
         }
         newest={
-            "doi":"10.5281/zenodo.23355587","conceptdoi":paper["concept_doi"],
+            "doi":"10.5281/zenodo.24444444","conceptdoi":paper["concept_doi"],
             "versions":{"index":2},
             "created":"2026-10-14T12:00:00Z",
             "updated":"2026-10-16T12:00:00Z",
@@ -126,18 +129,18 @@ class PublicSiteTests(unittest.TestCase):
         resolved=sync.extract_release(
             paper,first,latest=newest,versions=[newest,first],history_complete=True
         )
-        self.assertEqual(resolved["version_doi"],"10.5281/zenodo.23355587")
+        self.assertEqual(resolved["version_doi"],"10.5281/zenodo.24444444")
         self.assertEqual(resolved["first_published_on"],"2026-09-21")
         self.assertEqual(resolved["last_version_on"],"2026-10-14")
         self.assertEqual(resolved["published_on"],"2026-10-14")
         self.assertEqual(resolved["version_label"],"0.2")
         self.assertEqual(resolved["version_index"],2)
         self.assertEqual(resolved["release_count"],2)
-        self.assertEqual(sync.latest_record_id(first),23355587)
+        self.assertEqual(sync.latest_record_id(first),24444444)
         self.assertTrue(sync.is_public_version(first,paper["concept_doi"]))
         wrong={**newest,"conceptdoi":"10.5281/zenodo.9999"}
         self.assertIsNone(sync.extract_release(paper,first,latest=wrong))
-        first["links"]["latest"]="https://another-domain.org/api/records/23355587"
+        first["links"]["latest"]="https://another-domain.org/api/records/24444444"
         self.assertIsNone(sync.latest_record_id(first))
 
     def test_zenodo_first_date_and_release_number_not_invented(self):
@@ -166,6 +169,21 @@ class PublicSiteTests(unittest.TestCase):
         # Drafts from another lineage must never be shown as public versions.
         draft={**initial,"is_draft":True}
         self.assertFalse(sync.is_public_version(draft,paper["concept_doi"]))
+
+    def test_latest_published_version_doi_curated(self):
+        expected={
+            "P01":"10.5281/zenodo.23355587",
+            "P02":"10.5281/zenodo.23355597",
+            "P03":"10.5281/zenodo.23309603"
+        }
+        for p in self.site["papers"]:
+            self.assertTrue(p["version_index_evidence"])
+            if p["code"] in expected:
+                self.assertEqual(p["version_doi"],expected[p["code"]])
+                self.assertTrue(DOI.fullmatch(p["highlights_source_doi"]))
+                self.assertNotEqual(p["highlights_source_doi"],p["version_doi"])
+            self.assertTrue(p["first_published_on"])
+            self.assertTrue(p["last_version_on"])
 
     def test_public_metadata_display_labels(self):
         home=(ROOT/"index.html").read_text(encoding="utf-8")
@@ -240,7 +258,14 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("p.highlights",script)
         for p in self.site["papers"]:
             self.assertEqual(len(p.get("highlights", [])), 3, p["code"])
-            self.assertEqual(p["highlights_source_doi"],p["version_doi"])
+            if p["code"] in {"P01","P02","P03"}:
+                self.assertNotEqual(p["highlights_source_doi"],p["version_doi"])
+                self.assertEqual(p["version_index"],2)
+                self.assertEqual(p["first_published_on"],"2026-09-28")
+            else:
+                self.assertEqual(p["highlights_source_doi"],p["version_doi"])
+                self.assertEqual(p["version_index"],1)
+            self.assertTrue(DOI.fullmatch(p["highlights_source_doi"]))
             for h in p["highlights"]:
                 self.assertTrue(h["en"].strip(),p["code"])
                 self.assertTrue(h["ru"].strip(),p["code"])

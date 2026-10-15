@@ -164,3 +164,27 @@ Zenodo Concept DOI, and a specific Version DOI remains visible for citation.
 - The highlights' `highlights_source_doi` is not changed when live Zenodo
   metadata points to a newer version: scientific claims still cite their
   actual reviewed source version.
+
+### Public-lineage chronology reconciliation, 2026-10-15
+GitHub Pages deployment artifacts for the verified earlier public catalogue
+(2026-10-15 run 38709797834, which retained the September Zenodo baseline
+versions) and the current Zenodo-history resolver (run 38713365579) establish:
+- P01: first 2026-09-28 (10.5281/zenodo.23021780), latest 2026-10-14
+  (10.5281/zenodo.23355587).
+- P02: first 2026-09-28 (10.5281/zenodo.23022043), latest 2026-10-14
+  (10.5281/zenodo.23355597).
+- P03: first 2026-09-28 (10.5281/zenodo.23022245), latest 2026-10-12
+  (10.5281/zenodo.23309603).
+- The other 15 papers were first issued in their newly created Zenodo
+  lineages on 2026-10-14 and have no other published version yet recorded.
+
+The site now carries a curated 1-based **Zenodo publication-release ordinal**
+(2 for P01–P03, 1 for the 15 initial new lineages), distinctly labeled from a
+semantic `metadata.version` value. The Zenodo version-list endpoint did not
+return a verifiable semantic label or numerical index in the current automated
+snapshot, so none is claimed. A later independently verified version label or
+ordinal from Zenodo overrides this dated curated snapshot.
+For P01–P03 the scientific `highlights_source_doi` continues to reference
+the earlier **actually reviewed** TeX version, despite the current published
+Version DOI being updated. A future scientific review should reconcile the
+results to the new files before their provenance is updated.
