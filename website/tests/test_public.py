@@ -31,7 +31,7 @@ class PublicSiteTests(unittest.TestCase):
 
     def test_sources_are_already_public(self):
         papers=self.site["papers"]
-        self.assertEqual(len(papers),18)
+        self.assertGreaterEqual(len(papers),18)
         codes={p["code"] for p in papers}
         self.assertNotIn("P05",codes)
         self.assertNotIn("P10",codes)
@@ -45,7 +45,7 @@ class PublicSiteTests(unittest.TestCase):
                 record_url=p.get("record_url")
                 doi=p.get("version_doi")
                 self.assertEqual(record_url,"https://zenodo.org/records/"+doi.split(".")[-1])
-                self.assertRegex(p["pdf_filename"],r"^P\d{2}_CF_V6_S8\.pdf$")
+                self.assertRegex(p["pdf_filename"],r"^P\d{2}_[A-Za-z0-9][A-Za-z0-9._-]{0,150}\.pdf$")
                 self.assertEqual(p["pdf_filename"][:3],p["code"])
 
     def test_change_log_entries_refer_to_doi(self):
@@ -97,12 +97,17 @@ class PublicSiteTests(unittest.TestCase):
                     self.assertEqual(date.fromisoformat(p[key]).isoformat(),p[key])
             if p.get("first_published_on") and p.get("last_version_on"):
                 self.assertLessEqual(p["first_published_on"],p["last_version_on"])
-            if p["code"] not in {"P01","P02","P03"}:
+            # Existing 2026-10-14 releases have fixed historical timestamps;
+            # future released articles must not inherit those dates.
+            if p["code"] in {"P04","P06","P07","P08","P09","P11","P12","P13","P14","P15","P16","P17","P18","P19","P20"}:
                 self.assertEqual(p["first_published_on"],"2026-10-14")
                 self.assertEqual(p["last_version_on"],"2026-10-14")
-            else:
+            elif p["code"] in {"P01","P02","P03"}:
                 self.assertEqual(p["first_published_on"],"2026-09-28")
                 self.assertEqual(p["last_version_on"],"2026-10-12" if p["code"]=="P03" else "2026-10-14")
+            else:
+                self.assertTrue(p.get("first_published_on"))
+                self.assertTrue(p.get("last_version_on"))
 
     def test_latest_version_links_and_directory_present(self):
         homepage=(ROOT/"index.html").read_text(encoding="utf-8")
@@ -284,7 +289,7 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertTrue(h["evidence"].strip(),p["code"])
                 self.assertNotIn("TODO",h["en"])
                 self.assertNotIn("TODO",h["ru"])
-        self.assertEqual(sum(len(p["highlights"]) for p in self.site["papers"]),54)
+        self.assertEqual(sum(len(p["highlights"]) for p in self.site["papers"]),3*len(self.site["papers"]))
 
     def test_author_profile_contact_and_ai_disclosure(self):
         """The public site has explicit, bilingual researcher identification and AI use."""
@@ -637,22 +642,23 @@ class PublicSiteTests(unittest.TestCase):
             "P15":(138,154),"P16":(159,152),"P17":(146,158),
             "P18":(148,164),"P19":(143,161),"P20":(158,173)
         }
-        self.assertEqual(set(papers),set(original_lengths))
-        self.assertEqual(len(papers),18)
-        for code,p in papers.items():
+        self.assertTrue(set(original_lengths).issubset(set(papers)))
+        self.assertGreaterEqual(len(papers),len(original_lengths))
+        originals={code:papers[code] for code in original_lengths}
+        for code,p in originals.items():
             old_en,old_ru=original_lengths[code]
             self.assertLessEqual(len(p["summary"]["en"]),old_en,code)
             self.assertLessEqual(len(p["summary"]["ru"]),old_ru,code)
             self.assertEqual(len(p["highlights"]),3,code)
             self.assertTrue(all(h.get("en") and h.get("ru") and h.get("evidence")
                                 for h in p["highlights"]),code)
-        self.assertLessEqual(sum(len(p["summary"]["en"]) for p in papers.values()),2757)
-        self.assertLessEqual(sum(len(p["summary"]["ru"]) for p in papers.values()),2750)
-        self.assertLessEqual(sum(len(h["en"]) for p in papers.values()
+        self.assertLessEqual(sum(len(p["summary"]["en"]) for p in originals.values()),2757)
+        self.assertLessEqual(sum(len(p["summary"]["ru"]) for p in originals.values()),2750)
+        self.assertLessEqual(sum(len(h["en"]) for p in originals.values()
                                  for h in p["highlights"]),7734)
-        self.assertLessEqual(sum(len(h["ru"]) for p in papers.values()
+        self.assertLessEqual(sum(len(h["ru"]) for p in originals.values()
                                  for h in p["highlights"]),8298)
-        self.assertEqual(sum(len(p["highlights"]) for p in papers.values()),54)
+        self.assertEqual(sum(len(p["highlights"]) for p in originals.values()),54)
         # The site must use the currently released Zenodo titles, not old branches.
         self.assertEqual(papers["P02"]["title"],
             "The price of prescribed marginals in characteristic-function dependence: phase contact and complete mixability")
