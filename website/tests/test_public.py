@@ -438,9 +438,9 @@ class PublicSiteTests(unittest.TestCase):
             self.assertEqual(body.count('class="achievement-math-notation"'),2,identifier)
             self.assertLess(body.index('class="achievement-explanation"'),
                             body.index('class="achievement-math-context"'),identifier)
-            self.assertLess(body.index('class="achievement-equation-setup"'),
+            self.assertLess(body.index('achievement-equation-setup"'),
                             body.index('class="achievement-equation" role="math"'),identifier)
-            self.assertLess(body.index('class="achievement-equation-extra"'),
+            self.assertLess(body.index('achievement-equation-extra"'),
                             body.index('class="achievement-sources"'),identifier)
             for symbol in expected[identifier]:
                 self.assertIn(symbol,body,identifier)
