@@ -47,7 +47,7 @@ jobs:
       - name: Prepare public-only site artifact
         run: |
           mkdir -p _site/assets _site/data
-          cp website/index.html website/paper.html _site/
+          cp website/index.html website/paper.html website/achievements.html _site/
           cp website/assets/site.css website/assets/site.js _site/assets/
           cp website/data/papers.json website/data/news.json _site/data/
           # Read-only public metadata; failures retain the verified catalogue.

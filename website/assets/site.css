@@ -127,3 +127,74 @@
   .author-section h2{font-size:29px;margin-bottom:15px}
   .ai-disclosure{border-left:0;border-top:1px solid var(--line);padding:21px 0 0}
 }
+
+/* Research achievements: curated front-page highlights and a full scientific account. */
+.achievements-preview{scroll-margin-top:26px}
+.achievement-preview-intro{max-width:850px;color:var(--muted);margin:0 0 23px;font-size:15px}
+.achievement-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.achievement-preview-item{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:25px 26px;min-width:0}
+.achievement-preview-meta{display:flex;align-items:baseline;justify-content:space-between;gap:11px;
+  color:#526b85;font-size:11px;font-weight:700;letter-spacing:.4px}
+.achievement-preview-meta span{font-size:11px;color:#687789;font-weight:500;letter-spacing:normal;text-align:right}
+.achievement-preview-item h3{font-size:19px;line-height:1.4;letter-spacing:-.3px;margin:15px 0 11px}
+.achievement-preview-item h3 a{color:#213b65;text-decoration:none}
+.achievement-preview-item h3 a:hover{color:#2b52ba;text-decoration:underline}
+.achievement-preview-item p{color:var(--muted);font-size:13px;line-height:1.72;margin:0}
+.achievement-preview-bottom{display:flex;flex-wrap:wrap;align-items:center;gap:15px 24px;
+  border-top:1px solid var(--line);margin-top:23px;padding-top:22px}
+.achievement-preview-bottom p{flex:1;min-width:min(300px,100%);margin:0;color:#687989;font-size:12px;line-height:1.6}
+.achievement-cta{display:inline-block;border-radius:10px;background:var(--navy2);color:#fff;
+  text-decoration:none;font-weight:720;font-size:14px;padding:11px 19px}
+.achievement-cta:hover{background:#254e71}
+.achievement-hero-content{padding:58px 0 76px}
+.achievement-hero-content h1{font:normal clamp(38px,5.1vw,66px)/1.16 Georgia,"Times New Roman",serif;
+  letter-spacing:-1.7px;margin:18px 0 17px}
+.achievement-page{max-width:1080px;padding-top:47px;padding-bottom:95px}
+.achievement-context{border-bottom:1px solid var(--line);padding-bottom:31px;margin-bottom:32px}
+.achievement-context h2,.achievement-editorial h2{font:normal 30px/1.25 Georgia,"Times New Roman",serif;letter-spacing:-.5px;margin:0 0 11px}
+.achievement-context p{max-width:890px;color:var(--muted);line-height:1.8;margin:0}
+.achievement-toc{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}
+.achievement-toc a{background:#edf2f8;border:1px solid #dce5ed;border-radius:9px;
+  text-decoration:none;font-size:12px;color:#325074;padding:7px 12px}
+.achievement-toc a:hover{border-color:#8097b7}
+.achievement-feature{scroll-margin-top:30px;background:#fff;border:1px solid var(--line);
+  border-radius:16px;padding:32px 35px;margin-bottom:22px}
+.achievement-feature-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px 20px;
+  color:#4767a5;font-size:12px;font-weight:780;flex-wrap:wrap}
+.achievement-code{letter-spacing:.6px}
+.achievement-state{font-weight:550;color:#687b89;font-size:11px}
+.achievement-feature h2{font:normal clamp(25px,3.2vw,34px)/1.22 Georgia,"Times New Roman",serif;
+  letter-spacing:-.6px;margin:15px 0 17px}
+.achievement-feature p{font-size:14px;line-height:1.77;color:#475e73;margin:0 0 15px}
+.achievement-feature p:last-child{margin-bottom:0}
+.achievement-feature .achievement-limitation{border-left:3px solid #b9c5d5;
+  padding:5px 0 5px 15px;color:#52677b}
+.achievement-equation{overflow-x:auto;max-width:100%;font:18px/1.65 Georgia,"Times New Roman",serif;
+  white-space:nowrap;background:#eff3f8;border:1px solid #e3eaf3;border-radius:10px;
+  padding:12px 17px;margin:16px 0;color:#263f62}
+.achievement-equation sub,.achievement-equation sup{font-size:72%}
+.achievement-feature .achievement-result-line{font-size:15px;color:#1d3e62}
+.achievement-source-links{display:flex;flex-wrap:wrap;gap:10px 19px;border-top:1px solid #e5ebf0;
+  padding-top:15px;margin-top:23px}
+.achievement-source-links a,.achievement-return a{font-size:13px;color:#3659a7;
+  text-decoration:none;overflow-wrap:anywhere}
+.achievement-source-links a:hover,.achievement-return a:hover{text-decoration:underline}
+.achievement-editorial{border-radius:16px;background:#eaf0f6;padding:30px 35px;margin-top:30px}
+.achievement-editorial p{font-size:14px;line-height:1.78;color:#526779;margin:0 0 13px}
+.achievement-return{padding-top:15px}
+.achievement-return a{font-weight:740}
+@media(max-width:780px){
+ .achievement-preview-grid{grid-template-columns:1fr;gap:12px}
+ .achievement-preview-item{padding:21px}
+ .achievement-preview-meta{flex-wrap:wrap}
+ .achievement-preview-meta span{text-align:left}
+ .achievement-cta{width:100%;text-align:center}
+ .achievement-hero-content{padding:42px 0 59px}
+ .achievement-hero-content h1{letter-spacing:-1px}
+ .achievement-page{padding-top:30px;padding-bottom:60px}
+ .achievement-context h2,.achievement-editorial h2{font-size:27px}
+ .achievement-feature{padding:24px 20px;margin-bottom:15px}
+ .achievement-feature h2{font-size:27px}
+ .achievement-equation{font-size:16px;padding:12px;white-space:normal;overflow-wrap:anywhere}
+ .achievement-editorial{padding:25px 22px}
+}

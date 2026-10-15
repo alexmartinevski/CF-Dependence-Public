@@ -14,7 +14,7 @@ from pathlib import Path
 
 def stamp_site(root: Path) -> None:
     root = Path(root)
-    for page in ("index.html", "paper.html"):
+    for page in ("index.html", "paper.html", "achievements.html"):
         html_path = root / page
         html = html_path.read_text(encoding="utf-8")
         for asset in ("assets/site.js", "assets/site.css"):

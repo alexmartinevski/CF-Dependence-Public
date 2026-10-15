@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c2e">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="CF Dependence research achievements: exact planar GHZ thresholds for four or more parties, narrow three-party bounds, sharp mixing inequalities, and extremal dependence theorems.">
+  <link rel="canonical" href="https://math.a-martinevski.com/achievements.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Research achievements — CF Dependence">
+  <meta property="og:url" content="https://math.a-martinevski.com/achievements.html">
+  <title>Research achievements — CF Dependence</title>
+  <link rel="stylesheet" href="assets/site.css?v=20261015-achievements">
+  <script src="assets/site.js?v=20261015-achievements" defer></script>
+</head>
+<body data-page="achievements">
+  <header class="hero short-hero achievements-hero">
+    <div class="wrap">
+      <nav class="navigation" aria-label="Main navigation">
+        <a class="brand" href="index.html" data-home-link aria-label="CF Dependence home"><span class="monogram">CF</span><span>CF Dependence</span></a>
+        <div class="nav-actions">
+          <a href="index.html?lang=en#achievements" data-achievement-home-link data-i18n="achievementBack">← Overview</a>
+          <a href="index.html?lang=en#areas" data-catalogue-home-link data-i18n="achievementCatalogue">All papers</a>
+          <button class="language" type="button" data-lang-switch aria-label="Change language">Русский</button>
+        </div>
+      </nav>
+      <div class="achievement-hero-content">
+        <div class="overline light" data-i18n="achievementPageEyebrow">SELECTED SCIENTIFIC RESULTS</div>
+        <h1 data-i18n="achievementPageHeading">Research achievements</h1>
+        <p class="hero-intro" data-i18n="achievementPageLead">Exact extremal theorems, progress on historically studied bounds, and a tightly bounded open problem in planar quantum correlations.</p>
+      </div>
+    </div>
+  </header>
+  <main class="wrap achievement-page">
+    <section class="achievement-context" aria-labelledby="achievement-context-heading">
+      <h2 id="achievement-context-heading" data-i18n="achievementContextTitle">What these claims mean</h2>
+      <p data-i18n="achievementContextText">The results below are stated in released CF Dependence manuscripts. An exact formula inside its stated mathematical class is distinguished from a partial improvement or an unsolved conjecture. Independent proof and historical-priority reviews remain pending; we do not claim that every broader classical problem has been solved.</p>
+      <nav class="achievement-toc" aria-label="Research achievements">
+        <a href="#ghz-exact" data-i18n="achievementTocGhzExact">GHZ: exact n≥4</a>
+        <a href="#ghz-three" data-i18n="achievementTocGhzThree">GHZ: three parties</a>
+        <a href="#mixing" data-i18n="achievementTocMixing">Sharp covariance</a>
+        <a href="#multilinear" data-i18n="achievementTocMultilinear">1985 multilinear question</a>
+        <a href="#cf-profile" data-i18n="achievementTocProfile">Universal CF profile</a>
+        <a href="#stability" data-i18n="achievementTocStability">Sharp stability</a>
+      </nav>
+    </section>
+
+    <article class="achievement-feature" id="ghz-exact">
+      <div class="achievement-feature-top"><span class="achievement-code">P04 · GHZ</span><span class="achievement-state" data-i18n="achievementStateExact">Exact result in the stated class</span></div>
+      <h2 data-i18n="achievementGhzExactTitle">Exact planar GHZ threshold for n ≥ 4</h2>
+      <p data-i18n="achievementGhzExactDescription">The paper derives a closed formula for the optimal local-hidden-variable threshold in the planar XY, full-correlation GHZ scenario, allowing arbitrary finite sets of measurement angles.</p>
+      <div class="achievement-equation" role="math" aria-label="kappa n equals pi over two to power n times zeta n divided by two times one plus two to negative n times zeta two n">
+        κ<sub>n</sub> = (π/2)<sup>n</sup> ζ(n) / [2(1 + 2<sup>−n</sup>)ζ(2n)], &nbsp; n ≥ 4
+      </div>
+      <p class="achievement-result-line"><strong data-i18n="achievementExample">Example</strong>: κ<sub>4</sub> = 105/34, &nbsp; v<sub>XY</sub>(GHZ<sub>4</sub>) = <strong>34/105 ≈ 0.32380952</strong>.</p>
+      <p data-i18n="achievementGhzExactImportance">Unlike finite-setting numerical estimates, this is an expression for the full continuum-of-settings optimization in the specified full-correlator model. The earlier 2024 work by Designolle, Vértesi and Pokutta supplied rigorous bounds rather than this general closed formula.</p>
+      <p class="achievement-limitation" data-i18n="achievementGhzExactScope">Scope: planar XY measurements and full correlations. This is not a claim about every Bell scenario or arbitrary measurements. Independent verification of the proof and of historical priority has not yet been completed.</p>
+      <div class="achievement-source-links">
+        <a href="https://doi.org/10.5281/zenodo.23356091" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadP04">P04 — published series (Zenodo) ↗</a>
+        <a href="https://doi.org/10.1103/PhysRevA.109.022205" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadDvp">Designolle–Vértesi–Pokutta (2024) ↗</a>
+      </div>
+    </article>
+
+    <article class="achievement-feature" id="ghz-three">
+      <div class="achievement-feature-top"><span class="achievement-code">P04 · GHZ<sub>3</sub></span><span class="achievement-state" data-i18n="achievementStatePartial">Strict bounds; exact value remains open</span></div>
+      <h2 data-i18n="achievementGhzThreeTitle">Three-party GHZ: a narrow interval and an exact-value conjecture</h2>
+      <p data-i18n="achievementGhzThreeDescription">For three parties the sharp value is not yet proved. The published paper provides a new finite-harmonic Bell lower bound and an analytical upper bound from an explicit square-wave/Möbius local model.</p>
+      <div class="achievement-equation" role="math">
+        2.034968153548… ≤ κ<sub>3</sub> ≤ 105ζ(3)/(2π<sup>3</sup>) ≈ 2.035329429153
+      </div>
+      <p class="achievement-result-line">0.49132095555… ≤ v<sub>XY</sub>(GHZ<sub>3</sub>) ≤ 0.49140818163…</p>
+      <p data-i18n="achievementGhzThreeComparison">These two visibility bounds improve both ends of the interval 0.49129–0.49143 reported by Designolle, Vértesi and Pokutta in 2024. The remaining κ₃ interval is only about 0.01775% of its upper bound.</p>
+      <p data-i18n="achievementGhzThreeConjecture">Conjecture: the upper bound is exact, κ₃ = 105ζ(3)/(2π³). This equality has not been proved.</p>
+      <p data-i18n="achievementGhzThreeProof">The lower bound uses an analytic reduction followed by 272 reproducible rational inequalities in the K7 certificate. This is computer-assisted proof, not an independent external proof-review.</p>
+      <p data-i18n="achievementGhzThreeZeta">The remaining dual Bell-functional construction encounters arithmetic oscillations linked to the Möbius function and zeros of the Riemann zeta function. This does not make the conjecture equivalent to the Riemann hypothesis.</p>
+      <div class="achievement-source-links">
+        <a href="https://doi.org/10.5281/zenodo.23356091" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadP04">P04 — published series (Zenodo) ↗</a>
+        <a href="https://doi.org/10.1103/PhysRevA.109.022205" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadDvp">Designolle–Vértesi–Pokutta (2024) ↗</a>
+      </div>
+    </article>
+
+    <article class="achievement-feature" id="mixing">
+      <div class="achievement-feature-top"><span class="achievement-code">P04 · PROBABILITY</span><span class="achievement-state" data-i18n="achievementStateExact">Exact result in the stated class</span></div>
+      <h2 data-i18n="achievementMixingTitle">Optimal covariance constant under strong mixing</h2>
+      <p data-i18n="achievementMixingDescription">For bounded complex random variables measurable with respect to two σ-fields, P04 establishes the sharp coefficient in the covariance inequality with the classical strong-mixing coefficient α.</p>
+      <div class="achievement-equation" role="math">
+        |Cov(X,Y)| ≤ 4√2 · α(ℱ,𝒢) · ‖X‖<sub>∞</sub> · ‖Y‖<sub>∞</sub>
+      </div>
+      <p data-i18n="achievementMixingHistory">The literature contains Dvoretzky's historical bound 2π, discussed in Bradley–Bryc (1985). The constant 4√2 is smaller and is claimed sharp in P04, with an equality construction; for real scalars the constant is 4.</p>
+      <p class="achievement-limitation" data-i18n="achievementMixingScope">This comparison uses the strong-mixing coefficient and the same bounded-observable normalization. A complete search for equivalent earlier sharp results and an independent proof review are still outstanding, so no first-ever priority is claimed.</p>
+      <div class="achievement-source-links">
+        <a href="https://doi.org/10.5281/zenodo.23356091" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadP04">P04 — published series (Zenodo) ↗</a>
+        <a href="https://doi.org/10.1016/0047-259X(85)90025-9" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadBradley">Bradley–Bryc (1985) ↗</a>
+      </div>
+    </article>
+
+    <article class="achievement-feature" id="multilinear">
+      <div class="achievement-feature-top"><span class="achievement-code">P04 · 1985</span><span class="achievement-state" data-i18n="achievementStateRestricted">Partial response in a restricted class</span></div>
+      <h2 data-i18n="achievementMultilinearTitle">Sharper multilinear estimates and the question from 1985</h2>
+      <p data-i18n="achievementMultilinearDescription">Bradley and Bryc observed in 1985 that their general multilinear coefficients were not optimal. P04 derives sharp real and complex factors 2ⁿ and 2ⁿκₙ for a natural class of multilinear forms real-valued on real arguments.</p>
+      <div class="achievement-equation" role="math">
+        c<sub>n</sub><sup>real</sup> = 2<sup>n</sup>; &nbsp;
+        c<sub>n</sub><sup>complex</sup> = 2<sup>n</sup>κ<sub>n</sub>
+      </div>
+      <p class="achievement-limitation" data-i18n="achievementMultilinearScope">Important distinction: the 1985 result allowed general complex multilinear forms, whereas the sharp factors in P04 concern a real-on-real subclass. Consequently the old problem is not solved in its full generality. The n=3 complex sharp factor also remains open.</p>
+      <div class="achievement-source-links">
+        <a href="https://doi.org/10.5281/zenodo.23356091" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadP04">P04 — published series (Zenodo) ↗</a>
+        <a href="https://doi.org/10.1016/0047-259X(85)90025-9" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadBradley">Bradley–Bryc (1985) ↗</a>
+      </div>
+    </article>
+
+    <article class="achievement-feature" id="cf-profile">
+      <div class="achievement-feature-top"><span class="achievement-code">P01 · MATHEMATICS</span><span class="achievement-state" data-i18n="achievementStateExact">Exact result in the stated class</span></div>
+      <h2 data-i18n="achievementProfileTitle">Universal characteristic-function dependence profile</h2>
+      <p data-i18n="achievementProfileDescription">An extremum over joint laws of bounded complex random variables is reduced to a formula in the prescribed moduli of their means. This unifies several characteristic-function factorization problems.</p>
+      <div class="achievement-equation" role="math">
+        𝒞<sub>d</sub>(r<sub>1</sub>,…,r<sub>d</sub>) =
+        R − cos(min{Σ<sub>j</sub> arccos r<sub>j</sub>, π}),
+        &nbsp; R = ∏<sub>j</sub>r<sub>j</sub>
+      </div>
+      <div class="achievement-equation" role="math">
+        C<sub>d</sub> = max<sub>0≤θ≤π/d</sub> (cos<sup>d</sup>θ − cos(dθ))
+      </div>
+      <p data-i18n="achievementProfileImportance">The universal constant has explicit values C₂=1, C₃=2/√3, C₄=9/7. Extremal constructions use a common fair sign in the corresponding regime; C_d increases to 2. This is a proven exact profile, not a claim that an independently documented century-old open question was solved.</p>
+      <div class="achievement-source-links">
+        <a href="https://doi.org/10.5281/zenodo.23021779" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadP01">P01 — published series (Zenodo) ↗</a>
+      </div>
+    </article>
+
+    <article class="achievement-feature" id="stability">
+      <div class="achievement-feature-top"><span class="achievement-code">P13 · MATHEMATICS</span><span class="achievement-state" data-i18n="achievementStateExact">Exact result in the stated class</span></div>
+      <h2 data-i18n="achievementStabilityTitle">Sharp quantitative stability near extremal dependence</h2>
+      <p data-i18n="achievementStabilityDescription">P13 strengthens the sharp inequality into a stability theorem: if the dependence defect is close to its maximum, the joint distribution must be close to the entire family of equality cases.</p>
+      <div class="achievement-equation" role="math">
+        dist<sub>W<sub>p</sub></sub>(P,ℰ<sub>d</sub>) ≤ K<sub>d,p</sub> Δ<sup>1/(2p)</sup>
+      </div>
+      <p data-i18n="achievementStabilityScope">For d≥3, any finite p≥1 and sufficiently small deficit Δ, the displayed Wasserstein exponent is optimal, even after optimizing coordinate phases. A structured discrepancy separating location and mass errors admits an optimal square-root rate.</p>
+      <p class="achievement-limitation" data-i18n="achievementStabilityPriority">The theorem is highlighted for its exact exponent and extremal geometry, not as an independently verified solution of an older externally posed question.</p>
+      <div class="achievement-source-links">
+        <a href="https://doi.org/10.5281/zenodo.23355677" target="_blank" rel="noopener noreferrer" data-i18n="achievementReadP13">P13 — published series (Zenodo) ↗</a>
+      </div>
+    </article>
+
+    <section class="achievement-editorial" aria-labelledby="achievement-editorial-title">
+      <h2 id="achievement-editorial-title" data-i18n="achievementEditorialTitle">Proof, novelty and priority</h2>
+      <p data-i18n="achievementEditorialText">A result may be mathematically precise yet still require an independent check of its proof or literature priority. The links above are to public papers or historical sources. The displayed categories refer to the claims made in the publications and their proved or unresolved scope; they are not independent peer-review certifications.</p>
+      <p data-i18n="achievementEditorialSecond">The three-party GHZ formula remains a conjecture. The broad 1985 complex multilinear problem is not claimed solved. We do not present any result as the first-ever solution of a long-standing problem without both a proof review and a documented priority comparison.</p>
+      <div class="achievement-return">
+        <a href="index.html?lang=en#areas" data-catalogue-home-link data-i18n="achievementAllPapers">Explore all published papers →</a>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© CF Dependence · Alexandr Martinevski</span><span data-i18n="footer">Only verified published works are listed. Draft DOI ≠ publication.</span></div></footer>
+</body>
+</html>
