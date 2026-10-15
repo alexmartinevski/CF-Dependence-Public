@@ -88,7 +88,7 @@ class PublicSiteTests(unittest.TestCase):
         script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
         self.assertIn('id="areas"',homepage)
         self.assertIn('id="area-groups"',homepage)
-        self.assertIn("function renderAreas()",script)
+        self.assertIn("function renderAreas(visiblePapers=papers)",script)
         self.assertIn("doiLink(p.concept_doi,COPY[language].openLatest)",script)
         self.assertIn("paper-latest",detail)
         self.assertIn("paper-version",detail)
