@@ -3,6 +3,14 @@ const COPY = {
  en: {
   papers:"Publications",updates:"What's new",about:"About",eyebrow:"EXTREMAL PROBABILITY · ANALYSIS · ALGEBRA",
   hero:"A research programme on dependence via characteristic functions, sharp inequalities, and the mathematical structures behind their extremizers.",
+  areasNav:"By field",areasLabel:"RESEARCH MAP",areasHeading:"Publications by research area",
+  areasIntro:"An overview of published articles grouped by their principal research topic. Each entry shows what it covers, the last verified release date and version DOI.",
+  verifiedAsOf:"Release metadata checked as of",missingDate:"Date not independently verified",releaseDate:"Publication date",
+  versionIdentifier:"Verified version DOI",openLatest:"Open latest version",
+  latestPublished:"Latest published record (Concept DOI)",lastVerifiedDate:"Last verified release date",
+  verifiedVersionDOI:"Last verified version DOI (for citation)",
+  doiExplanation:"The primary DOI follows the latest published Zenodo record; the version DOI identifies one specific release. Dates and version identifiers are from the last verified catalogue snapshot.",
+  olderPdf:"Archived PDF",olderTex:"Archived TeX",zenodoPDF:"PDF on Zenodo",
   publishedLabel:"PUBLISHED RESEARCH",papersHeading:"Research papers",publishedCount:"published records",
   searchLabel:"Search publications",noMatches:"No publications match your search.",
   newsLabel:"RELEASE HISTORY",updatesHeading:"What's new",
@@ -21,6 +29,14 @@ const COPY = {
  ru: {
   papers:"Работы",updates:"Что изменилось",about:"О проекте",eyebrow:"ЭКСТРЕМАЛЬНАЯ ВЕРОЯТНОСТЬ · АНАЛИЗ · АЛГЕБРА",
   hero:"Исследовательская программа по зависимости через характеристические функции, точным неравенствам и математической структуре экстремалей.",
+  areasNav:"По областям",areasLabel:"КАРТА ИССЛЕДОВАНИЙ",areasHeading:"Публикации по научным областям",
+  areasIntro:"Все опубликованные статьи сгруппированы по основной тематике. Для каждой приведены содержание, дата и DOI последней проверенной опубликованной версии.",
+  verifiedAsOf:"Метаданные сверены по состоянию на",missingDate:"Дата не подтверждена",releaseDate:"Дата публикации",
+  versionIdentifier:"DOI проверенной версии",openLatest:"Открыть актуальную версию",
+  latestPublished:"Актуальная публикация (Concept DOI)",lastVerifiedDate:"Дата последней проверенной публикации",
+  verifiedVersionDOI:"DOI проверенной версии (для цитирования)",
+  doiExplanation:"Основной DOI ведёт к последней опубликованной версии Zenodo. DOI версии закреплён за конкретным выпуском. Даты и идентификаторы версии приводятся по последнему проверенному состоянию каталога.",
+  olderPdf:"Архивный PDF",olderTex:"Архивный TeX",zenodoPDF:"PDF в Zenodo",
   publishedLabel:"ОПУБЛИКОВАННЫЕ РАБОТЫ",papersHeading:"Научные статьи",publishedCount:"опубликованные работы",
   searchLabel:"Поиск работ",noMatches:"Ничего не найдено.",
   newsLabel:"ИСТОРИЯ ВЫПУСКОВ",updatesHeading:"Что изменилось",
@@ -37,10 +53,28 @@ const COPY = {
   searchPlaceholder:"Поиск по названию, коду или теме",otherLang:"English"
  }
 };
+const RESEARCH_AREAS = [
+  {id:"extremal",name:{en:"Extremal dependence and sharp inequalities",ru:"Экстремальная зависимость и точные неравенства"},
+   description:{en:"Universal bounds, extremal profiles, stability and higher-order interaction measures.",
+    ru:"Универсальные оценки, экстремальные профили, устойчивость и многомерные меры взаимодействия."}},
+  {id:"transport",name:{en:"Prescribed marginals and optimal transport",ru:"Заданные маргинали и оптимальный транспорт"},
+   description:{en:"Couplings, mixability, transport geometry and the construction of prescribed dependence.",
+    ru:"Совместные распределения, смешиваемость, геометрия транспорта и синтез зависимости."}},
+  {id:"algebra",name:{en:"Polynomial algebra, Galois theory and moments",ru:"Алгебра полиномов, теория Галуа и моменты"},
+   description:{en:"Chebyshev–Lucas polynomials, critical points, resultants and arithmetic moment reconstruction.",
+    ru:"Полиномы Чебышёва—Люкаса, критические точки, результанты и арифметика моментов."}},
+  {id:"harmonic",name:{en:"Harmonic analysis and inverse problems",ru:"Гармонический анализ и обратные задачи"},
+   description:{en:"Recovering hidden structures from Fourier, Walsh and finite-group observations.",
+    ru:"Восстановление скрытых структур по наблюдениям Фурье, Уолша и конечных групп."}},
+  {id:"statistics",name:{en:"Statistical tests and estimation",ru:"Статистические критерии и оценивание"},
+   description:{en:"Independence tests, robust methods and estimating dependence functionals.",
+    ru:"Критерии независимости, робастные методы и оценивание функционалов зависимости."}}
+];
 const DOI = /^10\.5281\/zenodo\.\d+$/;
 let language = new URLSearchParams(location.search).get("lang") === "ru" ? "ru" : "en";
 let papers = [];
 let news = [];
+let catalogueDate = "";
 const $ = (id) => document.getElementById(id);
 function node(tag, className, text) {
   const el = document.createElement(tag);
@@ -85,11 +119,56 @@ function renderCard(p) {
   const foot=node("div","card-bottom");
   const detail=node("a",null,COPY[language].details+" ↗");
   detail.href="paper.html?code="+encodeURIComponent(p.code)+"&lang="+language;
-  children(foot,detail,node("span","tiny",p.version_doi));
+  children(foot,detail,doiLink(p.concept_doi,COPY[language].openLatest));
   return children(card,top,title,desc,tags,foot);
+}
+function renderAreas() {
+  const container=$("area-groups");
+  if(!container)return;
+  const note=$("area-snapshot");
+  note.textContent=COPY[language].verifiedAsOf+": "+(catalogueDate||"—")+".";
+  container.replaceChildren();
+  for(const area of RESEARCH_AREAS) {
+    const members=papers.filter(p=>p.area===area.id);
+    if(!members.length)continue;
+    const group=node("section","area-group");
+    const heading=node("div","area-group-heading");
+    const title=node("h3",null,area.name[language]);
+    const count=node("span","area-group-count",String(members.length));
+    const description=node("p","area-group-description",area.description[language]);
+    heading.append(title,count,description);
+    const rows=node("div","area-rows");
+    for(const p of members) {
+      const item=node("article","area-row");
+      const main=node("div","area-row-main");
+      const headline=node("div","area-headline");
+      const link=node("a","area-paper-link",p.title);
+      link.href="paper.html?code="+encodeURIComponent(p.code)+"&lang="+language;
+      headline.append(node("span","code",p.code),link);
+      main.append(headline,node("p","area-paper-summary",p.summary[language]||p.summary.en));
+      const meta=node("div","area-row-meta");
+      const dateBlock=node("div","area-metadata-line");
+      dateBlock.appendChild(node("span","area-meta-label",COPY[language].releaseDate));
+      if(typeof p.published_on==="string" && /^\d{4}-\d{2}-\d{2}$/.test(p.published_on)) {
+        const time=node("time","area-meta-value",p.published_on);
+        time.dateTime=p.published_on;
+        dateBlock.appendChild(time);
+      } else dateBlock.appendChild(node("span","area-meta-value",COPY[language].missingDate));
+      const versionBlock=node("div","area-metadata-line");
+      versionBlock.append(node("span","area-meta-label",COPY[language].versionIdentifier),doiLink(p.version_doi,p.version_doi));
+      const current=doiLink(p.concept_doi,COPY[language].openLatest);
+      current.className="area-latest-link";
+      meta.append(dateBlock,versionBlock,current);
+      item.append(main,meta);
+      rows.appendChild(item);
+    }
+    group.append(heading,rows);
+    container.appendChild(group);
+  }
 }
 function renderIndex() {
   applyLanguage();
+  renderAreas();
   const query=($("search")?.value||"").trim().toLocaleLowerCase();
   const matching=papers.filter(p=>[p.code,p.title,p.summary.en,p.summary.ru,...(p.topics||[])].join(" ").toLocaleLowerCase().includes(query));
   const list=$("paper-list"); list.replaceChildren(...matching.map(renderCard));
@@ -134,16 +213,18 @@ function renderDetail() {
   $("paper-summary").textContent=p.summary[language]||p.summary.en;
   $("paper-description").textContent=p.summary[language]||p.summary.en;
   const tags=$("paper-topics");tags.replaceChildren(...(p.topics||[]).map(x=>node("span","tag",x)));
-  $("paper-doi").replaceChildren(doiLink(p.version_doi));
-  $("paper-concept").replaceChildren(doiLink(p.concept_doi));
+  $("paper-latest").replaceChildren(doiLink(p.concept_doi,COPY[language].openLatest));
+  $("paper-version").replaceChildren(doiLink(p.version_doi));
+  $("paper-release-date").textContent=p.published_on||COPY[language].missingDate;
   const links=$("paper-downloads");links.replaceChildren();
   const downloads=[];
+  // The current PDF must be retrieved from the Zenodo concept record, never
+  // mistaken for an older GitHub snapshot or an exact-version record URL.
+  downloads.push([COPY[language].zenodoPDF,"https://doi.org/"+p.concept_doi]);
   if (p.source_path) {
-    downloads.push(["PDF",publicRepoLink(p,"paper.pdf")]);
-    downloads.push(["TeX",publicRepoLink(p,"paper.tex")]);
+    downloads.push([COPY[language].olderPdf,publicRepoLink(p,"paper.pdf")]);
+    downloads.push([COPY[language].olderTex,publicRepoLink(p,"paper.tex")]);
     downloads.push([COPY[language].source,publicRepoLink(p,null)]);
-  } else if (typeof p.record_url==="string" && /^https:\/\/zenodo\.org\/records\/\d+$/.test(p.record_url)) {
-    downloads.push([COPY[language].pdf+" · Zenodo",p.record_url]);
   }
   for(const [name,url] of downloads){const a=node("a",null,name+" ↗");a.href=url;a.target="_blank";a.rel="noopener noreferrer";links.appendChild(a);}
   const history=$("paper-history");history.replaceChildren();
@@ -160,6 +241,7 @@ async function init() {
     if(!a.ok||!b.ok)throw new Error("Unable to load");
     const pdata=await a.json(), ndata=await b.json();
     papers=verifiedPapers(pdata.papers).sort((x,y)=>Number(x.code.slice(1))-Number(y.code.slice(1)));
+    catalogueDate=typeof pdata.last_curated_on==="string"?pdata.last_curated_on:"";
     news=Array.isArray(ndata.entries)?ndata.entries:[];
     if(document.body.dataset.page==="index") {
       $("search").addEventListener("input",renderIndex);
