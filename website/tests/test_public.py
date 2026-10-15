@@ -56,20 +56,28 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertTrue(c["summary"]["en"].strip())
                 self.assertTrue(c["summary"]["ru"].strip())
 
-    def test_news_comes_from_public_sources(self):
+    def test_news_sources_link_to_science_not_engineering_changes(self):
+        # Readers should reach research content, not development PRs.
+        targets={"achievements.html#ghz-exact","achievements.html","publications/"}
+        kinds={"site_update","publication_release","collection_update","public_collection_release"}
+        self.assertEqual(len(self.news["entries"]),6)
         for event in self.news["entries"]:
             self.assertRegex(event["date"],r"^\d{4}-\d{2}-\d{2}$")
             self.assertTrue(event["title"]["en"].strip())
             self.assertTrue(event["summary"]["ru"].strip())
+            self.assertIn(event["kind"],kinds)
             source=event["source"]
-            if event.get("kind")=="site_update":
-                self.assertRegex(source,r"^https://github\.com/alexmartinevski/CF-Dependence-Public/pull/[1-9]\d*$")
+            self.assertNotIn("github.com",source)
+            self.assertNotIn("RELEASE_NOTES",source)
+            if event["kind"]=="site_update":
+                self.assertIn(source,{"achievements.html#ghz-exact","achievements.html"})
                 self.assertEqual(event["date"],"2026-10-15")
-            elif source=="RELEASE_NOTES.md":
-                self.assertTrue((REPO/source).is_file())
+            elif event["kind"] in {"collection_update","public_collection_release"}:
+                self.assertEqual(source,"publications/")
             else:
                 self.assertRegex(source,r"^https://doi\.org/10\.5281/zenodo\.\d+$")
-                self.assertIn(source.removeprefix("https://doi.org/"),{p["version_doi"] for p in self.site["papers"]})
+                self.assertIn(source.removeprefix("https://doi.org/"),
+                              {p["version_doi"] for p in self.site["papers"]})
 
     def test_subject_directory_and_release_metadata(self):
         from datetime import date
@@ -476,6 +484,9 @@ class PublicSiteTests(unittest.TestCase):
         self.assertEqual(news.count('class="news-item"'),4)
         self.assertEqual(news.count('datetime="2026-10-15"'),2)
         self.assertEqual(news.count('datetime="2026-10-14"'),2)
+        self.assertNotIn("GitHub PR #",news)
+        self.assertIn('href="achievements.html?lang=en#ghz-exact"',news)
+        self.assertIn('href="achievements.html?lang=en"',news)
         self.assertIn('id="updates-heading"',html)
         self.assertIn('class="section-heading news-heading"',news)
         self.assertIn('href="news.html?lang=en"',news)
@@ -490,20 +501,29 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn('if(newsLoaded)renderUpdates($("news-items"),true)',script)
         self.assertIn('fetch("data/news.json",{cache:"no-store"}).catch(()=>null)',script)
 
-    def test_site_news_is_grounded_in_public_prs(self):
-        self.assertEqual(len(self.news["entries"]),6)
+    def test_site_news_references_real_research_content(self):
         updates=self.news["entries"][:2]
         self.assertTrue(all(e["kind"]=="site_update" for e in updates))
-        self.assertEqual(
-            [e["source"] for e in updates],
-            ["https://github.com/alexmartinevski/CF-Dependence-Public/pull/12",
-             "https://github.com/alexmartinevski/CF-Dependence-Public/pull/11"]
-        )
+        self.assertEqual([e["source"] for e in updates],
+                         ["achievements.html#ghz-exact","achievements.html"])
+        self.assertEqual([e["source"] for e in self.news["entries"][4:]],
+                         ["publications/","publications/"])
         for entry in updates:
             self.assertEqual(entry["date"],"2026-10-15")
             self.assertTrue(entry["title"]["ru"])
             self.assertTrue(entry["summary"]["en"])
-        self.assertEqual(len([e for e in self.news["entries"] if e["kind"]!="site_update"]),4)
+        self.assertEqual(len([e for e in self.news["entries"]
+                              if e["kind"]!="site_update"]),4)
+        for file in ("index.html","news.html"):
+            html=(ROOT/file).read_text(encoding="utf-8")
+            self.assertNotIn('github.com/alexmartinevski/CF-Dependence-Public/',html)
+            self.assertNotIn("GitHub PR #",html)
+            self.assertIn('data-news-source="achievements.html#ghz-exact"',html)
+            self.assertIn('data-news-source="achievements.html"',html)
+            self.assertIn('href="achievements.html?lang=en#ghz-exact"',html)
+        history=(ROOT/"news.html").read_text(encoding="utf-8")
+        self.assertEqual(history.count('data-news-source="publications/"'),2)
+        self.assertEqual(history.count('href="publications/index.html?lang=en"'),2)
 
     def test_catalogue_is_compact_and_project_nav_follows_section_order(self):
         import re
@@ -588,13 +608,20 @@ class PublicSiteTests(unittest.TestCase):
         for event in self.news["entries"]:
             self.assertIn('datetime="'+event["date"]+'"',html)
             self.assertIn(event["title"]["en"],html)
-            if event["source"]=="RELEASE_NOTES.md":
-                self.assertIn('RELEASE_NOTES.md',html)
+            targets={
+                "achievements.html#ghz-exact":"achievements.html?lang=en#ghz-exact",
+                "achievements.html":"achievements.html?lang=en",
+                "publications/":"publications/index.html?lang=en",
+            }
+            if event["source"] in targets:
+                self.assertIn('data-news-source="'+event["source"]+'"',html)
+                self.assertIn('href="'+targets[event["source"]]+'"',html)
             else:
                 self.assertIn('href="'+event["source"]+'"',html)
         for key in ("newsAllLink","newsPageHeading","newsPageLead",
                     "newsPageListHeading","newsPageIntro","newsPageNote",
-                    "newsPageBack","newsPageEyebrow"):
+                    "newsPageBack","newsPageEyebrow",
+                    "newsFormulasLink","newsAchievementsLink","newsPublicationsLink"):
             self.assertEqual(script.count(key+':'),2,key)
         for key in set(re.findall(r'data-i18n="(newsPage[A-Za-z0-9]+)"',html)):
             self.assertEqual(script.count(key+':'),2,key)

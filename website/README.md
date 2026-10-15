@@ -399,3 +399,21 @@ P02 and P03 catalogue titles have also been synchronized with the **existing**
 released Zenodo titles. Version DOIs, Concept DOIs, publication dates,
 provenance labels, HTML layouts, mathematical papers and source PDFs were not
 modified. This website-only change does not create any Zenodo release.
+
+## Reader-facing links in news (2026-10-15)
+
+The main page's "What's new" section and `news.html` now link to
+**scientific content**, not GitHub implementation PRs. The two website
+enhancements open the achievements page (including a direct link to the
+analytical GHZ result with mathematical formulas). Both collection-level
+announcements open the complete public scientific bibliography rather than
+a generic GitHub release note or the unrelated single-paper P04 DOI.
+The two article-release cards still link to their fixed Zenodo version DOIs.
+
+Each internal target is a literal allowlisted site path with the selected
+`lang=en/ru`, including static HTML fallbacks when `news.json` fails.
+The source-link resolver refuses GitHub PRs and any unknown external URLs.
+News history and chronology remain unchanged; this is a navigation and
+reader-facing source correction, not a claim of new publication.
+Regression tests cover both languages, internal/external URLs, all six
+cards and the 2×2 homepage layout.
