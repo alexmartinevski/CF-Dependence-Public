@@ -95,6 +95,26 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("COPY[language].olderPdf",script)
         self.assertNotIn('id="paper-concept"',detail)
 
+    def test_public_zenodo_metadata_validated_before_display(self):
+        import sys
+        sys.path.insert(0, str(ROOT/"tools"))
+        import resolve_zenodo as sync
+        paper=self.site["papers"][0]
+        old={"doi":paper["version_doi"],"conceptdoi":paper["concept_doi"],
+             "metadata":{"publication_date":"2026-10-01","version":"v0.1"},
+             "links":{"latest":"https://zenodo.org/api/records/23355587"}}
+        latest={"doi":"10.5281/zenodo.23355587","conceptdoi":paper["concept_doi"],
+                "metadata":{"publication_date":"2026-10-15","version":"v0.2"}}
+        resolved=sync.extract_release(paper,old,latest)
+        self.assertEqual(resolved["version_doi"],"10.5281/zenodo.23355587")
+        self.assertEqual(resolved["published_on"],"2026-10-15")
+        self.assertEqual(resolved["version_label"],"v0.2")
+        self.assertEqual(sync.latest_record_id(old),23355587)
+        bad={**latest,"conceptdoi":"10.5281/zenodo.9999"}
+        self.assertIsNone(sync.extract_release(paper,old,bad))
+        old["links"]["latest"]="https://other.example.org/api/records/23355587"
+        self.assertIsNone(sync.latest_record_id(old))
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
