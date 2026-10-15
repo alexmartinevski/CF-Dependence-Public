@@ -62,10 +62,13 @@ class PublicSiteTests(unittest.TestCase):
             self.assertTrue(event["title"]["en"].strip())
             self.assertTrue(event["summary"]["ru"].strip())
             source=event["source"]
-            if source=="RELEASE_NOTES.md":
+            if event.get("kind")=="site_update":
+                self.assertRegex(source,r"^https://github\.com/alexmartinevski/CF-Dependence-Public/pull/[1-9]\d*$")
+                self.assertEqual(event["date"],"2026-10-15")
+            elif source=="RELEASE_NOTES.md":
                 self.assertTrue((REPO/source).is_file())
             else:
-                self.assertRegex(source,r"^https://doi.org/10\.5281/zenodo\.\d+$")
+                self.assertRegex(source,r"^https://doi\.org/10\.5281/zenodo\.\d+$")
                 self.assertIn(source.removeprefix("https://doi.org/"),{p["version_doi"] for p in self.site["papers"]})
 
     def test_subject_directory_and_release_metadata(self):
@@ -462,6 +465,49 @@ class PublicSiteTests(unittest.TestCase):
         self.assertTrue(isclose(105/34,3.088235294117647,abs_tol=1e-11))
         self.assertNotIn("mathjax",page.lower())
         self.assertNotIn("cdn.jsdelivr.net",page)
+
+    def test_latest_updates_visible_and_aligned_near_top(self):
+        homepage=(ROOT/"index.html").read_text(encoding="utf-8")
+        css=(ROOT/"assets/site.css").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        intro=homepage.index('id="achievements"')
+        news=homepage.index('id="updates"')
+        catalogue=homepage.index('id="areas"')
+        self.assertLess(intro,news)
+        self.assertLess(news,catalogue,
+            "Updates must be visible before the long 18-paper research catalogue")
+        self.assertEqual(homepage.count('id="updates"'),1)
+        self.assertEqual(homepage.count('id="news-items"'),1)
+        self.assertIn('id="updates-heading"',homepage)
+        news_html=homepage[news:catalogue]
+        self.assertIn('class="section-heading news-heading"',news_html)
+        self.assertIn('aria-live="polite"',news_html)
+        self.assertEqual(news_html.count('class="news-item"'),2,
+            "Static updates remain readable when the news feed fails")
+        self.assertEqual(news_html.count('datetime="2026-10-15"'),2)
+        self.assertIn('github.com/alexmartinevski/CF-Dependence-Public/pull/12',news_html)
+        self.assertIn('github.com/alexmartinevski/CF-Dependence-Public/pull/11',news_html)
+        self.assertIn('.news-section{display:block',css)
+        self.assertIn('.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))',css)
+        self.assertIn('.news-items{grid-template-columns:1fr',css)
+        self.assertIn('if(newsLoaded)renderUpdates($("news-items"),true)',script)
+        self.assertIn('fetch("data/news.json",{cache:"no-store"}).catch(()=>null)',script)
+        self.assertIn('function updateSource(source)',script)
+
+    def test_site_news_is_grounded_in_public_prs(self):
+        self.assertEqual(len(self.news["entries"]),6)
+        updates=self.news["entries"][:2]
+        self.assertTrue(all(e["kind"]=="site_update" for e in updates))
+        self.assertEqual(
+            [e["source"] for e in updates],
+            ["https://github.com/alexmartinevski/CF-Dependence-Public/pull/12",
+             "https://github.com/alexmartinevski/CF-Dependence-Public/pull/11"]
+        )
+        for entry in updates:
+            self.assertEqual(entry["date"],"2026-10-15")
+            self.assertTrue(entry["title"]["ru"])
+            self.assertTrue(entry["summary"]["en"])
+        self.assertEqual(len([e for e in self.news["entries"] if e["kind"]!="site_update"]),4)
 
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
