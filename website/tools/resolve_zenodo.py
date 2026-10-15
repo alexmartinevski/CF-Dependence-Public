@@ -105,7 +105,7 @@ def read_versions(record_id):
     found = []
     page = 1
     while page <= 10:
-        payload = read_json(f"{API_ROOT}{record_id}/versions?size=100&page={page}")
+        payload = read_json(f"{API_ROOT}{record_id}/versions?allversions=true&size=100&page={page}")
         hits = payload.get("hits") or {}
         entries = hits.get("hits") if isinstance(hits, dict) else None
         if not isinstance(entries, list):
@@ -170,7 +170,7 @@ def extract_release(paper, base, latest=None, versions=None, history_complete=Fa
     if ordered:
         if version_index(ordered[0]) == 1:
             first = ordered[0]
-        elif history_complete and versions is not None:
+        elif history_complete and versions and version_index(ordered[0]) is None:
             first = ordered[0]
     elif version_index(base) == 1:
         first = base
@@ -211,6 +211,8 @@ def check_paper(paper):
         pass
 
     published_versions = [v for v in (versions or []) if is_public_version(v, paper["concept_doi"])]
+    if not published_versions:
+        complete = False
     timeline = sort_lineage(published_versions + [base])
     latest = timeline[-1] if timeline else None
     # Fall back to a dedicated published-latest endpoint if the version list is
