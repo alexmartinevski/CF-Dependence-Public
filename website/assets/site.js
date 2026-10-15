@@ -148,7 +148,10 @@ const COPY = {
   newsPageLead:"Published research and verified public website improvements, with dates and original source links.",
   newsPageListHeading:"Complete update history",
   newsPageIntro:"All verified public updates, newest first. Site improvements and published research are labeled separately.",
-  newsPageNote:"Links point to published Zenodo records, public GitHub changes or public release notes. Drafts and private reviews are not counted as releases.",
+  newsPageNote:"News links open the relevant scientific content on this site or the published Zenodo record. Internal development PRs are not shown as research news.",
+  newsFormulasLink:"View the formulas ↗",
+  newsAchievementsLink:"Explore research achievements ↗",
+  newsPublicationsLink:"Browse publications ↗",
   newsLabel:"PROJECT UPDATES",updatesHeading:"What's new",
   updatesInfo:"Verified website improvements and published research releases, in reverse chronological order.",
   siteUpdateKind:"Website update",publicationUpdateKind:"Publication",
@@ -329,7 +332,10 @@ const COPY = {
   newsPageLead:"Опубликованные научные работы и проверяемые изменения сайта — с датами и ссылками на первоисточники.",
   newsPageListHeading:"Полная история обновлений",
   newsPageIntro:"Все подтверждённые публичные события, начиная с последних. Выпуски статей и изменения сайта отмечены отдельно.",
-  newsPageNote:"Ссылки ведут на опубликованные записи Zenodo, изменения открытого GitHub или публичные примечания к выпускам. Черновики и внутренние рецензии не считаются публикациями.",
+  newsPageNote:"Ссылки ведут к научным материалам сайта или опубликованным записям Zenodo. Технические изменения GitHub не выдаются за научные новости.",
+  newsFormulasLink:"Смотреть формулы ↗",
+  newsAchievementsLink:"Открыть достижения ↗",
+  newsPublicationsLink:"Перейти к публикациям ↗",
   newsLabel:"ОБНОВЛЕНИЯ ПРОЕКТА",updatesHeading:"Что изменилось",
   updatesInfo:"Подтверждённые изменения сайта и выпуски научных работ в обратном хронологическом порядке.",
   siteUpdateKind:"Обновление сайта",publicationUpdateKind:"Публикация",
@@ -440,6 +446,12 @@ function applyLanguage() {
     link.href="news.html?lang="+language;
   for (const link of document.querySelectorAll("[data-news-home-link]"))
     link.href="index.html?lang="+language+"#updates";
+  // Static fallback cards are visible even if news.json cannot be retrieved.
+  // Keep their internal destinations in the selected language as well.
+  for (const link of document.querySelectorAll("[data-news-source]")) {
+    const citation=updateSource(link.getAttribute("data-news-source"));
+    if(citation?.internal)link.href=citation.url;
+  }
   for (const btn of document.querySelectorAll("[data-lang-switch]")) btn.textContent=COPY[language].otherLang;
   const url=new URL(location.href); url.searchParams.set("lang",language);
   history.replaceState(null,"",url);
@@ -533,13 +545,17 @@ function renderIndex() {
   if(newsLoaded)renderUpdates($("news-items"),true);
 }
 function updateSource(source) {
-  if(typeof source!=="string") return null;
+  if(typeof source!=="string")return null;
+  // News is a reader-facing scientific history, not an engineering change log.
+  // Site targets are allowlisted literally; do not forward arbitrary URLs.
+  if(source==="achievements.html#ghz-exact")
+    return {url:"achievements.html?lang="+language+"#ghz-exact",label:COPY[language].newsFormulasLink,internal:true};
+  if(source==="achievements.html")
+    return {url:"achievements.html?lang="+language,label:COPY[language].newsAchievementsLink,internal:true};
+  if(source==="publications/")
+    return {url:"publications/index.html?lang="+language,label:COPY[language].newsPublicationsLink,internal:true};
   if(source.startsWith("https://doi.org/") && DOI.test(source.slice("https://doi.org/".length)))
-    return {url:source,label:source.slice("https://doi.org/".length)};
-  const pr=source.match(/^https:\/\/github\.com\/alexmartinevski\/CF-Dependence-Public\/pull\/([1-9][0-9]*)$/);
-  if(pr)return {url:source,label:"GitHub PR #"+pr[1]};
-  if(source==="RELEASE_NOTES.md")
-    return {url:"https://github.com/alexmartinevski/CF-Dependence-Public/blob/main/RELEASE_NOTES.md",label:"RELEASE_NOTES.md"};
+    return {url:source,label:source.slice("https://doi.org/".length),internal:false};
   return null;
 }
 function story(date, title, summary, source, kind="publication_release") {
@@ -553,8 +569,9 @@ function story(date, title, summary, source, kind="publication_release") {
   article.append(meta,h,p);
   const citation=updateSource(source);
   if(citation) {
-    const a=node("a","news-source",citation.label+" ↗");
-    a.href=citation.url; a.target="_blank"; a.rel="noopener noreferrer";
+    const a=node("a","news-source",citation.label);
+    a.href=citation.url;
+    if(!citation.internal) {a.target="_blank";a.rel="noopener noreferrer";}
     article.appendChild(a);
   }
   return article;
