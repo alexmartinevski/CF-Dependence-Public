@@ -165,6 +165,8 @@ const COPY = {
   staticUpdateMathText:"Definitions, hypotheses and precise formulas were added to all six achievements, and four concise formulas now appear on the homepage.",
   staticUpdateSourcesTitle:"Results explained with separate references",
   staticUpdateSourcesText:"Each achievement now explains its problem, history, importance and mathematical result, with 6–7 sources specific to that result.",
+  scholarlyIndexLink:"Browse scholarly abstracts and citations (18) ↗",
+  scholarlyAuthorLink:"Researcher profile and publications ↗",
   authorNav:"Author",authorLabel:"RESEARCHER",authorHeading:"About the author",
   authorRole:"Independent Researcher",
   aiDisclosureLabel:"RESEARCH TRANSPARENCY",aiDisclosureHeading:"AI collaboration disclosure",
@@ -344,6 +346,8 @@ const COPY = {
   staticUpdateMathText:"Во всех шести достижениях появились определения, условия теорем и точные формулы; на главной размещены четыре короткие формулы.",
   staticUpdateSourcesTitle:"Каждый результат получил своё объяснение и источники",
   staticUpdateSourcesText:"В каждом из шести разделов объяснены задача, её происхождение, значимость и результат, а также приведены 6–7 отдельных источников.",
+  scholarlyIndexLink:"Научные аннотации и библиографические ссылки (18) ↗",
+  scholarlyAuthorLink:"Профиль исследователя и публикации ↗",
   authorNav:"Об авторе",authorLabel:"ИССЛЕДОВАТЕЛЬ",authorHeading:"Об авторе",
   authorRole:"Независимый исследователь",
   aiDisclosureLabel:"ПРОЗРАЧНОСТЬ ИССЛЕДОВАНИЙ",aiDisclosureHeading:"Участие искусственного интеллекта",
@@ -428,6 +432,10 @@ function applyLanguage() {
     link.href="index.html?lang="+language+"#papers";
   for (const link of document.querySelectorAll("[data-home-link]"))
     link.href="index.html?lang="+language;
+  for (const link of document.querySelectorAll("[data-scholarly-index-link]"))
+    link.href="publications/index.html?lang="+language;
+  for (const link of document.querySelectorAll("[data-author-profile-link]"))
+    link.href="author/index.html?lang="+language;
   for (const link of document.querySelectorAll("[data-news-link]"))
     link.href="news.html?lang="+language;
   for (const link of document.querySelectorAll("[data-news-home-link]"))
@@ -471,7 +479,7 @@ function renderAreas(visiblePapers=papers) {
       const main=node("div","area-row-main");
       const headline=node("div","area-headline");
       const link=node("a","area-paper-link",p.title);
-      link.href="paper.html?code="+encodeURIComponent(p.code)+"&lang="+language;
+      link.href="publications/"+encodeURIComponent(p.code)+"/index.html?lang="+language;
       headline.append(node("span","code",p.code),link);
       main.append(headline,node("p","area-paper-summary",p.summary[language]||p.summary.en));
       const highlights=node("ul","area-highlights");
