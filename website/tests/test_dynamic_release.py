@@ -63,7 +63,11 @@ class SyntheticNextPaperTests(unittest.TestCase):
         original["last_curated_on"]="2026-10-16"
         (self.site/"data/papers.json").write_text(
             json.dumps(original,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-        latest=json.loads((ROOT/"data/scholarly/part-03.json").read_text(encoding="utf-8"))["papers"]["P20"]
+        latest=next(
+            json.loads(path.read_text(encoding="utf-8"))["papers"]["P20"]
+            for path in sorted((ROOT/"data/scholarly").glob("part-*.json"))
+            if "P20" in json.loads(path.read_text(encoding="utf-8"))["papers"]
+        )
         fake_meta=copy.deepcopy(latest)
         # Fake PDF bytes are deliberately not a real Zenodo file.
         self.pdf=b"%PDF-"+b"offline-test-not-a-publication"*90
