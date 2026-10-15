@@ -15,6 +15,8 @@ class FakeElement {
     this.dateTime = "";
     this._text = "";
     this.dataset = {};
+    this.value = "";
+    this.classList = {toggle: () => {}};
   }
   set textContent(value) {
     this._text = String(value);
@@ -29,15 +31,21 @@ class FakeElement {
 }
 const elements = {
   "area-groups": new FakeElement("div"),
-  "area-snapshot": new FakeElement("p")
+  "area-snapshot": new FakeElement("p"),
+  "search": new FakeElement("input"),
+  "paper-count": new FakeElement("span"),
+  "no-matches": new FakeElement("p"),
+  "news-items": new FakeElement("div")
 };
 const document = {
+  documentElement: {lang: "en"},
   getElementById: id => elements[id] || null,
   createElement: tag => new FakeElement(tag),
+  querySelectorAll: () => [],
   addEventListener: () => {}
 };
 const context = vm.createContext({
-  document, location:{search:"?lang=ru"}, URLSearchParams, URL, __papers:papers,
+  document, location:{search:"?lang=ru",href:"https://math.a-martinevski.com/?lang=ru"}, history:{replaceState:()=>{}}, URLSearchParams, URL, __papers:papers,
   console,
 });
 const code = fs.readFileSync(path.join(ROOT,"assets","site.js"),"utf8");
@@ -72,4 +80,13 @@ vm.runInContext('renderAreas([papers.find(p=>p.code==="P04")]);',context);
 assert.equal(elements["area-groups"].children.length,1,"A filtered map should show one research area");
 assert.equal(elements["area-groups"].children[0].children[1].children.length,1,"Filter must show one paper");
 
-console.log("PASS: 54 verified source-anchored results; 18 papers; 5 areas; search filtering; RU/EN; concept DOI links.");
+elements["search"].value = "105/34";
+vm.runInContext('language="ru"; renderIndex();',context);
+assert.equal(elements["paper-count"].textContent,"1","Search must match a mathematical result");
+assert.equal(elements["area-groups"].children.length,1,"Search should retain the matching scientific field");
+assert.ok(elements["area-groups"].textContent.includes("P04"),"Results search must show P04");
+elements["search"].value = "NONEXISTENT-SEARCH-TERM-zz";
+vm.runInContext('renderIndex();',context);
+assert.equal(elements["paper-count"].textContent,"0","No-match counter must be zero");
+assert.equal(elements["area-groups"].children.length,0,"No-match search must clear subject groups");
+console.log("PASS: 54 verified source-anchored results; 18 papers; 5 areas; bilingual and filtered search; concept DOI links.");
