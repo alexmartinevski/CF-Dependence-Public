@@ -117,10 +117,10 @@ class PublicSiteTests(unittest.TestCase):
             "created":"2026-09-21T12:00:00Z",
             "updated":"2026-09-30T12:00:00Z",
             "metadata":{"publication_date":"2026-09-21","version":"0.1"},
-            "links":{"latest":"https://zenodo.org/api/records/23355587"}
+            "links":{"latest":"https://zenodo.org/api/records/24444444"}
         }
         newest={
-            "doi":"10.5281/zenodo.23355587","conceptdoi":paper["concept_doi"],
+            "doi":"10.5281/zenodo.24444444","conceptdoi":paper["concept_doi"],
             "versions":{"index":2},
             "created":"2026-10-14T12:00:00Z",
             "updated":"2026-10-16T12:00:00Z",
@@ -129,18 +129,18 @@ class PublicSiteTests(unittest.TestCase):
         resolved=sync.extract_release(
             paper,first,latest=newest,versions=[newest,first],history_complete=True
         )
-        self.assertEqual(resolved["version_doi"],"10.5281/zenodo.23355587")
+        self.assertEqual(resolved["version_doi"],"10.5281/zenodo.24444444")
         self.assertEqual(resolved["first_published_on"],"2026-09-21")
         self.assertEqual(resolved["last_version_on"],"2026-10-14")
         self.assertEqual(resolved["published_on"],"2026-10-14")
         self.assertEqual(resolved["version_label"],"0.2")
         self.assertEqual(resolved["version_index"],2)
         self.assertEqual(resolved["release_count"],2)
-        self.assertEqual(sync.latest_record_id(first),23355587)
+        self.assertEqual(sync.latest_record_id(first),24444444)
         self.assertTrue(sync.is_public_version(first,paper["concept_doi"]))
         wrong={**newest,"conceptdoi":"10.5281/zenodo.9999"}
         self.assertIsNone(sync.extract_release(paper,first,latest=wrong))
-        first["links"]["latest"]="https://another-domain.org/api/records/23355587"
+        first["links"]["latest"]="https://another-domain.org/api/records/24444444"
         self.assertIsNone(sync.latest_record_id(first))
 
     def test_zenodo_first_date_and_release_number_not_invented(self):
