@@ -205,3 +205,34 @@ This **website-level statement does not amend the existing AI disclosures
 in publication manuscripts** and deliberately does not enumerate or speculate
 about individual AI systems or specific contributions to individual theorems.
 Both English and Russian wording are covered by public-site CI tests.
+
+## Research achievements landing page (15 October 2026)
+The home page now displays a prominent **Major research achievements** feature
+at `#achievements`, with four short representative items and a link to
+`website/achievements.html`. The standalone page explains six selected
+scientific claims in both languages and includes formulae, source Concept DOIs,
+historical journal links and explicit statements of scope.
+
+Editorial distinctions are intentional:
+- P04: analytic exact planar XY GHZ threshold for `n>=4` within the
+  full-correlator setting, *not* every Bell scenario.
+- P04: `n=3` finite-certificate lower bound + analytic upper bound,
+  improving the 2024 published interval; the exact zeta formula remains
+  conjectural. Zeta zeros explain a difficulty in one dual approach, not
+  equivalence to the Riemann hypothesis.
+- P04: sharp complex alpha-mixing covariance `4 sqrt(2)` versus the
+  classical `2*pi` bound, with a clearly stated independent novelty-review gate.
+- P04: the general Bradley–Bryc 1985 complex multilinear problem remains
+  unsolved by a result restricted to forms real on real arguments.
+- P01: exact universal characteristic-function factorization profile.
+- P13: optimal Wasserstein stability exponent with the theorem hypotheses.
+
+No broader historical open problem is advertised as entirely solved without
+proof review and prior-art verification. These are statements about the claims
+in published papers, not external referee certification. The article-level
+AI disclosure and scientific text are unchanged.
+
+The page is included in GitHub Pages, content-fingerprint asset cache busting,
+the sitemap and the standalone bilingual regression tests. The language toggle
+preserves the selected language in links between the home page and the
+achievements landing page. Zenodo links use permanent Concept DOIs.
