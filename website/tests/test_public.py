@@ -391,7 +391,7 @@ class PublicSiteTests(unittest.TestCase):
             for uri,title in links:
                 parsed=urlsplit(uri)
                 self.assertEqual(parsed.scheme,"https",anchor)
-                self.assertIn(parsed.hostname,("doi.org","github.com"),anchor)
+                self.assertEqual(parsed.hostname,"doi.org",anchor)
                 self.assertTrue(title.strip(),anchor)
                 if parsed.hostname=="doi.org":
                     self.assertTrue(parsed.path.startswith("/10."),anchor)
