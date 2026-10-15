@@ -14,7 +14,8 @@ const COPY = {
   programmeMethod:"Explore examples, numerical experiments and counterexamples; extract invariants and essential coordinates; formulate an explicit law, prove it rigorously and test whether the mechanism transfers to other problems. Exact bounds, extremizers, equality and stability are central questions.",
   programmeBridge:"The publications below develop connected parts of this programme: sharp inequalities, prescribed marginals and transport, algebra, harmonic reconstruction and statistics.",
   areasNav:"By field",areasLabel:"RESEARCH MAP",areasHeading:"Publications by research area",
-  areasIntro:"An overview of published articles grouped by their principal research topic. Each entry shows what it covers, the last verified release date and version DOI.",
+  keyResultsHeading:"Key results",resultsLabel:"Key results",
+  resultsFromVersion:"Results described from published version",areasIntro:"An annotated scientific guide: each published article has a short overview and three selected results from its verified text.",
   areasUnavailable:"The subject index is temporarily unavailable. See the complete research papers list below.",
   verifiedAsOf:"Catalogue curated on",zenodoUpdated:"Public Zenodo metadata refreshed on",missingDate:"Date not independently verified",releaseDate:"Publication date",
   versionIdentifier:"Verified version DOI",openLatest:"Open latest version",
@@ -35,7 +36,7 @@ const COPY = {
   published:"Published",details:"View paper",pdf:"PDF",tex:"TeX",source:"Repository",
   emptyHistory:"No verified public version-change notes are available yet.",
   newsEmpty:"No verified public-release notes are available yet.",error:"Unable to load the public catalogue.",
-  searchPlaceholder:"Search by title, code or topic",otherLang:"Русский"
+  searchPlaceholder:"Search by title, code, result or topic",otherLang:"Русский"
  },
  ru: {
   papers:"Работы",updates:"Что изменилось",about:"О проекте",eyebrow:"ЭКСТРЕМАЛЬНАЯ ВЕРОЯТНОСТЬ · АНАЛИЗ · АЛГЕБРА",
@@ -51,7 +52,8 @@ const COPY = {
   programmeMethod:"Исследуем примеры, вычислительные эксперименты и контрпримеры; выделяем инварианты и существенные координаты; формулируем явный закон, строго доказываем его и проверяем перенос механизма на другие задачи. В центре внимания — точные границы, экстремизаторы, случаи равенства и устойчивость.",
   programmeBridge:"Публикации ниже раскрывают связанные части программы: точные неравенства, заданные маргинали и транспорт, алгебру, гармонические методы восстановления и статистику.",
   areasNav:"По областям",areasLabel:"КАРТА ИССЛЕДОВАНИЙ",areasHeading:"Публикации по научным областям",
-  areasIntro:"Все опубликованные статьи сгруппированы по основной тематике. Для каждой приведены содержание, дата и DOI последней проверенной опубликованной версии.",
+  keyResultsHeading:"Основные результаты",resultsLabel:"Что доказано или установлено",
+  resultsFromVersion:"Результаты изложены по опубликованной версии",areasIntro:"Аннотированный научный каталог: для каждой статьи приведены краткий обзор и три выбранных результата из проверенного опубликованного текста.",
   areasUnavailable:"Тематический список временно недоступен. Полный список статей приведён ниже.",
   verifiedAsOf:"Каталог сверён по состоянию на",zenodoUpdated:"Публичные данные Zenodo обновлены",missingDate:"Дата не подтверждена",releaseDate:"Дата публикации",
   versionIdentifier:"DOI проверенной версии",openLatest:"Открыть актуальную версию",
@@ -72,7 +74,7 @@ const COPY = {
   published:"Опубликовано",details:"Открыть статью",pdf:"PDF",tex:"TeX",source:"Репозиторий",
   emptyHistory:"Пока нет подтверждённых заметок об изменениях опубликованных версий.",
   newsEmpty:"Пока нет подтверждённых публичных обновлений.",error:"Не удалось загрузить каталог.",
-  searchPlaceholder:"Поиск по названию, коду или теме",otherLang:"English"
+  searchPlaceholder:"Поиск по названию, коду, результатам или теме",otherLang:"English"
  }
 };
 const RESEARCH_AREAS = [
@@ -132,28 +134,14 @@ function verifiedPapers(input) {
   if(!Array.isArray(input))throw new Error("Invalid catalogue");
   return input.filter(p=>p.status==="published" && DOI.test(p.version_doi) && DOI.test(p.concept_doi));
 }
-function renderCard(p) {
-  const card=node("article","card");
-  const top=node("div","card-top");
-  children(top,node("span","code",p.code),node("span","pill",COPY[language].published));
-  const title=node("h3",null,p.title);
-  const desc=node("p",null,p.summary[language]||p.summary.en);
-  const tags=node("div","tags");
-  for(const subject of p.topics || [])tags.appendChild(node("span","tag",subject));
-  const foot=node("div","card-bottom");
-  const detail=node("a",null,COPY[language].details+" ↗");
-  detail.href="paper.html?code="+encodeURIComponent(p.code)+"&lang="+language;
-  children(foot,detail,doiLink(p.concept_doi,COPY[language].openLatest));
-  return children(card,top,title,desc,tags,foot);
-}
-function renderAreas() {
+function renderAreas(visiblePapers=papers) {
   const container=$("area-groups");
   if(!container)return;
   const note=$("area-snapshot");
   note.textContent=COPY[language].verifiedAsOf+": "+(catalogueDate||"—")+"."+(zenodoResolvedCount>0?" "+COPY[language].zenodoUpdated+": "+zenodoCheckedDate+" ("+zenodoResolvedCount+"/"+papers.length+").":"");
   container.replaceChildren();
   for(const area of RESEARCH_AREAS) {
-    const members=papers.filter(p=>p.area===area.id);
+    const members=visiblePapers.filter(p=>p.area===area.id);
     if(!members.length)continue;
     const group=node("section","area-group");
     const heading=node("div","area-group-heading");
@@ -170,6 +158,13 @@ function renderAreas() {
       link.href="paper.html?code="+encodeURIComponent(p.code)+"&lang="+language;
       headline.append(node("span","code",p.code),link);
       main.append(headline,node("p","area-paper-summary",p.summary[language]||p.summary.en));
+      const highlights=node("ul","area-highlights");
+      for(const fact of p.highlights||[]) {
+        const li=node("li",null,fact[language]||fact.en);
+        highlights.appendChild(li);
+      }
+      const resultHeading=node("p","area-results-label",COPY[language].resultsLabel);
+      main.append(resultHeading,highlights);
       const meta=node("div","area-row-meta");
       const dateBlock=node("div","area-metadata-line");
       dateBlock.appendChild(node("span","area-meta-label",COPY[language].releaseDate));
@@ -183,28 +178,36 @@ function renderAreas() {
       const current=doiLink(p.concept_doi,COPY[language].openLatest);
       current.className="area-latest-link";
       meta.append(dateBlock,versionBlock,current);
+      // Public scientific claims remain anchored to the version whose text was checked.
+      if(DOI.test(p.highlights_source_doi) && p.highlights_source_doi!==p.version_doi) {
+        const provenance=node("div","area-metadata-line");
+        provenance.append(node("span","area-meta-label",COPY[language].resultsFromVersion),doiLink(p.highlights_source_doi));
+        meta.appendChild(provenance);
+      }
       item.append(main,meta);
       rows.appendChild(item);
     }
     group.append(heading,rows);
     container.appendChild(group);
   }
-  if(!container.children.length)
-    container.appendChild(node("p","muted",COPY[language].areasUnavailable));
+  // The no-match state is rendered separately by renderIndex.
 }
 function renderIndex() {
   applyLanguage();
-  try { renderAreas(); }
+  const query=($("search")?.value||"").trim().toLocaleLowerCase();
+  const matching=papers.filter(p=>{
+    const subject=RESEARCH_AREAS.find(a=>a.id===p.area);
+    const searchable=[p.code,p.title,p.summary.en,p.summary.ru,...(p.topics||[]),
+      ...(p.highlights||[]).flatMap(x=>[x.en,x.ru]),
+      subject?.name.en,subject?.name.ru].filter(Boolean).join(" ").toLocaleLowerCase();
+    return searchable.includes(query);
+  });
+  try { renderAreas(matching); }
   catch (error) {
-    // Never leave a permanent "Loading…" placeholder if only the optional
-    // subject directory fails; the main paper catalogue must still render.
     const areaContainer=$("area-groups");
     if(areaContainer)areaContainer.replaceChildren(node("p","muted",COPY[language].areasUnavailable));
     console.error("Subject directory rendering failed",error);
   }
-  const query=($("search")?.value||"").trim().toLocaleLowerCase();
-  const matching=papers.filter(p=>[p.code,p.title,p.summary.en,p.summary.ru,...(p.topics||[])].join(" ").toLocaleLowerCase().includes(query));
-  const list=$("paper-list"); list.replaceChildren(...matching.map(renderCard));
   $("paper-count").textContent=String(matching.length);
   $("no-matches").classList.toggle("hidden",matching.length!==0);
   renderUpdates($("news-items"),true);
@@ -245,6 +248,13 @@ function renderDetail() {
   $("paper-title").textContent=p.title;
   $("paper-summary").textContent=p.summary[language]||p.summary.en;
   $("paper-description").textContent=p.summary[language]||p.summary.en;
+  const results=$("paper-results");
+  results.replaceChildren(...(p.highlights||[]).map(x=>node("li",null,x[language]||x.en)));
+  const source=$("paper-results-source");
+  source.replaceChildren();
+  if(DOI.test(p.highlights_source_doi)){
+    source.append(node("span",null,COPY[language].resultsFromVersion+": "),doiLink(p.highlights_source_doi));
+  }
   const tags=$("paper-topics");tags.replaceChildren(...(p.topics||[]).map(x=>node("span","tag",x)));
   $("paper-latest").replaceChildren(doiLink(p.concept_doi,COPY[language].openLatest));
   $("paper-version").replaceChildren(doiLink(p.version_doi,(p.version_label?p.version_label+" · ":"")+p.version_doi));
@@ -310,7 +320,7 @@ async function init() {
       renderIndex();
     } else renderDetail();
   }catch(error) {
-    const target=$("paper-list")||$("paper-title");
+    const target=$("area-groups")||$("paper-title");
     if(target)target.textContent=COPY[language].error;
   }
 }
