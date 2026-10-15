@@ -142,6 +142,24 @@ class PublicSiteTests(unittest.TestCase):
             stamp_site(base)
             self.assertNotIn("assets/site.js?v="+digest,(base/"index.html").read_text(encoding="utf-8"))
 
+    def test_scientific_programme_introduction(self):
+        """The public subject index starts with object, goal and method, in two languages."""
+        html=(ROOT/"index.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertLess(html.index('id="programme-heading"'),html.index('id="areas-heading"'))
+        self.assertLess(html.index('class="science-intro"'),html.index('id="area-groups"'))
+        self.assertIn('μ<sub>P</sub>',html)
+        self.assertIn('D<sub>d</sub>(P)',html)
+        self.assertIn('programmeGoal',script)
+        self.assertIn('programmeMethod',script)
+        for key in ("programmeLabel","programmeHeading","programmeLead","programmeObject",
+                    "programmeObjectHeading","programmeObjectNote","programmeGoalHeading",
+                    "programmeGoal","programmeMethodHeading","programmeMethod","programmeBridge"):
+            self.assertIn(f'data-i18n="{key}"',html)
+            self.assertEqual(script.count(f'{key}:'),2, f"Both languages must define {key}")
+        self.assertIn("Открывать новые математические законы",script)
+        self.assertIn("signed interaction measure",script)
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
