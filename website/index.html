@@ -65,18 +65,16 @@
       <div class="section-heading">
         <div><div class="overline" data-i18n="areasLabel">RESEARCH MAP</div><h2 id="areas-heading" data-i18n="areasHeading">Publications by research area</h2></div>
       </div>
-      <p class="section-intro" data-i18n="areasIntro">A subject-based guide to all published papers, with short summaries and the last verified release metadata.</p>
+      <p class="section-intro" data-i18n="areasIntro">An annotated scientific guide: each published article has a short overview and three selected results from its verified text.</p>
+      <div class="catalogue-controls" id="papers">
+        <div class="catalogue-search">
+          <label class="sr-only" for="search" data-i18n="searchLabel">Search publications</label>
+          <input id="search" class="search" type="search" placeholder="Search by title, code, result or topic" autocomplete="off" data-search>
+        </div>
+        <span class="count"><span id="paper-count">—</span> <span data-i18n="publishedCount">published papers</span></span>
+      </div>
       <p id="area-snapshot" class="metadata-note"></p>
       <div id="area-groups" class="area-groups" aria-live="polite"><p class="muted">Loading subject index…</p></div>
-    </section>
-    <section class="section" id="papers">
-      <div class="section-heading">
-        <div><div class="overline" data-i18n="publishedLabel">PUBLISHED RESEARCH</div><h2 data-i18n="papersHeading">Research papers</h2></div>
-        <span class="count"><span id="paper-count">—</span> <span data-i18n="publishedCount">published records</span></span>
-      </div>
-      <label class="sr-only" for="search" data-i18n="searchLabel">Search publications</label>
-      <input id="search" class="search" type="search" placeholder="Search by title, code or topic" autocomplete="off" data-search>
-      <div class="paper-grid" id="paper-list" aria-live="polite"><p class="muted">Loading publications…</p></div>
       <p id="no-matches" class="empty hidden" data-i18n="noMatches">No publications match your search.</p>
     </section>
     <section class="section news-section" id="updates">

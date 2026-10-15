@@ -61,3 +61,28 @@
   .science-equations{padding:11px 13px}
   .science-equation{font-size:15px}
 }
+
+/* Unified annotated catalogue (the former duplicate card grid is not rendered). */
+.catalogue-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:19px 0 12px;scroll-margin-top:28px}
+.catalogue-search{flex:1;min-width:min(320px,100%)}
+.catalogue-controls .search{margin-bottom:0;width:100%;max-width:730px}
+.area-results-label{font-weight:770;color:#3b578b;font-size:12px;letter-spacing:.3px;margin:17px 0 8px 39px}
+.area-highlights{margin:0 0 2px 39px;padding:0 0 0 20px;color:#34485d;list-style:disc}
+.area-highlights li{font-size:13px;line-height:1.62;padding-left:2px;margin:0 0 9px}
+.area-highlights li:last-child{margin-bottom:0}
+.area-row{padding-top:23px;padding-bottom:23px}
+.area-row-main{min-width:0}
+.area-metadata-line a,.area-paper-summary,.area-highlights li{overflow-wrap:anywhere}
+.detail-key-results{background:#fff;border:1px solid var(--line);border-radius:13px;padding:22px 23px 22px 45px;margin:15px 0 9px;color:#30445e}
+.detail-key-results li{line-height:1.68;padding-left:5px;margin-bottom:12px}
+.detail-key-results li:last-child{margin-bottom:0}
+.detail-result-source{font-size:12px;color:#778596}
+.detail-result-source a{color:#3d58ac}
+@media(max-width:780px){
+ .catalogue-controls{align-items:stretch;gap:10px}
+ .catalogue-search{min-width:100%}
+ .area-results-label,.area-highlights{margin-left:0}
+ .area-highlights{padding-left:21px}
+ .area-highlights li{font-size:13px}
+ .detail-key-results{padding:18px 17px 18px 34px}
+}

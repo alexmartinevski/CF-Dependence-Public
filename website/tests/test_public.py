@@ -88,7 +88,7 @@ class PublicSiteTests(unittest.TestCase):
         script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
         self.assertIn('id="areas"',homepage)
         self.assertIn('id="area-groups"',homepage)
-        self.assertIn("function renderAreas()",script)
+        self.assertIn("function renderAreas(visiblePapers=papers)",script)
         self.assertIn("doiLink(p.concept_doi,COPY[language].openLatest)",script)
         self.assertIn("paper-latest",detail)
         self.assertIn("paper-version",detail)
@@ -159,6 +159,29 @@ class PublicSiteTests(unittest.TestCase):
             self.assertEqual(script.count(f'{key}:'),2, f"Both languages must define {key}")
         self.assertIn("Открывать новые математические законы",script)
         self.assertIn("signed interaction measure",script)
+
+    def test_key_results_provenance_and_unique_catalogue(self):
+        page=(ROOT/"index.html").read_text(encoding="utf-8")
+        detail=(ROOT/"paper.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertIn('id="area-groups"',page)
+        self.assertIn('id="search"',page)
+        self.assertIn('id="papers"',page)  # Backwards-compatible anchor on the new search
+        self.assertNotIn('id="paper-list"',page)  # No duplicate card grid
+        self.assertIn('id="paper-results"',detail)
+        self.assertIn("function renderAreas(visiblePapers=papers)",script)
+        self.assertNotIn("function renderCard(",script)
+        self.assertIn("p.highlights",script)
+        for p in self.site["papers"]:
+            self.assertEqual(len(p.get("highlights", [])), 3, p["code"])
+            self.assertEqual(p["highlights_source_doi"],p["version_doi"])
+            for h in p["highlights"]:
+                self.assertTrue(h["en"].strip(),p["code"])
+                self.assertTrue(h["ru"].strip(),p["code"])
+                self.assertTrue(h["evidence"].strip(),p["code"])
+                self.assertNotIn("TODO",h["en"])
+                self.assertNotIn("TODO",h["ru"])
+        self.assertEqual(sum(len(p["highlights"]) for p in self.site["papers"]),54)
 
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET

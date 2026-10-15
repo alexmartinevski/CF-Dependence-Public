@@ -20,7 +20,25 @@
       "concept_doi": "10.5281/zenodo.23021779",
       "source_path": "papers/01-sharp-universal-profile",
       "changes": [],
-      "area": "extremal"
+      "area": "extremal",
+      "highlights": [
+        {
+          "en": "The exact factorization-defect profile is R − cos(min{∑ arccos rⱼ, π}) for prescribed mean moduli rⱼ, with R=∏rⱼ.",
+          "ru": "При заданных модулях средних rⱼ точный профиль дефекта равен R − cos(min{∑ arccos rⱼ, π}), где R=∏rⱼ.",
+          "evidence": "thm:profile"
+        },
+        {
+          "en": "The universal sharp constant is C_d=max₀≤θ≤π/d(cosᵈθ−cos(dθ)); in particular C₃=2/√3 and C₄=9/7, attained by a common fair sign.",
+          "ru": "Универсальная точная константа C_d=max₀≤θ≤π/d(cosᵈθ−cos(dθ)); в частности C₃=2/√3, C₄=9/7. Экстремаль реализует общий симметричный знак.",
+          "evidence": "thm:main"
+        },
+        {
+          "en": "For d≥3 the maximizing angle is unique; the constants C_d increase strictly to 2 as d tends to infinity.",
+          "ru": "При d≥3 максимизирующий угол единственен; последовательность C_d строго возрастает к 2 при d→∞.",
+          "evidence": "thm:unique"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23021780"
     },
     {
       "code": "P02",
@@ -39,7 +57,25 @@
       "concept_doi": "10.5281/zenodo.23022042",
       "source_path": "papers/02-fixed-marginals",
       "changes": [],
-      "area": "transport"
+      "area": "transport",
+      "highlights": [
+        {
+          "en": "For symmetric uniform and triangular marginals (d≥3), and specified B-spline and Epanechnikov regimes (d≥4), an exact fixed-marginal profile follows from a scalar optimization under the paper's hypotheses.",
+          "ru": "Для симметричных равномерных и треугольных маргиналей (d≥3), а также указанных B-сплайнов и закона Эпанечникова (d≥4) при условиях статьи получен точный профиль через одномерную оптимизацию.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "Under the stated strict hypotheses, attaining the upper profile is equivalent to complete mixability of |X|; Gaussian marginals do not attain that profile.",
+          "ru": "При сформулированных строгих условиях достижение верхнего профиля эквивалентно полной смешиваемости |X|; гауссовские маргинали этот профиль не достигают.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "For bounded nondegenerate lattice laws or laws satisfying Cramér's condition, the large-d expansion depends on variance and mean absolute deviation from the median, without symmetry or unimodality.",
+          "ru": "Для невырожденных законов с ограниченным носителем, решёточных либо удовлетворяющих условию Крамера, получена асимптотика при d→∞ через дисперсию и среднее отклонение от медианы — без симметрии и унимодальности.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23022043"
     },
     {
       "code": "P03",
@@ -58,7 +94,25 @@
       "concept_doi": "10.5281/zenodo.23022244",
       "source_path": "papers/03-chebyshev-lucas-critical-polynomials",
       "changes": [],
-      "area": "algebra"
+      "area": "algebra",
+      "highlights": [
+        {
+          "en": "For even d, the critical polynomial A_d is irreducible over ℚ whenever gcd(v₂(d), d/2−1)=1, proved using its 2-adic Newton polygon.",
+          "ru": "Для чётных d многочлен A_d неприводим над ℚ при gcd(v₂(d), d/2−1)=1; доказательство использует 2-адический многоугольник Ньютона.",
+          "evidence": "thm:even"
+        },
+        {
+          "en": "For d=2p+1 with p an odd prime and 2 a primitive root modulo p, irreducibility of A_d is proved.",
+          "ru": "При d=2p+1, где p — нечётное простое и 2 является первообразным корнем по модулю p, доказана неприводимость A_d.",
+          "evidence": "thm:2p1"
+        },
+        {
+          "en": "An infinite family of full symmetric Galois groups is established: Gal(A_{2p+2})≅S_p for primes p≡±3 (mod 8). The general irreducibility conjecture remains open.",
+          "ru": "Получено бесконечное семейство полных симметрических групп Галуа: Gal(A_{2p+2})≅S_p при простых p≡±3 (mod 8). Общая гипотеза о неприводимости остаётся открытой.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23022245"
     },
     {
       "code": "P04",
@@ -80,7 +134,25 @@
       "pdf_filename": "P04_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "extremal"
+      "area": "extremal",
+      "highlights": [
+        {
+          "en": "The sharp strong-mixing covariance constants include 4 for real bounded scalars and 4√2 for complex bounded scalars.",
+          "ru": "Для ограниченных вещественных и комплексных скалярных наблюдений получены точные константы ковариационной оценки через сильное перемешивание: 4 и 4√2 соответственно.",
+          "evidence": "cor:complex"
+        },
+        {
+          "en": "For n≥4 the sharp complex multilinear factor is 2ⁿκₙ; an explicit zeta-function formula determines κₙ, including κ₄=105/34.",
+          "ru": "Для n≥4 точный комплексный мультлинейный множитель равен 2ⁿκₙ; константа κₙ задана явной формулой через дзета-функцию, в частности κ₄=105/34.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "The three-party constant κ₃ is bounded, not exactly determined; the strengthened lower bound uses a separately documented rational, computer-assisted verification.",
+          "ru": "Для трёх участников константа κ₃ пока ограничена сверху и снизу, но не вычислена точно; усиленная нижняя граница использует отдельно документированную компьютерную проверку с рациональной арифметикой.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23356092"
     },
     {
       "code": "P06",
@@ -102,7 +174,25 @@
       "pdf_filename": "P06_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "transport"
+      "area": "transport",
+      "highlights": [
+        {
+          "en": "A transport concentrated on zero cells characterizes when a full interaction fibre has no strictly positive law.",
+          "ru": "Существование транспорта с носителем в нулевых ячейках характеризует отсутствие строго положительного распределения в полном слое взаимодействия.",
+          "evidence": "thm:contact"
+        },
+        {
+          "en": "An exact relative-entropy identity yields quantitative ℓ¹ bounds on the diameter of a feasible interaction fibre.",
+          "ru": "Точное тождество для относительной энтропии даёт количественные ℓ¹-оценки диаметра допустимого слоя взаимодействия.",
+          "evidence": "cor:diameter"
+        },
+        {
+          "en": "The contact incidence rank characterizes local Lipschitz inverse stability and the minimal number of extra smooth observations needed when it fails.",
+          "ru": "Ранг матрицы контактной инцидентности определяет локальную липшицеву устойчивость обращения и минимальное число дополнительных гладких наблюдений при её отсутствии.",
+          "evidence": "thm:rank"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355615"
     },
     {
       "code": "P07",
@@ -124,7 +214,25 @@
       "pdf_filename": "P07_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "harmonic"
+      "area": "harmonic",
+      "highlights": [
+        {
+          "en": "Complete commuting-semigroup measurements identify exactly the pushforward spectral energy measure under the joint generator-rate map.",
+          "ru": "Полный набор наблюдений коммутирующей полугруппы определяет в точности образ спектральной энергетической меры при отображении скоростей генераторов.",
+          "evidence": "thm:quotient"
+        },
+        {
+          "en": "A positive k-atomic spectrum is uniquely recovered by 2k consecutive Prony values including mass; for a probability spectrum, 2k−1 positive-time values suffice and are worst-case sharp.",
+          "ru": "Положительный k-атомный спектр восстанавливается по 2k последовательным данным Прони, включая массу; для вероятностного спектра достаточно 2k−1 измерений при положительных временах, и оценка точна в худшем случае.",
+          "evidence": "thm:prony"
+        },
+        {
+          "en": "For Gaussian blocks, the characteristic-function dependence defect admits an exact expression through the largest canonical correlation.",
+          "ru": "Для гауссовских блоков дефект зависимости через характеристические функции точно выражается через наибольшую каноническую корреляцию.",
+          "evidence": "cor:canonical"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355619"
     },
     {
       "code": "P08",
@@ -146,7 +254,25 @@
       "pdf_filename": "P08_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "algebra"
+      "area": "algebra",
+      "highlights": [
+        {
+          "en": "The discriminant of F_d(x)=xᵈ−T_d(x) has an unconditional cyclotomic product formula: disc(F_d)=dᵈ(2^{d−1}−1)P_d.",
+          "ru": "Для F_d(x)=xᵈ−T_d(x) получена безусловная циклотомическая формула дискриминанта: disc(F_d)=dᵈ(2^{d−1}−1)P_d.",
+          "evidence": "thm:disc"
+        },
+        {
+          "en": "Distinct positive critical points of the Chebyshev defect have distinct absolute critical values, via two monotone algebraic branches.",
+          "ru": "В различных положительных критических точках дефект Чебышёва принимает критические значения с различными модулями; доказательство использует две монотонные алгебраические ветви.",
+          "evidence": "lem:branches"
+        },
+        {
+          "en": "The algebraic degree and norm of the sharp extremal constant are expressed through the same critical product, conditional on irreducibility of A_d.",
+          "ru": "Алгебраическая степень и норма точной экстремальной константы выражены через то же критическое произведение при условии неприводимости A_d.",
+          "evidence": "thm:norm"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355626"
     },
     {
       "code": "P09",
@@ -168,7 +294,25 @@
       "pdf_filename": "P09_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "algebra"
+      "area": "algebra",
+      "highlights": [
+        {
+          "en": "For every odd prime, all negative-slope sides of the Newton polygon of the zero-companion Lucas polynomial Wₙ are determined.",
+          "ru": "Для каждого нечётного простого полностью определены стороны отрицательного наклона многоугольника Ньютона многочлена Люкаса Wₙ.",
+          "evidence": "thm:W"
+        },
+        {
+          "en": "A new explicit irreducible family is obtained: W_{p(pᵇ+1)} is irreducible over ℚ for every odd prime p and b≥0.",
+          "ru": "Получено явное неприводимое семейство: W_{p(pᵇ+1)} неприводим над ℚ для любого нечётного простого p и b≥0.",
+          "evidence": "cor:fullside"
+        },
+        {
+          "en": "For Lucas level polynomials, the exact interval of strict positive interlacing with the next index n+2 and its endpoint asymptotics are found.",
+          "ru": "Для уровневых многочленов Люкаса найден точный интервал строгого перемежения положительных корней с индексом n+2 и асимптотика его границ.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355634"
     },
     {
       "code": "P11",
@@ -190,7 +334,25 @@
       "pdf_filename": "P11_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "statistics"
+      "area": "statistics",
+      "highlights": [
+        {
+          "en": "For generic rationally independent empirical scalar samples of even size, an unrestricted-frequency independence statistic saturates the universal C_d ceiling regardless of the underlying dependence.",
+          "ru": "Для типичных эмпирических скалярных выборок чётного размера со свободными над ℚ координатами супремум по неограниченным частотам достигает C_d независимо от исходной зависимости.",
+          "evidence": "prop:degenerate"
+        },
+        {
+          "en": "On a fixed frequency window, the characteristic-function statistic has explicit uniform n⁻¹ᐟ² deviation bounds.",
+          "ru": "На фиксированном частотном окне доказаны явные равномерные оценки отклонения статистики через характеристические функции порядка n⁻¹ᐟ².",
+          "evidence": "thm:fixedwindow"
+        },
+        {
+          "en": "With the stated fixed-support and frequency assumptions, Huber-contamination independence testing has minimax separation rate Θ(ε+n⁻¹ᐟ²).",
+          "ru": "При установленных ограничениях на носитель и частоты для проверки независимости в модели загрязнения Хьюбера получена минимаксная скорость разделения Θ(ε+n⁻¹ᐟ²).",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355657"
     },
     {
       "code": "P12",
@@ -212,7 +374,25 @@
       "pdf_filename": "P12_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "harmonic"
+      "area": "harmonic",
+      "highlights": [
+        {
+          "en": "On non-Abelian compact groups, scalar characters observe only conjugacy-class information; vanishing scalar interaction detects independence only of the conjugacy-class quotients.",
+          "ru": "На неабелевых компактных группах скалярные характеры видят лишь классы сопряжённости: нулевое скалярное взаимодействие определяет независимость только соответствующих фактор-наблюдений.",
+          "evidence": "thm:conjugacy"
+        },
+        {
+          "en": "Translated full conjugacy-class portraits recover every law exactly when the representation matrices of the chosen shifts span each irreducible matrix algebra.",
+          "ru": "Полные сдвинутые портреты классов сопряжённости восстанавливают любой закон тогда и только тогда, когда матрицы выбранных сдвигов порождают все пространства матриц неприводимых представлений.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "For the dihedral group D₂ₘ, four shifts are necessary and sufficient for exact recovery, but their smallest Gram eigenvalue decays with m; stable nonadaptive designs need Θ(log m) shifts.",
+          "ru": "Для диэдральной группы D₂ₘ четырёх сдвигов необходимо и достаточно для точного восстановления, но наименьшее собственное значение матрицы Грама убывает с m; устойчивым схемам нужно Θ(log m) сдвигов.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355669"
     },
     {
       "code": "P13",
@@ -234,7 +414,25 @@
       "pdf_filename": "P13_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "extremal"
+      "area": "extremal",
+      "highlights": [
+        {
+          "en": "For d≥3, the deficit Δ from the universal extremum controls distance to the full equality orbit: dist_{Wₚ}≤K·Δ¹ᐟ⁽²ᵖ⁾ for every finite p≥1.",
+          "ru": "При d≥3 дефицит Δ относительно универсального максимума контролирует расстояние до всего семейства экстремалей: dist_{Wₚ}≤K·Δ¹ᐟ⁽²ᵖ⁾ для любого конечного p≥1.",
+          "evidence": "thm:main"
+        },
+        {
+          "en": "This Wasserstein exponent is optimal, even after all coordinate rotations are optimized; biased two-point laws give matching sharpness examples.",
+          "ru": "Показатель степени в оценке Васерштейна оптимален даже после оптимизации по поворотам координат; точность демонстрируют несимметрично взвешенные двухточечные законы.",
+          "evidence": "thm:main"
+        },
+        {
+          "en": "Separating positional and mass errors produces an optimal square-root stability rate for a structured discrepancy.",
+          "ru": "Раздельный учёт ошибок положения и массы даёт оптимальную оценку устойчивости порядка √Δ для структурированной меры отклонения.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355678"
     },
     {
       "code": "P14",
@@ -256,7 +454,25 @@
       "pdf_filename": "P14_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "algebra"
+      "area": "algebra",
+      "highlights": [
+        {
+          "en": "For n=pʳ+1 with p odd prime, a pair of explicit 2-adic and p-adic valuation conditions proves irreducibility of the rational Lucas level polynomial.",
+          "ru": "При n=pʳ+1, где p — нечётное простое, пара явных условий на 2-адическую и p-адическую валюации обеспечивает неприводимость рационального уровневого многочлена Люкаса.",
+          "evidence": "thm:two-prime"
+        },
+        {
+          "en": "For every n≥5, the generic Galois group of the Lucas level polynomial Bₙ(X)−q is the full symmetric group.",
+          "ru": "Для каждого n≥5 общая группа Галуа уровневого многочлена Люкаса Bₙ(X)−q является полной симметрической группой.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "Within the same real-interlacing interval, reducible and irreducible rational specializations are both dense; real root geometry does not determine rational factorization.",
+          "ru": "В одном и том же интервале перемежения вещественных корней плотны как приводимые, так и неприводимые рациональные специализации: геометрия вещественных корней не определяет разложение над ℚ.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355688"
     },
     {
       "code": "P15",
@@ -278,7 +494,25 @@
       "pdf_filename": "P15_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "extremal"
+      "area": "extremal",
+      "highlights": [
+        {
+          "en": "For four variables, the Streitberg and Lancaster interaction measures differ by exactly three products of pairwise dependence defects.",
+          "ru": "Для четырёх переменных меры взаимодействия Штрайтберга и Ланкастера различаются в точности на сумму трёх произведений парных дефектов зависимости.",
+          "evidence": "prop:fourth-bridge"
+        },
+        {
+          "en": "For four balanced signs, the joint cumulant satisfies the sharp bound |κ₄|≤2; all equality distributions are identified.",
+          "ru": "Для четырёх сбалансированных знаков получена точная оценка совместного кумулянта |κ₄|≤2 и описаны все распределения, реализующие равенство.",
+          "evidence": "thm:sharp"
+        },
+        {
+          "en": "The total-variation distance to the entire equality family is exactly 1−maxₛ qₛ, expressed through the relative-sign distribution.",
+          "ru": "Расстояние полной вариации до всего семейства экстремалей точно равно 1−maxₛ qₛ, где qₛ — распределение относительных знаков.",
+          "evidence": "prop:TV"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355701"
     },
     {
       "code": "P16",
@@ -300,7 +534,25 @@
       "pdf_filename": "P16_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "harmonic"
+      "area": "harmonic",
+      "highlights": [
+        {
+          "en": "For every bit dimension m and 1≤p≤2, the sharp punctured Walsh–total-variation comparison constant is Λₘ,ₚ=2^{m/p−1}.",
+          "ru": "Для любой размерности m и 1≤p≤2 точная константа сравнения полной вариации с проколотой Lᵖ-нормой спектра Уолша равна Λₘ,ₚ=2^{m/p−1}.",
+          "evidence": "prop:lowp"
+        },
+        {
+          "en": "For m≤5, sharp formulas extend to the full range 2≤p≤∞; the classical five-bit endpoint 160 is not claimed as new.",
+          "ru": "Для m≤5 точные формулы распространены на весь диапазон 2≤p≤∞; классическое пятибитовое предельное значение 160 не объявляется новым результатом.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "A sampled signed quadratic bent-function orbit can be recovered exactly iff the chosen affine queries span the relevant space; optimal noise and erasure thresholds follow.",
+          "ru": "Выбранную знаковую орбиту квадратичной бент-функции можно точно восстановить тогда и только тогда, когда запросы аффинно порождают нужное пространство; получены точные пороги ошибок и стираний.",
+          "evidence": "abstract"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355709"
     },
     {
       "code": "P17",
@@ -322,7 +574,25 @@
       "pdf_filename": "P17_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "transport"
+      "area": "transport",
+      "highlights": [
+        {
+          "en": "The minimal weighted-sum residual admits an exact equality with a product-Wasserstein distance to the set of jointly mixable marginal tuples.",
+          "ru": "Минимальный остаток взвешенной суммы в точности выражается через произведённое расстояние Васерштейна до множества совместно смешиваемых наборов маргиналей.",
+          "evidence": "thm:projection"
+        },
+        {
+          "en": "For Bernoulli marginal components, the optimal residual is given explicitly by the fractional part of the sum of their success probabilities.",
+          "ru": "Для бернуллиевских маргинальных компонент оптимальный остаток вычислен явно через дробную часть суммы вероятностей успеха.",
+          "evidence": "prop:bernoulli"
+        },
+        {
+          "en": "Under explicit Fourier curvature and isolation assumptions (verified for Gaussian marginals when d≥3), nonmixability gives a positive quantitative gap below the fixed-marginal scalar profile.",
+          "ru": "При явных предположениях о кривизне и изоляции частот (выполненных для гауссовских маргиналей при d≥3) отсутствие смешиваемости даёт положительный количественный зазор до скалярного профиля.",
+          "evidence": "thm:gap"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355715"
     },
     {
       "code": "P18",
@@ -344,7 +614,25 @@
       "pdf_filename": "P18_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "algebra"
+      "area": "algebra",
+      "highlights": [
+        {
+          "en": "Finite rational moments reconstruct a rational spectral algebra by the Hankel operator H₀⁻¹H₁; its idempotents encode rational pole partitions.",
+          "ru": "Конечный набор рациональных моментов восстанавливает спектральную алгебру над ℚ через оператор Ганкеля H₀⁻¹H₁; её идемпотенты задают рациональные разбиения полюсов.",
+          "evidence": "lem:algebra"
+        },
+        {
+          "en": "For rational Laplace mixtures with positive residues, the Hankel determinant is a normalized numerator–denominator resultant; equal spectral weights instead yield a discriminant.",
+          "ru": "Для рациональных смесей Лапласа с положительными вычетами определитель Ганкеля равен нормированному результанту числителя и знаменателя; равные спектральные веса дают вместо него дискриминант.",
+          "evidence": "thm:determinants"
+        },
+        {
+          "en": "An integral selector has a discrete discriminant-quantized variance gap: either it represents a genuine factor or the residual is at least 2/Δ under the theorem's positivity conditions.",
+          "ru": "Для целочисленного селектора доказан дискретный порог дисперсионного дефекта: либо он задаёт настоящий множитель, либо остаток не меньше 2/Δ при условиях положительности теоремы.",
+          "evidence": "thm:quantum"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355723"
     },
     {
       "code": "P19",
@@ -366,7 +654,25 @@
       "pdf_filename": "P19_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "transport"
+      "area": "transport",
+      "highlights": [
+        {
+          "en": "Centered-tensor constructions realize prescribed marginals together with finite moment conditions, Fourier targets and chosen spectral zeros, with explicit positivity constraints.",
+          "ru": "Конструкции с центрированными тензорами одновременно реализуют заданные маргинали, конечные моментные условия, значения Фурье и указанные спектральные нули при явных ограничениях положительности.",
+          "evidence": "abstract"
+        },
+        {
+          "en": "For three fair signs with unequal pair correlations, the Fourier defect equals the largest pair coefficient q exactly when 2q²≥R₂+τ².",
+          "ru": "Для трёх симметричных знаков с неравными парными корреляциями дефект Фурье равен наибольшему парному коэффициенту q тогда и только тогда, когда 2q²≥R₂+τ².",
+          "evidence": "thm:unequal-boundary"
+        },
+        {
+          "en": "For equal pair correlations, a complete explicit three-sign defect profile is obtained; the transition can produce quartic contact along a special frequency direction.",
+          "ru": "При равных парных корреляциях получен полный явный профиль дефекта трёх знаков; на переходной границе возможно соприкосновение четвёртого порядка вдоль особого частотного направления.",
+          "evidence": "thm:threeprofile"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355731"
     },
     {
       "code": "P20",
@@ -388,7 +694,30 @@
       "pdf_filename": "P20_CF_V6_S8.pdf",
       "published_on": "2026-10-14",
       "changes": [],
-      "area": "statistics"
+      "area": "statistics",
+      "highlights": [
+        {
+          "en": "No estimator of the unrestricted characteristic-function supremum is uniformly consistent over all probability laws on [0,1]², despite pointwise estimability.",
+          "ru": "Никакая оценка супремума дефекта характеристических функций не является равномерно состоятельной на классе всех распределений на [0,1]², хотя поточечное оценивание возможно.",
+          "evidence": "thm:nonuniform-impossibility"
+        },
+        {
+          "en": "For a fixed full-support frequency distribution W, Lᵖ(W) estimators are strongly consistent when pₙ→∞ and pₙ=o(n).",
+          "ru": "Для фиксированной меры W с полным носителем оценки через Lᵖ(W) сильно состоятельны при pₙ→∞ и pₙ=o(n).",
+          "evidence": "thm:exact-integral"
+        },
+        {
+          "en": "Independent random frequency banks yield explicit finite-sample error brackets and strong consistency if log Kₙ=o(n) and pₙ/log Kₙ→∞.",
+          "ru": "Независимые случайные банки частот дают явные конечновыборочные оценки погрешности и сильную состоятельность при log Kₙ=o(n) и pₙ/log Kₙ→∞.",
+          "evidence": "thm:bank"
+        }
+      ],
+      "highlights_source_doi": "10.5281/zenodo.23355739"
     }
-  ]
+  ],
+  "highlights_editorial_policy": {
+    "source": "Claims summarized from published manuscript snapshots, not independently re-proved",
+    "latest_reconciliation": "Keep source DOI fixed until highlights are checked against a newer public version",
+    "scope": "Proved results and explicit qualifications; no open conjectures as proven claims"
+  }
 }
