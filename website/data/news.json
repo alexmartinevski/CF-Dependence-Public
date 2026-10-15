@@ -4,7 +4,7 @@
     {
       "date": "2026-10-15",
       "kind": "site_update",
-      "source": "https://github.com/alexmartinevski/CF-Dependence-Public/pull/12",
+      "source": "achievements.html#ghz-exact",
       "title": {
         "en": "Achievements: exact mathematical formulations added",
         "ru": "Достижения: добавлены строгие математические постановки"
@@ -17,7 +17,7 @@
     {
       "date": "2026-10-15",
       "kind": "site_update",
-      "source": "https://github.com/alexmartinevski/CF-Dependence-Public/pull/11",
+      "source": "achievements.html",
       "title": {
         "en": "Every achievement now has its own explanatory sources",
         "ru": "Каждый результат получил своё объяснение и источники"
@@ -56,7 +56,7 @@
     {
       "date": "2026-10-14",
       "kind": "collection_update",
-      "source": "https://doi.org/10.5281/zenodo.23356092",
+      "source": "publications/",
       "title": {
         "en": "CF V6: fifteen new research papers added",
         "ru": "CF V6: добавлено пятнадцать новых научных работ"
@@ -69,7 +69,7 @@
     {
       "date": "2026-09-28",
       "kind": "public_collection_release",
-      "source": "RELEASE_NOTES.md",
+      "source": "publications/",
       "title": {
         "en": "Initial public manuscript collection",
         "ru": "Первый публичный набор рукописей"
