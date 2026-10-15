@@ -188,3 +188,20 @@ For P01–P03 the scientific `highlights_source_doi` continues to reference
 the earlier **actually reviewed** TeX version, despite the current published
 Version DOI being updated. A future scientific review should reconcile the
 results to the new files before their provenance is updated.
+
+## Author profile and AI research disclosure (15 October 2026)
+The public homepage now has a separate, bilingual **About the author** section
+at `#author`, following the project description. It identifies the publication
+author **Alexandr Martinevski**, the affiliation **Independent Researcher**,
+the current public research contact `math@a-martinevski.com`, and
+ORCID `0009-0000-4230-4414`.
+
+The accompanying AI collaboration disclosure states that research work involved
+AI-assisted mathematical exploration, the development and critique of
+arguments and manuscript preparation. AI systems are not listed as co-authors,
+and the author accepts responsibility for the scientific content.
+
+This **website-level statement does not amend the existing AI disclosures
+in publication manuscripts** and deliberately does not enumerate or speculate
+about individual AI systems or specific contributions to individual theorems.
+Both English and Russian wording are covered by public-site CI tests.
