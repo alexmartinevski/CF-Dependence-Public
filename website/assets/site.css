@@ -36,3 +36,28 @@
   .area-metadata-line{flex-direction:row;flex-wrap:wrap;column-gap:10px}
   .area-meta-label{min-width:117px}
 }
+
+/* Scientific programme introduction: object, goal, method, then subject index. */
+.science-intro{margin:0 0 58px;padding:34px 38px 31px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 35px #172a4109}
+.science-intro h2{font:normal clamp(29px,3.7vw,40px)/1.2 Georgia,"Times New Roman",serif;letter-spacing:-.8px;margin:8px 0 14px}
+.science-intro-lead{font-size:17px;line-height:1.7;color:#344e69;max-width:900px;margin:0 0 24px}
+.science-object{border-top:1px solid var(--line);padding-top:21px}
+.science-object h3,.science-pillar h3{font-size:15px;line-height:1.45;color:#344d7f;font-weight:750;margin:0 0 9px}
+.science-object>p{font-size:14px;color:var(--muted);margin:0 0 15px}
+.science-equations{background:#eff4fa;border:1px solid #dce6f0;border-radius:12px;padding:14px 18px;max-width:100%;overflow-x:auto}
+.science-equation{font:17px/1.8 Georgia,"Times New Roman",serif;white-space:nowrap;color:#172e4c}
+.science-equation+.science-equation{margin-top:3px}
+.science-object .science-object-note{font-size:13px;margin:13px 0 0}
+.science-pillars{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:22px}
+.science-pillar{border:1px solid #e0e7ee;border-radius:13px;background:#fafbfd;padding:20px 21px}
+.science-pillar p{color:#516377;line-height:1.7;font-size:14px;margin:0}
+.science-transition{border-top:1px solid var(--line);padding-top:17px;margin:20px 0 0;color:#52657a;font-size:13px}
+@media(max-width:780px){
+  .science-intro{padding:25px 20px 22px;margin-bottom:43px;border-radius:16px}
+  .science-intro h2{font-size:29px}
+  .science-intro-lead{font-size:15px}
+  .science-pillars{grid-template-columns:1fr;gap:11px}
+  .science-pillar{padding:16px}
+  .science-equations{padding:11px 13px}
+  .science-equation{font-size:15px}
+}

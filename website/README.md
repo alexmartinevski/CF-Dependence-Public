@@ -97,3 +97,15 @@ Catalogue/news requests use `cache: "no-store"` so the JavaScript and its
 data cannot silently drift apart. If the subject map cannot be rendered the
 user sees a localized fallback message; the complete article list still works.
 CI tests both the renderer and fingerprinting.
+
+## Research-programme introduction (October 2026)
+The home-page research map starts with a bilingual, reader-facing account of the
+scientific object, project objective and research method. The scientific formulation
+distinguishes the fundamental signed interaction measure
+`mu_P = P - (P_1 ⊗ ... ⊗ P_d)` from its original Fourier-factorization
+observation, rather than claiming that the entire programme is one scalar metric.
+The stated goal is to discover mathematically explanatory and transferable laws;
+the research cycle moves from exploratory examples and invariants to rigorous
+proofs and tests across heterogeneous problems. The introduction describes
+scope, not a claim of novelty for the bare measure. The publication listing and
+DOI/publication status policy are unchanged.
