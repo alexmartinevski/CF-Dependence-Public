@@ -327,3 +327,26 @@ an unavailable optional `news.json` must not leave a permanent loading
 placeholder or block the main catalogue. CI tests check the page section
 order, the responsive CSS, the six actual news items, the public links and
 the missing-feed fallback.
+
+## About section and standalone news history — 2026-10-15
+
+**Research field directory and About are consolidated.** The canonical
+`#about` section now contains the five thematic areas with all 18 published
+papers. The old `#areas` anchor remains as a backwards-compatible locator
+at the start of the same catalogue; there is no duplicate About card or
+By-field menu entry. The Scientific Programme block moved immediately above
+the author/ORCID/AI disclosure section.
+
+The home page has exactly **four latest news cards** in a responsive 2×2 grid.
+A visible, bilingual **All news and updates / Все новости и изменения** link
+opens `news.html`. The news page includes **every** verified update in
+reverse chronological order (currently six) with dates and source links.
+The earlier expandable home-page archive is removed to keep the homepage
+compact. Both pages use the same `website/data/news.json` catalogue.
+Static fallback HTML supplies four recent items and the full history,
+respectively, even when the optional feed fails.
+
+The standalone page is included in the public GitHub Pages workflow,
+sitemap and SHA256 asset fingerprinting. Regression tests verify the new
+information architecture, permanent legacy section anchors, layout,
+exact recent vs historical counts, source citations and bilingual rendering.
