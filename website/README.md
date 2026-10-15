@@ -375,3 +375,27 @@ sent back to the English homepage by the top-left brand. A static
 English fallback is retained for visitors without JavaScript.
 Public-source data, mathematical manuscripts, versions and disclosures
 are unchanged.
+
+## Shorter, priority-aligned paper descriptions (2026-10-15)
+
+Following the approved Zenodo metadata updates, the annotated site catalogue
+now leads with each paper's strongest proved claim rather than a list of topics.
+All 18 bilingual short summaries were updated (including the already revised
+P04). **Every individual summary is no longer than its former wording**:
+English summary characters 2757 -> 2111, Russian 2750 -> 2102.
+
+The three result bullets per paper remain **exactly 54 in total**, and their
+aggregate text also decreased (English 7734 -> 6837, Russian 8298 -> 7189).
+Seven entries received focused, source-checked result rewrites and six papers
+have their highlights re-ordered by scientific significance without changing
+the mathematical claims. P02 no longer advertises an Epanechnikov result absent
+from the final abstract; P03 no longer points its highlights at older theorem
+labels, and instead foregrounds its proven infinite irreducible families.
+P11 emphasizes the Huber nonidentifiability threshold; P14 the generic
+symmetric Galois group and density-one irreducibility. P16 explicitly states
+that the five-bit endpoint 160 is classical.
+
+P02 and P03 catalogue titles have also been synchronized with the **existing**
+released Zenodo titles. Version DOIs, Concept DOIs, publication dates,
+provenance labels, HTML layouts, mathematical papers and source PDFs were not
+modified. This website-only change does not create any Zenodo release.
