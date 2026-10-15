@@ -37,6 +37,7 @@ const elements = {
   "paper-count": new FakeElement("span"),
   "no-matches": new FakeElement("p"),
   "news-items": new FakeElement("div"),
+  "news-full-list": new FakeElement("div"),
   "paper-code": new FakeElement("span"),
   "paper-title": new FakeElement("h1"),
   "paper-summary": new FakeElement("p"),
@@ -127,22 +128,28 @@ const translationCheck=vm.runInContext('[COPY.ru.achievementGhzExactProblem, COP
 assert.equal(translationCheck.length,6);
 assert.ok(translationCheck.every(x=>typeof x==="string" && x.length>10),"Explanations and sources must have meaningful localized text");
 vm.runInContext('language="ru"; news=__news; newsLoaded=true; renderIndex();',context);
-const renderedNews=elements["news-items"].children;
-assert.equal(renderedNews.length,6,"News must include 2 site changes and 4 publication updates");
-assert.ok(renderedNews[0].textContent.includes("математические"),"Recent Russian website update must render first");
-assert.ok(renderedNews[0].children.some(x=>x.href?.endsWith("/pull/12")),
-  "GitHub PR #12 must be linked");
-assert.ok(renderedNews[1].children.some(x=>x.href?.endsWith("/pull/11")),
-  "GitHub PR #11 must be linked");
-assert.ok(renderedNews[2].children.some(x=>x.href?.startsWith("https://doi.org/")),
-  "Publication release must retain its DOI link");
-vm.runInContext('language="en"; renderUpdates(document.getElementById("news-items"),true);',context);
-assert.ok(elements["news-items"].children[0].textContent.includes("mathematical"),
-  "English translation must apply to updates");
+const latest=elements["news-items"].children;
+assert.equal(latest.length,4,"The home page must show exactly four recent updates");
+assert.ok(latest[0].textContent.includes("математические"),"Most recent site update in Russian");
+assert.ok(latest[0].children.some(x=>x.href?.endsWith("/pull/12")));
+assert.ok(latest[1].children.some(x=>x.href?.endsWith("/pull/11")));
+assert.ok(latest[2].children.some(x=>x.href?.startsWith("https://doi.org/")));
+vm.runInContext('renderNewsPage();',context);
+assert.equal(elements["news-full-list"].children.length,6,"The news page contains the complete history");
+assert.ok(elements["news-full-list"].children[4].textContent.includes("CF V6"));
+assert.ok(elements["news-full-list"].children[5].children.some(x=>x.href?.includes("RELEASE_NOTES.md")));
+vm.runInContext('language="en"; renderUpdates(document.getElementById("news-items"),true); renderNewsPage();',context);
+assert.equal(elements["news-items"].children.length,4);
+assert.equal(elements["news-full-list"].children.length,6);
+assert.ok(elements["news-items"].children[0].textContent.includes("mathematical"),"English news text");
+assert.ok(elements["news-full-list"].children[5].textContent.includes("Initial public manuscript"),"Oldest item stays visible");
 const previous=elements["news-items"].children[0];
-vm.runInContext('newsLoaded=false; renderIndex();',context);
+const previousHistory=elements["news-full-list"].children[0];
+vm.runInContext('newsLoaded=false; renderIndex(); renderNewsPage();',context);
 assert.equal(elements["news-items"].children[0],previous,
-  "Existing update cards must remain in place when news.json fails");
+  "Keep recent updates visible if the optional feed fails");
+assert.equal(elements["news-full-list"].children[0],previousHistory,
+  "Keep the full history visible if the optional feed fails");
 assert.equal(vm.runInContext('updateSource("https://evil.example/test")',context),null);
 assert.equal(vm.runInContext('updateSource("https://github.com/unknown/repo/pull/12")',context),null);
-console.log("PASS: aligned homepage news, RU/EN, PR + DOI, fallback and full article catalogue.");
+console.log("PASS: four latest home updates, six full-history events, bilingual source links and full paper catalogue.");

@@ -21,10 +21,9 @@
         <a class="brand" href="index.html" aria-label="CF Dependence home"><span class="monogram">CF</span><span>CF Dependence</span></a>
         <div class="nav-actions">
           <a href="#achievements" data-i18n="achievementNav">Achievements</a>
-          <a href="#areas" data-i18n="areasNav">By field</a>
-          <a href="#papers" data-i18n="papers">Publications</a>
           <a href="#updates" data-i18n="updates">What's new</a>
           <a href="#about" data-i18n="about">About</a>
+          <a href="#papers" data-i18n="papers">Publications</a>
           <a href="#author" data-i18n="authorNav">Author</a>
           <button class="language" type="button" data-lang-switch aria-label="Change language">Русский</button>
         </div>
@@ -95,9 +94,42 @@
           <p data-i18n="staticUpdateSourcesText">Each achievement now explains its problem, history, importance and mathematical result, with 6–7 sources specific to that result.</p>
           <a class="news-source" href="https://github.com/alexmartinevski/CF-Dependence-Public/pull/11" target="_blank" rel="noopener noreferrer">GitHub PR #11 ↗</a>
         </article>
+        <article class="news-item">
+          <div class="news-meta"><time datetime="2026-10-14">2026-10-14</time><span class="news-type" data-i18n="publicationUpdateKind">Publication</span></div>
+          <h3 data-i18n="staticUpdateP19Title">P19: dependence synthesis with prescribed marginals</h3>
+          <p data-i18n="staticUpdateP19Text">New preprint: joint distributions under moment, spectral-zero and Fourier constraints.</p>
+          <a class="news-source" href="https://doi.org/10.5281/zenodo.23355731" target="_blank" rel="noopener noreferrer">10.5281/zenodo.23355731 ↗</a>
+        </article>
+        <article class="news-item">
+          <div class="news-meta"><time datetime="2026-10-14">2026-10-14</time><span class="news-type" data-i18n="publicationUpdateKind">Publication</span></div>
+          <h3 data-i18n="staticUpdateP20Title">P20: statistical estimation of extremal dependence</h3>
+          <p data-i18n="staticUpdateP20Text">New preprint: growing frequency profiles, random frequency banks and Walsh calibration.</p>
+          <a class="news-source" href="https://doi.org/10.5281/zenodo.23355739" target="_blank" rel="noopener noreferrer">10.5281/zenodo.23355739 ↗</a>
+        </article>
+      </div>
+      <div class="news-all-link-wrap">
+        <a class="news-all-link" href="news.html?lang=en" data-news-link data-i18n="newsAllLink">All news and updates →</a>
       </div>
     </section>
-    <section class="section areas-section" id="areas" aria-labelledby="areas-heading">
+    <section class="section areas-section project-catalogue" id="about" aria-labelledby="about-heading">
+      <span id="areas" class="legacy-section-anchor" aria-hidden="true"></span>
+      <div class="section-heading">
+        <div><div class="overline" data-i18n="aboutLabel">RESEARCH AREAS &amp; PUBLICATIONS</div><h2 id="about-heading" data-i18n="aboutHeading">About CF Dependence</h2></div>
+      </div>
+      <p class="section-intro" data-i18n="aboutText">Five connected areas of mathematics, with published papers, selected findings and links to the latest releases.</p>
+      <div class="catalogue-controls" id="papers">
+        <div class="catalogue-search">
+          <label class="sr-only" for="search" data-i18n="searchLabel">Search publications</label>
+          <input id="search" class="search" type="search" placeholder="Search by title, code, result or topic" autocomplete="off" data-search>
+        </div>
+        <span class="count"><span id="paper-count">—</span> <span data-i18n="publishedCount">published papers</span></span>
+      </div>
+      <p id="area-snapshot" class="metadata-note"></p>
+      <div id="area-groups" class="area-groups" aria-live="polite"><p class="muted">Loading subject index…</p></div>
+      <p id="no-matches" class="empty hidden" data-i18n="noMatches">No publications match your search.</p>
+    </section>
+
+    <section class="project-science-section" id="programme" aria-labelledby="programme-heading">
       <div class="science-intro" aria-labelledby="programme-heading">
         <div class="overline" data-i18n="programmeLabel">THE SCIENTIFIC PROGRAMME</div>
         <h2 id="programme-heading" data-i18n="programmeHeading">What CF Dependence studies</h2>
@@ -123,24 +155,6 @@
         </div>
         <p class="science-transition" data-i18n="programmeBridge">The publications below develop connected parts of this programme: sharp inequalities, prescribed marginals and transport, algebra, harmonic reconstruction and statistics.</p>
       </div>
-      <div class="section-heading">
-        <div><div class="overline" data-i18n="areasLabel">RESEARCH MAP</div><h2 id="areas-heading" data-i18n="areasHeading">Publications by research area</h2></div>
-      </div>
-      <p class="section-intro" data-i18n="areasIntro">An annotated scientific guide: each published article has a short overview and three selected results from its verified text.</p>
-      <div class="catalogue-controls" id="papers">
-        <div class="catalogue-search">
-          <label class="sr-only" for="search" data-i18n="searchLabel">Search publications</label>
-          <input id="search" class="search" type="search" placeholder="Search by title, code, result or topic" autocomplete="off" data-search>
-        </div>
-        <span class="count"><span id="paper-count">—</span> <span data-i18n="publishedCount">published papers</span></span>
-      </div>
-      <p id="area-snapshot" class="metadata-note"></p>
-      <div id="area-groups" class="area-groups" aria-live="polite"><p class="muted">Loading subject index…</p></div>
-      <p id="no-matches" class="empty hidden" data-i18n="noMatches">No publications match your search.</p>
-    </section>
-
-    <section class="about project-about" id="about">
-      <div><div class="overline" data-i18n="aboutLabel">THE PROJECT</div><h2 data-i18n="aboutHeading">About CF Dependence</h2><p data-i18n="aboutText">An evolving mathematical research programme bringing together extremal probability, fixed-marginal dependence, and algebraic methods. This catalogue links to published versions and their public research materials.</p></div>
     </section>
     <section class="author-section" id="author" aria-labelledby="author-heading">
       <div class="author-profile">

@@ -126,7 +126,7 @@ const COPY = {
   programmeGoal:"Discover new mathematical laws, prove them analytically where possible, and identify common mechanisms that explain entire classes of results rather than isolated examples.",
   programmeMethodHeading:"How the project works",
   programmeMethod:"Explore examples, numerical experiments and counterexamples; extract invariants and essential coordinates; formulate an explicit law, prove it rigorously and test whether the mechanism transfers to other problems. Exact bounds, extremizers, equality and stability are central questions.",
-  programmeBridge:"The publications below develop connected parts of this programme: sharp inequalities, prescribed marginals and transport, algebra, harmonic reconstruction and statistics.",
+  programmeBridge:"The subject-organized publications above show how this programme develops sharp inequalities, prescribed marginals and transport, algebra, inverse harmonic methods and statistics.",
   areasNav:"By field",areasLabel:"RESEARCH MAP",areasHeading:"Publications by research area",
   keyResultsHeading:"Key results",resultsLabel:"Key results",
   resultsFromVersion:"Results described from published version",areasIntro:"An annotated scientific guide: each published article has a short overview and three selected results from its verified text.",
@@ -142,9 +142,25 @@ const COPY = {
   olderPdf:"Archived PDF",olderTex:"Archived TeX",zenodoPDF:"PDF on Zenodo",
   publishedLabel:"PUBLISHED RESEARCH",papersHeading:"Research papers",publishedCount:"published records",
   searchLabel:"Search publications",noMatches:"No publications match your search.",
+  newsAllLink:"All news and updates →",
+  newsPageBack:"← Homepage",newsPageEyebrow:"RESEARCH & PUBLICATION CHRONICLE",
+  newsPageHeading:"News and updates",
+  newsPageLead:"Published research and verified public website improvements, with dates and original source links.",
+  newsPageListHeading:"Complete update history",
+  newsPageIntro:"All verified public updates, newest first. Site improvements and published research are labeled separately.",
+  newsPageNote:"Links point to published Zenodo records, public GitHub changes or public release notes. Drafts and private reviews are not counted as releases.",
   newsLabel:"PROJECT UPDATES",updatesHeading:"What's new",
   updatesInfo:"Verified website improvements and published research releases, in reverse chronological order.",
   siteUpdateKind:"Website update",publicationUpdateKind:"Publication",
+  olderUpdatesLabel:"Earlier updates",
+  staticUpdateP19Title:"P19: dependence synthesis with prescribed marginals",
+  staticUpdateP19Text:"New preprint: joint distributions under moment, spectral-zero and Fourier constraints.",
+  staticUpdateP20Title:"P20: statistical estimation of extremal dependence",
+  staticUpdateP20Text:"New preprint: growing frequency profiles, random frequency banks and Walsh calibration.",
+  staticUpdateCollectionTitle:"CF V6: fifteen new research papers added",
+  staticUpdateCollectionText:"The public catalogue expands from three to eighteen research papers.",
+  staticUpdateInitialTitle:"Initial public manuscript collection",
+  staticUpdateInitialText:"Three first research manuscripts (P01–P03) published in the public repository.",
   staticUpdateMathTitle:"Detailed mathematical formulations added",
   staticUpdateMathText:"Definitions, hypotheses and precise formulas were added to all six achievements, and four concise formulas now appear on the homepage.",
   staticUpdateSourcesTitle:"Results explained with separate references",
@@ -153,8 +169,8 @@ const COPY = {
   authorRole:"Independent Researcher",
   aiDisclosureLabel:"RESEARCH TRANSPARENCY",aiDisclosureHeading:"AI collaboration disclosure",
   aiDisclosureText:"CF Dependence research was conducted by the author in collaboration with artificial intelligence (AI) systems. AI assisted with mathematical exploration, developing and critically examining ideas and proofs, and preparing manuscripts. AI systems are not listed as co-authors. The author is responsible for the published mathematical statements, proofs, and conclusions.",
-  aboutLabel:"THE PROJECT",aboutHeading:"About CF Dependence",
-  aboutText:"An evolving mathematical research programme bringing together extremal probability, fixed-marginal dependence, and algebraic methods. This catalogue links to published versions and their public research materials.",
+  aboutLabel:"RESEARCH AREAS & PUBLICATIONS",aboutHeading:"About CF Dependence",
+  aboutText:"Five connected mathematical research areas. Browse published papers by subject, with three selected results, release dates and links to the current versions.",
   footer:"Only verified published works are listed. Draft DOI ≠ publication.",
   back:"← All papers",researchSummary:"RESEARCH SUMMARY",summary:"Overview",topics:"Research areas",
   versionHistory:"What changed in published versions",bibliography:"BIBLIOGRAPHY",author:"Author",
@@ -290,7 +306,7 @@ const COPY = {
   programmeGoal:"Открывать новые математические законы, доказывать их аналитически там, где это возможно, и выявлять общие механизмы, объясняющие целые классы результатов, а не отдельные примеры.",
   programmeMethodHeading:"Как ведётся исследование",
   programmeMethod:"Исследуем примеры, вычислительные эксперименты и контрпримеры; выделяем инварианты и существенные координаты; формулируем явный закон, строго доказываем его и проверяем перенос механизма на другие задачи. В центре внимания — точные границы, экстремизаторы, случаи равенства и устойчивость.",
-  programmeBridge:"Публикации ниже раскрывают связанные части программы: точные неравенства, заданные маргинали и транспорт, алгебру, гармонические методы восстановления и статистику.",
+  programmeBridge:"Расположенные выше публикации по областям показывают развитие программы: точные неравенства, заданные маргинали и транспорт, алгебру, гармонические методы восстановления и статистику.",
   areasNav:"По областям",areasLabel:"КАРТА ИССЛЕДОВАНИЙ",areasHeading:"Публикации по научным областям",
   keyResultsHeading:"Основные результаты",resultsLabel:"Что доказано или установлено",
   resultsFromVersion:"Результаты изложены по опубликованной версии",areasIntro:"Аннотированный научный каталог: для каждой статьи приведены краткий обзор и три выбранных результата из проверенного опубликованного текста.",
@@ -306,9 +322,25 @@ const COPY = {
   olderPdf:"Архивный PDF",olderTex:"Архивный TeX",zenodoPDF:"PDF в Zenodo",
   publishedLabel:"ОПУБЛИКОВАННЫЕ РАБОТЫ",papersHeading:"Научные статьи",publishedCount:"опубликованные работы",
   searchLabel:"Поиск работ",noMatches:"Ничего не найдено.",
+  newsAllLink:"Все новости и изменения →",
+  newsPageBack:"← На главную",newsPageEyebrow:"ХРОНИКА НАУЧНЫХ РАБОТ И САЙТА",
+  newsPageHeading:"Новости проекта",
+  newsPageLead:"Опубликованные научные работы и проверяемые изменения сайта — с датами и ссылками на первоисточники.",
+  newsPageListHeading:"Полная история обновлений",
+  newsPageIntro:"Все подтверждённые публичные события, начиная с последних. Выпуски статей и изменения сайта отмечены отдельно.",
+  newsPageNote:"Ссылки ведут на опубликованные записи Zenodo, изменения открытого GitHub или публичные примечания к выпускам. Черновики и внутренние рецензии не считаются публикациями.",
   newsLabel:"ОБНОВЛЕНИЯ ПРОЕКТА",updatesHeading:"Что изменилось",
   updatesInfo:"Подтверждённые изменения сайта и выпуски научных работ в обратном хронологическом порядке.",
   siteUpdateKind:"Обновление сайта",publicationUpdateKind:"Публикация",
+  olderUpdatesLabel:"Ранее в проекте",
+  staticUpdateP19Title:"P19: синтез зависимости при заданных маргиналях",
+  staticUpdateP19Text:"Новая работа: совместные распределения с ограничениями на моменты, спектральные нули и преобразования Фурье.",
+  staticUpdateP20Title:"P20: статистическое оценивание экстремальной зависимости",
+  staticUpdateP20Text:"Новая работа: растущие частотные профили, случайные наборы частот и калибровка Уолша.",
+  staticUpdateCollectionTitle:"CF V6: добавлено пятнадцать научных работ",
+  staticUpdateCollectionText:"Публичный каталог расширился с трёх до восемнадцати исследований.",
+  staticUpdateInitialTitle:"Первый публичный набор рукописей",
+  staticUpdateInitialText:"В открытом репозитории опубликованы первые три рукописи P01–P03.",
   staticUpdateMathTitle:"Добавлены строгие математические постановки",
   staticUpdateMathText:"Во всех шести достижениях появились определения, условия теорем и точные формулы; на главной размещены четыре короткие формулы.",
   staticUpdateSourcesTitle:"Каждый результат получил своё объяснение и источники",
@@ -317,8 +349,8 @@ const COPY = {
   authorRole:"Независимый исследователь",
   aiDisclosureLabel:"ПРОЗРАЧНОСТЬ ИССЛЕДОВАНИЙ",aiDisclosureHeading:"Участие искусственного интеллекта",
   aiDisclosureText:"Исследования CF Dependence выполнялись автором совместно с системами искусственного интеллекта (ИИ). ИИ участвовал в математическом поиске, разработке и критическом анализе идей и доказательств, а также в подготовке рукописей. Системы ИИ не указаны в качестве соавторов. За опубликованные утверждения, доказательства и выводы отвечает автор.",
-  aboutLabel:"ПРОЕКТ",aboutHeading:"О CF Dependence",
-  aboutText:"Развивающаяся математическая программа, объединяющая экстремальную вероятность, зависимость при фиксированных маргиналях и алгебраические методы. Каталог ведёт к опубликованным версиям и общедоступным научным материалам.",
+  aboutLabel:"НАПРАВЛЕНИЯ И ПУБЛИКАЦИИ",aboutHeading:"О проекте CF Dependence",
+  aboutText:"Пять взаимосвязанных направлений математики. Ниже — опубликованные статьи по областям с тремя выбранными результатами, датами выпусков и ссылками на актуальные версии.",
   footer:"Только подтверждённые опубликованные работы. Зарезервированный DOI ≠ публикация.",
   back:"← Все работы",researchSummary:"СОДЕРЖАНИЕ",summary:"Обзор",topics:"Области исследований",
   versionHistory:"Изменения в опубликованных версиях",bibliography:"БИБЛИОГРАФИЯ",author:"Автор",
@@ -398,6 +430,10 @@ function applyLanguage() {
     link.href="index.html?lang="+language+"#areas";
   for (const link of document.querySelectorAll("[data-home-link]"))
     link.href="index.html?lang="+language;
+  for (const link of document.querySelectorAll("[data-news-link]"))
+    link.href="news.html?lang="+language;
+  for (const link of document.querySelectorAll("[data-news-home-link]"))
+    link.href="index.html?lang="+language+"#updates";
   for (const btn of document.querySelectorAll("[data-lang-switch]")) btn.textContent=COPY[language].otherLang;
   const url=new URL(location.href); url.searchParams.set("lang",language);
   history.replaceState(null,"",url);
@@ -525,11 +561,27 @@ function allUpdates() {
   }
   return items.sort((a,b)=>b.date.localeCompare(a.date));
 }
+// Keep exactly four latest news items on the homepage; display all updates
+// on news.html. Both pages retain meaningful static cards if data fails.
+const HOME_NEWS_LIMIT=4;
 function renderUpdates(parent, includeSiteNews) {
   const events=includeSiteNews?allUpdates():[];
   parent.replaceChildren();
-  if(!events.length){parent.appendChild(node("p","muted",COPY[language].newsEmpty));return;}
-  for(const e of events)parent.appendChild(story(e.date,e.title,e.summary,e.source,e.kind));
+  if(!events.length) {
+    parent.appendChild(node("p","muted",COPY[language].newsEmpty));
+    return;
+  }
+  for(const event of events.slice(0,HOME_NEWS_LIMIT))
+    parent.appendChild(story(event.date,event.title,event.summary,event.source,event.kind));
+}
+function renderNewsPage() {
+  const full=$("news-full-list");
+  if(!full || !newsLoaded)return;
+  const events=allUpdates();
+  if(!events.length)return;
+  full.replaceChildren();
+  for(const event of events)
+    full.appendChild(story(event.date,event.title,event.summary,event.source,event.kind));
 }
 function renderDetail() {
   applyLanguage();
@@ -572,9 +624,42 @@ function renderDetail() {
 }
 async function init() {
   const buttons=document.querySelectorAll("[data-lang-switch]");
-  for(const b of buttons)b.addEventListener("click",()=>{language=language==="en"?"ru":"en";if(document.body.dataset.page==="index")renderIndex();else if(document.body.dataset.page==="paper")renderDetail();else applyLanguage();});
+  for(const b of buttons)b.addEventListener("click",()=>{
+    language=language==="en"?"ru":"en";
+    if(document.body.dataset.page==="index")renderIndex();
+    else if(document.body.dataset.page==="paper")renderDetail();
+    else if(document.body.dataset.page==="news") {
+      applyLanguage();
+      renderNewsPage();
+    } else applyLanguage();
+  });
   applyLanguage();
   if(document.body.dataset.page==="achievements")return;
+  if(document.body.dataset.page==="news") {
+    // This page never depends on the live Zenodo resolver. News metadata
+    // comes from the same public file that supplies homepage updates.
+    try {
+      const response=await fetch("data/news.json",{cache:"no-store"});
+      if(response.ok) {
+        const data=await response.json();
+        if(Array.isArray(data.entries)) {
+          news=data.entries;
+          newsLoaded=true;
+          try {
+            const paperResponse=await fetch("data/papers.json",{cache:"no-store"});
+            if(paperResponse.ok) {
+              const catalogue=await paperResponse.json();
+              papers=verifiedPapers(catalogue.papers);
+            }
+          }catch(error) { /* News remains available without the papers catalogue. */ }
+          renderNewsPage();
+        }
+      }
+    }catch(error) {
+      console.warn("News feed unavailable; retaining all six dated HTML updates",error);
+    }
+    return;
+  }
   try{
     // Publications are mandatory, but a temporary news.json failure must never
     // hide either the catalogue or the two static, dated update cards.

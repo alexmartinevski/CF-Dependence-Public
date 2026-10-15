@@ -289,3 +289,47 @@
   .news-items .news-item:last-child{padding-bottom:18px}
   .news-items .news-item h3{font-size:16px}
 }
+
+/* Consolidated About: subject-grouped papers, with a compatible #areas anchor. */
+.project-catalogue{position:relative}
+.legacy-section-anchor{position:absolute;top:0;left:0;visibility:hidden;pointer-events:none}
+.project-catalogue>.section-heading{margin-bottom:19px}
+.project-catalogue>.section-intro{max-width:960px;line-height:1.7;margin-bottom:24px}
+.project-science-section{margin-top:75px;scroll-margin-top:28px}
+.project-science-section .science-intro{margin-bottom:18px}
+.project-science-section+.author-section{margin-top:0}
+.news-section>.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.news-archive{margin-top:20px}
+.news-archive[hidden]{display:none}
+.news-archive>summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  color:#3758a6;font-size:13px;font-weight:700;padding:6px 0;margin-bottom:12px}
+.news-archive>summary:hover{text-decoration:underline}
+.news-archive>.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;background:none;border:0;padding:0}
+@media(max-width:780px){
+  .project-science-section{margin-top:45px}
+  .project-science-section .science-intro{margin-bottom:16px}
+  .news-section>.news-items,.news-archive>.news-items{grid-template-columns:minmax(0,1fr)}
+}
+
+/* News is a separate full-history page; homepage only shows the four latest. */
+.news-all-link-wrap{display:flex;justify-content:flex-start;margin-top:19px}
+.news-all-link{display:inline-flex;align-items:center;min-height:42px;padding:10px 18px;
+  border-radius:10px;background:var(--navy2);color:#fff;text-decoration:none;
+  font-size:13px;font-weight:720}
+.news-all-link:hover{background:#264e70}
+.news-hero-content{padding:52px 0 66px}
+.news-hero-content h1{font:normal clamp(40px,5.5vw,62px)/1.15 Georgia,"Times New Roman",serif;
+  letter-spacing:-1.5px;margin:16px 0 16px}
+.news-page{padding-top:53px;padding-bottom:93px}
+.news-page .section-heading h2{font-size:clamp(29px,3.8vw,42px)}
+.news-page .news-all-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.news-page-note{font-size:12px;line-height:1.7;color:#748496;max-width:810px;margin:22px 0 0}
+@media(max-width:780px){
+  .news-all-link-wrap{margin-top:15px}
+  .news-all-link{width:100%;justify-content:center}
+  .news-hero-content{padding:39px 0 57px}
+  .news-hero-content h1{letter-spacing:-.8px}
+  .news-page{padding-top:35px;padding-bottom:60px}
+  .news-page .news-all-grid{grid-template-columns:1fr}
+}

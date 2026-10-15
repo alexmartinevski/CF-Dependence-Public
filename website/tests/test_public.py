@@ -209,7 +209,7 @@ class PublicSiteTests(unittest.TestCase):
         import tempfile
         sys.path.insert(0,str(ROOT/"tools"))
         from fingerprint_assets import stamp_site
-        for page in ("index.html","paper.html","achievements.html"):
+        for page in ("index.html","paper.html","achievements.html","news.html"):
             html=(ROOT/page).read_text(encoding="utf-8")
             self.assertRegex(html, r'href="assets/site\.css\?v=[A-Za-z0-9._-]+"')
             self.assertRegex(html, r'src="assets/site\.js\?v=[A-Za-z0-9._-]+"')
@@ -218,7 +218,7 @@ class PublicSiteTests(unittest.TestCase):
             (base/"assets").mkdir()
             for asset in ("assets/site.js","assets/site.css"):
                 shutil.copyfile(ROOT/asset,base/asset)
-            for page in ("index.html","paper.html","achievements.html"):
+            for page in ("index.html","paper.html","achievements.html","news.html"):
                 shutil.copyfile(ROOT/page,base/page)
             stamp_site(base)
             digest=hashlib.sha256((base/"assets/site.js").read_bytes()).hexdigest()[:16]
@@ -226,25 +226,25 @@ class PublicSiteTests(unittest.TestCase):
             self.assertIn("assets/site.js?v="+digest,first)
             self.assertIn("assets/site.js?v="+digest,(base/"paper.html").read_text(encoding="utf-8"))
             self.assertIn("assets/site.js?v="+digest,(base/"achievements.html").read_text(encoding="utf-8"))
+            self.assertIn("assets/site.js?v="+digest,(base/"news.html").read_text(encoding="utf-8"))
             (base/"assets/site.js").write_bytes((base/"assets/site.js").read_bytes()+b"\n/* changed */")
             stamp_site(base)
             self.assertNotIn("assets/site.js?v="+digest,(base/"index.html").read_text(encoding="utf-8"))
 
     def test_scientific_programme_introduction(self):
-        """The public subject index starts with object, goal and method, in two languages."""
+        """The research programme follows the subject directory and precedes the author."""
         html=(ROOT/"index.html").read_text(encoding="utf-8")
         script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
-        self.assertLess(html.index('id="programme-heading"'),html.index('id="areas-heading"'))
-        self.assertLess(html.index('class="science-intro"'),html.index('id="area-groups"'))
+        self.assertLess(html.index('id="area-groups"'),html.index('id="programme-heading"'))
+        self.assertLess(html.index('id="programme-heading"'),html.index('id="author"'))
+        self.assertIn('id="programme"',html)
         self.assertIn('μ<sub>P</sub>',html)
         self.assertIn('D<sub>d</sub>(P)',html)
-        self.assertIn('programmeGoal',script)
-        self.assertIn('programmeMethod',script)
         for key in ("programmeLabel","programmeHeading","programmeLead","programmeObject",
                     "programmeObjectHeading","programmeObjectNote","programmeGoalHeading",
                     "programmeGoal","programmeMethodHeading","programmeMethod","programmeBridge"):
             self.assertIn(f'data-i18n="{key}"',html)
-            self.assertEqual(script.count(f'{key}:'),2, f"Both languages must define {key}")
+            self.assertEqual(script.count(f'{key}:'),2,key)
         self.assertIn("Открывать новые математические законы",script)
         self.assertIn("signed interaction measure",script)
 
@@ -467,32 +467,28 @@ class PublicSiteTests(unittest.TestCase):
         self.assertNotIn("cdn.jsdelivr.net",page)
 
     def test_latest_updates_visible_and_aligned_near_top(self):
-        homepage=(ROOT/"index.html").read_text(encoding="utf-8")
+        html=(ROOT/"index.html").read_text(encoding="utf-8")
         css=(ROOT/"assets/site.css").read_text(encoding="utf-8")
         script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
-        intro=homepage.index('id="achievements"')
-        news=homepage.index('id="updates"')
-        catalogue=homepage.index('id="areas"')
-        self.assertLess(intro,news)
-        self.assertLess(news,catalogue,
-            "Updates must be visible before the long 18-paper research catalogue")
-        self.assertEqual(homepage.count('id="updates"'),1)
-        self.assertEqual(homepage.count('id="news-items"'),1)
-        self.assertIn('id="updates-heading"',homepage)
-        news_html=homepage[news:catalogue]
-        self.assertIn('class="section-heading news-heading"',news_html)
-        self.assertIn('aria-live="polite"',news_html)
-        self.assertEqual(news_html.count('class="news-item"'),2,
-            "Static updates remain readable when the news feed fails")
-        self.assertEqual(news_html.count('datetime="2026-10-15"'),2)
-        self.assertIn('github.com/alexmartinevski/CF-Dependence-Public/pull/12',news_html)
-        self.assertIn('github.com/alexmartinevski/CF-Dependence-Public/pull/11',news_html)
-        self.assertIn('.news-section{display:block',css)
-        self.assertIn('.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))',css)
-        self.assertIn('.news-items{grid-template-columns:1fr',css)
+        self.assertLess(html.index('id="achievements"'),html.index('id="updates"'))
+        self.assertLess(html.index('id="updates"'),html.index('id="about"'))
+        news=html[html.index('id="updates"'):html.index('id="about"')]
+        self.assertEqual(news.count('class="news-item"'),4)
+        self.assertEqual(news.count('datetime="2026-10-15"'),2)
+        self.assertEqual(news.count('datetime="2026-10-14"'),2)
+        self.assertIn('id="updates-heading"',html)
+        self.assertIn('class="section-heading news-heading"',news)
+        self.assertIn('href="news.html?lang=en"',news)
+        self.assertIn('data-news-link',news)
+        self.assertNotIn('id="news-archive"',news)
+        self.assertNotIn('id="older-news-items"',news)
+        self.assertIn('.news-section>.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))',css)
+        self.assertIn('.news-page .news-all-grid{grid-template-columns:1fr',css)
+        self.assertIn('const HOME_NEWS_LIMIT=4;',script)
+        self.assertIn('events.slice(0,HOME_NEWS_LIMIT)',script)
+        self.assertNotIn('events.slice(HOME_NEWS_LIMIT)',script)
         self.assertIn('if(newsLoaded)renderUpdates($("news-items"),true)',script)
         self.assertIn('fetch("data/news.json",{cache:"no-store"}).catch(()=>null)',script)
-        self.assertIn('function updateSource(source)',script)
 
     def test_site_news_is_grounded_in_public_prs(self):
         self.assertEqual(len(self.news["entries"]),6)
@@ -509,6 +505,62 @@ class PublicSiteTests(unittest.TestCase):
             self.assertTrue(entry["summary"]["en"])
         self.assertEqual(len([e for e in self.news["entries"] if e["kind"]!="site_update"]),4)
 
+    def test_about_and_author_layout(self):
+        page=(ROOT/"index.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertEqual(page.count('id="about"'),1)
+        self.assertEqual(page.count('id="areas"'),1)
+        self.assertEqual(page.count('id="area-groups"'),1)
+        self.assertNotIn('href="#areas" data-i18n="areasNav"',page)
+        self.assertIn('href="#about" data-i18n="about"',page)
+        self.assertIn('id="about-heading" data-i18n="aboutHeading"',page)
+        self.assertIn('class="section areas-section project-catalogue"',page)
+        self.assertNotIn('class="about project-about"',page)
+        self.assertEqual(page.count('class="science-intro"'),1)
+        self.assertEqual(page.count('id="programme"'),1)
+        self.assertLess(page.index('id="updates"'),page.index('id="about"'))
+        self.assertLess(page.index('id="about"'),page.index('id="papers"'))
+        self.assertLess(page.index('id="papers"'),page.index('id="programme"'))
+        self.assertLess(page.index('id="programme"'),page.index('id="author"'))
+        self.assertIn('НАПРАВЛЕНИЯ И ПУБЛИКАЦИИ',script)
+        self.assertIn('Расположенные выше публикации',script)
+        self.assertEqual(script.count('aboutText:'),2)
+
+    def test_news_history_page_and_translations(self):
+        import re
+        html=(ROOT/"news.html").read_text(encoding="utf-8")
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        css=(ROOT/"assets/site.css").read_text(encoding="utf-8")
+        self.assertIn('data-page="news"',html)
+        self.assertIn('href="https://math.a-martinevski.com/news.html"',html)
+        self.assertIn('id="news-full-list"',html)
+        self.assertEqual(html.count('class="news-item"'),len(self.news["entries"]))
+        self.assertEqual(home.count('class="news-item"'),4)
+        self.assertEqual(len(self.news["entries"]),6)
+        self.assertEqual(html.count('data-i18n="siteUpdateKind"'),2)
+        self.assertEqual(html.count('data-i18n="publicationUpdateKind"'),4)
+        self.assertIn('data-news-home-link',html)
+        self.assertIn('data-news-link',home)
+        self.assertIn('news.html?lang=',script)
+        self.assertIn('document.body.dataset.page==="news"',script)
+        self.assertIn('function renderNewsPage()',script)
+        self.assertIn('.news-page .news-all-grid{grid-template-columns:repeat(2,minmax(0,1fr))',css)
+        self.assertIn('.news-page .news-all-grid{grid-template-columns:1fr',css)
+        for event in self.news["entries"]:
+            self.assertIn('datetime="'+event["date"]+'"',html)
+            self.assertIn(event["title"]["en"],html)
+            if event["source"]=="RELEASE_NOTES.md":
+                self.assertIn('RELEASE_NOTES.md',html)
+            else:
+                self.assertIn('href="'+event["source"]+'"',html)
+        for key in ("newsAllLink","newsPageHeading","newsPageLead",
+                    "newsPageListHeading","newsPageIntro","newsPageNote",
+                    "newsPageBack","newsPageEyebrow"):
+            self.assertEqual(script.count(key+':'),2,key)
+        for key in set(re.findall(r'data-i18n="(newsPage[A-Za-z0-9]+)"',html)):
+            self.assertEqual(script.count(key+':'),2,key)
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
@@ -521,14 +573,15 @@ class PublicSiteTests(unittest.TestCase):
         ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
         urls = [node.text for node in sitemap.iter(ns+"loc")]
         self.assertIn(hostname, urls)
-        self.assertEqual(len(urls), len(self.site["papers"])+2)
+        self.assertEqual(len(urls), len(self.site["papers"])+3)
+        self.assertIn(hostname+"news.html",urls)
         self.assertIn(hostname+"achievements.html",urls)
         for paper in self.site["papers"]:
             self.assertIn(hostname+"paper.html?code="+paper["code"], urls)
         self.assertTrue(all(u.startswith(hostname) for u in urls))
 
     def test_static_entrypoints_present(self):
-        for rel in ("index.html","paper.html","achievements.html","assets/site.css","assets/site.js"):
+        for rel in ("index.html","paper.html","achievements.html","news.html","assets/site.css","assets/site.js"):
             self.assertTrue((ROOT/rel).is_file(),rel)
 
 if __name__=="__main__":
