@@ -35,6 +35,7 @@ jobs:
           node --check website/assets/scholar.js
           node website/tests/test_render.js
           python website/tests/test_scholarly.py
+          python website/tests/test_dynamic_release.py
   deploy:
     if: github.event_name != 'pull_request'
     needs: validate
@@ -59,6 +60,9 @@ jobs:
           cp website/index.html website/paper.html website/achievements.html website/news.html _site/
           cp website/assets/site.css website/assets/site.js website/assets/scholar.js _site/assets/
           cp website/data/papers.json website/data/news.json _site/data/
+          # No manually copied news cards: generate EN/RU static fallbacks from the
+          # same validated JSON powering the interactive news feed.
+          python3 website/tools/build_news_fallbacks.py _site
           # Read-only public metadata; failures retain the verified catalogue.
           python3 website/tools/resolve_zenodo.py website/data/papers.json _site/data/zenodo_latest.json
           cp website/robots.txt website/sitemap.xml _site/
