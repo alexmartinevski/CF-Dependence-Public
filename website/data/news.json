@@ -2,6 +2,32 @@
   "schema": "cf-publication-updates/v1",
   "entries": [
     {
+      "date": "2026-10-15",
+      "kind": "site_update",
+      "source": "https://github.com/alexmartinevski/CF-Dependence-Public/pull/12",
+      "title": {
+        "en": "Achievements: exact mathematical formulations added",
+        "ru": "Достижения: добавлены строгие математические постановки"
+      },
+      "summary": {
+        "en": "All six results now include formal definitions, theorem conditions and key equations; four concise formulas were added to the homepage.",
+        "ru": "Во всех шести достижениях появились определения, условия теорем и ключевые формулы; на главной размещены четыре краткие формулы."
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "kind": "site_update",
+      "source": "https://github.com/alexmartinevski/CF-Dependence-Public/pull/11",
+      "title": {
+        "en": "Every achievement now has its own explanatory sources",
+        "ru": "Каждый результат получил своё объяснение и источники"
+      },
+      "summary": {
+        "en": "Six results are explained through the question, historical origin, importance and actual finding, each with a separate list of 6–7 sources.",
+        "ru": "Шесть результатов описаны через постановку вопроса, историю, значимость и доказанный результат, каждый со своим списком из 6–7 источников."
+      }
+    },
+    {
       "date": "2026-10-14",
       "kind": "publication_release",
       "source": "https://doi.org/10.5281/zenodo.23355731",
