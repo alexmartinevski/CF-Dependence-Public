@@ -7,8 +7,8 @@
       "code": "P01",
       "title": "A Sharp Universal Profile for Multivariate Characteristic-Function Factorization",
       "summary": {
-        "en": "Determines a sharp universal profile for characteristic-function factorization defects, its extremizers, and the associated sharp constants.",
-        "ru": "Точный универсальный профиль отклонения от факторизации характеристических функций, экстремали и соответствующие точные константы."
+        "en": "Exact dependence profiles for prescribed mean moduli, all complex extremizers and sharp constants C_d increasing to 2.",
+        "ru": "Точный профиль зависимости при заданных модулях средних, все комплексные экстремали и константы C_d, возрастающие к 2."
       },
       "topics": [
         "Characteristic functions",
@@ -47,10 +47,10 @@
     },
     {
       "code": "P02",
-      "title": "Two-Point Extremals for Characteristic-Function Dependence with Fixed Marginals",
+      "title": "The price of prescribed marginals in characteristic-function dependence: phase contact and complete mixability",
       "summary": {
-        "en": "Develops fixed-marginal dependence theory through two-point extremals, convex-order certificates, mixability, and sharp bounds for prescribed marginal laws.",
-        "ru": "Теория зависимости при фиксированных маргиналях: двухточечные экстремали, сертификаты выпуклого порядка, совместная смешиваемость и точные оценки."
+        "en": "Exact fixed-marginal results for uniform and spline laws; attainability via complete mixability and a strict Gaussian gap.",
+        "ru": "Точные результаты для равномерных и сплайновых маргиналей; критерий через полную смешиваемость и зазор для гауссовских законов."
       },
       "topics": [
         "Fixed marginals",
@@ -89,10 +89,10 @@
     },
     {
       "code": "P03",
-      "title": "Chebyshev–Lucas Critical Polynomials: Local Blocks, Irreducibility and Galois Groups",
+      "title": "Local factor profiles and arithmetic resolution of Chebyshev–Lucas critical polynomials",
       "summary": {
-        "en": "Investigates arithmetic structures of critical Chebyshev–Lucas polynomials, including local Newton polygons, irreducibility criteria, and Galois groups.",
-        "ru": "Арифметические свойства критических полиномов Чебышёва—Люкаса: локальные многоугольники Ньютона, критерии неприводимости и группы Галуа."
+        "en": "Infinite irreducible Chebyshev–Lucas critical-polynomial families proved via cyclotomic blocks and p-adic moment obstructions.",
+        "ru": "Бесконечные семейства неприводимых критических полиномов Чебышёва—Люка через циклотомические блоки и p-адические моменты."
       },
       "topics": [
         "Chebyshev–Lucas polynomials",
@@ -133,8 +133,8 @@
       "code": "P04",
       "title": "Sharp constants for Fourier factorization defects: universal ceilings, strong mixing and interaction measures",
       "summary": {
-        "en": "Sharp constants connecting characteristic-function factorization defects with strong mixing, Grothendieck-type covariance inequalities and multipartite interaction measures.",
-        "ru": "Точные константы для дефектов факторизации характеристических функций, сильного перемешивания, ковариационных неравенств типа Гротендика и многомерных взаимодействий."
+        "en": "Exact planar GHZ thresholds for n≥4 and new bounds for n=3; sharp 4√2 mixing covariance and multilinear constants.",
+        "ru": "Точные пороги GHZ при n≥4 и новые границы при n=3; оптимальная константа 4√2 для ковариации и мультлинейных оценок."
       },
       "topics": [
         "strong mixing",
@@ -177,8 +177,8 @@
       "code": "P06",
       "title": "Contact fibres, exact gluing, and residual geometry of finite interaction laws",
       "summary": {
-        "en": "The inverse geometry of finite interaction laws: contact transports, positive representatives of fibres and quantitative estimates from relative entropy.",
-        "ru": "Обратная геометрия конечных законов взаимодействия: контактные транспорты, положительные представители слоёв и количественные оценки через относительную энтропию."
+        "en": "Exact criteria for inverse stability of finite interaction laws via contact transports, incidence ranks and entropy bounds.",
+        "ru": "Точные критерии устойчивости обратной задачи для конечных законов взаимодействия через контактный транспорт, ранг и энтропию."
       },
       "topics": [
         "interaction tensor",
@@ -221,8 +221,8 @@
       "code": "P07",
       "title": "Observable quotients and deterministic inverse tomography for characteristic-function interactions",
       "summary": {
-        "en": "Identifies what characteristic-function and Laplace-type measurements can recover, then develops finite-spectrum reconstruction using Prony data and exact observable quotients.",
-        "ru": "Определяет, какие данные можно восстановить из характеристических функций и преобразований Лапласа, и исследует восстановление конечных спектров методом Прони."
+        "en": "Spectral observable quotients, exact cycle-rank counts of mixed Laplace queries and sharp finite-precision reconstruction.",
+        "ru": "Спектральные факторпространства, точное число смешанных запросов по рангу циклов и восстановление при конечной точности."
       },
       "topics": [
         "characteristic functions",
@@ -265,8 +265,8 @@
       "code": "P08",
       "title": "Critical values, resultants and norms of the Chebyshev defect",
       "summary": {
-        "en": "Connects critical values of the Chebyshev factorization defect to cyclotomic resultants, polynomial discriminants and algebraic norm identities.",
-        "ru": "Связывает критические значения дефекта Чебышёва с циклотомическими результантами, дискриминантами многочленов и алгебраическими нормами."
+        "en": "An unconditional cyclotomic discriminant formula for the Chebyshev defect; critical-value norms under irreducibility.",
+        "ru": "Безусловная циклотомическая формула дискриминанта дефекта Чебышёва; нормы критических значений при неприводимости."
       },
       "topics": [
         "Chebyshev polynomials",
@@ -309,8 +309,8 @@
       "code": "P09",
       "title": "Deformations and local arithmetic of Lucas polynomial observations",
       "summary": {
-        "en": "Studies deformations of Lucas polynomials and their arithmetic observations, including integral coefficient identities, Frobenius reduction and Newton polygons.",
-        "ru": "Изучает деформации многочленов Люкаса и их арифметику: целочисленные тождества коэффициентов, редукцию Фробениуса и многоугольники Ньютона."
+        "en": "Complete negative-slope Newton polygons for Lucas companions, exact root-interlacing intervals and Eisenstein criteria.",
+        "ru": "Полная отрицательная часть многоугольников Ньютона полиномов Люка, интервалы перемежения корней и критерии Эйзенштейна."
       },
       "topics": [
         "Lucas polynomials",
@@ -353,8 +353,8 @@
       "code": "P11",
       "title": "Truncation, Sampling, and Huber Geometry for Supremum Characteristic-Function Independence Testing",
       "summary": {
-        "en": "Examines supremum characteristic-function tests for independence, finite frequency windows, uniform deviation bounds and Huber contamination geometry.",
-        "ru": "Исследует тесты независимости через супремум характеристических функций, конечные частотные окна, оценки отклонений и геометрию загрязнения Хьюбера."
+        "en": "Exact Huber nonidentifiability threshold 1−1/√2, minimax separation rates and degeneracy of unrestricted empirical tests.",
+        "ru": "Точный порог неидентифицируемости Хьюбера 1−1/√2, минимаксные скорости и вырождение неограниченного эмпирического супремума."
       },
       "topics": [
         "independence testing",
@@ -397,8 +397,8 @@
       "code": "P12",
       "title": "Harmonic observation quotients and stable recovery from translated class portraits",
       "summary": {
-        "en": "Gives matrix-spanning criteria for reconstructing probability laws on finite groups from translated conjugacy-class observations, including dihedral examples.",
-        "ru": "Даёт матричные критерии восстановления распределений на конечных группах по сдвинутым наблюдениям классов сопряжённости, включая диэдральные группы."
+        "en": "Four translated class portraits recover dihedral laws exactly; stable nonadaptive designs need Θ(log m) portraits.",
+        "ru": "Четыре сдвинутых портрета восстанавливают законы на диэдральных группах; для устойчивости нужно Θ(log m) портретов."
       },
       "topics": [
         "finite groups",
@@ -441,8 +441,8 @@
       "code": "P13",
       "title": "Sharp Wasserstein stability of a multivariate characteristic-function defect",
       "summary": {
-        "en": "Quantifies how a small deficit in the extremal characteristic-function inequality forces closeness to equality configurations in Wasserstein distance.",
-        "ru": "Получает количественную устойчивость экстремального неравенства для характеристических функций: малый дефицит обеспечивает близость к экстремалям в расстоянии Васерштейна."
+        "en": "Optimal Wasserstein stability near maximal dependence: distance O(Δ^(1/(2p))) to the complete orbit of extremizers.",
+        "ru": "Оптимальная устойчивость Васерштейна вблизи максимальной зависимости: O(Δ^(1/(2p))) до множества экстремалей."
       },
       "topics": [
         "characteristic functions",
@@ -485,8 +485,8 @@
       "code": "P14",
       "title": "Global irreducibility and Galois groups of Chebyshev–Lucas level polynomials",
       "summary": {
-        "en": "Establishes irreducibility criteria for Lucas level polynomials and determines specialized and generic symmetric Galois groups under explicit hypotheses.",
-        "ru": "Устанавливает критерии неприводимости уровневых многочленов Люкаса и определяет специальные и общие симметрические группы Галуа при явных условиях."
+        "en": "Full generic symmetric Galois groups for Lucas levels and irreducibility of critical polynomials for density-one even indices.",
+        "ru": "Общие симметрические группы Галуа уровней Люка и неприводимость критических полиномов для почти всех чётных индексов."
       },
       "topics": [
         "irreducibility",
@@ -529,8 +529,8 @@
       "code": "P15",
       "title": "Partition interactions and sharp binary rigidity",
       "summary": {
-        "en": "Compares partition interaction measures, derives sharp binary bounds and relates four-variable Streitberg interactions to joint cumulants.",
-        "ru": "Сравнивает меры взаимодействия по разбиениям, выводит точные оценки для бинарного случая и связывает взаимодействия Штрайтберга с совместными кумулянтами."
+        "en": "Sharp fourth-cumulant bound |κ₄|≤2 for balanced signs, all equality laws and quantitative total-variation rigidity.",
+        "ru": "Точная оценка |κ₄|≤2 для четвёртого кумулянта сбалансированных знаков, все экстремали и устойчивость в полной вариации."
       },
       "topics": [
         "Partition interaction",
@@ -573,8 +573,8 @@
       "code": "P16",
       "title": "Query-Relative Walsh Compression: Sharp Punctured Norms and Signed Bent-Orbit Recovery",
       "summary": {
-        "en": "Studies sharp relations between total variation and punctured Walsh spectra, together with deterministic recovery from signed bent-function orbit observations.",
-        "ru": "Исследует точные оценки между полной вариацией и усечёнными спектрами Уолша, а также детерминированное восстановление по наблюдениям орбит бент-функций."
+        "en": "Sharp punctured Walsh norms across exponents and robust recovery of signed quadratic bent-function orbits.",
+        "ru": "Точные проколотые нормы Уолша и устойчивое восстановление знаковых орбит квадратичных бент-функций."
       },
       "topics": [
         "Walsh–Hadamard transform",
@@ -617,8 +617,8 @@
       "code": "P17",
       "title": "Transport distance to joint mixability and quantitative characteristic-function gaps",
       "summary": {
-        "en": "Measures the failure of joint mixability using optimal residuals, Wasserstein projection identities and quantitative characteristic-function gaps.",
-        "ru": "Измеряет отклонение от совместной смешиваемости через оптимальные остатки, проекции в метрике Васерштейна и количественные разрывы характеристических функций."
+        "en": "An exact Wasserstein projection onto jointly mixable marginals and a positive Fourier gap for Gaussian laws.",
+        "ru": "Точная проекция Васерштейна на совместно смешиваемые маргинали и положительный Фурье-зазор для гауссовских законов."
       },
       "topics": [
         "joint mixability",
@@ -661,8 +661,8 @@
       "code": "P18",
       "title": "Rational moment algebras: spectral reconstruction, factorization and arithmetic rigidity",
       "summary": {
-        "en": "Reconstructs finite rational moment algebras from spectral and Hankel data, separating positivity, factorization and arithmetic rigidity conditions.",
-        "ru": "Восстанавливает конечные рациональные алгебры моментов по спектральным данным и матрицам Ганкеля, различая положительность, факторизацию и арифметическую жёсткость."
+        "en": "Hankel–resultant identities, rational spectral recovery and quantized discriminant gaps for factor selectors.",
+        "ru": "Тождества определителей Ганкеля и результантов, восстановление рациональных спектров и дискретные зазоры факторизации."
       },
       "topics": [
         "moment problems",
@@ -705,8 +705,8 @@
       "code": "P19",
       "title": "Prescribed-marginal dependence synthesis with moment and Fourier constraints",
       "summary": {
-        "en": "Constructs joint distributions with prescribed marginals while simultaneously enforcing moment constraints, Fourier targets and spectral zeros.",
-        "ru": "Строит совместные распределения с заданными маргиналями, одновременно удовлетворяющие ограничениям на моменты, значения преобразования Фурье и спектральные нули."
+        "en": "Synthesis with fixed marginals, hidden moments and prescribed Fourier zeros; exact three-sign dependence regimes.",
+        "ru": "Синтез с заданными маргиналями, скрытыми моментами и нулями Фурье; точные режимы зависимости трёх знаков."
       },
       "topics": [
         "Prescribed marginals",
@@ -749,8 +749,8 @@
       "code": "P20",
       "title": "Statistical Estimation of Extremal Characteristic-Function Functionals: Growing L^p Profiles, Random Frequency Banks, and Walsh Calibration",
       "summary": {
-        "en": "Studies estimation of extremal characteristic-function dependence using growing frequency windows, L^p profiles, random frequency banks and Walsh calibration.",
-        "ru": "Исследует оценивание экстремальной зависимости через характеристические функции с помощью растущих частотных окон, L^p-профилей, случайных наборов частот и калибровки Уолша."
+        "en": "No uniformly consistent estimator of unrestricted Fourier dependence on [0,1]²; consistent Lᵖ and random-frequency methods.",
+        "ru": "Нет равномерно состоятельной оценки неограниченной Фурье-зависимости на [0,1]²; есть состоятельные Lᵖ- и частотные методы."
       },
       "topics": [
         "characteristic function",
