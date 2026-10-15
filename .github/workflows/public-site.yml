@@ -27,8 +27,10 @@ jobs:
           python-version: '3.12'
       - name: Validate public records
         run: python website/tests/test_public.py
-      - name: Check JavaScript syntax
-        run: node --check website/assets/site.js
+      - name: Check JavaScript syntax and runtime directory rendering
+        run: |
+          node --check website/assets/site.js
+          node website/tests/test_render.js
   deploy:
     if: github.event_name != 'pull_request'
     needs: validate
@@ -51,6 +53,7 @@ jobs:
           # Read-only public metadata; failures retain the verified catalogue.
           python3 website/tools/resolve_zenodo.py website/data/papers.json _site/data/zenodo_latest.json
           cp website/robots.txt website/sitemap.xml _site/
+          python3 website/tools/fingerprint_assets.py _site
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v4
         with:

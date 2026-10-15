@@ -86,3 +86,14 @@ public release dates, semantic version labels (when present in Zenodo), and curr
 specific version DOIs without storing an API token. If the API cannot confirm a
 record, the hand-curated metadata remains and the latest link still uses the
 Zenodo Concept DOI. The read-only process cannot publish or change any Zenodo record.
+
+## Asset caching: GitHub Pages + mobile browsers
+The HTML references a versioned `assets/site.js` and `assets/site.css`.
+At every Pages deployment `website/tools/fingerprint_assets.py` replaces
+those query parameters with SHA-256 content fingerprints. This prevents an
+updated page from running an old cached JavaScript, which caused a blank subject
+index on Android Chrome after the subject directory was first deployed.
+Catalogue/news requests use `cache: "no-store"` so the JavaScript and its
+data cannot silently drift apart. If the subject map cannot be rendered the
+user sees a localized fallback message; the complete article list still works.
+CI tests both the renderer and fingerprinting.
