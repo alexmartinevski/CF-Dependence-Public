@@ -333,3 +333,10 @@
   .news-page{padding-top:35px;padding-bottom:60px}
   .news-page .news-all-grid{grid-template-columns:1fr}
 }
+
+/* Screenshot cleanup: keep only the research-area overline before the search. */
+.project-catalogue>.catalogue-heading{margin:0 0 8px}
+.project-catalogue>.catalogue-heading .overline{letter-spacing:1.5px}
+.project-catalogue>.catalogue-controls{margin-top:13px}
+/* Allow #programme legacy links to land on its relocated About section. */
+.project-science-section{position:relative}
