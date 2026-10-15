@@ -159,7 +159,7 @@ class PublicSiteTests(unittest.TestCase):
         self.assertEqual(fallback["last_version_on"],"2026-09-21")
         self.assertEqual(sync.version_index({"versions":{"index":True}}),None)
         # A complete dated history can establish first publication without index.
-        initial={**original,"versions":{},"created":"2026-09-01T12:00:00Z",
+        initial={**original,"doi":"10.5281/zenodo.22000000","versions":{},"created":"2026-09-01T12:00:00Z",
                  "metadata":{"publication_date":"2026-09-01"}}
         result=sync.extract_release(paper,original,versions=[initial,original],history_complete=True)
         self.assertEqual(result["first_published_on"],"2026-09-01")
