@@ -69,6 +69,10 @@ class ScholarlyIndexingTests(unittest.TestCase):
             self.assertIn('<h1 class="scholar-title">'+scholar.esc(source["title"])+"</h1>",text)
             self.assertIn('class="scholar-author citation_author"',text)
             self.assertIn('id="abstract"',text)
+            # Native MathML is emitted before crawling, without JS or CDNs.
+            if 'class="math inline"' in source["description_html"]:
+                self.assertIn("<math",text)
+                self.assertNotIn('class="math inline">\\(',text)
             self.assertIn(scholar.sanitized_abstract(source["description_html"])[0],text)
             self.assertEqual(text.count("<h1"),1)
             self.assertIn("https://doi.org/"+source["version_doi"],text)
@@ -95,6 +99,7 @@ class ScholarlyIndexingTests(unittest.TestCase):
         self.assertIn("0009-0000-4230-4414",author)
         self.assertIn("Alexandr Martinevski",author)
         self.assertIn('"@type":"Person"',author)
+        self.assertNotIn('"worksFor"',author)
         self.assertIn('"sameAs":"https://orcid.org/0009-0000-4230-4414"',author)
         self.assertIn("mailto:math@a-martinevski.com",author)
         self.assertNotIn("citation_title",author)
