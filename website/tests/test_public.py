@@ -274,6 +274,31 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertNotIn("TODO",h["ru"])
         self.assertEqual(sum(len(p["highlights"]) for p in self.site["papers"]),54)
 
+    def test_author_profile_contact_and_ai_disclosure(self):
+        """The public site has explicit, bilingual researcher identification and AI use."""
+        page=(ROOT/"index.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertIn('id="author"',page)
+        self.assertIn('id="author-heading"',page)
+        self.assertIn('id="ai-disclosure-heading"',page)
+        self.assertIn("Alexandr Martinevski",page)
+        self.assertIn('href="mailto:math@a-martinevski.com"',page)
+        self.assertIn('href="https://orcid.org/0009-0000-4230-4414"',page)
+        self.assertNotIn("alex.martinevski@gmail.com",page)
+        self.assertLess(page.index('id="about"'),page.index('id="author"'))
+        self.assertEqual(page.count('class="author-section"'),1)
+        self.assertIn('href="#author" data-i18n="authorNav"',page)
+        for key in ("authorNav","authorLabel","authorHeading","authorRole",
+                    "aiDisclosureLabel","aiDisclosureHeading","aiDisclosureText"):
+            self.assertIn(f'data-i18n="{key}"',page)
+            self.assertEqual(script.count(key+":"),2, "Missing EN/RU translation: "+key)
+        self.assertIn("Независимый исследователь",script)
+        self.assertIn("выполнялись автором совместно с системами",script)
+        self.assertIn("AI systems are not listed as co-authors",script)
+        self.assertIn("За опубликованные утверждения",script)
+        self.assertNotIn("GPT-5.6",page)
+        self.assertNotIn("Claude Opus",page)
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
