@@ -6,6 +6,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const ROOT = path.resolve(__dirname, "..");
 const papers = JSON.parse(fs.readFileSync(path.join(ROOT,"data","papers.json"),"utf8")).papers;
+const entries = JSON.parse(fs.readFileSync(path.join(ROOT,"data","news.json"),"utf8")).entries;
 class FakeElement {
   constructor(tag) {
     this.tagName = tag;
@@ -59,7 +60,7 @@ const document = {
   addEventListener: () => {}
 };
 const context = vm.createContext({
-  document, location:{search:"?lang=ru",href:"https://math.a-martinevski.com/?lang=ru"}, history:{replaceState:()=>{}}, URLSearchParams, URL, __papers:papers,
+  document, location:{search:"?lang=ru",href:"https://math.a-martinevski.com/?lang=ru"}, history:{replaceState:()=>{}}, URLSearchParams, URL, __papers:papers, __news:entries,
   console,
 });
 const code = fs.readFileSync(path.join(ROOT,"assets","site.js"),"utf8");
@@ -125,4 +126,23 @@ assert.equal(elements["paper-version-number"].textContent,"0.6");
 const translationCheck=vm.runInContext('[COPY.ru.achievementGhzExactProblem, COPY.ru.achievementGhzThreeWhy, COPY.ru.achievementMixingAnswer, COPY.ru.achievementSourcesHeading, COPY.ru.sourceRoleOur, COPY.en.sourceRolePrior]',context);
 assert.equal(translationCheck.length,6);
 assert.ok(translationCheck.every(x=>typeof x==="string" && x.length>10),"Explanations and sources must have meaningful localized text");
-console.log("PASS: bilingual major achievements, 54 paper results, chronology, 18 papers and scientific search.");
+vm.runInContext('language="ru"; news=__news; newsLoaded=true; renderIndex();',context);
+const renderedNews=elements["news-items"].children;
+assert.equal(renderedNews.length,6,"News must include 2 site changes and 4 publication updates");
+assert.ok(renderedNews[0].textContent.includes("математические"),"Recent Russian website update must render first");
+assert.ok(renderedNews[0].children.some(x=>x.href?.endsWith("/pull/12")),
+  "GitHub PR #12 must be linked");
+assert.ok(renderedNews[1].children.some(x=>x.href?.endsWith("/pull/11")),
+  "GitHub PR #11 must be linked");
+assert.ok(renderedNews[2].children.some(x=>x.href?.startsWith("https://doi.org/")),
+  "Publication release must retain its DOI link");
+vm.runInContext('language="en"; renderUpdates(document.getElementById("news-items"),true);',context);
+assert.ok(elements["news-items"].children[0].textContent.includes("mathematical"),
+  "English translation must apply to updates");
+const previous=elements["news-items"].children[0];
+vm.runInContext('newsLoaded=false; renderIndex();',context);
+assert.equal(elements["news-items"].children[0],previous,
+  "Existing update cards must remain in place when news.json fails");
+assert.equal(vm.runInContext('updateSource("https://evil.example/test")',context),null);
+assert.equal(vm.runInContext('updateSource("https://github.com/unknown/repo/pull/12")',context),null);
+console.log("PASS: aligned homepage news, RU/EN, PR + DOI, fallback and full article catalogue.");

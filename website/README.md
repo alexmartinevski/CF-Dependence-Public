@@ -304,3 +304,26 @@ substantive mathematical formula. Scientific proof and historical
 priority review caveats remain unchanged. Tests assert the correct
 placement, notation, bilingual keys, external-dependency prohibition,
 and numerical regression of published exact expressions.
+
+## Home-page update section: location, layout and resilience (2026-10-15)
+The `#updates` section ("What's new" / "Что изменилось") used to appear
+**after** the full annotated 18-paper catalogue. It now appears immediately
+after the featured scientific achievements and before the research directory,
+all within the same centred `wrap` container.
+
+The former asymmetric two-column title/sidebar layout has been replaced with
+a full-width section title and a consistent two-column grid of news cards,
+collapsing to one column on mobile. Dates, category tags and citation links
+share the same spacing and alignment.
+
+Two verified site updates dated 15 October 2026 (GitHub PR #12 and #11)
+were added to the pre-existing four public paper-release notes. Website
+updates are marked as such, not misrepresented as newly published research.
+Only allowlisted public GitHub PR URLs and validated Zenodo DOI URLs are
+rendered as external news links; the public `RELEASE_NOTES.md` has its own link.
+
+Two dated **static bilingual fallback cards** now exist directly in HTML:
+an unavailable optional `news.json` must not leave a permanent loading
+placeholder or block the main catalogue. CI tests check the page section
+order, the responsive CSS, the six actual news items, the public links and
+the missing-feed fallback.

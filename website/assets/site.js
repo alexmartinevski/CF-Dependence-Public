@@ -142,8 +142,13 @@ const COPY = {
   olderPdf:"Archived PDF",olderTex:"Archived TeX",zenodoPDF:"PDF on Zenodo",
   publishedLabel:"PUBLISHED RESEARCH",papersHeading:"Research papers",publishedCount:"published records",
   searchLabel:"Search publications",noMatches:"No publications match your search.",
-  newsLabel:"RELEASE HISTORY",updatesHeading:"What's new",
-  updatesInfo:"Verified public-release notes only. DOI reservations and private reviews do not appear as publications.",
+  newsLabel:"PROJECT UPDATES",updatesHeading:"What's new",
+  updatesInfo:"Verified website improvements and published research releases, in reverse chronological order.",
+  siteUpdateKind:"Website update",publicationUpdateKind:"Publication",
+  staticUpdateMathTitle:"Detailed mathematical formulations added",
+  staticUpdateMathText:"Definitions, hypotheses and precise formulas were added to all six achievements, and four concise formulas now appear on the homepage.",
+  staticUpdateSourcesTitle:"Results explained with separate references",
+  staticUpdateSourcesText:"Each achievement now explains its problem, history, importance and mathematical result, with 6–7 sources specific to that result.",
   authorNav:"Author",authorLabel:"RESEARCHER",authorHeading:"About the author",
   authorRole:"Independent Researcher",
   aiDisclosureLabel:"RESEARCH TRANSPARENCY",aiDisclosureHeading:"AI collaboration disclosure",
@@ -301,8 +306,13 @@ const COPY = {
   olderPdf:"Архивный PDF",olderTex:"Архивный TeX",zenodoPDF:"PDF в Zenodo",
   publishedLabel:"ОПУБЛИКОВАННЫЕ РАБОТЫ",papersHeading:"Научные статьи",publishedCount:"опубликованные работы",
   searchLabel:"Поиск работ",noMatches:"Ничего не найдено.",
-  newsLabel:"ИСТОРИЯ ВЫПУСКОВ",updatesHeading:"Что изменилось",
-  updatesInfo:"Только подтверждённые публичные изменения. Резервирование DOI и внутреннее ревью не означают публикацию.",
+  newsLabel:"ОБНОВЛЕНИЯ ПРОЕКТА",updatesHeading:"Что изменилось",
+  updatesInfo:"Подтверждённые изменения сайта и выпуски научных работ в обратном хронологическом порядке.",
+  siteUpdateKind:"Обновление сайта",publicationUpdateKind:"Публикация",
+  staticUpdateMathTitle:"Добавлены строгие математические постановки",
+  staticUpdateMathText:"Во всех шести достижениях появились определения, условия теорем и точные формулы; на главной размещены четыре короткие формулы.",
+  staticUpdateSourcesTitle:"Каждый результат получил своё объяснение и источники",
+  staticUpdateSourcesText:"В каждом из шести разделов объяснены задача, её происхождение, значимость и результат, а также приведены 6–7 отдельных источников.",
   authorNav:"Об авторе",authorLabel:"ИССЛЕДОВАТЕЛЬ",authorHeading:"Об авторе",
   authorRole:"Независимый исследователь",
   aiDisclosureLabel:"ПРОЗРАЧНОСТЬ ИССЛЕДОВАНИЙ",aiDisclosureHeading:"Участие искусственного интеллекта",
@@ -361,6 +371,7 @@ function lastVersionDate(p) { return p.last_version_on || p.published_on || ""; 
 let language = new URLSearchParams(location.search).get("lang") === "ru" ? "ru" : "en";
 let papers = [];
 let news = [];
+let newsLoaded = false;
 let catalogueDate = "";
 let zenodoCheckedDate = "";
 let zenodoResolvedCount = 0;
@@ -477,22 +488,37 @@ function renderIndex() {
   }
   $("paper-count").textContent=String(matching.length);
   $("no-matches").classList.toggle("hidden",matching.length!==0);
-  renderUpdates($("news-items"),true);
+  if(newsLoaded)renderUpdates($("news-items"),true);
 }
-function story(date, title, summary, source) {
+function updateSource(source) {
+  if(typeof source!=="string") return null;
+  if(source.startsWith("https://doi.org/") && DOI.test(source.slice("https://doi.org/".length)))
+    return {url:source,label:source.slice("https://doi.org/".length)};
+  const pr=source.match(/^https:\/\/github\.com\/alexmartinevski\/CF-Dependence-Public\/pull\/([1-9][0-9]*)$/);
+  if(pr)return {url:source,label:"GitHub PR #"+pr[1]};
+  if(source==="RELEASE_NOTES.md")
+    return {url:"https://github.com/alexmartinevski/CF-Dependence-Public/blob/main/RELEASE_NOTES.md",label:"RELEASE_NOTES.md"};
+  return null;
+}
+function story(date, title, summary, source, kind="publication_release") {
   const article=node("article","news-item");
+  const meta=node("div","news-meta");
   const time=node("time",null,date); time.dateTime=date;
+  const type=node("span","news-type",kind==="site_update"?COPY[language].siteUpdateKind:COPY[language].publicationUpdateKind);
+  meta.append(time,type);
   const h=node("h3",null,title);
   const p=node("p",null,summary);
-  article.append(time,h,p);
-  if(source && source.startsWith("https://doi.org/")) {
-    const a=node("a",null,source.slice("https://doi.org/".length)+" ↗");
-    a.href=source;a.target="_blank";a.rel="noopener noreferrer";article.append(a);
+  article.append(meta,h,p);
+  const citation=updateSource(source);
+  if(citation) {
+    const a=node("a","news-source",citation.label+" ↗");
+    a.href=citation.url; a.target="_blank"; a.rel="noopener noreferrer";
+    article.appendChild(a);
   }
   return article;
 }
 function allUpdates() {
-  const items=[...news.map(x=>({date:x.date,title:x.title[language],summary:x.summary[language],source:x.source||null}))];
+  const items=[...news.map(x=>({date:x.date,title:x.title[language],summary:x.summary[language],source:x.source||null,kind:x.kind||"publication_release"}))];
   for (const p of papers) for (const c of p.changes||[]) {
     if (!DOI.test(c.doi) || !c.date) continue;
     items.push({date:c.date,title:p.code+" · "+p.title,summary:c.summary[language]||c.summary.en,source:"https://doi.org/"+c.doi});
@@ -503,7 +529,7 @@ function renderUpdates(parent, includeSiteNews) {
   const events=includeSiteNews?allUpdates():[];
   parent.replaceChildren();
   if(!events.length){parent.appendChild(node("p","muted",COPY[language].newsEmpty));return;}
-  for(const e of events)parent.appendChild(story(e.date,e.title,e.summary,e.source));
+  for(const e of events)parent.appendChild(story(e.date,e.title,e.summary,e.source,e.kind));
 }
 function renderDetail() {
   applyLanguage();
@@ -550,9 +576,20 @@ async function init() {
   applyLanguage();
   if(document.body.dataset.page==="achievements")return;
   try{
-    const [a,b]=await Promise.all([fetch("data/papers.json",{cache:"no-store"}),fetch("data/news.json",{cache:"no-store"})]);
-    if(!a.ok||!b.ok)throw new Error("Unable to load");
-    const pdata=await a.json(), ndata=await b.json();
+    // Publications are mandatory, but a temporary news.json failure must never
+    // hide either the catalogue or the two static, dated update cards.
+    const [a,b]=await Promise.all([
+      fetch("data/papers.json",{cache:"no-store"}),
+      fetch("data/news.json",{cache:"no-store"}).catch(()=>null)
+    ]);
+    if(!a.ok)throw new Error("Unable to load published catalogue");
+    const pdata=await a.json();
+    let ndata=null;
+    if(b && b.ok) {
+      try {ndata=await b.json();} catch(error) {
+        console.warn("Updates feed unavailable; retaining static website updates",error);
+      }
+    }
     papers=verifiedPapers(pdata.papers).sort((x,y)=>Number(x.code.slice(1))-Number(y.code.slice(1)));
     catalogueDate=typeof pdata.last_curated_on==="string"?pdata.last_curated_on:"";
     // Optional same-origin metadata generated by read-only Zenodo API at deploy time.
@@ -594,7 +631,8 @@ async function init() {
     }catch(error) {
       // No public metadata must never break the site's published catalogue.
     }
-    news=Array.isArray(ndata.entries)?ndata.entries:[];
+    newsLoaded=Array.isArray(ndata?.entries);
+    news=newsLoaded?ndata.entries:[];
     if(document.body.dataset.page==="index") {
       $("search").addEventListener("input",renderIndex);
       renderIndex();
