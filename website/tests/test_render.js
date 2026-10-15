@@ -35,7 +35,21 @@ const elements = {
   "search": new FakeElement("input"),
   "paper-count": new FakeElement("span"),
   "no-matches": new FakeElement("p"),
-  "news-items": new FakeElement("div")
+  "news-items": new FakeElement("div"),
+  "paper-code": new FakeElement("span"),
+  "paper-title": new FakeElement("h1"),
+  "paper-summary": new FakeElement("p"),
+  "paper-description": new FakeElement("p"),
+  "paper-results": new FakeElement("ol"),
+  "paper-results-source": new FakeElement("p"),
+  "paper-topics": new FakeElement("div"),
+  "paper-latest": new FakeElement("dd"),
+  "paper-version": new FakeElement("dd"),
+  "paper-first-published": new FakeElement("dd"),
+  "paper-last-updated": new FakeElement("dd"),
+  "paper-version-number": new FakeElement("dd"),
+  "paper-downloads": new FakeElement("div"),
+  "paper-history": new FakeElement("div")
 };
 const document = {
   documentElement: {lang: "en"},
@@ -59,7 +73,16 @@ for(const entry of articles){
   const code=entry.children[0].children[0].children[0].textContent;
   const paper=papers.find(x=>x.code===code);
   assert.ok(paper,"Unknown paper code "+code);
-  const action=entry.children[1].children[2];
+  const meta=entry.children[1];
+  const action=meta.children.find(x=>x.className==="area-latest-link");
+  assert.ok(action,"Every publication must offer a latest-version action");
+  assert.ok(meta.textContent.includes("Первая публикация"),"First publication label missing");
+  assert.ok(meta.textContent.includes("Последнее обновление"),"Latest update label missing");
+  assert.ok(meta.textContent.includes("Последняя версия"),"Version label missing");
+  if(paper.first_published_on)
+    assert.ok(meta.textContent.includes(paper.first_published_on),"First date missing");
+  if(paper.last_version_on)
+    assert.ok(meta.textContent.includes(paper.last_version_on),"Latest-version date missing");
   assert.equal(action.href,"https://doi.org/"+paper.concept_doi,
     "Current Zenodo link must be the concept DOI for "+code);
   assert.ok(entry.textContent.includes(paper.summary.ru),"Russian abstract missing for "+code);
@@ -89,4 +112,12 @@ elements["search"].value = "NONEXISTENT-SEARCH-TERM-zz";
 vm.runInContext('renderIndex();',context);
 assert.equal(elements["paper-count"].textContent,"0","No-match counter must be zero");
 assert.equal(elements["area-groups"].children.length,0,"No-match search must clear subject groups");
-console.log("PASS: 54 verified source-anchored results; 18 papers; 5 areas; bilingual and filtered search; concept DOI links.");
+vm.runInContext('location.search="?lang=ru&code=P04"; language="ru"; renderDetail();',context);
+assert.equal(elements["paper-first-published"].textContent,"2026-10-14","Detail first date");
+assert.equal(elements["paper-last-updated"].textContent,"2026-10-14","Detail latest date");
+assert.ok(elements["paper-version-number"].textContent.includes("не подтверждён"),"No invented version number");
+vm.runInContext('papers.find(p=>p.code==="P04").version_index=1; renderDetail();',context);
+assert.equal(elements["paper-version-number"].textContent,"Выпуск Zenodo №1");
+vm.runInContext('papers.find(p=>p.code==="P04").version_label="0.6"; renderDetail();',context);
+assert.equal(elements["paper-version-number"].textContent,"0.6");
+console.log("PASS: publication chronology, version labels, 54 results, 18 papers, 5 areas, bilingual search and DOI links.");
