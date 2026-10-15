@@ -1,3 +1,11 @@
+# Выпуск новой научной статьи на сайте — актуальная инструкция (16.10.2026)
+
+**Основной регламент:** [NEW_PAPER_SITE_RUNBOOK_RU.md](NEW_PAPER_SITE_RUNBOOK_RU.md). Zenodo и ручной Publish: [private OPS/API/NEW_ARTICLE_PUBLICATION_RUNBOOK_RU.md](https://github.com/alexmartinevski/CF-Dependence/blob/main/OPS/API/NEW_ARTICLE_PUBLICATION_RUNBOOK_RU.md) (ссылка доступна только с доступом к закрытому репозиторию). ZIP передачи и новый чат: private OPS/API/START_NEW_CHAT_NEW_ARTICLE_RU.md.
+
+Новая запись на сайте появляется **только после фактической публичной публикации Zenodo**, а не резервирования DOI/draft. Сейчас сайт и часть тестов строго рассчитаны на **18** статей и суффикс PDF **_CF_V6_S8.pdf**; прежде чем добавлять P-ID, исправить перечисленные в регламенте счетчики/проверки, scholarly cache и статические карточки новостей. Публикацию Zenodo GitHub Pages не выполняет.
+
+---
+
 # CF Dependence — Public site editorial policy
 
 This `website/` directory hosts a public catalogue of **released** research papers.
