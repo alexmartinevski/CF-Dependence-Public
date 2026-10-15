@@ -235,3 +235,26 @@
  .achievement-references li{padding:11px 0;gap:10px}
  .achievement-ref-body a{font-size:13px}
 }
+
+/* Mathematical formulations: definitions before every selected theorem. */
+.achievement-math-context{margin-top:25px;padding-top:20px;border-top:1px solid #e1e9f1}
+.achievement-math-context h3{font-weight:760;font-size:14px;line-height:1.5;
+  letter-spacing:.05px;color:#2d507f;margin:0 0 9px}
+.achievement-math-context h3:not(:first-child){margin-top:20px;margin-bottom:12px}
+.achievement-feature .achievement-math-notation{font-size:13px;line-height:1.8;
+  color:#586d82;margin:8px 0 13px}
+.achievement-equation-setup{background:#f9fbfd;border-color:#dce7f3}
+.achievement-equation-extra{background:#f9fbfd;border-color:#dce7f3}
+.achievement-equation .math-line{display:block;white-space:normal;overflow-wrap:anywhere}
+.achievement-equation .math-line+.math-line{margin-top:8px}
+.achievement-math-after{margin:15px 0 19px}
+.achievement-math-after .achievement-math-notation{padding-left:1px}
+.achievement-preview-formula{margin-top:14px;padding-top:13px;border-top:1px solid #e6edf4;
+  font:16px/1.7 Georgia,"Times New Roman",serif;letter-spacing:.01px;color:#2d4f78;
+  overflow-wrap:anywhere}
+.achievement-preview-formula sub,.achievement-preview-formula sup{font-size:72%}
+@media(max-width:780px){
+ .achievement-math-context{margin-top:20px;padding-top:17px}
+ .achievement-equation .math-line{font-size:15px;line-height:1.8}
+ .achievement-preview-formula{font-size:15px}
+}
