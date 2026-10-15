@@ -9,6 +9,8 @@ latest-four/full-history static EN/RU news fallbacks.
 from __future__ import annotations
 import copy
 import hashlib
+import io
+import tarfile
 import json
 from pathlib import Path
 import shutil
@@ -20,6 +22,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"tools"))
 import build_scholarly_pages as scholar
 import build_news_fallbacks as news_builder
+import seed_pdf_cache as seed_builder
 
 
 class SyntheticNextPaperTests(unittest.TestCase):
@@ -130,6 +133,32 @@ class SyntheticNextPaperTests(unittest.TestCase):
         self.assertIn("2026-09-28",full)
         self.assertIn('href="https://doi.org/'+self.version+'"',home)
         self.assertNotIn("github.com/alexmartinevski/CF-Dependence-Public/pull",full)
+
+    def test_previous_pages_pdf_cache_is_byte_verified(self):
+        prior=self.site.parent/"previous"
+        prior.mkdir()
+        cache=self.site.parent/"cached"
+        pdfname="P21_CF_V8_RELEASE.pdf"
+        def make_tar(pdf,filename):
+            with tarfile.open(prior/"artifact.tar","w") as tar:
+                obj=tarfile.TarInfo(filename)
+                obj.size=len(pdf)
+                tar.addfile(obj,io.BytesIO(pdf))
+        make_tar(b"%PDF-"+b"x"*(len(self.pdf)-5),"./publications/P21/"+pdfname)
+        self.assertEqual(seed_builder.seed(self.site,prior,cache),0)
+        self.assertFalse((cache/"P21"/pdfname).exists())
+        make_tar(self.pdf,"../../publications/P21/"+pdfname)
+        self.assertEqual(seed_builder.seed(self.site,prior,cache),0)
+        make_tar(self.pdf,"./publications/P21/"+pdfname)
+        self.assertEqual(seed_builder.seed(self.site,prior,cache),1)
+        scholar.build(self.site,self.dist,repo_root=self.site.parent/"nothing",
+                      fetch_pdfs=False,cache_dir=cache)
+        page=(self.dist/"publications/P21/index.html").read_text(encoding="utf-8")
+        self.assertIn('name="citation_pdf_url"',page)
+        self.assertEqual((self.dist/"publications/P21"/pdfname).read_bytes(),self.pdf)
+        (cache/"P21"/pdfname).write_bytes(b"garbage")
+        self.assertFalse(scholar.file_signature(cache/"P21"/pdfname,
+                                                 scholar.load_data(self.site)[1]["P21"]))
 
     def test_unpublished_or_unverified_19th_record_fails_closed(self):
         doc=json.loads((self.site/"data/papers.json").read_text(encoding="utf-8"))

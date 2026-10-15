@@ -164,16 +164,25 @@ def file_signature(path,source):
     return h.hexdigest()==source["pdf_md5"]
 
 
-def mirror_pdf(paper,source,repo_root,destination,allow_fetch):
+def mirror_pdf(paper,source,repo_root,destination,allow_fetch,cache_dir=None):
     filename=source["pdf_filename"]
     target=destination/filename
     target.parent.mkdir(parents=True,exist_ok=True)
+    cache=Path(cache_dir)/paper["code"]/filename if cache_dir else None
+    if cache is not None and file_signature(cache,source):
+        shutil.copyfile(cache,target)
+        return True
+    def cache_verified_file():
+        if cache is not None:
+            cache.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(target,cache)
     # Old local PDFs may be used ONLY if byte-identical with the DOI release.
     path=paper.get("source_path")
     if isinstance(path,str) and re.fullmatch(r"papers/[a-z0-9-]+",path):
         local=repo_root/path/"paper.pdf"
         if file_signature(local,source):
             shutil.copyfile(local,target)
+            cache_verified_file()
             return True
     if not allow_fetch:
         return False
@@ -189,6 +198,7 @@ def mirror_pdf(paper,source,repo_root,destination,allow_fetch):
                 or hashlib.md5(data).hexdigest()!=source["pdf_md5"]):
             return False
         target.write_bytes(data)
+        cache_verified_file()
         return True
     except (OSError,urllib.error.URLError,TimeoutError,ValueError):
         return False
@@ -393,7 +403,7 @@ def author_page(papers,records,assets):
     ])
 
 
-def build(source,dest,repo_root=None,fetch_pdfs=False):
+def build(source,dest,repo_root=None,fetch_pdfs=False,cache_dir=None):
     source=Path(source)
     dest=Path(dest)
     repo_root=Path(repo_root) if repo_root else source.parent
@@ -405,7 +415,7 @@ def build(source,dest,repo_root=None,fetch_pdfs=False):
     def get_pdf(p):
         s=records[p["code"]]
         output=dest/"publications"/p["code"]
-        present=mirror_pdf(p,s,repo_root,output,allow_fetch=fetch_pdfs)
+        present=mirror_pdf(p,s,repo_root,output,allow_fetch=fetch_pdfs,cache_dir=cache_dir)
         return p["code"],present
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         pdf_status=dict(pool.map(get_pdf,papers))
@@ -442,5 +452,7 @@ if __name__=="__main__":
     ap.add_argument("--repo-root",default=None)
     ap.add_argument("--fetch-pdfs",action="store_true",
                     help="Read-only public Zenodo downloads, verified against MD5 and size")
+    ap.add_argument("--cache-dir",default=None,
+                    help="Read/write verified public PDF bytes; each reuse checks size, magic and MD5")
     args=ap.parse_args()
-    build(args.source,args.destination,args.repo_root,args.fetch_pdfs)
+    build(args.source,args.destination,args.repo_root,args.fetch_pdfs,args.cache_dir)
