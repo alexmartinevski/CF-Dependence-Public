@@ -258,3 +258,34 @@
  .achievement-equation .math-line{font-size:15px;line-height:1.8}
  .achievement-preview-formula{font-size:15px}
 }
+
+/* News/changes are intentionally near the top, aligned to the same wrap as achievements.
+   Override the legacy asymmetric 1fr / 1.45fr layout. */
+.news-section{display:block;grid-template-columns:none;gap:0;margin-top:42px;
+  padding-top:49px;border-top:1px solid var(--line)}
+.news-heading{display:block;margin:0 0 22px}
+.news-heading>div{max-width:840px}
+.news-heading p{margin:12px 0 0;font-size:14px;line-height:1.65;color:var(--muted)}
+.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;
+  background:none;border:0;border-radius:0;padding:0}
+.news-items .news-item{display:flex;flex-direction:column;min-width:0;
+  border:1px solid var(--line);border-radius:15px;background:var(--card);
+  padding:21px 24px}
+.news-items .news-item:first-child{padding-top:21px}
+.news-items .news-item:last-child{padding-bottom:21px;border-bottom:1px solid var(--line)}
+.news-meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px 13px}
+.news-type{font-size:11px;color:#58719b;font-weight:650}
+.news-items .news-item h3{font-size:17px;line-height:1.38;letter-spacing:-.25px;margin:12px 0 9px}
+.news-items .news-item p{font-size:13px;line-height:1.65;flex:1;margin:0}
+.news-source{display:inline-block;align-self:flex-start;margin-top:17px;
+  color:#3559aa;font-size:12px;font-weight:700;text-decoration:none;overflow-wrap:anywhere}
+.news-source:hover{text-decoration:underline}
+@media(max-width:780px){
+  .news-section{margin-top:29px;padding-top:34px}
+  .news-heading{margin-bottom:17px}
+  .news-items{grid-template-columns:1fr;gap:12px}
+  .news-items .news-item{padding:18px 19px}
+  .news-items .news-item:first-child{padding-top:18px}
+  .news-items .news-item:last-child{padding-bottom:18px}
+  .news-items .news-item h3{font-size:16px}
+}
