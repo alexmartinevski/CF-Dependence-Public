@@ -29,9 +29,9 @@ AUTHOR = "Alexandr Martinevski"
 EMAIL = "math@a-martinevski.com"
 DOI = re.compile(r"^10\.5281/zenodo\.(\d+)$")
 CODE = re.compile(r"^P\d{2}$")
-PDF = re.compile(r"^P\d{2}_CF_V6_S8\.pdf$")
+PDF = re.compile(r"^P\d{2}_[A-Za-z0-9][A-Za-z0-9._-]{0,150}\.pdf$")
 MD5 = re.compile(r"^[a-f0-9]{32}$")
-MAX_PDF = 5_000_000
+MAX_PDF = 64 * 1024 * 1024
 ALLOWED_TAGS = {"p", "strong", "em", "span", "sup", "sub", "br"}
 
 
@@ -112,8 +112,11 @@ def sanitized_abstract(source):
 def load_data(root):
     catalogue=json.loads((root/"data/papers.json").read_text(encoding="utf-8"))
     scholarly={}
-    for idx in range(1,4):
-        blob=json.loads((root/f"data/scholarly/part-{idx:02d}.json").read_text(encoding="utf-8"))
+    shards=sorted((root/"data/scholarly").glob("part-*.json"))
+    if not shards or any(not re.fullmatch(r"part-[0-9]{2}\.json",path.name) for path in shards):
+        raise ValueError("Scholarly metadata shards missing or invalid")
+    for path in shards:
+        blob=json.loads(path.read_text(encoding="utf-8"))
         if blob.get("schema")!=1:
             raise ValueError("Invalid scholarly metadata schema")
         for key,value in blob["papers"].items():
@@ -121,8 +124,10 @@ def load_data(root):
                 raise ValueError("Duplicated scholarly paper: "+key)
             scholarly[key]=value
     papers=catalogue.get("papers") or []
-    if len(papers)!=18 or len(scholarly)!=18 or {p["code"] for p in papers}!=set(scholarly):
-        raise ValueError("Scholarly metadata does not cover exactly the published 18 papers")
+    if not papers or len(papers)!=len(scholarly) or {p["code"] for p in papers}!=set(scholarly):
+        raise ValueError("Scholarly metadata must cover exactly all published paper codes")
+    if len({p["code"] for p in papers})!=len(papers):
+        raise ValueError("Duplicate paper codes in the public catalogue")
     for p in papers:
         s=scholarly[p["code"]]
         if p["status"]!="published" or not CODE.fullmatch(p["code"]):
@@ -323,7 +328,8 @@ def paper_page(p,rec,assets,has_pdf):
 
 def bibliography_page(papers,records,assets):
     canonical=DOMAIN+"/publications/"
-    head=page_head("Research papers and scholarly abstracts","Eighteen research preprints with complete abstracts, version DOIs, keywords and public PDFs.",canonical,"../",assets)
+    count=len(papers)
+    head=page_head("Research papers and scholarly abstracts",f"{count} research preprints with full abstracts, version DOIs, keywords and public PDFs.",canonical,"../",assets)
     items=[]
     for p in sorted(papers,key=lambda x:int(x["code"][1:])):
         r=records[p["code"]]
@@ -346,8 +352,8 @@ def bibliography_page(papers,records,assets):
         '<div class="overline">CF DEPENDENCE · PUBLICATIONS</div>',
         '<h1 class="scholar-title">'+localized("Research papers","Научные статьи")+"</h1>",
         '<p class="scholar-lead">'+localized(
-           "18 research preprints. Each paper has a permanent, machine-readable page with its full published description, citation identifiers and links to the original Zenodo version.",
-           "18 научных препринтов. Для каждой работы доступна отдельная индексируемая страница с полным описанием, DOI и ссылками на Zenodo.",
+           f"{count} research preprints. Each paper has a permanent, machine-readable page with its full published description, citation identifiers and links to the original Zenodo version.",
+           f"{count} научных препринтов. Для каждой работы доступна отдельная индексируемая страница с полным описанием, DOI и ссылками на Zenodo.",
            tag="span")+'</p>',
         '<ol class="scholar-papers-list">'+listing+'</ol>',
         '</article></main>',page_footer("../"),"</body></html>"
