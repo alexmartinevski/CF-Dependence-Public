@@ -75,3 +75,14 @@ To curate a new published version, update the specific DOI, the checked date and
 the appropriate summary/change notes in a reviewed PR. The subject classification
 (`area`) uses one of: `extremal`, `transport`, `algebra`, `harmonic`, `statistics`.
 P05/P10 remain excluded.
+
+### Automatic latest-version metadata (public Zenodo API)
+During every Pages deploy and a daily read-only scheduled workflow, the standard-library
+script `website/tools/resolve_zenodo.py` retrieves **published** Zenodo REST records,
+follows only same-origin `links.latest` pointers, verifies the exact Concept DOI
+lineage and emits `_site/data/zenodo_latest.json`. The browser merges that
+same-origin metadata into the grouped directory and article pages. This enables
+public release dates, semantic version labels (when present in Zenodo), and current
+specific version DOIs without storing an API token. If the API cannot confirm a
+record, the hand-curated metadata remains and the latest link still uses the
+Zenodo Concept DOI. The read-only process cannot publish or change any Zenodo record.
