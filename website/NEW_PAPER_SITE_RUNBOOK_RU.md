@@ -1,3 +1,54 @@
+# Обновление R2 — без ручных счётчиков и дублирования новостей (16.10.2026)
+
+Этот раздел ЗАМЕНЯЕТ устаревшие указания R1 ниже о необходимости править число 18,
+PDF-суффикс, фиксированные три scholarly shards и вручную редактировать карточки новостей.
+Все правила научной приемки и подтверждения публикации Zenodo остаются обязательными.
+
+## Единственный набор данных для новой опубликованной работы
+
+1. website/data/papers.json: добавить Pxx только ПОСЛЕ публичного Zenodo GET;
+   Version и Concept DOI, фактические даты, двуязычные summaries, ровно три
+   математически подтверждённых highlights с evidence, область исследования.
+2. website/data/scholarly/part-NN.json: добавить запись Pxx в существующий или
+   новый shard. Указать только ПУБЛИЧНЫЕ Zenodo Title, Description HTML,
+   Keywords, record ID, оба DOI, PDF имя, MD5, размер, лицензию и дату.
+   website/tools/build_scholarly_pages.py теперь сам находит все part-*.json.
+3. website/data/news.json: добавлять одну новость publication_release с реальной
+   датой и источником https://doi.org/<fixed-version-DOI>, который уже включён
+   в опубликованный papers.json. При необходимости новые новости о результатах
+   должны ссылаться на сами научные страницы, не на технические PR.
+
+## Генерация: НЕ надо изменять руками
+
+- Текст количества научных работ, pages /publications/Pxx/, /publications/,
+  /author/, итоговый sitemap формируются из настоящего количества N записей.
+- website/tools/build_news_fallbacks.py во время deploy сам создаёт четыре
+  последние карточки главной (2×2) и полную хронологию news.html на EN/RU
+  из того же news.json. Даже без JavaScript карточки останутся читаемыми.
+- Статический сайт website/index.html, website/news.html и website/sitemap.xml
+  служит исходным шаблоном/срезом; итоговый GitHub Pages artifact важнее.
+- PDF теперь допускает разные безопасные release suffix, например
+  P21_CF_V8_R1.pdf. Для локального PDF-зеркала действует лимит 64 MiB,
+  строгие MD5 + размер + начало %PDF-. Если копия не прошла проверку,
+  остаётся прямая ссылка на PDF опубликованного Zenodo record.
+
+## Проверка перед merge
+
+CI: python website/tests/test_public.py; python website/tests/test_scholarly.py;
+python website/tests/test_dynamic_release.py; node --check website/assets/site.js;
+node website/tests/test_render.js. Новый offline тест моделирует P21 как 19-ю
+статью во временном каталоге, четвёртый shard, PDF другого релиза и новую новость.
+Он НЕ пишет в GitHub main и НЕ обращается к Zenodo. Тесты продолжают строго
+проверять исторические 18 публикаций, даты и основные математические утверждения.
+
+После merge: подтвердить BOTH CI SUCCESS и GitHub Pages deploy SUCCESS;
+сверить реальный URL, DOI, Author ORCID, PDF, статический HTML/MathML и sitemap.
+Без фактической PUBLIC Zenodo записи статус новой статьи — BLOCKED.
+
+CODEOWNERS только объявляет владельца; настоящая branch protection/ruleset
+нуждается в отдельной настройке и не считается включенной автоматически.
+
+---
 # CF Dependence — как добавить НОВУЮ опубликованную статью на научный сайт
 
 **Операционный регламент R1 · 16.10.2026.** Действующая статическая инфраструктура: сайт https://math.a-martinevski.com/, открытый репозиторий https://github.com/alexmartinevski/CF-Dependence-Public. Выпуск в Zenodo — в закрытом репозитории по OPS/API/NEW_ARTICLE_PUBLICATION_RUNBOOK_RU.md. **Нельзя выводить unpublished drafts на публичный сайт.** Все данные сверять по последней реально ПУБЛИЧНОЙ версии Zenodo.
