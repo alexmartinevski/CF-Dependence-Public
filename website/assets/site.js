@@ -17,11 +17,14 @@ const COPY = {
   keyResultsHeading:"Key results",resultsLabel:"Key results",
   resultsFromVersion:"Results described from published version",areasIntro:"An annotated scientific guide: each published article has a short overview and three selected results from its verified text.",
   areasUnavailable:"The publication catalogue could not be displayed. Reload this page and try again.",
+  firstPublished:"First publication",lastChanged:"Latest published revision",
+  latestVersionNumber:"Latest version",unknownVersion:"Version not verified",zenodoOrdinal:"Zenodo release",
+  publicationDateNote:"Dates refer to published Zenodo versions, not edits of this website.",
   verifiedAsOf:"Catalogue curated on",zenodoUpdated:"Public Zenodo metadata refreshed on",missingDate:"Date not independently verified",releaseDate:"Publication date",
   versionIdentifier:"Verified version DOI",openLatest:"Open latest version",
   latestPublished:"Latest published record (Concept DOI)",lastVerifiedDate:"Last verified release date",
   verifiedVersionDOI:"Last verified version DOI (for citation)",
-  doiExplanation:"The primary DOI follows the latest published Zenodo record; the version DOI identifies one specific release. Dates and version identifiers are from the last verified catalogue snapshot.",
+  doiExplanation:"Dates refer to the first and latest published Zenodo releases, not website edits. The concept DOI follows the latest version; the version DOI fixes one release.",
   olderPdf:"Archived PDF",olderTex:"Archived TeX",zenodoPDF:"PDF on Zenodo",
   publishedLabel:"PUBLISHED RESEARCH",papersHeading:"Research papers",publishedCount:"published records",
   searchLabel:"Search publications",noMatches:"No publications match your search.",
@@ -55,11 +58,14 @@ const COPY = {
   keyResultsHeading:"Основные результаты",resultsLabel:"Что доказано или установлено",
   resultsFromVersion:"Результаты изложены по опубликованной версии",areasIntro:"Аннотированный научный каталог: для каждой статьи приведены краткий обзор и три выбранных результата из проверенного опубликованного текста.",
   areasUnavailable:"Не удалось отобразить каталог публикаций. Перезагрузите страницу и попробуйте ещё раз.",
+  firstPublished:"Первая публикация",lastChanged:"Последнее обновление",
+  latestVersionNumber:"Последняя версия",unknownVersion:"Номер версии не подтверждён",zenodoOrdinal:"Выпуск Zenodo",
+  publicationDateNote:"Даты относятся к опубликованным версиям Zenodo, а не к изменениям сайта.",
   verifiedAsOf:"Каталог сверён по состоянию на",zenodoUpdated:"Публичные данные Zenodo обновлены",missingDate:"Дата не подтверждена",releaseDate:"Дата публикации",
   versionIdentifier:"DOI проверенной версии",openLatest:"Открыть актуальную версию",
   latestPublished:"Актуальная публикация (Concept DOI)",lastVerifiedDate:"Дата последней проверенной публикации",
   verifiedVersionDOI:"DOI проверенной версии (для цитирования)",
-  doiExplanation:"Основной DOI ведёт к последней опубликованной версии Zenodo. DOI версии закреплён за конкретным выпуском. Даты и идентификаторы версии приводятся по последнему проверенному состоянию каталога.",
+  doiExplanation:"Даты относятся к первой и последней опубликованным версиям Zenodo, а не к правкам сайта. Concept DOI ведёт к актуальной версии, DOI версии фиксирует конкретный выпуск.",
   olderPdf:"Архивный PDF",olderTex:"Архивный TeX",zenodoPDF:"PDF в Zenodo",
   publishedLabel:"ОПУБЛИКОВАННЫЕ РАБОТЫ",papersHeading:"Научные статьи",publishedCount:"опубликованные работы",
   searchLabel:"Поиск работ",noMatches:"Ничего не найдено.",
@@ -95,6 +101,27 @@ const RESEARCH_AREAS = [
     ru:"Критерии независимости, робастные методы и оценивание функционалов зависимости."}}
 ];
 const DOI = /^10\.5281\/zenodo\.\d+$/;
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+function versionName(p) {
+  if (typeof p.version_label === "string" && /^[A-Za-z0-9][A-Za-z0-9._+\- ]{0,47}$/.test(p.version_label))
+    return p.version_label;
+  if (Number.isInteger(p.version_index) && p.version_index > 0)
+    return COPY[language].zenodoOrdinal+" №"+p.version_index;
+  return COPY[language].unknownVersion;
+}
+function metadataValueLine(label, value, date=false) {
+  const line=node("div","area-metadata-line");
+  line.appendChild(node("span","area-meta-label",label));
+  if(date && typeof value==="string" && ISO_DATE.test(value)) {
+    const stamp=node("time","area-meta-value",value);
+    stamp.dateTime=value;
+    line.appendChild(stamp);
+  } else {
+    line.appendChild(node("span","area-meta-value",value || COPY[language].missingDate));
+  }
+  return line;
+}
+function lastVersionDate(p) { return p.last_version_on || p.published_on || ""; }
 let language = new URLSearchParams(location.search).get("lang") === "ru" ? "ru" : "en";
 let papers = [];
 let news = [];
@@ -138,7 +165,7 @@ function renderAreas(visiblePapers=papers) {
   const container=$("area-groups");
   if(!container)return;
   const note=$("area-snapshot");
-  note.textContent=COPY[language].verifiedAsOf+": "+(catalogueDate||"—")+"."+(zenodoResolvedCount>0?" "+COPY[language].zenodoUpdated+": "+zenodoCheckedDate+" ("+zenodoResolvedCount+"/"+papers.length+").":"");
+  note.textContent=COPY[language].verifiedAsOf+": "+(catalogueDate||"—")+"."+(zenodoResolvedCount>0?" "+COPY[language].zenodoUpdated+": "+zenodoCheckedDate+" ("+zenodoResolvedCount+"/"+papers.length+").":"")+" "+COPY[language].publicationDateNote;
   container.replaceChildren();
   for(const area of RESEARCH_AREAS) {
     const members=visiblePapers.filter(p=>p.area===area.id);
@@ -166,18 +193,14 @@ function renderAreas(visiblePapers=papers) {
       const resultHeading=node("p","area-results-label",COPY[language].resultsLabel);
       main.append(resultHeading,highlights);
       const meta=node("div","area-row-meta");
-      const dateBlock=node("div","area-metadata-line");
-      dateBlock.appendChild(node("span","area-meta-label",COPY[language].releaseDate));
-      if(typeof p.published_on==="string" && /^\d{4}-\d{2}-\d{2}$/.test(p.published_on)) {
-        const time=node("time","area-meta-value",p.published_on);
-        time.dateTime=p.published_on;
-        dateBlock.appendChild(time);
-      } else dateBlock.appendChild(node("span","area-meta-value",COPY[language].missingDate));
-      const versionBlock=node("div","area-metadata-line");
-      versionBlock.append(node("span","area-meta-label",COPY[language].versionIdentifier),doiLink(p.version_doi,(p.version_label?p.version_label+" · ":"")+p.version_doi));
+      const firstBlock=metadataValueLine(COPY[language].firstPublished,p.first_published_on,true);
+      const updateBlock=metadataValueLine(COPY[language].lastChanged,lastVersionDate(p),true);
+      const versionBlock=metadataValueLine(COPY[language].latestVersionNumber,versionName(p));
+      const citationBlock=node("div","area-metadata-line");
+      citationBlock.append(node("span","area-meta-label",COPY[language].versionIdentifier),doiLink(p.version_doi,p.version_doi));
       const current=doiLink(p.concept_doi,COPY[language].openLatest);
       current.className="area-latest-link";
-      meta.append(dateBlock,versionBlock,current);
+      meta.append(firstBlock,updateBlock,versionBlock,citationBlock,current);
       // Public scientific claims remain anchored to the version whose text was checked.
       if(DOI.test(p.highlights_source_doi) && p.highlights_source_doi!==p.version_doi) {
         const provenance=node("div","area-metadata-line");
@@ -257,8 +280,10 @@ function renderDetail() {
   }
   const tags=$("paper-topics");tags.replaceChildren(...(p.topics||[]).map(x=>node("span","tag",x)));
   $("paper-latest").replaceChildren(doiLink(p.concept_doi,COPY[language].openLatest));
-  $("paper-version").replaceChildren(doiLink(p.version_doi,(p.version_label?p.version_label+" · ":"")+p.version_doi));
-  $("paper-release-date").textContent=p.published_on||COPY[language].missingDate;
+  $("paper-version").replaceChildren(doiLink(p.version_doi,p.version_doi));
+  $("paper-first-published").textContent=p.first_published_on||COPY[language].missingDate;
+  $("paper-last-updated").textContent=lastVersionDate(p)||COPY[language].missingDate;
+  $("paper-version-number").textContent=versionName(p);
   const links=$("paper-downloads");links.replaceChildren();
   const downloads=[];
   // The current PDF must be retrieved from the Zenodo concept record, never
@@ -291,19 +316,29 @@ async function init() {
       const r=await fetch("data/zenodo_latest.json",{cache:"no-store"});
       if(r.ok) {
         const latest=await r.json();
-        if(latest.schema===1 && latest.records && typeof latest.records==="object") {
+        if((latest.schema===1 || latest.schema===2) && latest.records && typeof latest.records==="object") {
           let resolved=0;
           for(const p of papers) {
             const item=latest.records[p.code];
             if(!item || item.concept_doi!==p.concept_doi || !DOI.test(item.version_doi))continue;
             const changed=item.version_doi!==p.version_doi;
             p.version_doi=item.version_doi;
-            if(typeof item.published_on==="string" && /^\d{4}-\d{2}-\d{2}$/.test(item.published_on))
-              p.published_on=item.published_on;
-            else if(changed) delete p.published_on;
+            const releaseDate=item.last_version_on||item.published_on;
+            if(typeof releaseDate==="string" && ISO_DATE.test(releaseDate)) {
+              p.last_version_on=releaseDate;
+              p.published_on=releaseDate;
+            } else if(changed) {
+              delete p.last_version_on;
+              delete p.published_on;
+            }
+            if(typeof item.first_published_on==="string" && ISO_DATE.test(item.first_published_on))
+              p.first_published_on=item.first_published_on;
             if(typeof item.version_label==="string" && /^[A-Za-z0-9][A-Za-z0-9._+\- ]{0,47}$/.test(item.version_label))
               p.version_label=item.version_label;
-            else delete p.version_label;
+            else if(changed) delete p.version_label;
+            if(Number.isInteger(item.version_index) && item.version_index>0)
+              p.version_index=item.version_index;
+            else if(changed) delete p.version_index;
             resolved++;
           }
           zenodoResolvedCount=resolved;
