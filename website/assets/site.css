@@ -289,3 +289,25 @@
   .news-items .news-item:last-child{padding-bottom:18px}
   .news-items .news-item h3{font-size:16px}
 }
+
+/* Consolidated About: subject-grouped papers, with a compatible #areas anchor. */
+.project-catalogue{position:relative}
+.legacy-section-anchor{position:absolute;top:0;left:0;visibility:hidden;pointer-events:none}
+.project-catalogue>.section-heading{margin-bottom:19px}
+.project-catalogue>.section-intro{max-width:960px;line-height:1.7;margin-bottom:24px}
+.project-science-section{margin-top:75px;scroll-margin-top:28px}
+.project-science-section .science-intro{margin-bottom:18px}
+.project-science-section+.author-section{margin-top:0}
+.news-section>.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.news-archive{margin-top:20px}
+.news-archive[hidden]{display:none}
+.news-archive>summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  color:#3758a6;font-size:13px;font-weight:700;padding:6px 0;margin-bottom:12px}
+.news-archive>summary:hover{text-decoration:underline}
+.news-archive>.news-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;background:none;border:0;padding:0}
+@media(max-width:780px){
+  .project-science-section{margin-top:45px}
+  .project-science-section .science-intro{margin-bottom:16px}
+  .news-section>.news-items,.news-archive>.news-items{grid-template-columns:minmax(0,1fr)}
+}
