@@ -55,6 +55,12 @@ for(const entry of articles){
   assert.equal(action.href,"https://doi.org/"+paper.concept_doi,
     "Current Zenodo link must be the concept DOI for "+code);
   assert.ok(entry.textContent.includes(paper.summary.ru),"Russian abstract missing for "+code);
+  for(const highlight of paper.highlights) {
+    assert.ok(entry.textContent.includes(highlight.ru),"Russian mathematical result missing for "+code);
+  }
+  assert.equal(entry.children[0].children[2].children.length,3,
+    "Each paper should have exactly three visible key results");
+
 }
 assert.ok(elements["area-snapshot"].textContent.includes("Каталог"),
   "Localized metadata note not rendered");
@@ -62,4 +68,8 @@ vm.runInContext('language="en"; renderAreas();', context);
 assert.ok(elements["area-snapshot"].textContent.includes("Catalogue"),
   "English switch did not rerender area index");
 assert.equal(elements["area-groups"].children.length,5);
-console.log("PASS: 18 papers in 5 topic groups; Russian/English; latest Zenodo concept links.");
+vm.runInContext('renderAreas([papers.find(p=>p.code==="P04")]);',context);
+assert.equal(elements["area-groups"].children.length,1,"A filtered map should show one research area");
+assert.equal(elements["area-groups"].children[0].children[1].children.length,1,"Filter must show one paper");
+
+console.log("PASS: 54 verified source-anchored results; 18 papers; 5 areas; search filtering; RU/EN; concept DOI links.");
