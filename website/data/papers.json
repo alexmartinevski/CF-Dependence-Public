@@ -16,7 +16,7 @@
         "Extremal probability"
       ],
       "status": "published",
-      "version_doi": "10.5281/zenodo.23021780",
+      "version_doi": "10.5281/zenodo.23355587",
       "concept_doi": "10.5281/zenodo.23021779",
       "source_path": "papers/01-sharp-universal-profile",
       "changes": [],
@@ -38,7 +38,12 @@
           "evidence": "thm:unique"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23021780"
+      "highlights_source_doi": "10.5281/zenodo.23021780",
+      "first_published_on": "2026-09-28",
+      "last_version_on": "2026-10-14",
+      "published_on": "2026-10-14",
+      "version_index": 2,
+      "version_index_evidence": "Two publicly verified Zenodo version DOIs in the same concept lineage"
     },
     {
       "code": "P02",
@@ -53,7 +58,7 @@
         "Mixability"
       ],
       "status": "published",
-      "version_doi": "10.5281/zenodo.23022043",
+      "version_doi": "10.5281/zenodo.23355597",
       "concept_doi": "10.5281/zenodo.23022042",
       "source_path": "papers/02-fixed-marginals",
       "changes": [],
@@ -75,7 +80,12 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23022043"
+      "highlights_source_doi": "10.5281/zenodo.23022043",
+      "first_published_on": "2026-09-28",
+      "last_version_on": "2026-10-14",
+      "published_on": "2026-10-14",
+      "version_index": 2,
+      "version_index_evidence": "Two publicly verified Zenodo version DOIs in the same concept lineage"
     },
     {
       "code": "P03",
@@ -90,7 +100,7 @@
         "Galois theory"
       ],
       "status": "published",
-      "version_doi": "10.5281/zenodo.23022245",
+      "version_doi": "10.5281/zenodo.23309603",
       "concept_doi": "10.5281/zenodo.23022244",
       "source_path": "papers/03-chebyshev-lucas-critical-polynomials",
       "changes": [],
@@ -112,7 +122,12 @@
           "evidence": "abstract"
         }
       ],
-      "highlights_source_doi": "10.5281/zenodo.23022245"
+      "highlights_source_doi": "10.5281/zenodo.23022245",
+      "first_published_on": "2026-09-28",
+      "last_version_on": "2026-10-12",
+      "published_on": "2026-10-12",
+      "version_index": 2,
+      "version_index_evidence": "Two publicly verified Zenodo version DOIs in the same concept lineage"
     },
     {
       "code": "P04",
@@ -154,7 +169,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23356092",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P06",
@@ -196,7 +213,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355615",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P07",
@@ -238,7 +257,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355619",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P08",
@@ -280,7 +301,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355626",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P09",
@@ -322,7 +345,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355634",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P11",
@@ -364,7 +389,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355657",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P12",
@@ -406,7 +433,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355669",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P13",
@@ -448,7 +477,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355678",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P14",
@@ -490,7 +521,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355688",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P15",
@@ -532,7 +565,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355701",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P16",
@@ -574,7 +609,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355709",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P17",
@@ -616,7 +653,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355715",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P18",
@@ -658,7 +697,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355723",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P19",
@@ -700,7 +741,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355731",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     },
     {
       "code": "P20",
@@ -742,7 +785,9 @@
       ],
       "highlights_source_doi": "10.5281/zenodo.23355739",
       "first_published_on": "2026-10-14",
-      "last_version_on": "2026-10-14"
+      "last_version_on": "2026-10-14",
+      "version_index": 1,
+      "version_index_evidence": "Verified initial public release of new Zenodo lineage"
     }
   ],
   "highlights_editorial_policy": {
