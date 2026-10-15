@@ -115,7 +115,9 @@ assert.equal(elements["area-groups"].children.length,0,"No-match search must cle
 vm.runInContext('location.search="?lang=ru&code=P04"; language="ru"; renderDetail();',context);
 assert.equal(elements["paper-first-published"].textContent,"2026-10-14","Detail first date");
 assert.equal(elements["paper-last-updated"].textContent,"2026-10-14","Detail latest date");
-assert.ok(elements["paper-version-number"].textContent.includes("не подтверждён"),"No invented version number");
+assert.equal(elements["paper-version-number"].textContent,"Выпуск Zenodo №1","Curated initial release ordinal");
+vm.runInContext('delete papers.find(p=>p.code==="P04").version_index; renderDetail();',context);
+assert.ok(elements["paper-version-number"].textContent.includes("не подтверждён"),"Unknown semantic version must not be fabricated");
 vm.runInContext('papers.find(p=>p.code==="P04").version_index=1; renderDetail();',context);
 assert.equal(elements["paper-version-number"].textContent,"Выпуск Zenodo №1");
 vm.runInContext('papers.find(p=>p.code==="P04").version_label="0.6"; renderDetail();',context);
