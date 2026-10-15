@@ -68,6 +68,33 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertRegex(source,r"^https://doi.org/10\.5281/zenodo\.\d+$")
                 self.assertIn(source.removeprefix("https://doi.org/"),{p["version_doi"] for p in self.site["papers"]})
 
+    def test_subject_directory_and_release_metadata(self):
+        from datetime import date
+        areas={"extremal","transport","algebra","harmonic","statistics"}
+        entries=self.site["papers"]
+        self.assertEqual({p["area"] for p in entries},areas)
+        self.assertEqual(len([p["code"] for p in entries]),len(set(p["code"] for p in entries)))
+        self.assertRegex(self.site["last_curated_on"],r"^\d{4}-\d{2}-\d{2}$")
+        for p in entries:
+            self.assertTrue(p["area"] in areas)
+            if p.get("published_on"):
+                self.assertEqual(date.fromisoformat(p["published_on"]).isoformat(),p["published_on"])
+            else:
+                self.assertIn(p["code"],{"P01","P02","P03"}, "Publication date may not be invented")
+
+    def test_latest_version_links_and_directory_present(self):
+        homepage=(ROOT/"index.html").read_text(encoding="utf-8")
+        detail=(ROOT/"paper.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        self.assertIn('id="areas"',homepage)
+        self.assertIn('id="area-groups"',homepage)
+        self.assertIn("function renderAreas()",script)
+        self.assertIn("doiLink(p.concept_doi,COPY[language].openLatest)",script)
+        self.assertIn("paper-latest",detail)
+        self.assertIn("paper-version",detail)
+        self.assertIn("COPY[language].olderPdf",script)
+        self.assertNotIn('id="paper-concept"',detail)
+
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET
         hostname = "https://math.a-martinevski.com/"
