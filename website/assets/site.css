@@ -392,3 +392,8 @@
  .scholar-abstract{font-size:15px}
  .scholar-footer .wrap{flex-direction:column}
 }
+
+/* Native, server-rendered MathML in scientific abstracts. */
+.scholar-abstract math{font-family:math,serif;vertical-align:baseline}
+.scholar-abstract .math.inline{white-space:normal}
+@media(max-width:780px){.scholar-abstract math{max-width:100%;overflow-x:auto;overflow-y:hidden}}
