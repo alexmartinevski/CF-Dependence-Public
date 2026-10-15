@@ -89,6 +89,9 @@ class PublicSiteTests(unittest.TestCase):
             if p["code"] not in {"P01","P02","P03"}:
                 self.assertEqual(p["first_published_on"],"2026-10-14")
                 self.assertEqual(p["last_version_on"],"2026-10-14")
+            else:
+                self.assertEqual(p["first_published_on"],"2026-09-28")
+                self.assertEqual(p["last_version_on"],"2026-10-12" if p["code"]=="P03" else "2026-10-14")
 
     def test_latest_version_links_and_directory_present(self):
         homepage=(ROOT/"index.html").read_text(encoding="utf-8")
@@ -167,6 +170,21 @@ class PublicSiteTests(unittest.TestCase):
         draft={**initial,"is_draft":True}
         self.assertFalse(sync.is_public_version(draft,paper["concept_doi"]))
 
+    def test_latest_published_version_doi_curated(self):
+        expected={
+            "P01":"10.5281/zenodo.23355587",
+            "P02":"10.5281/zenodo.23355597",
+            "P03":"10.5281/zenodo.23309603"
+        }
+        for p in self.site["papers"]:
+            self.assertTrue(p["version_index_evidence"])
+            if p["code"] in expected:
+                self.assertEqual(p["version_doi"],expected[p["code"]])
+                self.assertTrue(DOI.fullmatch(p["highlights_source_doi"]))
+                self.assertNotEqual(p["highlights_source_doi"],p["version_doi"])
+            self.assertTrue(p["first_published_on"])
+            self.assertTrue(p["last_version_on"])
+
     def test_public_metadata_display_labels(self):
         home=(ROOT/"index.html").read_text(encoding="utf-8")
         detail=(ROOT/"paper.html").read_text(encoding="utf-8")
@@ -240,7 +258,14 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("p.highlights",script)
         for p in self.site["papers"]:
             self.assertEqual(len(p.get("highlights", [])), 3, p["code"])
-            self.assertEqual(p["highlights_source_doi"],p["version_doi"])
+            if p["code"] in {"P01","P02","P03"}:
+                self.assertNotEqual(p["highlights_source_doi"],p["version_doi"])
+                self.assertEqual(p["version_index"],2)
+                self.assertEqual(p["first_published_on"],"2026-09-28")
+            else:
+                self.assertEqual(p["highlights_source_doi"],p["version_doi"])
+                self.assertEqual(p["version_index"],1)
+            self.assertTrue(DOI.fullmatch(p["highlights_source_doi"]))
             for h in p["highlights"]:
                 self.assertTrue(h["en"].strip(),p["code"])
                 self.assertTrue(h["ru"].strip(),p["code"])
