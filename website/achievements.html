@@ -67,9 +67,23 @@
         <p data-i18n="achievementGhzExactAnswer">For four or more participants, P04 gives an exact formula for planar measurements in the full-correlation GHZ model. For four participants the critical visibility is 34/105 (about 32.38%).</p>
       </div>
       </div>
-      <div class="achievement-equation" role="math" aria-label="kappa n equals pi over two to power n times zeta n divided by two times one plus two to negative n times zeta two n">
+            <div class="achievement-math-context">
+        <h3 data-i18n="achievementMathSetupTitle">Mathematical formulation</h3>
+        <p class="achievement-math-notation" data-i18n="achievementGhzExactMathNotation">Let L be a nonzero real n-linear form on (ℝᵐ)ⁿ. Its real norm is maximized on sign vectors in {−1,1}ᵐ; the complexified norm is maximized on phase vectors in 𝕋ᵐ. The supremum also ranges over m.</p>
+        <div class="achievement-equation achievement-equation-setup" role="math">
+          <div class="math-line">E<sub>n</sub>(θ<sub>1</sub>,…,θ<sub>n</sub>) = cos(∑<sub>j=1</sub><sup>n</sup> θ<sub>j</sub>)</div>
+          <div class="math-line">κ<sub>n</sub> := sup<sub>m,L≠0</sub> ‖L<sub>ℂ</sub>‖ / ‖L‖<sub>ℝ</sub> = 1/v<sub>n</sub><sup>GHZ,XY</sup></div>
+        </div>
+        <h3 data-i18n="achievementMathResultTitle">Precise result / proven bounds</h3>
+      </div>
+<div class="achievement-equation" role="math" aria-label="kappa n equals pi over two to power n times zeta n divided by two times one plus two to negative n times zeta two n">
         κ<sub>n</sub> = (π/2)<sup>n</sup> ζ(n) / [2(1 + 2<sup>−n</sup>)ζ(2n)], &nbsp; n ≥ 4
       </div>
+      <div class="achievement-math-after">
+        <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">ζ(s) = ∑<sub>k=1</sub><sup>∞</sup> k<sup>−s</sup>, &nbsp; s&gt;1</div></div>
+        <p class="achievement-math-notation" data-i18n="achievementGhzExactMathDetail">Here vₙ is the maximal visibility at which all full planar GHZ correlations admit a local model for every finite collection of settings; ζ is the Riemann zeta function.</p>
+      </div>
+
       <p class="achievement-result-line"><strong data-i18n="achievementExample">Example</strong>: κ<sub>4</sub> = 105/34, &nbsp; v<sub>XY</sub>(GHZ<sub>4</sub>) = <strong>34/105 ≈ 0.32380952</strong>.</p>
       <p data-i18n="achievementGhzExactImportance">Previous studies gave rigorous bounds for selected measurement schemes. The new formula addresses the full planar full-correlation setting, rather than only one finite choice of angles.</p>
       <p class="achievement-limitation" data-i18n="achievementGhzExactScope">This concerns planar XY measurements and full GHZ correlations. It does not cover every Bell test or arbitrary measurements. Independent mathematical and historical reviews are still needed.</p>
@@ -108,9 +122,23 @@
         <p data-i18n="achievementGhzThreeAnswer">P04 improves both ends of the 2024 interval. The lower bound comes from a Bell inequality checked by 272 exact rational tests; the upper bound comes from a constructive classical model. The proposed exact formula is still a conjecture.</p>
       </div>
       </div>
-      <div class="achievement-equation" role="math">
+            <div class="achievement-math-context">
+        <h3 data-i18n="achievementMathSetupTitle">Mathematical formulation</h3>
+        <p class="achievement-math-notation" data-i18n="achievementGhzThreeMathNotation">The constant κ₃=1/v₃ comes from the same multilinear/GHZ problem. Q is the finite set of odd primes used in the K7 Bell witness; L₃ is its exact lower bound.</p>
+        <div class="achievement-equation achievement-equation-setup" role="math">
+          <div class="math-line">Q = {11, 13, 17, 19, 23, 29, 31}</div>
+          <div class="math-line">L<sub>3</sub> := (π<sup>3</sup>/16) [(28/27)(126/125)(344/343) + ∑<sub>q∈Q</sub> q<sup>−3</sup>]</div>
+        </div>
+        <h3 data-i18n="achievementMathResultTitle">Precise result / proven bounds</h3>
+      </div>
+<div class="achievement-equation" role="math">
         2.034968153548… ≤ κ<sub>3</sub> ≤ 105ζ(3)/(2π<sup>3</sup>) ≈ 2.035329429153
       </div>
+      <div class="achievement-math-after">
+        <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">L<sub>3</sub> ≤ κ<sub>3</sub> ≤ 105ζ(3)/(2π<sup>3</sup>), &nbsp; v<sub>3</sub> = κ<sub>3</sub><sup>−1</sup></div></div>
+        <p class="achievement-math-notation" data-i18n="achievementGhzThreeMathDetail">The K7 witness establishes the lower inequality; an explicit local model yields the upper inequality. Equality at the upper endpoint is still a conjecture.</p>
+      </div>
+
       <p class="achievement-result-line">0.49132095555… ≤ v<sub>XY</sub>(GHZ<sub>3</sub>) ≤ 0.49140818163…</p>
       <p data-i18n="achievementGhzThreeComparison">The 2024 visibility interval was 0.49129–0.49143. P04 improves both ends. The remaining interval for κ₃ is only about 0.01775% of its upper bound.</p>
       <p data-i18n="achievementGhzThreeConjecture">The proposed exact value is κ₃ = 105ζ(3)/(2π³). This equality has not been proved.</p>
@@ -152,9 +180,23 @@
         <p data-i18n="achievementMixingAnswer">P04 proves a sharp constant of 4√2 for bounded complex observations under the stated strong-mixing normalization. For bounded real observations, the sharp constant is 4.</p>
       </div>
       </div>
-      <div class="achievement-equation" role="math">
+            <div class="achievement-math-context">
+        <h3 data-i18n="achievementMathSetupTitle">Mathematical formulation</h3>
+        <p class="achievement-math-notation" data-i18n="achievementMixingMathNotation">For σ-fields ℱ and 𝒢, α is the strong-mixing coefficient. The complex covariance convention is Cov(X,Y)=𝔼(XY)−(𝔼X)(𝔼Y), without conjugating Y; X and Y are measurable with respect to ℱ and 𝒢.</p>
+        <div class="achievement-equation achievement-equation-setup" role="math">
+          <div class="math-line">α(ℱ,𝒢) := sup<sub>A∈ℱ, B∈𝒢</sub> |ℙ(A∩B) − ℙ(A)ℙ(B)|</div>
+          <div class="math-line">Cov(X,Y) := 𝔼(XY) − (𝔼X)(𝔼Y)</div>
+        </div>
+        <h3 data-i18n="achievementMathResultTitle">Precise result / proven bounds</h3>
+      </div>
+<div class="achievement-equation" role="math">
         |Cov(X,Y)| ≤ 4√2 · α(ℱ,𝒢) · ‖X‖<sub>∞</sub> · ‖Y‖<sub>∞</sub>
       </div>
+      <div class="achievement-math-after">
+        <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">K<sub>G</sub>(2) = √2, &nbsp; c<sub>ℂ</sub> = 4K<sub>G</sub>(2) = 4√2, &nbsp; c<sub>ℝ</sub> = 4</div></div>
+        <p class="achievement-math-notation" data-i18n="achievementMixingMathDetail">The constant is sharp: P04 gives equality constructions for complex unit-bounded variables. K_G(2)=√2 is the real Grothendieck constant of order two.</p>
+      </div>
+
       <p data-i18n="achievementMixingHistory">Dvoretzky's earlier factor was 2π (about 6.28). P04 obtains the smaller, sharp factor 4√2 (about 5.66). For real observations, the sharp factor is 4.</p>
       <p class="achievement-limitation" data-i18n="achievementMixingScope">Both comparisons use the same definition of strong mixing and the same normalization. A separate literature check is still needed before claiming world priority.</p>
 <div class="achievement-sources">
@@ -192,10 +234,24 @@
         <p data-i18n="achievementMultilinearAnswer">P04 determines the sharp real and complex factors for forms that are real-valued on real inputs; for n≥4 the complex factor has an explicit zeta-function expression. This does not settle the original 1985 problem for all complex multilinear forms.</p>
       </div>
       </div>
-      <div class="achievement-equation" role="math">
+            <div class="achievement-math-context">
+        <h3 data-i18n="achievementMathSetupTitle">Mathematical formulation</h3>
+        <p class="achievement-math-notation" data-i18n="achievementMultilinearMathNotation">Let B be an n-linear form taking real values on real inputs. The indicator seminorm d∞(B) is measured on products of event indicators. The dependence functional Δₙ is one such form.</p>
+        <div class="achievement-equation achievement-equation-setup" role="math">
+          <div class="math-line">d<sub>∞</sub>(B) := sup<sub>A<sub>j</sub>∈ℱ<sub>j</sub></sub> |B(1<sub>A<sub>1</sub></sub>,…,1<sub>A<sub>n</sub></sub>)|</div>
+          <div class="math-line">Δ<sub>n</sub>(f<sub>1</sub>,…,f<sub>n</sub>) := 𝔼∏<sub>j=1</sub><sup>n</sup>f<sub>j</sub> − ∏<sub>j=1</sub><sup>n</sup>𝔼f<sub>j</sub></div>
+        </div>
+        <h3 data-i18n="achievementMathResultTitle">Precise result / proven bounds</h3>
+      </div>
+<div class="achievement-equation" role="math">
         c<sub>n</sub><sup>real</sup> = 2<sup>n</sup>; &nbsp;
         c<sub>n</sub><sup>complex</sup> = 2<sup>n</sup>κ<sub>n</sub>
       </div>
+      <div class="achievement-math-after">
+        <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">‖B‖<sub>ℝ</sub> ≤ 2<sup>n</sup>d<sub>∞</sub>(B), &nbsp; ‖B‖<sub>ℂ</sub> ≤ 2<sup>n</sup>κ<sub>n</sub>d<sub>∞</sub>(B)</div></div>
+        <p class="achievement-math-notation" data-i18n="achievementMultilinearMathDetail">Both coefficients are sharp for forms real on real inputs. For n≥4 the complex coefficient has the explicit formula for κₙ; the exact κ₃ is still unknown.</p>
+      </div>
+
       <p class="achievement-limitation" data-i18n="achievementMultilinearScope">The 1985 question covers all complex multilinear forms. P04 proves a sharp answer for a narrower, natural subclass. The general question, and the exact complex value at n=3, remain open.</p>
 <div class="achievement-sources">
         <h3><span data-i18n="achievementSourcesHeading">Sources for this achievement</span> <span class="achievement-sources-count">(6)</span></h3>
@@ -232,7 +288,16 @@
         <p data-i18n="achievementCfProfileAnswer">P01 gives the exact extremal value as a formula involving only the prescribed mean moduli. The universal constants include C₃=2/√3 and C₄=9/7, with explicit equality constructions.</p>
       </div>
       </div>
-      <div class="achievement-equation" role="math">
+            <div class="achievement-math-context">
+        <h3 data-i18n="achievementMathSetupTitle">Mathematical formulation</h3>
+        <p class="achievement-math-notation" data-i18n="achievementCfProfileMathNotation">Let |Zⱼ|≤1 almost surely, with prescribed rⱼ=|𝔼Zⱼ|. Write R=∏rⱼ and S=∑arccos(rⱼ), and optimize over all compatible joint laws.</p>
+        <div class="achievement-equation achievement-equation-setup" role="math">
+          <div class="math-line">Δ(Z) := 𝔼∏<sub>j=1</sub><sup>d</sup>Z<sub>j</sub> − ∏<sub>j=1</sub><sup>d</sup>𝔼Z<sub>j</sub></div>
+          <div class="math-line">𝒞<sub>d</sub>(r) := sup<sub>|𝔼Z<sub>j</sub>|=r<sub>j</sub>, |Z<sub>j</sub>|≤1</sub> |Δ(Z)|</div>
+        </div>
+        <h3 data-i18n="achievementMathResultTitle">Precise result / proven bounds</h3>
+      </div>
+<div class="achievement-equation" role="math">
         𝒞<sub>d</sub>(r<sub>1</sub>,…,r<sub>d</sub>) =
         R − cos(min{Σ<sub>j</sub> arccos r<sub>j</sub>, π}),
         &nbsp; R = ∏<sub>j</sub>r<sub>j</sub>
@@ -240,6 +305,11 @@
       <div class="achievement-equation" role="math">
         C<sub>d</sub> = max<sub>0≤θ≤π/d</sub> (cos<sup>d</sup>θ − cos(dθ))
       </div>
+      <div class="achievement-math-after">
+        <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">S ≤ π: &nbsp; Z<sub>j</sub> = exp(i ε arccos r<sub>j</sub>), &nbsp; ℙ(ε=1)=ℙ(ε=−1)=1/2</div></div>
+        <p class="achievement-math-notation" data-i18n="achievementCfProfileMathDetail">When S≤π, the common fair-sign coupling attains the extremum. The unrestricted sharp constant C_d is the maximum of the profile over r.</p>
+      </div>
+
       <p data-i18n="achievementProfileImportance">For example, C₂=1, C₃=2/√3 and C₄=9/7. There are explicit distributions attaining the bounds, and C_d increases to 2. We do not claim this resolves an independently identified old open problem.</p>
 <div class="achievement-sources">
         <h3><span data-i18n="achievementSourcesHeading">Sources for this achievement</span> <span class="achievement-sources-count">(7)</span></h3>
@@ -277,9 +347,23 @@
         <p data-i18n="achievementStabilityAnswer">For d≥3 and any finite p≥1, P13 bounds the Wasserstein distance to the full family of maximizers by a constant times Δ^(1/(2p)) for sufficiently small deficit Δ. The exponent cannot be improved.</p>
       </div>
       </div>
-      <div class="achievement-equation" role="math">
+            <div class="achievement-math-context">
+        <h3 data-i18n="achievementMathSetupTitle">Mathematical formulation</h3>
+        <p class="achievement-math-notation" data-i18n="achievementStabilityMathNotation">Let P be a law on the closed unit polydisk, D(P) its product-moment factorization defect, C_d its universal maximum, and Δ(P)=C_d−D(P). The equality orbit ℰ_d consists of common-sign two-point laws up to coordinate rotations.</p>
+        <div class="achievement-equation achievement-equation-setup" role="math">
+          <div class="math-line">D(P) := |𝔼<sub>P</sub>∏<sub>j=1</sub><sup>d</sup>Z<sub>j</sub> − ∏<sub>j=1</sub><sup>d</sup>𝔼<sub>P</sub>Z<sub>j</sub>|</div>
+          <div class="math-line">Δ(P) := C<sub>d</sub> − D(P), &nbsp; dist<sub>W<sub>p</sub></sub>(P,ℰ<sub>d</sub>) := inf<sub>Q∈ℰ<sub>d</sub></sub>W<sub>p</sub>(P,Q)</div>
+        </div>
+        <h3 data-i18n="achievementMathResultTitle">Precise result / proven bounds</h3>
+      </div>
+<div class="achievement-equation" role="math">
         dist<sub>W<sub>p</sub></sub>(P,ℰ<sub>d</sub>) ≤ K<sub>d,p</sub> Δ<sup>1/(2p)</sup>
       </div>
+      <div class="achievement-math-after">
+        <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">Δ(P<sub>η</sub>) = b<sub>d</sub>η<sup>2</sup> + O(η<sup>4</sup>), &nbsp; dist<sub>W<sub>p</sub></sub>(P<sub>η</sub>,ℰ<sub>d</sub>)<sup>p</sup> ∼ (L<sub>d</sub><sup>p</sup>/2)|η|</div></div>
+        <p class="achievement-math-notation" data-i18n="achievementStabilityMathDetail">For the biased two-point family Pη, the deficit is quadratic in η while the p-th power of transport distance is linear. Thus the exponent 1/(2p) cannot be improved.</p>
+      </div>
+
       <p data-i18n="achievementStabilityScope">For d≥3, finite p≥1 and sufficiently small deficit Δ, the exponent 1/(2p) is optimal. A different, more structured measure of deviation has a sharp square-root rate.</p>
       <p class="achievement-limitation" data-i18n="achievementStabilityPriority">This is a sharp mathematical theorem. It has not been independently classified as a solution to a historically posed open question.</p>
 <div class="achievement-sources">
