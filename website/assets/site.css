@@ -198,3 +198,40 @@
  .achievement-equation{font-size:16px;padding:12px;white-space:normal;overflow-wrap:anywhere}
  .achievement-editorial{padding:25px 22px}
 }
+
+/* Achievement readability: question, origin, importance, then the mathematical answer. */
+.achievement-explanation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px;
+  margin:21px 0 25px}
+.achievement-explanation-part{min-width:0;padding:0 0 3px}
+.achievement-explanation-part h3{color:#3b5a80;font-size:13px;font-weight:750;line-height:1.5;
+  letter-spacing:.1px;margin:0 0 8px}
+.achievement-feature .achievement-explanation-part p{font-size:14px;line-height:1.7;
+  margin:0;color:#394f66}
+.achievement-explanation-part:nth-child(4){border-left:3px solid #b8cad7;padding-left:15px}
+.achievement-feature .achievement-explanation-part:nth-child(4) h3{color:#264e77}
+.achievement-sources{margin:25px 0 0;border-top:1px solid #dce5ed;padding-top:21px}
+.achievement-sources h3{font:700 16px/1.4 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:#244366;margin:0 0 7px}
+.achievement-sources-count{font-size:12px;font-weight:550;color:#7c8998}
+.achievement-feature .achievement-sources p{font-size:12px;color:#748294;max-width:750px;margin:0 0 16px}
+.achievement-references{list-style:none;margin:0;padding:0;display:grid;gap:1px}
+.achievement-references li{display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid #eef1f5;
+  padding:11px 5px;min-width:0}
+.achievement-references li:last-child{border-bottom:0}
+.achievement-ref-number{font-size:12px;font-variant-numeric:tabular-nums;color:#8090a0;
+  flex:0 0 17px;text-align:right;line-height:1.6}
+.achievement-ref-body{min-width:0;display:flex;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;gap:4px 10px;flex-direction:column}
+.achievement-ref-role{font-size:10px;color:#607488;font-weight:750;letter-spacing:.25px}
+.achievement-ref-body a{font-size:13px;line-height:1.55;font-weight:500;color:#375cad;
+  overflow-wrap:anywhere;text-decoration:none}
+.achievement-ref-body a:hover{text-decoration:underline}
+@media(max-width:780px){
+ .achievement-explanation{grid-template-columns:1fr;gap:16px;margin:18px 0 24px}
+ .achievement-explanation-part{padding-bottom:0}
+ .achievement-explanation-part:nth-child(4){padding-left:13px}
+ .achievement-feature .achievement-explanation-part p{font-size:14px}
+ .achievement-sources{margin-top:22px}
+ .achievement-references li{padding:11px 0;gap:10px}
+ .achievement-ref-body a{font-size:13px}
+}

@@ -122,4 +122,7 @@ vm.runInContext('papers.find(p=>p.code==="P04").version_index=1; renderDetail();
 assert.equal(elements["paper-version-number"].textContent,"Выпуск Zenodo №1");
 vm.runInContext('papers.find(p=>p.code==="P04").version_label="0.6"; renderDetail();',context);
 assert.equal(elements["paper-version-number"].textContent,"0.6");
-console.log("PASS: publication chronology, version labels, 54 results, 18 papers, 5 areas, bilingual search and DOI links.");
+const translationCheck=vm.runInContext('[COPY.ru.achievementGhzExactProblem, COPY.ru.achievementGhzThreeWhy, COPY.ru.achievementMixingAnswer, COPY.ru.achievementSourcesHeading, COPY.ru.sourceRoleOur, COPY.en.sourceRolePrior]',context);
+assert.equal(translationCheck.length,6);
+assert.ok(translationCheck.every(x=>typeof x==="string" && x.length>10),"Explanations and sources must have meaningful localized text");
+console.log("PASS: bilingual major achievements, 54 paper results, chronology, 18 papers and scientific search.");

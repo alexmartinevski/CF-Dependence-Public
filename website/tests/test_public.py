@@ -321,9 +321,9 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("2.035329429153",article)
         self.assertIn("4√2",article)
         self.assertIn("2π",article)
-        self.assertIn("Conjecture",article)
-        self.assertIn("not solved in its full generality",article)
-        self.assertIn("Independent verification",article)
+        self.assertIn("proposed exact value",article)
+        self.assertIn("not settled",article)
+        self.assertIn("Independent mathematical and historical reviews",article)
         self.assertIn('href="https://doi.org/10.1103/PhysRevA.109.022205"',article)
         self.assertIn('href="https://doi.org/10.1016/0047-259X(85)90025-9"',article)
         concepts={p["code"]:p["concept_doi"] for p in self.site["papers"]}
@@ -349,7 +349,62 @@ class PublicSiteTests(unittest.TestCase):
                      "achievementMultilinearScope","achievementEditorialSecond"):
             self.assertIn(name,labels)
         self.assertIn("гипотезе Римана",script)
-        self.assertIn("не объявляется решённой",script)
+        self.assertIn("не решена полностью",script)
+
+    def test_each_achievement_has_plain_language_explanation_and_own_references(self):
+        """Every result must explain the problem before its equation and cite 5–7 relevant sources."""
+        import re
+        from urllib.parse import urlsplit
+        article=(ROOT/"achievements.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        blocks=re.findall(
+            r'<article class="achievement-feature" id="([^"]+)">([\s\S]*?)</article>',
+            article
+        )
+        self.assertEqual(len(blocks),6)
+        expected={
+            "ghz-exact":6,"ghz-three":7,"mixing":6,
+            "multilinear":6,"cf-profile":7,"stability":7
+        }
+        total=0
+        for anchor,body in blocks:
+            self.assertIn(anchor,expected)
+            self.assertEqual(body.count('class="achievement-explanation-part"'),4,anchor)
+            labels=[
+                'achievementProblemTitle','achievementOriginTitle',
+                'achievementImportanceTitle','achievementAnswerTitle'
+            ]
+            positions=[body.index('data-i18n="'+name+'"') for name in labels]
+            self.assertEqual(positions,sorted(positions),anchor)
+            self.assertLess(positions[-1],body.index('class="achievement-equation"'),anchor)
+            self.assertEqual(body.count('class="achievement-sources"'),1,anchor)
+            self.assertEqual(body.count('class="achievement-references"'),1,anchor)
+            section=re.search(
+                r'<ol class="achievement-references"[^>]*>([\s\S]*?)</ol>',
+                body
+            )
+            self.assertIsNotNone(section,anchor)
+            links=re.findall(r'<a href="([^"]+)"[^>]*>([^<]+)</a>',section.group(1))
+            self.assertEqual(len(links),expected[anchor],anchor)
+            self.assertEqual(len({uri for uri,_ in links}),len(links),anchor)
+            total+=len(links)
+            for uri,title in links:
+                parsed=urlsplit(uri)
+                self.assertEqual(parsed.scheme,"https",anchor)
+                self.assertEqual(parsed.hostname,"doi.org",anchor)
+                self.assertTrue(title.strip(),anchor)
+                if parsed.hostname=="doi.org":
+                    self.assertTrue(parsed.path.startswith("/10."),anchor)
+            self.assertIn('data-i18n="achievementSourcesHeading"',body)
+            self.assertIn('class="achievement-sources-count">('+str(expected[anchor])+')',body)
+            # One original CF publication is a source in every group.
+            self.assertRegex(section.group(1),r'href="https://doi\.org/10\.5281/zenodo\.\d+"')
+        self.assertEqual(total,39)
+        labels=set(re.findall(r'data-i18n="(achievement[A-Za-z0-9]+|sourceRole[A-Za-z0-9]+)"',article))
+        for key in labels:
+            self.assertEqual(script.count('"'+key+'":'),2,key)
+        self.assertIn("Задача",script)
+        self.assertIn("доказана",script)
 
     def test_custom_domain_assets(self):
         from xml.etree import ElementTree as ET

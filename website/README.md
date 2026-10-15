@@ -236,3 +236,38 @@ The page is included in GitHub Pages, content-fingerprint asset cache busting,
 the sitemap and the standalone bilingual regression tests. The language toggle
 preserves the selected language in links between the home page and the
 achievements landing page. Zenodo links use permanent Concept DOIs.
+
+## Reader-facing achievements / separate bibliographies (15 October 2026)
+The home-page highlights and the detailed `achievements.html` have been
+edited for non-specialists. **Each** of the six achievement sections now follows
+a consistent narrative:
+
+1. What question was being asked?
+2. Where and how did it emerge historically?
+3. Why is its answer mathematically or experimentally important?
+4. What was actually established, with formulas and clear scope.
+
+Every achievement has its **own visible list of 6 or 7 source links**, 39
+bibliographic appearances in total (sources can recur where relevant).
+References are labeled as the CF research publication, history of the problem,
+previous results, scientific background, or a related public article. One section's sources are not inherited
+from a global bibliography: each claim is tied to directly visible references
+in its own section.
+
+The source roles are editorial classifications, **not external proof-review or
+priority certificates**. The historic literature includes Mermin (1990),
+Żukowski (1993), Sen–Sen–Żukowski (2002), Designolle et al. (2023), and
+Designolle–Vértesi–Pokutta (2024) for GHZ, as well as Dvoretzky (1972),
+Bradley–Bryc (1985), Bradley–Bryc–Janson (1987), Bradley (2005), and Pisier
+(2012) for mixing and multilinear estimates. The CF-profile and stability
+sections also cite their own literature and adjacent CF papers.
+Public-source DOI links were checked during the edit. The home page and
+`achievements.html` each retain English and Russian versions of all narrative
+copy, and mobile styles preserve readable paragraphs and citation lists.
+
+The detailed page continues to distinguish exact theorems from bounds and
+conjectures: the GHZ case `n=3` is not claimed solved; the broad 1985 complex
+multilinear question is not claimed solved; historical priority and proof remain
+awaiting external review.
+
+Public citation hygiene: never link a private CF-Dependence repository path from this public site. The GHZ three-party section cites Werner–Wolf (2001) as a public seventh reference instead of the private internal K7 supplement; the public P04 Zenodo DOI remains its main result source. The computer-assisted nature of the K7 proof is clearly disclosed in text.
