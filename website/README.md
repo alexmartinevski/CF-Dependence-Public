@@ -271,3 +271,36 @@ multilinear question is not claimed solved; historical priority and proof remain
 awaiting external review.
 
 Public citation hygiene: never link a private CF-Dependence repository path from this public site. The GHZ three-party section cites Werner–Wolf (2001) as a public seventh reference instead of the private internal K7 supplement; the public P04 Zenodo DOI remains its main result source. The computer-assisted nature of the K7 proof is clearly disclosed in text.
+
+## Graduate-level mathematical formulation on the achievements page (15 October 2026)
+Each of the six research-achievement sections now provides an explicit
+mathematical formulation **after the readable problem/history/motivation**
+and **before the theorem**. Notation and hypotheses are bilingual; equations
+are local, accessible HTML with subscripts/superscripts, so no MathJax
+runtime, external CDN, scripts, or third-party tracking is required.
+
+The new mathematical objects were checked against the actual published
+P01/P04/P13 TeX texts:
+
+- P04 GHZ: planar full correlation `E_n(angles)=cos(sum angles)`,
+  multilinear complexification ratio `kappa_n`, visibility `v_n=1/kappa_n`,
+  and zeta-series notation for the exact `n>=4` result.
+- P04 `n=3`: the **exact** K7 harmonic lower-bound expression
+  using the seven specified primes, and the proven zeta upper bound.
+- P04 strong mixing: the event-based `alpha(F,G)`, the complex
+  covariance convention, and the sharp Grothendieck factor
+  `4 K_G(2) = 4 sqrt(2)`.
+- P04 multilinear: indicator norm `d_infty(B)`, the n-factor
+  interaction defect, and both sharp norm inequalities on the stated
+  real-on-real class. The full 1985 complex problem is not claimed solved.
+- P01: the law-space supremum and exact extremal fair-sign construction
+  (when the total angle does not exceed pi).
+- P13: extremal deficit `Delta(P)`, distance to the whole equality
+  orbit in `W_p`, and the two-point family that proves the
+  exponent `1/(2p)` is optimal.
+
+All four teaser cards on the home page now also include a concise,
+substantive mathematical formula. Scientific proof and historical
+priority review caveats remain unchanged. Tests assert the correct
+placement, notation, bilingual keys, external-dependency prohibition,
+and numerical regression of published exact expressions.
