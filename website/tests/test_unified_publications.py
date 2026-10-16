@@ -2,6 +2,7 @@
 """Regression and adversarial checks for the single publication source."""
 import copy
 import json
+from datetime import date, timedelta
 import sys
 import tempfile
 import unittest
@@ -127,10 +128,12 @@ class CanonicalCatalogueTests(unittest.TestCase):
         synthetic_id = 1000000 + max(
             r["record_id"] for p in doc["papers"].values()
             for r in p["publication"]["releases"])
+        synthetic_date = (date.fromisoformat(pub["last_version_on"]) +
+                          timedelta(days=1)).isoformat()
         pub["releases"].append({
             "record_id": synthetic_id,
             "version_doi": "10.5281/zenodo." + str(synthetic_id),
-            "published_on": "2026-10-16",
+            "published_on": synthetic_date,
             "license": "cc-by-4.0",
             "pdf": {
                 "filename": "P12_CF_V8_R1.pdf",
@@ -138,7 +141,7 @@ class CanonicalCatalogueTests(unittest.TestCase):
                 "size_bytes": 4567,
             },
         })
-        pub["last_version_on"] = "2026-10-16"
+        pub["last_version_on"] = synthetic_date
         pub["version_index"] = len(pub["releases"])
         pub["version_index_evidence"] = "Synthetic unit-test lineage"
         catalog, parts = publications.project(doc)
@@ -146,7 +149,7 @@ class CanonicalCatalogueTests(unittest.TestCase):
         self.assertEqual(p12["version_doi"],
                          "10.5281/zenodo." + str(synthetic_id))
         self.assertEqual(p12["first_published_on"], "2026-10-14")
-        self.assertEqual(p12["last_version_on"], "2026-10-16")
+        self.assertEqual(p12["last_version_on"], synthetic_date)
         self.assertEqual(pub["releases"][0]["pdf"]["md5"],
                          "1590c32efb3165b4dabfe9daf856aede")
         self.assertEqual(len(parts), (len(self.doc["papers"]) + 5) // 6)
