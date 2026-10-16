@@ -95,9 +95,12 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertLessEqual(p["first_published_on"],p["last_version_on"])
             # Existing 2026-10-14 releases have fixed historical timestamps;
             # future released articles must not inherit those dates.
-            if p["code"] in {"P04","P06","P07","P08","P09","P11","P12","P13","P14","P15","P16","P17","P18","P19","P20"}:
+            if p["code"] in {"P04","P06","P07","P08","P09","P11","P13","P14","P15","P16","P17","P18","P19","P20"}:
                 self.assertEqual(p["first_published_on"],"2026-10-14")
                 self.assertEqual(p["last_version_on"],"2026-10-14")
+            elif p["code"]=="P12":
+                self.assertEqual(p["first_published_on"],"2026-10-14")
+                self.assertGreaterEqual(p["last_version_on"],"2026-10-15")
             elif p["code"] in {"P01","P02","P03"}:
                 self.assertEqual(p["first_published_on"],"2026-09-28")
                 self.assertEqual(p["last_version_on"],"2026-10-12" if p["code"]=="P03" else "2026-10-14")
@@ -197,6 +200,35 @@ class PublicSiteTests(unittest.TestCase):
             self.assertTrue(p["first_published_on"])
             self.assertTrue(p["last_version_on"])
 
+    def test_october_2026_four_public_records_and_p12_lineage(self):
+        verified={
+            "P12":(23355668,23406562,"2026-10-15","P12_CF_V7_R40.pdf"),
+            "P21":(23406540,23406541,"2026-10-16","P21_CF_V7_R40.pdf"),
+            "P22":(23406544,23406545,"2026-10-16","P22_CF_V7_R40.pdf"),
+            "P27":(23406554,23406555,"2026-10-16","P27_CF_V7_R40.pdf"),
+        }
+        papers={p["code"]:p for p in self.site["papers"]}
+        self.assertGreaterEqual(len(papers),21)
+        self.assertTrue(verified.keys()<=papers.keys())
+        self.assertFalse({"P05","P10"} & set(papers))
+        for code,(concept_id,release_id,first_or_new_date,pdf_name) in verified.items():
+            p=papers[code]
+            self.assertEqual(p["concept_doi"],f"10.5281/zenodo.{concept_id}")
+            self.assertGreaterEqual(p["last_version_on"],first_or_new_date)
+            self.assertEqual(p["status"],"published")
+            self.assertEqual(len(p["highlights"]),3)
+            self.assertTrue(p["highlights_source_doi"].startswith("10.5281/zenodo."))
+            if p["version_doi"]==f"10.5281/zenodo.{release_id}":
+                self.assertEqual(p["pdf_filename"],pdf_name)
+            if code=="P12":
+                self.assertEqual(p["first_published_on"],"2026-10-14")
+                self.assertGreaterEqual(p["version_index"],2)
+            else:
+                self.assertEqual(p["first_published_on"],"2026-10-16")
+        released={e["source"] for e in self.news["entries"] if e["kind"]=="publication_release"}
+        for code,(_,release_id,_,_) in verified.items():
+            self.assertIn(f"https://doi.org/10.5281/zenodo.{release_id}",released,code)
+
     def test_public_metadata_display_labels(self):
         home=(ROOT/"index.html").read_text(encoding="utf-8")
         detail=(ROOT/"paper.html").read_text(encoding="utf-8")
@@ -277,7 +309,7 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertEqual(p["first_published_on"],"2026-09-28")
             else:
                 self.assertEqual(p["highlights_source_doi"],p["version_doi"])
-                self.assertEqual(p["version_index"],1)
+                self.assertGreaterEqual(p["version_index"],2 if p["code"]=="P12" else 1)
             self.assertTrue(DOI.fullmatch(p["highlights_source_doi"]))
             for h in p["highlights"]:
                 self.assertTrue(h["en"].strip(),p["code"])
@@ -638,7 +670,7 @@ class PublicSiteTests(unittest.TestCase):
             "P01":(140,130),"P02":(156,146),"P03":(152,136),
             "P04":(173,166),"P06":(153,162),"P07":(176,159),
             "P08":(144,136),"P09":(160,139),"P11":(150,148),
-            "P12":(158,148),"P13":(150,171),"P14":(153,147),
+            "P12":(184,165),"P13":(150,171),"P14":(153,147),
             "P15":(138,154),"P16":(159,152),"P17":(146,158),
             "P18":(148,164),"P19":(143,161),"P20":(158,173)
         }

@@ -193,6 +193,41 @@ class CanonicalCatalogueTests(unittest.TestCase):
         self.assertIn(code, parts[-1]["papers"])
         self.assertNotIn(code, self.doc["papers"])  # never alter source
 
+    def test_published_october_release_evidence_in_v3(self):
+        expected={
+            "P12":(23406562,"2026-10-15","P12_CF_V7_R40.pdf",
+                   563225,"5e34c689836a76c34d6c94541988f985"),
+            "P21":(23406541,"2026-10-16","P21_CF_V7_R40.pdf",
+                   396375,"fe5af3670f5c90739598a1a5e593c99e"),
+            "P22":(23406545,"2026-10-16","P22_CF_V7_R40.pdf",
+                   433198,"a5f5ce0aec29faf3660ddca7bb171f96"),
+            "P27":(23406555,"2026-10-16","P27_CF_V7_R40.pdf",
+                   472077,"13630a19f1bd509fcaa0c54b3f3dbb1a"),
+        }
+        self.assertGreaterEqual(len(self.doc["papers"]),21)
+        self.assertEqual(len(self.doc["papers"]["P12"]["publication"]["releases"]),2)
+        for code,(record,date,filename,size,checksum) in expected.items():
+            paper=self.doc["papers"][code]
+            releases=paper["publication"]["releases"]
+            version=next(item for item in releases if item["record_id"]==record)
+            self.assertEqual(version["version_doi"],f"10.5281/zenodo.{record}")
+            self.assertEqual(version["published_on"],date)
+            self.assertEqual(version["pdf"]["filename"],filename)
+            self.assertEqual(version["pdf"]["size_bytes"],size)
+            self.assertEqual(version["pdf"]["md5"],checksum)
+            self.assertEqual(version["license"],"cc-by-4.0")
+            self.assertEqual(len(paper["science"]["results"]),3)
+            self.assertTrue(all(x["evidence"] for x in paper["science"]["results"]))
+            self.assertTrue(paper["science"]["abstract_html"].startswith("<p>"))
+            self.assertGreaterEqual(len(paper["identity"]["keywords"]),8)
+        self.assertEqual(self.doc["papers"]["P12"]["publication"]
+                         ["first_published_on"],"2026-10-14")
+        self.assertEqual(self.doc["papers"]["P12"]["publication"]
+                         ["last_version_on"],"2026-10-15")
+        for code in ("P21","P22","P27"):
+            self.assertEqual(self.doc["papers"][code]["publication"]
+                             ["first_published_on"],"2026-10-16")
+
     def test_json_schema_documents_stored_date_contract(self):
         schema = json.loads((ROOT / "data/publications.schema.json")
                             .read_text(encoding="utf-8"))

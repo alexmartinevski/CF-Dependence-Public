@@ -142,30 +142,42 @@ const translationCheck=vm.runInContext('[COPY.ru.achievementGhzExactProblem, COP
 assert.equal(translationCheck.length,6);
 assert.ok(translationCheck.every(x=>typeof x==="string" && x.length>10),"Explanations and sources must have meaningful localized text");
 vm.runInContext('language="ru"; news=__news; newsLoaded=true; renderIndex();',context);
+const expectedNews=[...entries].sort((a,b)=>b.date.localeCompare(a.date));
 const latest=elements["news-items"].children;
 assert.equal(latest.length,4,"The home page must show exactly four recent updates");
-assert.ok(latest[0].textContent.includes("математические"),"Most recent site update in Russian");
-assert.ok(latest[0].children.some(x=>x.href==="achievements.html?lang=ru#ghz-exact"),
-  "Math news should open the actual theorem and formulas on our website");
-assert.ok(latest[1].children.some(x=>x.href==="achievements.html?lang=ru"),
-  "Background/source news should open the scientific achievements page");
-assert.ok(!latest[0].children.some(x=>x.href?.includes("github.com")));
-assert.ok(latest[2].children.some(x=>x.href?.startsWith("https://doi.org/")));
+for(let i=0;i<4;i++) {
+  const newsEntry=expectedNews[i];
+  assert.ok(latest[i].textContent.includes(newsEntry.title.ru),
+    "Newest Russian publication announcement must be visible: "+newsEntry.source);
+  assert.ok(latest[i].children.some(x=>x.href===newsEntry.source),
+    "Publication news must open its published fixed Zenodo DOI");
+  assert.ok(!latest[i].children.some(x=>x.href?.includes("github.com")));
+}
 vm.runInContext('renderNewsPage();',context);
-assert.equal(elements["news-full-list"].children.length,6,"The news page contains the complete history");
-assert.ok(elements["news-full-list"].children[4].textContent.includes("CF V6"));
-assert.ok(elements["news-full-list"].children[4].children.some(x=>x.href==="publications/index.html?lang=ru"),
-  "Collection announcement should link the complete research catalogue");
-assert.ok(elements["news-full-list"].children[5].children.some(x=>x.href==="publications/index.html?lang=ru"),
-  "Original manuscript collection should open the published bibliography");
+let full=elements["news-full-list"].children;
+assert.equal(full.length,entries.length,
+  "Every curated event appears exactly once; P12 history must not double-announce");
+assert.ok(full.some(item=>item.children.some(x=>x.href==="achievements.html?lang=ru#ghz-exact")),
+  "Scientific achievements update must remain discoverable");
+assert.ok(full.some(item=>item.children.some(x=>x.href==="achievements.html?lang=ru")),
+  "Scientific source commentary must remain discoverable");
+assert.ok(full[full.length-2].textContent.includes("CF V6"));
+assert.ok(full[full.length-2].children.some(x=>x.href==="publications/index.html?lang=ru"),
+  "Collection announcement should link the complete catalogue");
+assert.ok(full[full.length-1].children.some(x=>x.href==="publications/index.html?lang=ru"),
+  "Original manuscript collection should open the bibliography");
 vm.runInContext('language="en"; renderUpdates(document.getElementById("news-items"),true); renderNewsPage();',context);
 assert.equal(elements["news-items"].children.length,4);
-assert.equal(elements["news-full-list"].children.length,6);
-assert.ok(elements["news-items"].children[0].textContent.includes("mathematical"),"English news text");
-assert.ok(elements["news-items"].children[0].children.some(x=>x.href==="achievements.html?lang=en#ghz-exact"),
-  "English locale should be preserved on the research link");
-assert.ok(elements["news-full-list"].children[5].children.some(x=>x.href==="publications/index.html?lang=en"));
-assert.ok(elements["news-full-list"].children[5].textContent.includes("Initial public manuscript"),"Oldest item stays visible");
+full=elements["news-full-list"].children;
+assert.equal(full.length,entries.length);
+for(let i=0;i<4;i++){
+  assert.ok(elements["news-items"].children[i].textContent.includes(expectedNews[i].title.en),
+    "Newest English release title must be visible");
+}
+assert.ok(full.some(item=>item.children.some(x=>x.href==="achievements.html?lang=en#ghz-exact")),
+  "English locale for existing mathematical achievements must remain intact");
+assert.ok(full[full.length-1].children.some(x=>x.href==="publications/index.html?lang=en"));
+assert.ok(full[full.length-1].textContent.includes("Initial public manuscript"),"Oldest item stays visible");
 const previous=elements["news-items"].children[0];
 const previousHistory=elements["news-full-list"].children[0];
 vm.runInContext('newsLoaded=false; renderIndex(); renderNewsPage();',context);
