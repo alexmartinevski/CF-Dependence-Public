@@ -145,6 +145,7 @@ vm.runInContext('language="ru"; news=__news; newsLoaded=true; renderIndex();',co
 const expectedNews=[...entries].sort((a,b)=>b.date.localeCompare(a.date));
 const latest=elements["news-items"].children;
 assert.equal(latest.length,4,"The home page must show exactly four recent updates");
+assert.ok(latest[0].textContent.includes("Научный результат"),"P04 must be labelled as a research result, not a new release");
 for(let i=0;i<4;i++) {
   const newsEntry=expectedNews[i];
   assert.ok(latest[i].textContent.includes(newsEntry.title.ru),
@@ -168,6 +169,7 @@ assert.ok(full[full.length-1].children.some(x=>x.href==="publications/index.html
   "Original manuscript collection should open the bibliography");
 vm.runInContext('language="en"; renderUpdates(document.getElementById("news-items"),true); renderNewsPage();',context);
 assert.equal(elements["news-items"].children.length,4);
+assert.ok(elements["news-items"].children[0].textContent.includes("Research result"),"Scientific announcement must keep its English label");
 full=elements["news-full-list"].children;
 assert.equal(full.length,entries.length);
 for(let i=0;i<4;i++){
