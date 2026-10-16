@@ -157,7 +157,7 @@ const COPY = {
   newsPublicationsLink:"Browse publications ↗",
   newsLabel:"PROJECT UPDATES",updatesHeading:"What's new",
   updatesInfo:"Verified website improvements and published research releases, in reverse chronological order.",
-  siteUpdateKind:"Website update",publicationUpdateKind:"Publication",collectionUpdateKind:"Publication collection",
+  siteUpdateKind:"Website update",publicationUpdateKind:"Publication",researchHighlightKind:"Research result",collectionUpdateKind:"Publication collection",
   olderUpdatesLabel:"Earlier updates",
   staticUpdateP19Title:"P19: dependence synthesis with prescribed marginals",
   staticUpdateP19Text:"New preprint: joint distributions under moment, spectral-zero and Fourier constraints.",
@@ -344,7 +344,7 @@ const COPY = {
   newsPublicationsLink:"Перейти к публикациям ↗",
   newsLabel:"ОБНОВЛЕНИЯ ПРОЕКТА",updatesHeading:"Что изменилось",
   updatesInfo:"Подтверждённые изменения сайта и выпуски научных работ в обратном хронологическом порядке.",
-  siteUpdateKind:"Обновление сайта",publicationUpdateKind:"Публикация",collectionUpdateKind:"Коллекция публикаций",
+  siteUpdateKind:"Обновление сайта",publicationUpdateKind:"Публикация",researchHighlightKind:"Научный результат",collectionUpdateKind:"Коллекция публикаций",
   olderUpdatesLabel:"Ранее в проекте",
   staticUpdateP19Title:"P19: синтез зависимости при заданных маргиналях",
   staticUpdateP19Text:"Новая работа: совместные распределения с ограничениями на моменты, спектральные нули и преобразования Фурье.",
@@ -575,6 +575,7 @@ function story(date, title, summary, source, kind="publication_release") {
   const meta=node("div","news-meta");
   const time=node("time",null,date); time.dateTime=date;
   const label=kind==="site_update"?COPY[language].siteUpdateKind:
+    kind==="research_highlight"?COPY[language].researchHighlightKind:
     (kind==="collection_update"||kind==="public_collection_release")?
       COPY[language].collectionUpdateKind:COPY[language].publicationUpdateKind;
   const type=node("span","news-type",label);

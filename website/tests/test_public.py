@@ -70,6 +70,17 @@ class PublicSiteTests(unittest.TestCase):
             self.assertNotIn("RELEASE_NOTES",event["source"])
         self.assertTrue(any(e["source"]=="achievements.html#ghz-exact" for e in entries))
         self.assertTrue(any(e["source"]=="achievements.html" for e in entries))
+        highlights=[e for e in entries if e["kind"]=="research_highlight"]
+        self.assertEqual(len(highlights),1)
+        ghz=highlights[0]
+        self.assertEqual(ghz["source"],"https://doi.org/10.5281/zenodo.23356092")
+        self.assertEqual(ghz["date"],"2026-10-16")
+        for language in ("en","ru"):
+            self.assertIn("n ≥ 4",ghz["title"][language])
+            self.assertIn("v₄ = 34/105",ghz["summary"][language])
+            self.assertIn("n = 3",ghz["summary"][language])
+        self.assertIn("Independent proof review",ghz["summary"]["en"])
+        self.assertNotIn("peer-reviewed",ghz["summary"]["en"].lower())
         # No source is trusted merely because it resembles a Zenodo URL.
         self.assertTrue(all(e["kind"]!="publication_release" or
                             e["source"].startswith("https://doi.org/10.5281/zenodo.")
