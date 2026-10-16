@@ -110,6 +110,9 @@ class ScholarlyIndexingTests(unittest.TestCase):
 
     def test_sitemap_only_canonical_static_pages(self):
         sitemap=(self.dest/"sitemap.xml").read_text(encoding="utf-8")
+        source_sitemap=(ROOT/"sitemap.xml").read_text(encoding="utf-8")
+        self.assertEqual(source_sitemap,sitemap,
+                         "Source sitemap snapshot must equal the generated Pages sitemap")
         self.assertEqual(sitemap.count("<loc>"),len(self.papers)+5)
         self.assertNotIn("paper.html?code=",sitemap)
         self.assertIn("<loc>https://math.a-martinevski.com/publications/</loc>",sitemap)
