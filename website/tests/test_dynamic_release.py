@@ -46,19 +46,22 @@ class SyntheticNextPaperTests(unittest.TestCase):
         original=json.loads((self.site/"data/papers.json").read_text(encoding="utf-8"))
         source=list(original["papers"])
         baseline={p["code"] for p in source}
-        self.assertNotIn("P21",baseline)
+        self.base_count=len(source)
+        self.code=next(f"P{i:02d}" for i in range(21,100)
+                       if f"P{i:02d}" not in baseline)
+        self.assertNotIn(self.code,baseline)
+        self.synthetic_source=f"papers/{self.code.lower()}-synthetic-offline"
         ref=next(p for p in source if p["code"]=="P20")
         fake=copy.deepcopy(ref)
-        self.code="P21"
         self.version="10.5281/zenodo.999999921"
         self.concept="10.5281/zenodo.999999920"
         fake.update(code=self.code,title="OFFLINE SYNTHETIC paper for release infrastructure TEST ONLY",
                     status="published",version_doi=self.version,concept_doi=self.concept,
-                    first_published_on="2026-10-16",last_version_on="2026-10-16",
-                    published_on="2026-10-16",version_index=1,
+                    first_published_on="2026-10-17",last_version_on="2026-10-17",
+                    published_on="2026-10-17",version_index=1,
                     version_index_evidence="OFFLINE UNIT TEST ONLY, NEVER PUBLISHED",
                     highlights_source_doi=self.version,
-                    source_path="papers/21-synthetic-offline",changes=[])
+                    source_path=self.synthetic_source,changes=[])
         fake.pop("pdf_filename",None)
         fake.pop("record_url",None)
         source.append(fake)
@@ -74,62 +77,68 @@ class SyntheticNextPaperTests(unittest.TestCase):
         fake_meta=copy.deepcopy(latest)
         # Fake PDF bytes are deliberately not a real Zenodo file.
         self.pdf=b"%PDF-"+b"offline-test-not-a-publication"*90
-        name="P21_CF_V8_RELEASE.pdf"
+        name=f"{self.code}_CF_V8_RELEASE.pdf"
         fake_meta.update(title=fake["title"],version_doi=self.version,concept_doi=self.concept,
-                         publication_date="2026-10-16",record_id=999999921,pdf_filename=name,
+                         publication_date="2026-10-17",record_id=999999921,pdf_filename=name,
                          pdf_size=len(self.pdf),pdf_md5=hashlib.md5(self.pdf).hexdigest())
-        (self.site/"data/scholarly/part-04.json").write_text(
-            json.dumps({"schema":1,"papers":{"P21":fake_meta}},ensure_ascii=False,indent=2),
-            encoding="utf-8")
-        folder=self.repo/"papers/21-synthetic-offline"
+        shards=sorted((self.site/"data/scholarly").glob("part-*.json"))
+        tail=shards[-1]
+        blob=json.loads(tail.read_text(encoding="utf-8"))
+        if len(blob["papers"])>=6:
+            tail=self.site/"data/scholarly"/f"part-{int(tail.stem.split('-')[-1])+1:02d}.json"
+            blob={"schema":1,"papers":{}}
+        blob["papers"][self.code]=fake_meta
+        tail.write_text(json.dumps(blob,ensure_ascii=False,indent=2),encoding="utf-8")
+        folder=self.repo/self.synthetic_source
         folder.mkdir(parents=True)
         (folder/"paper.pdf").write_bytes(self.pdf)
         (folder/"paper.tex").write_text("% OFFLINE TEST ONLY\n",encoding="utf-8")
         updates=json.loads((self.site/"data/news.json").read_text(encoding="utf-8"))
+        self.base_news_count=len(updates["entries"])
         updates["entries"].append({
-            "date":"2026-10-16","kind":"publication_release",
+            "date":"2026-10-17","kind":"publication_release",
             "source":"https://doi.org/"+self.version,
-            "title":{"en":"OFFLINE P21 synthetic test only","ru":"ТЕСТ P21 — не публикация"},
+            "title":{"en":f"OFFLINE {self.code} synthetic test only","ru":f"ТЕСТ {self.code} — не публикация"},
             "summary":{"en":"Synthetic release exercise with no Zenodo writes.",
                        "ru":"Проверка инфраструктуры без обращения к Zenodo."}
         })
         (self.site/"data/news.json").write_text(
             json.dumps(updates,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
-    def test_19th_synthetic_release_builds_without_touching_network(self):
+    def test_next_synthetic_release_builds_without_touching_network(self):
         originals,meta=scholar.load_data(self.site)
         self.assertEqual(len(originals),len({p["code"] for p in originals}))
-        self.assertEqual(len(originals),19)
-        self.assertEqual(len(meta),19)
-        self.assertEqual(meta["P21"]["pdf_filename"],"P21_CF_V8_RELEASE.pdf")
+        self.assertEqual(len(originals),self.base_count+1)
+        self.assertEqual(len(meta),self.base_count+1)
+        self.assertEqual(meta[self.code]["pdf_filename"],f"{self.code}_CF_V8_RELEASE.pdf")
         scholar.build(self.site,self.dist,repo_root=self.repo,fetch_pdfs=False)
-        target=self.dist/"publications/P21"
+        target=self.dist/"publications"/self.code
         page=(target/"index.html").read_text(encoding="utf-8")
         self.assertIn("999999921",page)
         self.assertIn('name="citation_pdf_url"',page)
         self.assertIn('<math',page)
         self.assertIn("0009-0000-4230-4414",page)
-        self.assertEqual((target/"P21_CF_V8_RELEASE.pdf").read_bytes(),self.pdf)
+        self.assertEqual((target/f"{self.code}_CF_V8_RELEASE.pdf").read_bytes(),self.pdf)
         self.assertEqual((self.dist/"publications/index.html").read_text(encoding="utf-8").count(
-            'class="scholar-list-item"'),19)
-        self.assertIn("19 research preprints",(self.dist/"publications/index.html").read_text(encoding="utf-8"))
-        self.assertEqual((self.dist/"author/index.html").read_text(encoding="utf-8").count("<li><a"),19)
+            'class="scholar-list-item"'),self.base_count+1)
+        self.assertIn(str(self.base_count+1)+" research preprints",(self.dist/"publications/index.html").read_text(encoding="utf-8"))
+        self.assertEqual((self.dist/"author/index.html").read_text(encoding="utf-8").count("<li><a"),self.base_count+1)
         sitemap=(self.dist/"sitemap.xml").read_text(encoding="utf-8")
-        self.assertEqual(sitemap.count("<loc>"),24)
-        self.assertIn("publications/P21/",sitemap)
+        self.assertEqual(sitemap.count("<loc>"),self.base_count+6)
+        self.assertIn("publications/"+self.code+"/",sitemap)
 
     def test_new_news_automatically_enters_four_latest_and_full_archive(self):
         e=news_builder.entries(self.site)
-        self.assertEqual(len(e),7)
+        self.assertEqual(len(e),self.base_news_count+1)
         self.assertEqual(e[0]["source"],"https://doi.org/"+self.version)
         news_builder.build(self.site)
         home=(self.site/"index.html").read_text(encoding="utf-8")
         full=(self.site/"news.html").read_text(encoding="utf-8")
         first=home.split('id="news-items" aria-live="polite">')[1].split('class="news-all-link-wrap"')[0]
         self.assertEqual(first.count('class="news-item"'),4)
-        self.assertIn("OFFLINE P21 synthetic test only",first)
-        self.assertIn("ТЕСТ P21 — не публикация",first)
-        self.assertEqual(full.count('class="news-item"'),7)
+        self.assertIn(f"OFFLINE {self.code} synthetic test only",first)
+        self.assertIn(f"ТЕСТ {self.code} — не публикация",first)
+        self.assertEqual(full.count('class="news-item"'),self.base_news_count+1)
         self.assertIn("2026-09-28",full)
         self.assertIn('href="https://doi.org/'+self.version+'"',home)
         self.assertNotIn("github.com/alexmartinevski/CF-Dependence-Public/pull",full)
@@ -138,29 +147,29 @@ class SyntheticNextPaperTests(unittest.TestCase):
         prior=self.site.parent/"previous"
         prior.mkdir()
         cache=self.site.parent/"cached"
-        pdfname="P21_CF_V8_RELEASE.pdf"
+        pdfname=f"{self.code}_CF_V8_RELEASE.pdf"
         def make_tar(pdf,filename):
             with tarfile.open(prior/"artifact.tar","w") as tar:
                 obj=tarfile.TarInfo(filename)
                 obj.size=len(pdf)
                 tar.addfile(obj,io.BytesIO(pdf))
-        make_tar(b"%PDF-"+b"x"*(len(self.pdf)-5),"./publications/P21/"+pdfname)
+        make_tar(b"%PDF-"+b"x"*(len(self.pdf)-5),"./publications/"+self.code+"/"+pdfname)
         self.assertEqual(seed_builder.seed(self.site,prior,cache),0)
-        self.assertFalse((cache/"P21"/pdfname).exists())
-        make_tar(self.pdf,"../../publications/P21/"+pdfname)
+        self.assertFalse((cache/self.code/pdfname).exists())
+        make_tar(self.pdf,"../../publications/"+self.code+"/"+pdfname)
         self.assertEqual(seed_builder.seed(self.site,prior,cache),0)
-        make_tar(self.pdf,"./publications/P21/"+pdfname)
+        make_tar(self.pdf,"./publications/"+self.code+"/"+pdfname)
         self.assertEqual(seed_builder.seed(self.site,prior,cache),1)
         scholar.build(self.site,self.dist,repo_root=self.site.parent/"nothing",
                       fetch_pdfs=False,cache_dir=cache)
-        page=(self.dist/"publications/P21/index.html").read_text(encoding="utf-8")
+        page=(self.dist/"publications"/self.code/"index.html").read_text(encoding="utf-8")
         self.assertIn('name="citation_pdf_url"',page)
-        self.assertEqual((self.dist/"publications/P21"/pdfname).read_bytes(),self.pdf)
-        (cache/"P21"/pdfname).write_bytes(b"garbage")
+        self.assertEqual((self.dist/"publications"/self.code/pdfname).read_bytes(),self.pdf)
+        (cache/self.code/pdfname).write_bytes(b"garbage")
         self.assertFalse(scholar.file_signature(cache/"P21"/pdfname,
-                                                 scholar.load_data(self.site)[1]["P21"]))
+                                                 scholar.load_data(self.site)[1][self.code]))
 
-    def test_unpublished_or_unverified_19th_record_fails_closed(self):
+    def test_unpublished_or_unverified_next_record_fails_closed(self):
         doc=json.loads((self.site/"data/papers.json").read_text(encoding="utf-8"))
         doc["papers"][-1]["status"]="draft"
         (self.site/"data/papers.json").write_text(json.dumps(doc),encoding="utf-8")
