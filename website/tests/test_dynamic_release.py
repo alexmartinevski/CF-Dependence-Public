@@ -166,7 +166,7 @@ class SyntheticNextPaperTests(unittest.TestCase):
         self.assertIn('name="citation_pdf_url"',page)
         self.assertEqual((self.dist/"publications"/self.code/pdfname).read_bytes(),self.pdf)
         (cache/self.code/pdfname).write_bytes(b"garbage")
-        self.assertFalse(scholar.file_signature(cache/"P21"/pdfname,
+        self.assertFalse(scholar.file_signature(cache/self.code/pdfname,
                                                  scholar.load_data(self.site)[1][self.code]))
 
     def test_unpublished_or_unverified_next_record_fails_closed(self):
