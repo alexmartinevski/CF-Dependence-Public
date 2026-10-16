@@ -587,9 +587,13 @@ function story(date, title, summary, source, kind="publication_release") {
 }
 function allUpdates() {
   const items=[...news.map(x=>({date:x.date,title:x.title[language],summary:x.summary[language],source:x.source||null,kind:x.kind||"publication_release"}))];
+  const listed=new Set(items.map(item=>item.source)); // A verified version is announced once.
   for (const p of papers) for (const c of p.changes||[]) {
     if (!DOI.test(c.doi) || !c.date) continue;
-    items.push({date:c.date,title:p.code+" · "+p.title,summary:c.summary[language]||c.summary.en,source:"https://doi.org/"+c.doi});
+    const source="https://doi.org/"+c.doi;
+    if (listed.has(source)) continue;
+    listed.add(source);
+    items.push({date:c.date,title:p.code+" · "+p.title,summary:c.summary[language]||c.summary.en,source});
   }
   return items.sort((a,b)=>b.date.localeCompare(a.date));
 }
