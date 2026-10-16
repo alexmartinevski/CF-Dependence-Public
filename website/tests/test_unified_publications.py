@@ -124,9 +124,12 @@ class CanonicalCatalogueTests(unittest.TestCase):
         # Synthetic local record only: no Zenodo write or public catalogue edit.
         doc = copy.deepcopy(self.doc)
         pub = doc["papers"]["P12"]["publication"]
+        synthetic_id = 1000000 + max(
+            r["record_id"] for p in doc["papers"].values()
+            for r in p["publication"]["releases"])
         pub["releases"].append({
-            "record_id": 29999999,
-            "version_doi": "10.5281/zenodo.29999999",
+            "record_id": synthetic_id,
+            "version_doi": "10.5281/zenodo." + str(synthetic_id),
             "published_on": "2026-10-16",
             "license": "cc-by-4.0",
             "pdf": {
@@ -136,50 +139,56 @@ class CanonicalCatalogueTests(unittest.TestCase):
             },
         })
         pub["last_version_on"] = "2026-10-16"
-        pub["version_index"] = 2
+        pub["version_index"] = len(pub["releases"])
         pub["version_index_evidence"] = "Synthetic unit-test lineage"
         catalog, parts = publications.project(doc)
         p12 = next(p for p in catalog["papers"] if p["code"] == "P12")
-        self.assertEqual(p12["version_doi"], "10.5281/zenodo.29999999")
+        self.assertEqual(p12["version_doi"],
+                         "10.5281/zenodo." + str(synthetic_id))
         self.assertEqual(p12["first_published_on"], "2026-10-14")
         self.assertEqual(p12["last_version_on"], "2026-10-16")
         self.assertEqual(pub["releases"][0]["pdf"]["md5"],
                          "1590c32efb3165b4dabfe9daf856aede")
-        self.assertEqual(len(parts), 3)
+        self.assertEqual(len(parts), (len(self.doc["papers"]) + 5) // 6)
         # Historical PDF checksums remain evidence and must still be valid.
         pub["releases"][0]["pdf"]["md5"] = "bad"
         with self.assertRaises(ValueError):
             publications.project(doc)
 
-    def test_synthetic_nineteenth_paper_auto_adds_fourth_shard(self):
+    def test_synthetic_next_paper_scales_shards(self):
+        # Use a currently unused P-ID so this test remains valid after P21.
         doc = copy.deepcopy(self.doc)
+        code = next(f"P{i:02d}" for i in range(21, 100)
+                    if f"P{i:02d}" not in doc["papers"])
+        n = len(doc["papers"])
         fake = copy.deepcopy(doc["papers"]["P20"])
-        fake["identity"]["title"] = "Test-only synthetic nineteenth article"
-        fake["science"]["results_source_record_id"] = 29999998
+        rec_id, concept_id = 90000000 + n, 80000000 + n
+        fake["identity"]["title"] = "Test-only synthetic new publication"
+        fake["science"]["results_source_record_id"] = rec_id
         fake["publication"].update({
-            "concept_doi": "10.5281/zenodo.29999997",
+            "concept_doi": "10.5281/zenodo." + str(concept_id),
             "first_published_on": "2026-10-16",
             "last_version_on": "2026-10-16",
             "version_index": 1,
             "version_index_evidence": "Synthetic unit-test first version",
             "releases": [{
-                "record_id": 29999998,
-                "version_doi": "10.5281/zenodo.29999998",
+                "record_id": rec_id,
+                "version_doi": "10.5281/zenodo." + str(rec_id),
                 "published_on": "2026-10-16",
                 "license": "cc-by-4.0",
                 "pdf": {
-                    "filename": "P21_CF_V8_R1.pdf",
+                    "filename": code + "_CF_V8_R1.pdf",
                     "md5": "b" * 32,
                     "size_bytes": 5678,
                 },
             }],
         })
-        doc["papers"]["P21"] = fake
+        doc["papers"][code] = fake
         catalog, parts = publications.project(doc)
-        self.assertEqual(len(catalog["papers"]), 19)
-        self.assertEqual(len(parts), 4)
-        self.assertIn("P21", parts[-1]["papers"])
-        self.assertNotIn("P21", self.doc["papers"])  # never alter source
+        self.assertEqual(len(catalog["papers"]), n + 1)
+        self.assertEqual(len(parts), (n + 1 + 5) // 6)
+        self.assertIn(code, parts[-1]["papers"])
+        self.assertNotIn(code, self.doc["papers"])  # never alter source
 
     def test_json_schema_documents_stored_date_contract(self):
         schema = json.loads((ROOT / "data/publications.schema.json")
