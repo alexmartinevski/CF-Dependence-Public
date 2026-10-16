@@ -384,8 +384,8 @@ class PublicSiteTests(unittest.TestCase):
         script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
         marker='<article class="achievement-preview-item" data-featured-result="P04">'
         self.assertEqual(home.count(marker),1)
-        self.assertLess(home.index(marker),
-                        home.index('class="achievement-preview-item"',home.index(marker)+1))
+        self.assertEqual(home.index(marker),
+                         home.index('<article class="achievement-preview-item"'))
         feature=home.split(marker,1)[1].split("</article>",1)[0]
         self.assertIn("n ≥ 4",feature)
         self.assertIn("v<sub>n</sub><sup>GHZ,XY</sup>",feature)
