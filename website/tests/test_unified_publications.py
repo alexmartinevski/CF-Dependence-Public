@@ -120,6 +120,67 @@ class CanonicalCatalogueTests(unittest.TestCase):
         self.assertEqual(self.doc["papers"]["P12"]["publication"]
                          ["first_published_on"], "2026-10-14")
 
+    def test_new_version_retains_previous_verified_pdf(self):
+        # Synthetic local record only: no Zenodo write or public catalogue edit.
+        doc = copy.deepcopy(self.doc)
+        pub = doc["papers"]["P12"]["publication"]
+        pub["releases"].append({
+            "record_id": 29999999,
+            "version_doi": "10.5281/zenodo.29999999",
+            "published_on": "2026-10-16",
+            "license": "cc-by-4.0",
+            "pdf": {
+                "filename": "P12_CF_V8_R1.pdf",
+                "md5": "a" * 32,
+                "size_bytes": 4567,
+            },
+        })
+        pub["last_version_on"] = "2026-10-16"
+        pub["version_index"] = 2
+        pub["version_index_evidence"] = "Synthetic unit-test lineage"
+        catalog, parts = publications.project(doc)
+        p12 = next(p for p in catalog["papers"] if p["code"] == "P12")
+        self.assertEqual(p12["version_doi"], "10.5281/zenodo.29999999")
+        self.assertEqual(p12["first_published_on"], "2026-10-14")
+        self.assertEqual(p12["last_version_on"], "2026-10-16")
+        self.assertEqual(pub["releases"][0]["pdf"]["md5"],
+                         "1590c32efb3165b4dabfe9daf856aede")
+        self.assertEqual(len(parts), 3)
+        # Historical PDF checksums remain evidence and must still be valid.
+        pub["releases"][0]["pdf"]["md5"] = "bad"
+        with self.assertRaises(ValueError):
+            publications.project(doc)
+
+    def test_synthetic_nineteenth_paper_auto_adds_fourth_shard(self):
+        doc = copy.deepcopy(self.doc)
+        fake = copy.deepcopy(doc["papers"]["P20"])
+        fake["identity"]["title"] = "Test-only synthetic nineteenth article"
+        fake["science"]["results_source_record_id"] = 29999998
+        fake["publication"].update({
+            "concept_doi": "10.5281/zenodo.29999997",
+            "first_published_on": "2026-10-16",
+            "last_version_on": "2026-10-16",
+            "version_index": 1,
+            "version_index_evidence": "Synthetic unit-test first version",
+            "releases": [{
+                "record_id": 29999998,
+                "version_doi": "10.5281/zenodo.29999998",
+                "published_on": "2026-10-16",
+                "license": "cc-by-4.0",
+                "pdf": {
+                    "filename": "P21_CF_V8_R1.pdf",
+                    "md5": "b" * 32,
+                    "size_bytes": 5678,
+                },
+            }],
+        })
+        doc["papers"]["P21"] = fake
+        catalog, parts = publications.project(doc)
+        self.assertEqual(len(catalog["papers"]), 19)
+        self.assertEqual(len(parts), 4)
+        self.assertIn("P21", parts[-1]["papers"])
+        self.assertNotIn("P21", self.doc["papers"])  # never alter source
+
     def test_json_schema_documents_stored_date_contract(self):
         schema = json.loads((ROOT / "data/publications.schema.json")
                             .read_text(encoding="utf-8"))
