@@ -1,3 +1,17 @@
+# Published site catalogue — release of 16 October 2026
+
+The authoritative **`website/data/publications.json` v3** now records **21 published papers**: the original 18 papers, plus P21, P22 and P27. P12 is updated in place with its second published Zenodo version. Four new scientific publication events are recorded in `website/data/news.json`; the homepage latest-four cards, author bibliography, individual static HTML/MathML pages and sitemap are build-generated.
+
+All four records were independently verified with unauthenticated public `GET /api/records/<id>` (HTTP 200, status published, correct Concept/Version DOI, title, author ORCID, release dates, one PDF with matching size/MD5):
+- P12: version 10.5281/zenodo.23406562, published-on field **2026-10-15**, original version 10.5281/zenodo.23355669 dated 2026-10-14; one latest PDF.
+- P21: version 10.5281/zenodo.23406541, date **2026-10-16**.
+- P22: version 10.5281/zenodo.23406545, date **2026-10-16**.
+- P27: version 10.5281/zenodo.23406555, date **2026-10-16**.
+
+The first and last publication dates are explicit **stored** curated fields, checked against the published release history. All 21 approved scholarly abstracts and 63 evidence-labeled scientific results are in one version-controlled canonical source; the old papers.json and scholarly shards are generated and not separately edited. Older notes below are historical snapshots and their old count of 18 is superseded by this release.
+
+---
+
 # Canonical publication catalogue v3 — 16 October 2026
 
 Authoritative edited data is now **website/data/publications.json** (one file for all published papers). First/last publication dates are stored fields and checked against release history, never inferred. CI generates untracked compatibility views `data/papers.json` and `data/scholarly/part-*.json` before validation and deployment. Existing sections below describe earlier R1/R2 history and must not be followed for manually editing those views. See [PUBLICATIONS_V3_MIGRATION_RU.md](PUBLICATIONS_V3_MIGRATION_RU.md).
