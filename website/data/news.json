@@ -3,6 +3,19 @@
   "entries": [
     {
       "date": "2026-10-16",
+      "kind": "research_highlight",
+      "source": "https://doi.org/10.5281/zenodo.23356092",
+      "title": {
+        "en": "P04: exact planar GHZ locality threshold for every n ≥ 4",
+        "ru": "P04: точный порог планарной GHZ-нелокальности для всех n ≥ 4"
+      },
+      "summary": {
+        "en": "Published P04 preprint reports a closed-form threshold for XY-plane full correlations with arbitrary finite settings (v₄ = 34/105). It addresses a gap left by earlier bounds; n = 3 remains open. Independent proof review is invited.",
+        "ru": "В опубликованной P04 представлена точная формула для полных GHZ-корреляций в плоскости XY при произвольном конечном числе настроек (v₄ = 34/105). Ранее были известны оценки; случай n = 3 остаётся открытым. Приглашаем к независимой проверке доказательства."
+      }
+    },
+    {
+      "date": "2026-10-16",
       "kind": "publication_release",
       "source": "https://doi.org/10.5281/zenodo.23406541",
       "title": {
