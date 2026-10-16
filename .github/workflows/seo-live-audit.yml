@@ -1,0 +1,44 @@
+name: CF Dependence live SEO audit
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["CF Dependence public site"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cf-seo-live-audit
+  cancel-in-progress: false
+
+jobs:
+  live_crawl:
+    name: Read-only DNS HTTPS Scholar crawl checks
+    if: >-
+      ${{ github.event_name == 'workflow_dispatch' ||
+          (github.event.workflow_run.conclusion == 'success' &&
+           github.event.workflow_run.head_branch == 'main' &&
+           github.event.workflow_run.event != 'pull_request') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline SEO verifier self-test
+        run: python3 website/tools/verify_live_crawl.py --self-test
+      - name: Fetch live HTTPS site, sitemap and scholarly PDFs (read only)
+        run: python3 website/tools/verify_live_crawl.py --report _seo-live-audit/report.json
+      - name: Retain audit report (including DNS/HTTP failures)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-live-audit-${{ github.run_id }}
+          path: _seo-live-audit/report.json
+          retention-days: 30
+          if-no-files-found: warn
