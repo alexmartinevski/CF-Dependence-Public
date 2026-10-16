@@ -1,7 +1,7 @@
 {
   "schema": "cf-publications/v3",
   "source_repo": "alexmartinevski/CF-Dependence-Public",
-  "curated_on": "2026-10-15",
+  "curated_on": "2026-10-16",
   "editorial_policy": {
     "source": "Claims summarized from published manuscript snapshots, not independently re-proved",
     "latest_reconciliation": "Keep source DOI fixed until highlights are checked against a newer public version",
@@ -672,56 +672,67 @@
         "area": "harmonic",
         "topics": [
           "finite groups",
-          "harmonic analysis",
-          "conjugacy classes",
-          "translated characters"
+          "non-Abelian harmonic analysis",
+          "translated conjugacy-class portraits",
+          "stable recovery"
         ],
         "keywords": [
           "Non-Abelian harmonic analysis",
+          "Translated conjugacy-class portraits",
           "Dihedral groups",
-          "Conjugacy-class tomography",
-          "Translated class portraits",
-          "Exact inverse reconstruction",
-          "Matrix coefficient spanning",
-          "Optimal experiment design",
+          "Generalized dihedral groups",
+          "Finite-group inverse problems",
+          "Fourier matrix spanning",
+          "Minimal observation designs",
+          "Exact Gram spectra",
           "Spectral conditioning",
           "Logarithmic redundancy",
-          "Finite group representations"
+          "Discrete tomography",
+          "Spectral-node reconstruction"
         ]
       },
       "science": {
         "summary": {
-          "en": "Four translated class portraits recover dihedral laws exactly; stable nonadaptive designs need Θ(log m) portraits.",
-          "ru": "Четыре сдвинутых портрета восстанавливают законы на диэдральных группах; для устойчивости нужно Θ(log m) портретов."
+          "en": "Four translated class portraits suffice and are minimal for dihedral-law recovery; exact conditioning, sharp logarithmic redundancy, and generalized-dihedral stability are established.",
+          "ru": "Четыре сдвинутых портрета минимальны для восстановления законов на диэдральных группах; установлены точная обусловленность, логарифмическая избыточность и обобщения."
         },
-        "abstract_html": "<p>Scalar characters on a non-Abelian group observe only the conjugacy-class quotient of a probability law. We investigate whether complete translated conjugacy-class portraits recover the original law and how many translations are needed for stable inversion. For every dihedral group <span class=\"math inline\">\\(D_{2m}\\)</span>, <span class=\"math inline\">\\(m\\ge3\\)</span>, the four portraits translated by <span class=\"math inline\">\\(1,r,s,rs\\)</span> recover every law and are minimal. Their exact design-normalized smallest Gram eigenvalue is <span class=\"math inline\">\\(\\frac12(1-\\cos(\\pi/L))\\)</span>, where <span class=\"math inline\">\\(L=m/\\gcd(m,2)\\)</span>, demonstrating that a minimal exact design becomes ill-conditioned as <span class=\"math inline\">\\(m\\)</span> increases.</p>\n<p>For fixed nonadaptive equally weighted full-portrait designs, we prove that a stable, dimension-independent condition number requires and can be achieved with <span class=\"math inline\">\\(\\Theta(\\log m)\\)</span> portraits. A general representation-theoretic spanning criterion explains which shifts identify a law and separates scalar-class information from full matrix Fourier observations. That general criterion follows standard finite-group harmonic analysis; the emphasis here is on minimal dihedral recovery, exact conditioning and optimal logarithmic redundancy. A portrait means a complete conjugacy-class distribution, not a single character evaluation or empirical sample.</p>",
+        "abstract_html": "<p>A scalar character does not observe a law on a non-Abelian group; it observes its conjugacy-class quotient. We ask how translated copies of that quotient can recover the original law. For a finite group and a set of left shifts <span class=\"math inline\">\\(A\\)</span>, the complete translated class portraits are faithful exactly when, for every irreducible representation <span class=\"math inline\">\\(\\pi\\)</span>, the matrices <span class=\"math inline\">\\(\\{\\pi(a):a\\in A\\}\\)</span> span <span class=\"math inline\">\\(\\operatorname{End}(V_\\pi)\\)</span>. This turns recovery into a finite matrix-spanning problem and gives the lower bound <span class=\"math inline\">\\(|A|\\ge \\max_\\pi(\\dim V_\\pi)^2\\)</span>.</p>\n<p>For the dihedral group <span class=\"math inline\">\\(D_{2m}\\)</span>, <span class=\"math inline\">\\(m\\ge3\\)</span>, the four shifts <span class=\"math inline\">\\(1,r,s,rs\\)</span> attain that lower bound. They recover every law and are minimal. In a natural class-weighted norm we compute the exact smallest Gram eigenvalue (the squared singular value): with <span class=\"math inline\">\\(L=m/\\gcd(m,2)\\)</span>, the raw four-portrait Gram minimum is <span class=\"math inline\">\\(1-\\cos(\\pi/L)\\)</span>, while the design-normalized value is half of it. Thus exact minimal recovery becomes linearly ill-conditioned in <span class=\"math inline\">\\(m\\)</span>. Balanced random families of <span class=\"math inline\">\\(O(\\log m)\\)</span> complete portraits have dimension-free conditioning, and a simultaneous-approximation argument proves that <span class=\"math inline\">\\(\\Theta(\\log m)\\)</span> portraits are the matching order for stable nonadaptive equally weighted designs, by reduction to classical approximation bounds. Throughout, a portrait is a full conjugacy-class law, not one scalar query or one empirical sample. All minimal four-portrait dihedral designs are classified and have the same conditioning, so improving that conditioning requires more than four portraits.</p>\n<p>For generalized dihedral groups over odd-order finite Abelian groups, we further characterize minimum-cardinality translated class portraits by affine generation, compute their full Gram spectrum, and identify a sharp worst-case stability bound for minimal designs, and the optimal asymptotic stability order <span class=\"math inline\">\\(p^{-3}\\)</span> for the non-homocyclic family <span class=\"math inline\">\\(C_p\\oplus C_{p^2}\\)</span>. Along primes <span class=\"math inline\">\\(p\\equiv1\\pmod3\\)</span>, the normalized leading coefficient is <span class=\"math inline\">\\(2\\pi^2/3\\)</span>. We also give an eight-portrait recovery scheme with two unknown spectral nodes on <span class=\"math inline\">\\(\\operatorname{Dih}(\\mathbb F_3^2)\\)</span>, without asserting global heterogeneous-design optimality or an extension to other odd primes.</p>",
         "results": [
           {
-            "en": "For the dihedral group D₂ₘ, four shifts are necessary and sufficient for exact recovery, but their smallest Gram eigenvalue decays with m; stable nonadaptive designs need Θ(log m) shifts.",
-            "ru": "Для диэдральной группы D₂ₘ четырёх сдвигов необходимо и достаточно для точного восстановления, но наименьшее собственное значение матрицы Грама убывает с m; устойчивым схемам нужно Θ(log m) сдвигов.",
-            "evidence": "abstract"
+            "en": "For every dihedral group D₂ₘ (m ≥ 3), four fixed complete translated class portraits at 1, r, s, rs recover every probability law; three or fewer never suffice.",
+            "ru": "Для любой диэдральной группы D₂ₘ (m ≥ 3) четыре полных сдвинутых портрета при 1, r, s, rs восстанавливают любое распределение; трёх или меньше недостаточно.",
+            "evidence": "thm:dihedral-exact"
           },
           {
-            "en": "Translated full conjugacy-class portraits recover every law exactly when the representation matrices of the chosen shifts span each irreducible matrix algebra.",
-            "ru": "Полные сдвинутые портреты классов сопряжённости восстанавливают любой закон тогда и только тогда, когда матрицы выбранных сдвигов порождают все пространства матриц неприводимых представлений.",
-            "evidence": "abstract"
+            "en": "For fixed nonadaptive, equally weighted full translated-class designs on D₂ₘ, the minimum number of portraits needed for a prescribed uniform stability level is Θ(log m), with matching upper and lower bounds.",
+            "ru": "Для фиксированных неадаптивных равновесных схем из полных сдвинутых портретов на D₂ₘ минимальное число наблюдений для заданной равномерной устойчивости имеет точный порядок Θ(log m): доказаны верхняя и нижняя оценки.",
+            "evidence": "cor:log-order"
           },
           {
-            "en": "On non-Abelian compact groups, scalar characters observe only conjugacy-class information; vanishing scalar interaction detects independence only of the conjugacy-class quotients.",
-            "ru": "На неабелевых компактных группах скалярные характеры видят лишь классы сопряжённости: нулевое скалярное взаимодействие определяет независимость только соответствующих фактор-наблюдений.",
-            "evidence": "thm:conjugacy"
+            "en": "For generalized dihedral groups based on H = Cₚ ⊕ Cₚ², optimally conditioned six-portrait designs have best squared singular value of order p⁻³; along primes p ≡ 1 (mod 3), the normalized leading coefficient is 2π²/3.",
+            "ru": "Для обобщённых диэдральных групп над H = Cₚ ⊕ Cₚ² оптимальная шестипортретная схема имеет квадрат наименьшего сингулярного значения порядка p⁻³; при p ≡ 1 (mod 3) ведущий коэффициент — 2π²/3.",
+            "evidence": "thm:cfv7_p12_optimal_order"
           }
         ],
-        "results_source_record_id": 23355669
+        "results_source_record_id": 23406562
       },
       "publication": {
         "status": "published",
         "concept_doi": "10.5281/zenodo.23355668",
         "first_published_on": "2026-10-14",
-        "last_version_on": "2026-10-14",
-        "version_index": 1,
-        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
-        "changes": [],
+        "last_version_on": "2026-10-15",
+        "version_index": 2,
+        "version_index_evidence": "Two publicly verified Zenodo version DOIs (23355669 and 23406562) in the same concept lineage, each with an explicit publication date",
+        "changes": [
+          {
+            "date": "2026-10-15",
+            "doi": "10.5281/zenodo.23406562",
+            "summary": {
+              "en": "New version extends exact translated-class recovery to generalized dihedral groups, sharp six-portrait stability on Cₚ ⊕ Cₚ², and spectral-node reconstruction.",
+              "ru": "Новая версия расширяет точное восстановление на обобщённые диэдральные группы, устанавливает точную устойчивость шести портретов на Cₚ ⊕ Cₚ² и исследует спектральные узлы."
+            }
+          }
+        ],
         "releases": [
           {
             "record_id": 23355669,
@@ -732,6 +743,17 @@
               "filename": "P12_CF_V6_S8.pdf",
               "md5": "1590c32efb3165b4dabfe9daf856aede",
               "size_bytes": 485042
+            }
+          },
+          {
+            "record_id": 23406562,
+            "version_doi": "10.5281/zenodo.23406562",
+            "published_on": "2026-10-15",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P12_CF_V7_R40.pdf",
+              "md5": "5e34c689836a76c34d6c94541988f985",
+              "size_bytes": 563225
             }
           }
         ]
@@ -1300,6 +1322,222 @@
               "filename": "P20_CF_V6_S8.pdf",
               "md5": "3c9578ff8294fbac1557ff895286648f",
               "size_bytes": 543483
+            }
+          }
+        ]
+      }
+    },
+    "P21": {
+      "identity": {
+        "title": "Intrinsic Fourier Geometry of Gaussian Laws",
+        "area": "harmonic",
+        "topics": [
+          "Gaussian measures",
+          "characteristic functions",
+          "Finsler geodesics",
+          "intrinsic metrics"
+        ],
+        "keywords": [
+          "Gaussian characteristic functions",
+          "Intrinsic Fourier length metric",
+          "Finsler geometry",
+          "Gaussian geodesics",
+          "Location-scale families",
+          "Location-covariance geometry",
+          "Krylov subspace reduction",
+          "Spectral reduction",
+          "Thompson covariance metric",
+          "Geodesic nonuniqueness",
+          "Fixed-mean Gaussian fibres"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Exact intrinsic Fourier geodesics for scalar Gaussian location–scale laws, with spectral/Krylov reductions and fixed-mean fibre distances in all dimensions.",
+          "ru": "Точные геодезические внутренней Фурье-метрики для одномерных гауссовых законов, спектральная редукция Крылова и расстояния до слоёв с фиксированным средним."
+        },
+        "abstract_html": "<p>On the manifold of nondegenerate Gaussian laws we study the intrinsic length metric induced by the supremum norm of differences of characteristic functions. The Fourier embedding gives a reversible location–covariance tangent norm. In one dimension, its radial maximization yields an explicit Finsler model and globally minimizing location–scale geodesics, including a closed integral expression for equal endpoint variances and a unique scalar equation for general endpoints. The equal-variance distance is strictly increasing and concave and has logarithmic growth with an explicit constant. In arbitrary dimension, a Gaussian block carrying both mean and covariance variation combines with a covariance-only block by an exact maximum of intrinsic distances. This gives a spectral/Krylov reduction and precise formulas for relative-covariance eigenvector classes. A reflection argument also determines the exact distance to the set of Gaussians with prescribed terminal mean and freely varying terminal covariance. We establish existence and nonuniqueness results for minimizers. The direct Fourier metric, the intrinsic metric, and the classical Thompson covariance geometry are kept distinct.</p>",
+        "results": [
+          {
+            "en": "For scalar Gaussian endpoints of equal variance, the intrinsic Fourier distance has an exact integral formula and a unique globally minimizing location–scale geodesic.",
+            "ru": "Для одномерных гауссовых законов с равными конечными дисперсиями получены точная интегральная формула внутреннего Фурье-расстояния и единственная глобально минимизирующая геодезическая.",
+            "evidence": "thm:equal"
+          },
+          {
+            "en": "For arbitrary multivariate Gaussian endpoints, the active location–covariance motion reduces to the Krylov subspace generated by the whitened mean displacement and relative covariance; the orthogonal covariance-only block contributes through an exact maximum with a Thompson-metric term.",
+            "ru": "Для произвольной пары многомерных гауссовых законов совместное изменение среднего и ковариации сводится к подпространству Крылова; ортогональный ковариационный блок входит через точный максимум с членом метрики Томпсона.",
+            "evidence": "thm:krylov"
+          },
+          {
+            "en": "The exact intrinsic distance from N(μ,A) to the set of nondegenerate Gaussians with prescribed mean ν and arbitrary terminal covariance is ½ 𝔡(2‖A⁻¹ᐟ²(ν−μ)‖); the infimum is attained.",
+            "ru": "Точное расстояние от N(μ,A) до множества невырожденных гауссовых законов с заданным конечным средним ν и произвольной ковариацией равно ½ 𝔡(2‖A⁻¹ᐟ²(ν−μ)‖); инфимум достигается.",
+            "evidence": "thm:fibre"
+          }
+        ],
+        "results_source_record_id": 23406541
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23406540",
+        "first_published_on": "2026-10-16",
+        "last_version_on": "2026-10-16",
+        "version_index": 1,
+        "version_index_evidence": "First published version confirmed by unauthenticated Zenodo public records API; published DOI and record/files verified",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23406541,
+            "version_doi": "10.5281/zenodo.23406541",
+            "published_on": "2026-10-16",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P21_CF_V7_R40.pdf",
+              "md5": "fe5af3670f5c90739598a1a5e593c99e",
+              "size_bytes": 396375
+            }
+          }
+        ]
+      }
+    },
+    "P22": {
+      "identity": {
+        "title": "The Chebyshev–Monomial Oscillation Gap: Contact Geometry, Level Sets, and Gaussian Crossovers",
+        "area": "algebra",
+        "topics": [
+          "Chebyshev polynomials",
+          "oscillatory optimization",
+          "contact geometry",
+          "Gaussian limits"
+        ],
+        "keywords": [
+          "Chebyshev polynomials",
+          "Prescribed monomial difference",
+          "Uniform oscillation gap",
+          "Extremal contact geometry",
+          "Unique maximizers",
+          "Continuous exponent-frequency surface",
+          "Inverse level sets",
+          "Global phase threshold",
+          "Frequency curvature",
+          "Gaussian crossover asymptotics",
+          "Quartic relative transition"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Unique contact maximizers and exact phase/level geometry for Chebyshev–monomial gaps, including uniform Gaussian asymptotics and a quartic relative transition.",
+          "ru": "Единственные точки экстремального контакта и точная геометрия фаз и уровней для разности Чебышёва и монома, включая равномерную гауссову асимптотику и четвертичный переход."
+        },
+        "abstract_html": "<p>We study the uniform norm of a prescribed Chebyshev polynomial against a monomial, <span class=\"math inline\">\\(\\|T_m-x^d\\|_{\\infty,[-1,1]}\\)</span>, for integers <span class=\"math inline\">\\(d\\ge m\\ge3\\)</span> of matching parity. The continuous contact surface <span class=\"math inline\">\\(\\mathcal{C}(p,q)=\\max_{0\\le\\theta\\le\\pi/2} |\\cos^p\\theta-\\cos(q\\theta)|\\)</span> separates the power of the envelope from the oscillation frequency. The global superunit maximum is carried by one nondegenerate contact. We use that contact to describe the inverse exponent and frequency at every norm level above one, and to obtain the exact induced Hessian. A naturally defined threshold <span class=\"math inline\">\\(p_{\\mathrm c}\\in(1,2)\\)</span> separates a strictly concave frequency section from one having exactly one simple inflection. The integer ladder has an additional first-wave stationary point precisely when <span class=\"math inline\">\\(d&gt;m^2\\)</span>; one first-wave monotonicity lemma explains this threshold without separate numerical cutoffs. Gaussian contact asymptotics admit finite-parameter corrections, a sharp worst-case first-order constant, and a quartic relative transition; inverse level curves have an explicit further coefficient. The mechanisms are analytic, with no numerical or interval certificate entering any proof. The diagonal case and the ladder polynomial are credited to earlier CF companion manuscripts; classical polynomial approximation and mod-Gaussian results account for the underlying square-root and quartic scales. Assertions of global mathematical priority are not made here.</p>",
+        "results": [
+          {
+            "en": "For every p > 0 and q > 2, the Chebyshev–monomial contact profile has exactly one nondegenerate first-negative-half-wave maximum, characterized by an explicit stationary equation; the optimizer and optimum vary analytically with both parameters.",
+            "ru": "При любых p > 0 и q > 2 профиль разности Чебышёва и степени имеет единственный невырожденный максимум на первой отрицательной полуволне; его определяет явное стационарное уравнение, а оптимизатор и максимум аналитически зависят от параметров.",
+            "evidence": "thm:unique"
+          },
+          {
+            "en": "A uniquely defined global critical frequency q_c(p) separates precisely the parameter regimes where the supremum contact gap is below, equal to, or above one.",
+            "ru": "Однозначно определённая критическая частота q_c(p) точно разделяет области параметров, где супремальный дефект меньше, равен или больше единицы.",
+            "evidence": "thm:phase"
+          },
+          {
+            "en": "As p grows, the contact gap admits a Gaussian profile F(q/√p) with a uniform expansion through order p⁻² for all q > 2.",
+            "ru": "При росте p дефект контакта описывается гауссовым профилем F(q/√p) с равномерным по всем q > 2 разложением до p⁻².",
+            "evidence": "thm:uniform"
+          }
+        ],
+        "results_source_record_id": 23406545
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23406544",
+        "first_published_on": "2026-10-16",
+        "last_version_on": "2026-10-16",
+        "version_index": 1,
+        "version_index_evidence": "First published version confirmed by unauthenticated Zenodo public records API; published DOI and record/files verified",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23406545,
+            "version_doi": "10.5281/zenodo.23406545",
+            "published_on": "2026-10-16",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P22_CF_V7_R40.pdf",
+              "md5": "a5f5ce0aec29faf3660ddca7bb171f96",
+              "size_bytes": 433198
+            }
+          }
+        ]
+      }
+    },
+    "P27": {
+      "identity": {
+        "title": "Gaussian Free-Shear Geodesics and Fourier Contact Thresholds",
+        "area": "harmonic",
+        "topics": [
+          "Gaussian geodesics",
+          "covariance shear",
+          "convex control",
+          "frequency contact"
+        ],
+        "keywords": [
+          "Gaussian characteristic functions",
+          "Intrinsic Fourier length metric",
+          "Covariance shear",
+          "Coupled mean–covariance transport",
+          "Free-shear geodesics",
+          "Exact plateau threshold",
+          "Convex optimal control",
+          "Support function flow",
+          "Fourier frequency contact",
+          "Fifth-order asymptotics",
+          "Finsler geometry"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Coupled Gaussian covariance shear has a finite interval of zero extra intrinsic Fourier length; the exact threshold reduces to convex control and has fifth-order asymptotics.",
+          "ru": "Связанный гауссов ковариационный сдвиг имеет конечный интервал без увеличения внутренней Фурье-длины; порог сводится к выпуклому управлению и имеет асимптотику до пятого порядка."
+        },
+        "abstract_html": "<p>For the intrinsic Fourier length metric on Gaussian probability laws, we study a genuinely coupled two-dimensional family where correlation shear changes both the covariance and the mean. An exact mixed tangent formula reveals flat directions of the Fourier speed. Small nontrivial shears preserve the scalar geodesic length, and a Gaussian channel produces a finite global plateau whose threshold is characterized by a one-dimensional convex control problem. We give a complete absolutely continuous formulation of this reduction and an analytic asymptotic expansion of the threshold through its fifth-order coefficient. A scalar support-flow equation and an optimality-gap identity expose the frequency-contact mechanism. The result concerns intrinsic Gaussian paths, not a dependence measure comparing a joint law to a product of its marginals.</p>",
+        "results": [
+          {
+            "en": "For the genuinely coupled Gaussian endpoints Q_b, there is a finite positive critical shear b_c(a): the intrinsic distance equals the scalar lower bound 𝔡(a) exactly when |b| ≤ b_c(a), and is strictly greater outside this interval.",
+            "ru": "Для существенно связанного семейства гауссовых конечных законов Q_b существует конечный положительный порог b_c(a): внутреннее расстояние равно одномерной нижней границе 𝔡(a) ровно при |b| ≤ b_c(a), а за пределами интервала строго больше.",
+            "evidence": "thm:plateau"
+          },
+          {
+            "en": "The complete zero-extra-length plateau has the exact absolutely continuous convex-control representation b_c(a)=2B(u(a)); the supremum is attained.",
+            "ru": "Полный интервал без дополнительной длины имеет точное представление через абсолютно непрерывное выпуклое управление b_c(a)=2B(u(a)); супремум достигается.",
+            "evidence": "thm:control"
+          },
+          {
+            "en": "For small mean displacement, the exact shear plateau threshold satisfies b_c(a)=a−a³/4+21a⁵/160+o(a⁵).",
+            "ru": "При малом смещении среднего точный порог интервала имеет разложение b_c(a)=a−a³/4+21a⁵/160+o(a⁵).",
+            "evidence": "thm:main"
+          }
+        ],
+        "results_source_record_id": 23406555
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23406554",
+        "first_published_on": "2026-10-16",
+        "last_version_on": "2026-10-16",
+        "version_index": 1,
+        "version_index_evidence": "First published version confirmed by unauthenticated Zenodo public records API; published DOI and record/files verified",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23406555,
+            "version_doi": "10.5281/zenodo.23406555",
+            "published_on": "2026-10-16",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P27_CF_V7_R40.pdf",
+              "md5": "13630a19f1bd509fcaa0c54b3f3dbb1a",
+              "size_bytes": 472077
             }
           }
         ]
