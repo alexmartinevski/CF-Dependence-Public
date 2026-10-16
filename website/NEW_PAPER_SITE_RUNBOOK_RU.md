@@ -1,3 +1,9 @@
+# CURRENT WORKFLOW: unified publications.json v3
+
+**Supersedes the earlier instructions below about editing papers.json and scholarly part-*.json directly.** Update only `website/data/publications.json`, and retain both first_published_on and last_version_on as explicit stored values; the converter checks them against the published release sequence. Run `python website/tools/materialize_publications.py`, CI and the existing publication gates. Generated views are ignored by Git. News remains a separate curated event file. See `website/PUBLICATIONS_V3_MIGRATION_RU.md`. The Zenodo Publish gate remains owner-only and no draft is added to the public catalogue.
+
+---
+
 # Verified PDF cache R2.1 — 16.10.2026
 
 The optional public Zenodo mirror is now resumable across Pages builds:
