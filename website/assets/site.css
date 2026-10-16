@@ -200,6 +200,13 @@
   padding:12px 17px;margin:16px 0;color:#263f62}
 .achievement-equation sub,.achievement-equation sup{font-size:72%}
 .achievement-feature .achievement-result-line{font-size:15px;color:#1d3e62}
+.achievement-feature .achievement-visibility-formula{
+  background:#f4f9ff;border-color:#cedeed;color:#173f68;margin-top:10px}
+.achievement-feature .achievement-proof-link{margin:7px 0 16px}
+.achievement-proof-link a{display:inline-block;font-size:14px;font-weight:700;
+  color:#24599a;text-decoration:none;overflow-wrap:anywhere}
+.achievement-proof-link a:hover{text-decoration:underline}
+
 .achievement-source-links{display:flex;flex-wrap:wrap;gap:10px 19px;border-top:1px solid #e5ebf0;
   padding-top:15px;margin-top:23px}
 .achievement-source-links a,.achievement-return a{font-size:13px;color:#3659a7;
