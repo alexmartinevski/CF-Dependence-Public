@@ -26,6 +26,7 @@ TITLE_SOURCE={
 KIND={
     "site_update":("Website update","Обновление сайта"),
     "publication_release":("Publication","Публикация"),
+    "research_highlight":("Research result","Научный результат"),
     "collection_update":("Publication collection","Коллекция публикаций"),
     "public_collection_release":("Publication collection","Коллекция публикаций"),
 }
