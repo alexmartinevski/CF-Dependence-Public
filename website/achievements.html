@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101c2e">
   <meta name="robots" content="index,follow">
-  <meta name="description" content="CF Dependence research achievements: exact planar GHZ thresholds for four or more parties, narrow three-party bounds, sharp mixing inequalities, and extremal dependence theorems.">
+  <meta name="description" content="CF Dependence P04: exact planar GHZ full-correlation locality threshold for every n ≥ 4, v₄ = 34/105; published preprint and prior literature, with external proof review pending.">
   <link rel="canonical" href="https://math.a-martinevski.com/achievements.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Research achievements — CF Dependence">
@@ -48,7 +48,7 @@
 
     <article class="achievement-feature" id="ghz-exact">
       <div class="achievement-feature-top"><span class="achievement-code">P04 · GHZ</span><span class="achievement-state" data-i18n="achievementStateExact">Exact under stated assumptions</span></div>
-      <h2 data-i18n="achievementGhzExactTitle">Exact planar GHZ threshold for n ≥ 4</h2>
+      <h2 data-i18n="achievementGhzExactTitle">Planar GHZ: exact locality threshold for every n ≥ 4</h2>
       <div class="achievement-explanation">
       <div class="achievement-explanation-part">
         <h3 data-i18n="achievementProblemTitle">The question</h3>
@@ -64,7 +64,7 @@
       </div>
       <div class="achievement-explanation-part">
         <h3 data-i18n="achievementAnswerTitle">What was established</h3>
-        <p data-i18n="achievementGhzExactAnswer">For four or more participants, P04 gives an exact formula for planar measurements in the full-correlation GHZ model. For four participants the critical visibility is 34/105 (about 32.38%).</p>
+        <p data-i18n="achievementGhzExactAnswer">P04 presents an exact critical visibility formula for every integer n ≥ 4 and arbitrary finite equatorial measurement settings in the full-correlation GHZ scenario. In particular, v₄ = 34/105 (about 32.38%).</p>
       </div>
       </div>
             <div class="achievement-math-context">
@@ -79,13 +79,17 @@
 <div class="achievement-equation" role="math" aria-label="kappa n equals pi over two to power n times zeta n divided by two times one plus two to negative n times zeta two n">
         κ<sub>n</sub> = (π/2)<sup>n</sup> ζ(n) / [2(1 + 2<sup>−n</sup>)ζ(2n)], &nbsp; n ≥ 4
       </div>
+      <div class="achievement-equation achievement-visibility-formula" role="math" aria-label="critical planar GHZ visibility formula for all n at least four">
+        v<sub>n</sub><sup>GHZ,XY</sup> = 2(2/π)<sup>n</sup>(1+2<sup>−n</sup>)ζ(2n) / ζ(n), &nbsp; n ≥ 4
+      </div>
       <div class="achievement-math-after">
         <div class="achievement-equation achievement-equation-extra" role="math"><div class="math-line">ζ(s) = ∑<sub>k=1</sub><sup>∞</sup> k<sup>−s</sup>, &nbsp; s&gt;1</div></div>
         <p class="achievement-math-notation" data-i18n="achievementGhzExactMathDetail">Here vₙ is the maximal visibility at which all full planar GHZ correlations admit a local model for every finite collection of settings; ζ is the Riemann zeta function.</p>
       </div>
 
       <p class="achievement-result-line"><strong data-i18n="achievementExample">Example</strong>: κ<sub>4</sub> = 105/34, &nbsp; v<sub>XY</sub>(GHZ<sub>4</sub>) = <strong>34/105 ≈ 0.32380952</strong>.</p>
-      <p data-i18n="achievementGhzExactImportance">Previous studies gave rigorous bounds for selected measurement schemes. The new formula addresses the full planar full-correlation setting, rather than only one finite choice of angles.</p>
+      <p class="achievement-proof-link"><a href="https://doi.org/10.5281/zenodo.23356092" target="_blank" rel="noopener noreferrer" data-i18n="achievementGhzExactReadPaper">Read published P04 preprint ↗</a></p>
+      <p data-i18n="achievementGhzExactImportance">Designolle–Vértesi–Pokutta (2024) reported rigorous bounds and putative finite-setting estimates in the same planar setting. P04 proposes a single exact formula for all n ≥ 4 and arbitrary finite setting collections.</p>
       <p class="achievement-limitation" data-i18n="achievementGhzExactScope">This concerns planar XY measurements and full GHZ correlations. It does not cover every Bell test or arbitrary measurements. Independent mathematical and historical reviews are still needed.</p>
 <div class="achievement-sources">
         <h3><span data-i18n="achievementSourcesHeading">Sources for this achievement</span> <span class="achievement-sources-count">(6)</span></h3>
