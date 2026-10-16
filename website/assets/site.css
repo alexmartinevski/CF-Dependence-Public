@@ -131,7 +131,7 @@
 /* Research achievements: curated front-page highlights and a full scientific account. */
 .achievements-preview{scroll-margin-top:26px}
 .achievement-preview-intro{max-width:850px;color:var(--muted);margin:0 0 23px;font-size:15px}
-.achievement-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.achievement-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
 .achievement-preview-item{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:25px 26px;min-width:0}
 .achievement-preview-meta{display:flex;align-items:baseline;justify-content:space-between;gap:11px;
   color:#526b85;font-size:11px;font-weight:700;letter-spacing:.4px}
@@ -140,6 +140,32 @@
 .achievement-preview-item h3 a{color:#213b65;text-decoration:none}
 .achievement-preview-item h3 a:hover{color:#2b52ba;text-decoration:underline}
 .achievement-preview-item p{color:var(--muted);font-size:13px;line-height:1.72;margin:0}
+/* P04 solves the whole n≥4 planar full-correlation family, not just n=4.
+   Emphasize the main preprint claim without obscuring the external-review gate. */
+.achievement-preview-item[data-featured-result="P04"]{
+  grid-column:1/-1;padding:31px 34px;
+  border:1px solid #b9ccdf;border-left:4px solid #315b8c;
+  background:linear-gradient(120deg,#f2f7fc 0%,#ffffff 78%)}
+.achievement-preview-item[data-featured-result="P04"] h3{
+  font-size:clamp(23px,2.5vw,30px);line-height:1.25;
+  max-width:900px;margin:14px 0 14px}
+.achievement-preview-item[data-featured-result="P04"]>p[data-i18n="achievementHighlight1Text"]{
+  max-width:930px;font-size:15px;line-height:1.72;color:#354d64}
+.achievement-preview-item[data-featured-result="P04"] .achievement-preview-formula{
+  font-size:clamp(16px,1.7vw,20px);color:#173f68;line-height:1.7;
+  padding-top:15px;margin-top:17px}
+.achievement-featured-links{display:flex;flex-wrap:wrap;align-items:center;
+  gap:9px 24px;margin:16px 0 12px}
+.achievement-featured-links a{font-size:13px;font-weight:700;
+  text-decoration:none;color:#24599a;overflow-wrap:anywhere}
+.achievement-featured-links a:hover{text-decoration:underline}
+.achievement-preview-item .achievement-featured-caveat{
+  margin-top:11px;font-size:12px;line-height:1.65;color:#546c83}
+@media(max-width:980px){
+  .achievement-preview-grid{grid-template-columns:1fr}
+  .achievement-preview-item[data-featured-result="P04"]{grid-column:auto}
+}
+
 .achievement-preview-bottom{display:flex;flex-wrap:wrap;align-items:center;gap:15px 24px;
   border-top:1px solid var(--line);margin-top:23px;padding-top:22px}
 .achievement-preview-bottom p{flex:1;min-width:min(300px,100%);margin:0;color:#687989;font-size:12px;line-height:1.6}
@@ -174,6 +200,13 @@
   padding:12px 17px;margin:16px 0;color:#263f62}
 .achievement-equation sub,.achievement-equation sup{font-size:72%}
 .achievement-feature .achievement-result-line{font-size:15px;color:#1d3e62}
+.achievement-feature .achievement-visibility-formula{
+  background:#f4f9ff;border-color:#cedeed;color:#173f68;margin-top:10px}
+.achievement-feature .achievement-proof-link{margin:7px 0 16px}
+.achievement-proof-link a{display:inline-block;font-size:14px;font-weight:700;
+  color:#24599a;text-decoration:none;overflow-wrap:anywhere}
+.achievement-proof-link a:hover{text-decoration:underline}
+
 .achievement-source-links{display:flex;flex-wrap:wrap;gap:10px 19px;border-top:1px solid #e5ebf0;
   padding-top:15px;margin-top:23px}
 .achievement-source-links a,.achievement-return a{font-size:13px;color:#3659a7;

@@ -267,11 +267,22 @@ about individual AI systems or specific contributions to individual theorems.
 Both English and Russian wording are covered by public-site CI tests.
 
 ## Research achievements landing page (15 October 2026)
-The home page now displays a prominent **Major research achievements** feature
-at `#achievements`, with four short representative items and a link to
-`website/achievements.html`. The standalone page explains six selected
-scientific claims in both languages and includes formulae, source Concept DOIs,
-historical journal links and explicit statements of scope.
+The home page displays **Major research achievements** at `#achievements`.
+The first (full-width) feature now leads with **P04: an exact planar GHZ
+full-correlation critical visibility formula for every integer n ≥ 4**,
+not merely the n=4 example. It explicitly shows the visibility formula,
+`v4=34/105`, and links to the fixed published P04 Version DOI and the
+Designolle–Vértesi–Pokutta (2024) comparison. Three further achievement
+cards are preserved. Both the homepage and the six-topic standalone
+`website/achievements.html` page are bilingual, responsive, and distinguish
+n ≥ 4 from the still-open three-party problem. External proof and historical
+priority review is explicitly pending; the site reports a **preprint claim**,
+not a referee-certified finding. Existing Zenodo DOI, PDF, publication dates
+and AI disclosure are unchanged.
+
+The standalone page explains six selected scientific claims in both languages
+and includes formulae, source Concept DOIs, historical journal links and
+explicit statements of scope.
 
 Editorial distinctions are intentional:
 - P04: analytic exact planar XY GHZ threshold for `n>=4` within the
