@@ -746,7 +746,7 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("data-scholarly-index-link",homepage)
         self.assertIn("Browse scholarly abstracts and citations ↗",homepage)
         self.assertNotRegex(homepage,
-                            r"Browse scholarly abstracts and citations \\(\\d+\\)")
+                            r"Browse scholarly abstracts and citations \(\d+\)")
 
     def test_static_entrypoints_present(self):
         for rel in ("index.html","paper.html","achievements.html","news.html",
