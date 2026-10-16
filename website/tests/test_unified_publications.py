@@ -2,6 +2,7 @@
 """Regression and adversarial checks for the single publication source."""
 import copy
 import json
+from datetime import date, timedelta
 import sys
 import tempfile
 import unittest
@@ -119,6 +120,78 @@ class CanonicalCatalogueTests(unittest.TestCase):
                          "1590c32efb3165b4dabfe9daf856aede")
         self.assertEqual(self.doc["papers"]["P12"]["publication"]
                          ["first_published_on"], "2026-10-14")
+
+    def test_new_version_retains_previous_verified_pdf(self):
+        # Synthetic local record only: no Zenodo write or public catalogue edit.
+        doc = copy.deepcopy(self.doc)
+        pub = doc["papers"]["P12"]["publication"]
+        synthetic_id = 1000000 + max(
+            r["record_id"] for p in doc["papers"].values()
+            for r in p["publication"]["releases"])
+        synthetic_date = (date.fromisoformat(pub["last_version_on"]) +
+                          timedelta(days=1)).isoformat()
+        pub["releases"].append({
+            "record_id": synthetic_id,
+            "version_doi": "10.5281/zenodo." + str(synthetic_id),
+            "published_on": synthetic_date,
+            "license": "cc-by-4.0",
+            "pdf": {
+                "filename": "P12_CF_V8_R1.pdf",
+                "md5": "a" * 32,
+                "size_bytes": 4567,
+            },
+        })
+        pub["last_version_on"] = synthetic_date
+        pub["version_index"] = len(pub["releases"])
+        pub["version_index_evidence"] = "Synthetic unit-test lineage"
+        catalog, parts = publications.project(doc)
+        p12 = next(p for p in catalog["papers"] if p["code"] == "P12")
+        self.assertEqual(p12["version_doi"],
+                         "10.5281/zenodo." + str(synthetic_id))
+        self.assertEqual(p12["first_published_on"], "2026-10-14")
+        self.assertEqual(p12["last_version_on"], synthetic_date)
+        self.assertEqual(pub["releases"][0]["pdf"]["md5"],
+                         "1590c32efb3165b4dabfe9daf856aede")
+        self.assertEqual(len(parts), (len(self.doc["papers"]) + 5) // 6)
+        # Historical PDF checksums remain evidence and must still be valid.
+        pub["releases"][0]["pdf"]["md5"] = "bad"
+        with self.assertRaises(ValueError):
+            publications.project(doc)
+
+    def test_synthetic_next_paper_scales_shards(self):
+        # Use a currently unused P-ID so this test remains valid after P21.
+        doc = copy.deepcopy(self.doc)
+        code = next(f"P{i:02d}" for i in range(21, 100)
+                    if f"P{i:02d}" not in doc["papers"])
+        n = len(doc["papers"])
+        fake = copy.deepcopy(doc["papers"]["P20"])
+        rec_id, concept_id = 90000000 + n, 80000000 + n
+        fake["identity"]["title"] = "Test-only synthetic new publication"
+        fake["science"]["results_source_record_id"] = rec_id
+        fake["publication"].update({
+            "concept_doi": "10.5281/zenodo." + str(concept_id),
+            "first_published_on": "2026-10-16",
+            "last_version_on": "2026-10-16",
+            "version_index": 1,
+            "version_index_evidence": "Synthetic unit-test first version",
+            "releases": [{
+                "record_id": rec_id,
+                "version_doi": "10.5281/zenodo." + str(rec_id),
+                "published_on": "2026-10-16",
+                "license": "cc-by-4.0",
+                "pdf": {
+                    "filename": code + "_CF_V8_R1.pdf",
+                    "md5": "b" * 32,
+                    "size_bytes": 5678,
+                },
+            }],
+        })
+        doc["papers"][code] = fake
+        catalog, parts = publications.project(doc)
+        self.assertEqual(len(catalog["papers"]), n + 1)
+        self.assertEqual(len(parts), (n + 1 + 5) // 6)
+        self.assertIn(code, parts[-1]["papers"])
+        self.assertNotIn(code, self.doc["papers"])  # never alter source
 
     def test_json_schema_documents_stored_date_contract(self):
         schema = json.loads((ROOT / "data/publications.schema.json")
