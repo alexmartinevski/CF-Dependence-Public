@@ -2,6 +2,58 @@
   "schema": "cf-publication-updates/v1",
   "entries": [
     {
+      "date": "2026-10-16",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23406541",
+      "title": {
+        "en": "P21: intrinsic Fourier geometry of Gaussian laws",
+        "ru": "P21: внутренняя Фурье-геометрия гауссовых законов"
+      },
+      "summary": {
+        "en": "Exact scalar Gaussian geodesics, a multidimensional Krylov reduction and distances to prescribed-mean Gaussian fibres.",
+        "ru": "Точные гауссовы геодезические, многомерная редукция Крылова и расстояния до семейств с заданным средним."
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23406545",
+      "title": {
+        "en": "P22: Chebyshev–monomial contact geometry",
+        "ru": "P22: геометрия контактов Чебышёва и монома"
+      },
+      "summary": {
+        "en": "Unique extremal contacts, exact phase thresholds and uniform Gaussian asymptotics for Chebyshev–monomial oscillation gaps.",
+        "ru": "Единственные экстремальные контакты, точные фазовые пороги и равномерная гауссова асимптотика разности Чебышёва и монома."
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23406555",
+      "title": {
+        "en": "P27: Gaussian free-shear geodesics",
+        "ru": "P27: гауссовы геодезические со свободным сдвигом"
+      },
+      "summary": {
+        "en": "A finite no-extra-length covariance-shear interval, an exact convex-control threshold and fifth-order asymptotics.",
+        "ru": "Конечный интервал ковариационных сдвигов без увеличения длины, точный порог выпуклого управления и асимптотика пятого порядка."
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23406562",
+      "title": {
+        "en": "P12: new version of translated class-portrait recovery",
+        "ru": "P12: новая версия восстановления по сдвинутым портретам"
+      },
+      "summary": {
+        "en": "Updated preprint adds generalized-dihedral reconstruction, optimal six-portrait stability and a spectral-node recovery scheme.",
+        "ru": "Новая редакция дополнена восстановлением на обобщённых диэдральных группах, оптимальной устойчивостью шести портретов и спектральными узлами."
+      }
+    },
+    {
       "date": "2026-10-15",
       "kind": "site_update",
       "source": "achievements.html#ghz-exact",
