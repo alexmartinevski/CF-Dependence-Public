@@ -70,6 +70,21 @@ def unique_strings(value, description):
             description + ": duplicate item")
 
 
+def checked_pdf(pdf, code):
+    """Validate optional historical or mandatory latest PDF metadata."""
+    require(isinstance(pdf, dict), code + ": PDF metadata missing")
+    name = pdf.get("filename")
+    require(isinstance(name, str) and PDF.fullmatch(name) and
+            name.startswith(code + "_"),
+            code + ": invalid PDF basename")
+    require(isinstance(pdf.get("md5"), str) and MD5.fullmatch(pdf["md5"]),
+            code + ": PDF MD5 required")
+    require(type(pdf.get("size_bytes")) is int and
+            1000 < pdf["size_bytes"] <= MAX_PDF,
+            code + ": PDF size invalid")
+    return pdf
+
+
 def project(publications):
     """Return the exact legacy shapes as deterministic derived views.
 
@@ -169,9 +184,8 @@ def project(publications):
             release_ids.add(rec_id)
             all_record_ids.add(rec_id)
             all_versions.add(version["version_doi"])
-            if i != len(releases)-1:
-                require("pdf" not in version,
-                        code + ": historical PDF metadata not verified")
+            if "pdf" in version:
+                checked_pdf(version["pdf"], code)
         require(dates == sorted(dates),
                 code + ": releases must be ordered by publication date")
         require(dates[0] == first and dates[-1] == last,
@@ -180,18 +194,8 @@ def project(publications):
                 code + ": results must cite a published record in this lineage")
 
         latest = releases[-1]
-        pdf = latest.get("pdf")
-        require(isinstance(pdf, dict), code + ": latest PDF not recorded")
-        name = pdf.get("filename")
-        require(isinstance(name, str) and PDF.fullmatch(name) and
-                name.startswith(code + "_"),
-                code + ": invalid PDF basename")
-        require(isinstance(pdf.get("md5"), str) and
-                MD5.fullmatch(pdf["md5"]),
-                code + ": PDF MD5 required")
-        require(type(pdf.get("size_bytes")) is int and
-                1000 < pdf["size_bytes"] <= MAX_PDF,
-                code + ": PDF size invalid")
+        pdf = checked_pdf(latest.get("pdf"), code)
+        name = pdf["filename"]
         require(nonempty(latest.get("license")),
                 code + ": latest license missing")
 
