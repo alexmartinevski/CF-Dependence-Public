@@ -21,3 +21,7 @@ Thumbs.db
 # Local build directories
 _build/
 build/
+
+# Derived, noncanonical publication views (generated during CI and site builds)
+/website/data/papers.json
+/website/data/scholarly/part-*.json
