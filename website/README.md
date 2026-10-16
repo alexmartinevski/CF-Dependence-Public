@@ -1,3 +1,9 @@
+# Canonical publication catalogue v3 — 16 October 2026
+
+Authoritative edited data is now **website/data/publications.json** (one file for all published papers). First/last publication dates are stored fields and checked against release history, never inferred. CI generates untracked compatibility views `data/papers.json` and `data/scholarly/part-*.json` before validation and deployment. Existing sections below describe earlier R1/R2 history and must not be followed for manually editing those views. See [PUBLICATIONS_V3_MIGRATION_RU.md](PUBLICATIONS_V3_MIGRATION_RU.md).
+
+---
+
 # Verified PDF cache R2.1 — 16.10.2026
 
 The optional public Zenodo mirror is now resumable across Pages builds:

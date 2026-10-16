@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://math.a-martinevski.com/schema/cf-publications-v3.json",
+  "title": "CF Dependence canonical public publications v3",
+  "type": "object",
+  "required": [
+    "schema",
+    "source_repo",
+    "curated_on",
+    "editorial_policy",
+    "scholarly_verified_scope",
+    "papers"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "cf-publications/v3"
+    },
+    "source_repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "curated_on": {
+      "$ref": "#/$defs/date"
+    },
+    "editorial_policy": {
+      "type": "object"
+    },
+    "scholarly_verified_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "papers": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^P[0-9]{2}$": {
+          "$ref": "#/$defs/paper"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "doi": {
+      "type": "string",
+      "pattern": "^10\\.5281/zenodo\\.[1-9][0-9]*$"
+    },
+    "bilingual": {
+      "type": "object",
+      "required": [
+        "en",
+        "ru"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ru": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "strings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": [
+        "en",
+        "ru",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ru": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "title",
+        "area",
+        "topics",
+        "keywords"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "catalogue_title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional exceptional presentation capitalization; Zenodo title remains authoritative"
+        },
+        "area": {
+          "enum": [
+            "extremal",
+            "transport",
+            "algebra",
+            "harmonic",
+            "statistics"
+          ]
+        },
+        "topics": {
+          "$ref": "#/$defs/strings"
+        },
+        "keywords": {
+          "$ref": "#/$defs/strings"
+        }
+      }
+    },
+    "science": {
+      "type": "object",
+      "required": [
+        "summary",
+        "abstract_html",
+        "results",
+        "results_source_record_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/bilingual"
+        },
+        "abstract_html": {
+          "type": "string",
+          "minLength": 1
+        },
+        "results": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/result"
+          }
+        },
+        "results_source_record_id": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pdf": {
+      "type": "object",
+      "required": [
+        "filename",
+        "md5",
+        "size_bytes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "filename": {
+          "type": "string",
+          "pattern": "^P[0-9]{2}_[A-Za-z0-9][A-Za-z0-9._-]*\\.pdf$"
+        },
+        "md5": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 1001,
+          "maximum": 67108864
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "record_id",
+        "version_doi",
+        "published_on"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "version_doi": {
+          "$ref": "#/$defs/doi"
+        },
+        "published_on": {
+          "$ref": "#/$defs/date"
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pdf": {
+          "$ref": "#/$defs/pdf"
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "required": [
+        "status",
+        "concept_doi",
+        "first_published_on",
+        "last_version_on",
+        "version_index",
+        "version_index_evidence",
+        "changes",
+        "releases"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "published"
+        },
+        "concept_doi": {
+          "$ref": "#/$defs/doi"
+        },
+        "first_published_on": {
+          "$ref": "#/$defs/date",
+          "description": "Stored curated field; history verifies, never computes it"
+        },
+        "last_version_on": {
+          "$ref": "#/$defs/date",
+          "description": "Stored curated field; history verifies, never computes it"
+        },
+        "version_index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "version_index_evidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "changes": {
+          "type": "array"
+        },
+        "source_path": {
+          "type": "string",
+          "pattern": "^papers/[A-Za-z0-9/_-]+$"
+        },
+        "releases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/release"
+          }
+        }
+      }
+    },
+    "paper": {
+      "type": "object",
+      "required": [
+        "identity",
+        "science",
+        "publication"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "science": {
+          "$ref": "#/$defs/science"
+        },
+        "publication": {
+          "$ref": "#/$defs/publication"
+        }
+      }
+    }
+  }
+}

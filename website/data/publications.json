@@ -1,0 +1,1309 @@
+{
+  "schema": "cf-publications/v3",
+  "source_repo": "alexmartinevski/CF-Dependence-Public",
+  "curated_on": "2026-10-15",
+  "editorial_policy": {
+    "source": "Claims summarized from published manuscript snapshots, not independently re-proved",
+    "latest_reconciliation": "Keep source DOI fixed until highlights are checked against a newer public version",
+    "scope": "Proved results and explicit qualifications; no open conjectures as proven claims"
+  },
+  "scholarly_verified_scope": "Approved Zenodo abstracts and PDF checksums, no internal claims",
+  "papers": {
+    "P01": {
+      "identity": {
+        "title": "A sharp universal profile for multivariate characteristic-function factorization",
+        "area": "extremal",
+        "topics": [
+          "Characteristic functions",
+          "Sharp inequalities",
+          "Extremal probability"
+        ],
+        "keywords": [
+          "Characteristic-function factorization",
+          "Sharp universal dependence bound",
+          "Extremal probability",
+          "Prescribed mean moduli",
+          "Equality cases",
+          "Chebyshev polynomials",
+          "Continuous dimension profile",
+          "Strict concavity",
+          "Gamma distributions",
+          "Fourier dependence"
+        ],
+        "catalogue_title": "A Sharp Universal Profile for Multivariate Characteristic-Function Factorization"
+      },
+      "science": {
+        "summary": {
+          "en": "Exact dependence profiles for prescribed mean moduli, all complex extremizers and sharp constants C_d increasing to 2.",
+          "ru": "Точный профиль зависимости при заданных модулях средних, все комплексные экстремали и константы C_d, возрастающие к 2."
+        },
+        "abstract_html": "<p>For complex random variables <span class=\"math inline\">\\(Z_1,\\ldots,Z_d\\)</span> with <span class=\"math inline\">\\(|Z_j|\\le1\\)</span> and prescribed mean moduli <span class=\"math inline\">\\(r_j=|\\mathbb E Z_j|\\)</span>, we determine the exact supremum of the product-factorization defect <span class=\"math inline\">\\(|\\mathbb E\\prod_jZ_j-\\prod_j\\mathbb E Z_j|\\)</span>. Writing <span class=\"math inline\">\\(R=\\prod_jr_j\\)</span> and <span class=\"math inline\">\\(S=\\sum_j\\arccos r_j\\)</span>, the answer is <span class=\"math inline\">\\(\\mathcal C_d(r)=R-\\cos(\\min\\{S,\\pi\\})\\)</span>. We give explicit attaining couplings, and in integer dimensions classify all extremizers through a single common symmetric sign and coordinate phases.</p>\n<p>Maximizing over the mean moduli yields the sharp universal characteristic-function bound <span class=\"math inline\">\\(C_d=\\max_{0\\le\\theta\\le\\pi/d}(\\cos^d\\theta-\\cos(d\\theta))=\\|T_d-x^d\\|_{\\infty}\\)</span>, including <span class=\"math inline\">\\(C_3=2/\\sqrt3\\)</span>, <span class=\"math inline\">\\(C_4=9/7\\)</span>, and <span class=\"math inline\">\\(C_d\\uparrow2\\)</span>. The continuous extension <span class=\"math inline\">\\(C(p)\\)</span> has a unique nondegenerate optimizer for <span class=\"math inline\">\\(p&gt;2\\)</span> and exactly one inflection point in <span class=\"math inline\">\\((2,3)\\)</span>; consequently the integer sequence is strictly concave. We also derive quantitative approximation and endpoint asymptotics, a Gamma-law interpretation, and a comparison with the real-valued case. The contribution is the sharp profile and extremal structure, not the introduction of a previously unknown dependence statistic.</p>",
+        "results": [
+          {
+            "en": "The exact factorization-defect profile is R − cos(min{∑ arccos rⱼ, π}) for prescribed mean moduli rⱼ, with R=∏rⱼ.",
+            "ru": "При заданных модулях средних rⱼ точный профиль дефекта равен R − cos(min{∑ arccos rⱼ, π}), где R=∏rⱼ.",
+            "evidence": "thm:profile"
+          },
+          {
+            "en": "The universal sharp constant is C_d=max₀≤θ≤π/d(cosᵈθ−cos(dθ)); in particular C₃=2/√3 and C₄=9/7, attained by a common fair sign.",
+            "ru": "Универсальная точная константа C_d=max₀≤θ≤π/d(cosᵈθ−cos(dθ)); в частности C₃=2/√3, C₄=9/7. Экстремаль реализует общий симметричный знак.",
+            "evidence": "thm:main"
+          },
+          {
+            "en": "The constants C_d rise strictly and concavely to 2; their maximizing angles are unique.",
+            "ru": "Константы C_d строго и вогнуто возрастают к 2, а максимизирующие углы единственны.",
+            "evidence": "cor:discrete"
+          }
+        ],
+        "results_source_record_id": 23021780
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23021779",
+        "first_published_on": "2026-09-28",
+        "last_version_on": "2026-10-14",
+        "version_index": 2,
+        "version_index_evidence": "Two publicly verified Zenodo version DOIs in the same concept lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23021780,
+            "version_doi": "10.5281/zenodo.23021780",
+            "published_on": "2026-09-28"
+          },
+          {
+            "record_id": 23355587,
+            "version_doi": "10.5281/zenodo.23355587",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P01_CF_V6_S8.pdf",
+              "md5": "db0f6a1513c42d959641c001c9a9fabb",
+              "size_bytes": 339634
+            }
+          }
+        ],
+        "source_path": "papers/01-sharp-universal-profile"
+      }
+    },
+    "P02": {
+      "identity": {
+        "title": "The price of prescribed marginals in characteristic-function dependence: phase contact and complete mixability",
+        "area": "transport",
+        "topics": [
+          "Fixed marginals",
+          "Extremal probability",
+          "Mixability"
+        ],
+        "keywords": [
+          "Prescribed marginals",
+          "Characteristic-function dependence",
+          "Complete mixability",
+          "Sharp coupling bounds",
+          "Uniform and Gaussian marginals",
+          "B-spline distributions",
+          "Convex order",
+          "Fourier log-concavity",
+          "Extremal dependence",
+          "Asymptotic coupling gap"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Exact fixed-marginal results for uniform and spline laws; attainability via complete mixability and a strict Gaussian gap.",
+          "ru": "Точные результаты для равномерных и сплайновых маргиналей; критерий через полную смешиваемость и зазор для гауссовских законов."
+        },
+        "abstract_html": "<p>For identical prescribed one-dimensional marginals <span class=\"math inline\">\\(F\\)</span>, we maximize the characteristic-function factorization defect over all couplings and signed frequency vectors. A convex-order and cosine-contact argument produces a scalar phase profile, but we carefully distinguish this upper profile <span class=\"math inline\">\\(\\kappa_d(F)\\)</span> from the actual coupling optimum <span class=\"math inline\">\\(K_d(F)\\)</span>. Under specified Fourier log-concavity, spectral-gap and anti-concentration assumptions, equality for all sufficiently large dimensions holds exactly when the absolute-value marginal <span class=\"math inline\">\\(|X|\\)</span> is completely mixable, i.e. admits a constant-sum coupling.</p>\n<p>We obtain finite-dimensional conclusions: the scalar profile is attained for uniform marginals in every <span class=\"math inline\">\\(d\\ge3\\)</span>; for Gaussian marginals it is strictly unattainable in every such dimension. For sums of three and four independent uniform variables (B-spline marginals), attainment begins exactly at dimensions four and five, respectively. We also quantify the asymptotic cost of fixing the marginal law: in the symmetric regular regime, <span class=\"math inline\">\\(C_d-K_d(F)=\\frac{\\pi^2}{2d}(\\operatorname{Var}(X)/(\\mathbb E|X|)^2-1)+o(d^{-1})\\)</span>. A median-based construction supplies a nonsymmetric lower bound. No universal equality between the scalar profile and the fixed-marginal optimum is claimed.</p>",
+        "results": [
+          {
+            "en": "Uniform marginals attain the exact phase profile for d≥3; quadratic and cubic B-splines attain it from d=4 and d=5.",
+            "ru": "Равномерные маргинали достигают профиля при d≥3, а квадратичные и кубические B-сплайны — при d≥4 и d≥5.",
+            "evidence": "thm:models"
+          },
+          {
+            "en": "Under stated Fourier hypotheses, equality is equivalent to complete mixability of |X|; Gaussian laws have a strict gap.",
+            "ru": "При указанных условиях равенство эквивалентно полной смешиваемости |X|; гауссовские законы имеют строгий зазор.",
+            "evidence": "thm:eventual"
+          },
+          {
+            "en": "Without symmetry, a median construction gives K_d(F)≥2−π²Var(X)/(2d(E|X−a|)²)+o(1/d) for a median a.",
+            "ru": "Без симметрии конструкция через медиану a даёт K_d(F)≥2−π²Var(X)/(2d(E|X−a|)²)+o(1/d).",
+            "evidence": "thm:median"
+          }
+        ],
+        "results_source_record_id": 23022043
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23022042",
+        "first_published_on": "2026-09-28",
+        "last_version_on": "2026-10-14",
+        "version_index": 2,
+        "version_index_evidence": "Two publicly verified Zenodo version DOIs in the same concept lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23022043,
+            "version_doi": "10.5281/zenodo.23022043",
+            "published_on": "2026-09-28"
+          },
+          {
+            "record_id": 23355597,
+            "version_doi": "10.5281/zenodo.23355597",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P02_CF_V6_S8.pdf",
+              "md5": "d9d01bdf649060495bae883385df44e7",
+              "size_bytes": 384945
+            }
+          }
+        ],
+        "source_path": "papers/02-fixed-marginals"
+      }
+    },
+    "P03": {
+      "identity": {
+        "title": "Local factor profiles and arithmetic resolution of Chebyshev–Lucas critical polynomials",
+        "area": "algebra",
+        "topics": [
+          "Chebyshev–Lucas polynomials",
+          "Algebraic number theory",
+          "Galois theory"
+        ],
+        "keywords": [
+          "Chebyshev–Lucas critical polynomials",
+          "Irreducibility criteria",
+          "2-adic Newton polygons",
+          "Cyclotomic factor blocks",
+          "Lagrange inversion",
+          "p-adic moment obstructions",
+          "Algebraic number theory",
+          "Perfect-power indices",
+          "Logarithmic signatures",
+          "Polynomial factorization"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Infinite irreducible Chebyshev–Lucas critical-polynomial families proved via cyclotomic blocks and p-adic moment obstructions.",
+          "ru": "Бесконечные семейства неприводимых критических полиномов Чебышёва—Люка через циклотомические блоки и p-адические моменты."
+        },
+        "abstract_html": "<p>We study rational factorization of the Chebyshev–Lucas critical polynomials <span class=\"math inline\">\\(A_d(X)=\\sum_j(-1)^j\\binom d{2j+1}X^j-1\\)</span>, whose roots encode nonzero critical points of the characteristic-function factorization profile. A dyadic Newton polygon constrains possible factor degrees, while cyclotomic decomposition and archimedean norm bounds force hypothetical rational factors to contain complete local levels. Lagrange inversion converts inverse-root moments into a finite collection of cyclotomic logarithmic signatures; explicit denominator and height estimates then turn selected nonintegral moments into irreducibility obstructions.</p>\n<p>This method proves two infinite families of irreducible critical polynomials, including <span class=\"math inline\">\\(A_{(4758+7180\\nu)^{1795}}\\)</span> and <span class=\"math inline\">\\(A_{(746+1148\\nu)^{287}}\\)</span> for every integer <span class=\"math inline\">\\(\\nu\\ge0\\)</span>. We also establish conditional criteria for prime-power indices, including a non-Wieferich branch, and describe the distinction between required moment order and arithmetic precision. The general irreducibility problem for all <span class=\"math inline\">\\(A_d\\)</span> remains open. Classical Newton polygons, Lagrange inversion and cyclotomic fields are tools; the contribution is their explicit local-to-global obstruction in this polynomial family.</p>",
+        "results": [
+          {
+            "en": "A_{(4758+7180ν)^1795} and A_{(746+1148ν)^287} are irreducible over ℚ for all integers ν≥0.",
+            "ru": "Полиномы A_{(4758+7180ν)^1795} и A_{(746+1148ν)^287} неприводимы над ℚ при всех целых ν≥0.",
+            "evidence": "thm:main"
+          },
+          {
+            "en": "Cyclotomic factor blocks and p-adic inverse-root moments obstruct rational factors.",
+            "ru": "Циклотомические блоки и p-адические моменты обратных корней исключают рациональные множители.",
+            "evidence": "thm:depth"
+          },
+          {
+            "en": "Prime-power indices admit conditional criteria; irreducibility of all A_d remains open.",
+            "ru": "Для степеней простых получены условные критерии; неприводимость всех A_d остаётся открытой.",
+            "evidence": "thm:strength-prime"
+          }
+        ],
+        "results_source_record_id": 23022245
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23022244",
+        "first_published_on": "2026-09-28",
+        "last_version_on": "2026-10-12",
+        "version_index": 2,
+        "version_index_evidence": "Two publicly verified Zenodo version DOIs in the same concept lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23022245,
+            "version_doi": "10.5281/zenodo.23022245",
+            "published_on": "2026-09-28"
+          },
+          {
+            "record_id": 23309603,
+            "version_doi": "10.5281/zenodo.23309603",
+            "published_on": "2026-10-12",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P03_CF_V6_S8.pdf",
+              "md5": "7d10e10293c404e94ab47cc136ba0b00",
+              "size_bytes": 388117
+            }
+          }
+        ],
+        "source_path": "papers/03-chebyshev-lucas-critical-polynomials"
+      }
+    },
+    "P04": {
+      "identity": {
+        "title": "Sharp constants for Fourier factorization defects: universal ceilings, strong mixing and interaction measures",
+        "area": "extremal",
+        "topics": [
+          "strong mixing",
+          "Grothendieck constants",
+          "sharp covariance inequalities",
+          "Fourier factorization defects"
+        ],
+        "keywords": [
+          "Planar GHZ nonlocality",
+          "Bell inequalities",
+          "Exact critical visibility",
+          "Multipartite quantum correlations",
+          "Sharp multilinear inequalities",
+          "Strong mixing coefficients",
+          "Grothendieck constants",
+          "Sharp covariance inequalities",
+          "Fourier factorization defects",
+          "Möbius inversion and Riemann zeta function",
+          "Lancaster interaction measures",
+          "Extremal probability theory"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Exact planar GHZ thresholds for n≥4 and new bounds for n=3; sharp 4√2 mixing covariance and multilinear constants.",
+          "ru": "Точные пороги GHZ при n≥4 и новые границы при n=3; оптимальная константа 4√2 для ковариации и мультлинейных оценок."
+        },
+        "abstract_html": "<p><strong>1. Exact planar GHZ nonlocality threshold for all n ≥ 4.</strong></p>\n<p>We determine the sharp supremum of violations of full-correlation Bell inequalities by the n-qubit GHZ state under planar (XY) measurements, over arbitrary finite numbers of measurement settings. The result is the exact formula</p>\n<p><strong>κₙ = (π/2)ⁿ ζ(n) / [2(1 + 2⁻ⁿ) ζ(2n)], n ≥ 4.</strong></p>\n<p>In particular, κ₄ = 105/34, corresponding to the critical visibility v₄ = 34/105. The result replaces bounds for particular finite measurement configurations with an exact analytic expression for the stated class.</p>\n<p><strong>2. Substantially improved rigorous bounds for the open three-party GHZ problem.</strong></p>\n<p>We establish</p>\n<p><strong>2.0349681535… ≤ κ₃ ≤ 105 ζ(3)/(2π³) = 2.0353294291… .</strong></p>\n<p>Both bounds improve the previously published 2024 interval. The lower bound comes from a finite-harmonic Bell witness supported by 272 reproducible exact inequalities; the upper bound follows from an explicit square-wave/Möbius local model.</p>\n<p>The conjecture that the upper bound is attained remains open. The paper discusses an obstruction involving the Möbius function and zeros of the Riemann zeta function.</p>\n<p><strong>3. Sharp covariance inequalities under strong mixing.</strong></p>\n<p>We establish the optimal coefficient 4√2 for bounded complex-valued observations, improving the classical bound 2π. More generally, the optimal Hilbert-space coefficient is 4K_G(k), where K_G(k) is the real Grothendieck constant of order k. For real scalar observations, the sharp coefficient is 4.</p>\n<p><strong>4. Sharp multilinear dependence inequalities.</strong></p>\n<p>For n-linear forms that are real-valued on real inputs, we identify the optimal real and complex comparison factors</p>\n<p><strong>2ⁿ and 2ⁿ κₙ.</strong></p>\n<p>These results strengthen classical estimates in a natural restricted class. They do not settle the more general problem for arbitrary complex multilinear forms considered by Bradley and Bryc (1985).</p>\n<p><strong>5. Asymptotically sharp growth of higher-order interaction measures.</strong></p>\n<p>For the centred Fourier–Lancaster interaction functional, we derive explicit finite-dimensional bounds and establish</p>\n<p><strong>L_d = 2ᵈ/(ed) · (1 + O(d⁻¹)).</strong></p>\n<p>Thus, unlike the universal characteristic-function factorization defect, this higher-order interaction functional admits no dimension-independent bound.</p>\n<p><strong>6. Further structural results.</strong></p>\n<p>The paper also develops restrictions to discrete phase groups, centred-interaction comparisons and quantitative links between universal Fourier factorization ceilings, strong mixing and multilinear dependence.</p>",
+        "results": [
+          {
+            "en": "For n≥4 the sharp complex multilinear factor is 2ⁿκₙ; an explicit zeta-function formula determines κₙ, including κ₄=105/34.",
+            "ru": "Для n≥4 точный комплексный мультлинейный множитель равен 2ⁿκₙ; константа κₙ задана явной формулой через дзета-функцию, в частности κ₄=105/34.",
+            "evidence": "abstract"
+          },
+          {
+            "en": "The three-party constant κ₃ is bounded, not exactly determined; the strengthened lower bound uses a separately documented rational, computer-assisted verification.",
+            "ru": "Для трёх участников константа κ₃ пока ограничена сверху и снизу, но не вычислена точно; усиленная нижняя граница использует отдельно документированную компьютерную проверку с рациональной арифметикой.",
+            "evidence": "abstract"
+          },
+          {
+            "en": "The sharp strong-mixing covariance constants include 4 for real bounded scalars and 4√2 for complex bounded scalars.",
+            "ru": "Для ограниченных вещественных и комплексных скалярных наблюдений получены точные константы ковариационной оценки через сильное перемешивание: 4 и 4√2 соответственно.",
+            "evidence": "cor:complex"
+          }
+        ],
+        "results_source_record_id": 23356092
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23356091",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23356092,
+            "version_doi": "10.5281/zenodo.23356092",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P04_CF_V6_S8.pdf",
+              "md5": "e78f2d101773e635d00c60a8733969e2",
+              "size_bytes": 436914
+            }
+          }
+        ]
+      }
+    },
+    "P06": {
+      "identity": {
+        "title": "Contact fibres, exact gluing, and residual geometry of finite interaction laws",
+        "area": "transport",
+        "topics": [
+          "interaction tensor",
+          "prescribed marginals",
+          "contact transport",
+          "relative entropy"
+        ],
+        "keywords": [
+          "Inverse probability problems",
+          "Finite interaction laws",
+          "Contact transport",
+          "Interaction fibres",
+          "Relative entropy",
+          "Local Lipschitz stability",
+          "Incidence rank",
+          "Identifiability",
+          "Prescribed marginals",
+          "Optimal query design"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Exact criteria for inverse stability of finite interaction laws via contact transports, incidence ranks and entropy bounds.",
+          "ru": "Точные критерии устойчивости обратной задачи для конечных законов взаимодействия через контактный транспорт, ранг и энтропию."
+        },
+        "abstract_html": "<p>For a finite joint law <span class=\"math inline\">\\(P\\)</span>, the nonlinear interaction observation <span class=\"math inline\">\\(\\mu(P)=P-\\bigotimes_jP_j\\)</span> generally does not determine <span class=\"math inline\">\\(P\\)</span> uniquely. We describe the geometry of its inverse fibre. Under positive-marginal conditions, existence of a transport supported on the zero cells characterizes the absence of a strictly positive law in that fibre. An exact relative-entropy identity controls the fibre&#x27;s diameter when the negative interaction shadow meets every coordinate state.</p>\n<p>When a contact transport has positive mass on all zero cells, a contact-incidence rank defect <span class=\"math inline\">\\(r\\)</span> characterizes local inverse stability: a local Lipschitz estimate holds exactly when <span class=\"math inline\">\\(r=0\\)</span>, and for <span class=\"math inline\">\\(r&gt;0\\)</span> the general square-root exponent is sharp. Exactly <span class=\"math inline\">\\(r\\)</span> additional smooth observations are necessary and sufficient to recover a linear local estimate. For a structured negative symmetric shadow we also obtain an exact positivity and minimum-budget criterion. A saturated four-state example yields the full feasible body (a rectangle intersected with a diamond) and exact affine-query optimization; maximum entropy need not select a maximizer. Full interaction fibres and coarser symmetric shadows are not interchangeable.</p>",
+        "results": [
+          {
+            "en": "The contact incidence rank characterizes local Lipschitz inverse stability and the minimal number of extra smooth observations needed when it fails.",
+            "ru": "Ранг матрицы контактной инцидентности определяет локальную липшицеву устойчивость обращения и минимальное число дополнительных гладких наблюдений при её отсутствии.",
+            "evidence": "thm:rank"
+          },
+          {
+            "en": "A transport concentrated on zero cells characterizes when a full interaction fibre has no strictly positive law.",
+            "ru": "Существование транспорта с носителем в нулевых ячейках характеризует отсутствие строго положительного распределения в полном слое взаимодействия.",
+            "evidence": "thm:contact"
+          },
+          {
+            "en": "An exact relative-entropy identity yields quantitative ℓ¹ bounds on the diameter of a feasible interaction fibre.",
+            "ru": "Точное тождество для относительной энтропии даёт количественные ℓ¹-оценки диаметра допустимого слоя взаимодействия.",
+            "evidence": "cor:diameter"
+          }
+        ],
+        "results_source_record_id": 23355615
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355614",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355615,
+            "version_doi": "10.5281/zenodo.23355615",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P06_CF_V6_S8.pdf",
+              "md5": "8a98f48d916788ff3a3957f91448f9db",
+              "size_bytes": 356944
+            }
+          }
+        ]
+      }
+    },
+    "P07": {
+      "identity": {
+        "title": "Observable quotients and deterministic inverse tomography for characteristic-function interactions",
+        "area": "harmonic",
+        "topics": [
+          "characteristic functions",
+          "Laplace transforms",
+          "Prony method",
+          "inverse problems"
+        ],
+        "keywords": [
+          "Inverse spectral tomography",
+          "Laplace transforms",
+          "Characteristic-function interactions",
+          "Observable quotient",
+          "Cycle-rank identifiability",
+          "Prony reconstruction",
+          "Optimal query design",
+          "Finite-precision recovery",
+          "Spectral collisions",
+          "Canonical correlation"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Spectral observable quotients, exact cycle-rank counts of mixed Laplace queries and sharp finite-precision reconstruction.",
+          "ru": "Спектральные факторпространства, точное число смешанных запросов по рангу циклов и восстановление при конечной точности."
+        },
+        "abstract_html": "<p>We study inverse reconstruction from characteristic-function interactions and Laplace-type semigroup measurements, beginning with the observable quotient: the complete profile identifies precisely the pushforward of spectral energy under the joint generator-rate map, and no fixed finite set of scalar observations can identify an arbitrary positive spectrum. Under finite atomicity, the classical consecutive Prony protocol gives exact recovery from <span class=\"math inline\">\\(2k\\)</span> values for a positive <span class=\"math inline\">\\(k\\)</span>-atomic spectrum, or <span class=\"math inline\">\\(2k-1\\)</span> additional positive-time values for a probability spectrum; these counts are sharp for that specified protocol.</p>\n<p>The emphasis is on structural query design beyond classical Prony reconstruction. With known finite bipartite support and complete axis profiles, exactly <span class=\"math inline\">\\(\\beta\\)</span> additional mixed Laplace queries are necessary and sufficient, where <span class=\"math inline\">\\(\\beta\\)</span> is the support graph&#x27;s cycle rank. A maximum-volume selection supplies a stable minimal-size design. For rational fixed-marginal grids, we prove a sharp deterministic number–precision exponent <span class=\"math inline\">\\(\\Theta(N^{-\\max\\{\\beta/m,1\\}})\\)</span> for <span class=\"math inline\">\\(m\\)</span> fixed queries and give explicit decoders. A Gaussian example identifies the dependence defect from canonical-correlation geometry. Deterministic exact data, finite precision and statistical sampling are treated as distinct problems.</p>",
+        "results": [
+          {
+            "en": "For known bipartite support and axis profiles, exactly β extra mixed Laplace queries are needed; β is the cycle rank.",
+            "ru": "При известном двудольном носителе и осевых профилях необходимы и достаточны β смешанных запросов, где β — ранг циклов.",
+            "evidence": "thm:cycle"
+          },
+          {
+            "en": "On rational fixed-marginal grids, the sharp number–precision tradeoff is Θ(N^−max{β/m,1}) for m queries.",
+            "ru": "На рациональных решётках точный обмен числа запросов на точность: Θ(N^−max{β/m,1}) при m запросах.",
+            "evidence": "thm:precision"
+          },
+          {
+            "en": "Complete commuting-semigroup profiles recover precisely the spectral energy pushed forward by generator rates.",
+            "ru": "Полные профили коммутирующих полугрупп восстанавливают образ спектральной энергии по скоростям генераторов.",
+            "evidence": "thm:quotient"
+          }
+        ],
+        "results_source_record_id": 23355619
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355618",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355619,
+            "version_doi": "10.5281/zenodo.23355619",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P07_CF_V6_S8.pdf",
+              "md5": "1d34416f8ee3ae73e3ee6bafa925d3ff",
+              "size_bytes": 354476
+            }
+          }
+        ]
+      }
+    },
+    "P08": {
+      "identity": {
+        "title": "Critical values, resultants and norms of the Chebyshev defect",
+        "area": "algebra",
+        "topics": [
+          "Chebyshev polynomials",
+          "critical values",
+          "resultants",
+          "discriminants"
+        ],
+        "keywords": [
+          "Chebyshev polynomials",
+          "Polynomial discriminants",
+          "Cyclotomic resultants",
+          "Critical values",
+          "Algebraic norms",
+          "Extremal constants",
+          "Arithmetic valuations",
+          "Torsion points",
+          "Chebyshev approximation",
+          "Irreducibility conditions"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "An unconditional cyclotomic discriminant formula for the Chebyshev defect; critical-value norms under irreducibility.",
+          "ru": "Безусловная циклотомическая формула дискриминанта дефекта Чебышёва; нормы критических значений при неприводимости."
+        },
+        "abstract_html": "<p>For the Chebyshev factorization defect <span class=\"math inline\">\\(F_d(x)=x^d-T_d(x)\\)</span>, we give an unconditional discriminant identity valid for every <span class=\"math inline\">\\(d\\ge3\\)</span>. With <span class=\"math inline\">\\(N=d-1\\)</span>, it is <span class=\"math inline\">\\(\\operatorname{disc}F_d=d^d(2^N-1)P_d\\)</span>, where <span class=\"math inline\">\\(P_d=\\prod_{\\omega^N=1,\\,\\omega\\ne1}[2^N-(1+\\omega)^N]\\)</span>. The expression connects the real critical geometry of a sharp characteristic-function bound to a cyclotomic resultant. We also prove that distinct positive critical points have distinct absolute critical values.</p>\n<p>The same product yields precise algebraic-degree and absolute-norm formulas for the extremal constant <span class=\"math inline\">\\(C_d\\)</span> when the associated critical polynomial <span class=\"math inline\">\\(A_d\\)</span> is irreducible; this hypothesis is proved for extensive index families in companion arithmetic work. We factor the resultant into cyclotomic norms, characterize its prime divisors via a torsion-line condition, and determine exact dyadic and selected odd-prime valuations. The degree/norm conclusions are explicitly conditional where irreducibility has not been established. The contribution is the explicit critical-value/resultant chain, not a new definition of polynomial discriminants.</p>",
+        "results": [
+          {
+            "en": "The discriminant of F_d(x)=xᵈ−T_d(x) has an unconditional cyclotomic product formula: disc(F_d)=dᵈ(2^{d−1}−1)P_d.",
+            "ru": "Для F_d(x)=xᵈ−T_d(x) получена безусловная циклотомическая формула дискриминанта: disc(F_d)=dᵈ(2^{d−1}−1)P_d.",
+            "evidence": "thm:disc"
+          },
+          {
+            "en": "Distinct positive critical points of the Chebyshev defect have distinct absolute critical values, via two monotone algebraic branches.",
+            "ru": "В различных положительных критических точках дефект Чебышёва принимает критические значения с различными модулями; доказательство использует две монотонные алгебраические ветви.",
+            "evidence": "lem:branches"
+          },
+          {
+            "en": "The algebraic degree and norm of the sharp extremal constant are expressed through the same critical product, conditional on irreducibility of A_d.",
+            "ru": "Алгебраическая степень и норма точной экстремальной константы выражены через то же критическое произведение при условии неприводимости A_d.",
+            "evidence": "thm:norm"
+          }
+        ],
+        "results_source_record_id": 23355626
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355625",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355626,
+            "version_doi": "10.5281/zenodo.23355626",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P08_CF_V6_S8.pdf",
+              "md5": "6db92fa4abb6bea214931b594005c675",
+              "size_bytes": 355660
+            }
+          }
+        ]
+      }
+    },
+    "P09": {
+      "identity": {
+        "title": "Deformations and local arithmetic of Lucas polynomial observations",
+        "area": "algebra",
+        "topics": [
+          "Lucas polynomials",
+          "deformations",
+          "Newton polygons",
+          "interlacing"
+        ],
+        "keywords": [
+          "Lucas polynomials",
+          "Newton polygons",
+          "p-adic valuations",
+          "Frobenius reduction",
+          "Real-root interlacing",
+          "Polynomial deformations",
+          "Eisenstein criterion",
+          "Recurrence polynomials",
+          "Finite-field factor profiles",
+          "Arithmetic specialization"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Complete negative-slope Newton polygons for Lucas companions, exact root-interlacing intervals and Eisenstein criteria.",
+          "ru": "Полная отрицательная часть многоугольников Ньютона полиномов Люка, интервалы перемежения корней и критерии Эйзенштейна."
+        },
+        "abstract_html": "<p>Lucas recurrence polynomials with a variable product admit several different observations whose factorization and root geometry need not agree. For the zero-companion polynomial <span class=\"math inline\">\\(W_n(X)=(V_n(2,1+X)-2)/X\\)</span>, we determine the complete negative-slope Newton polygon at every odd prime. The terminal segment depends on a Frobenius-reduced index, demonstrating why a parameter derivative alone does not determine the finite polynomial&#x27;s local arithmetic. We also give an exact odd-prime Eisenstein classification for this family.</p>\n<p>For the level polynomials <span class=\"math inline\">\\(U_n(2,1+X)-q\\)</span>, we determine the exact real interval of levels <span class=\"math inline\">\\(q\\)</span> where positive zeros are simple and strictly interlace with those of the neighbouring level polynomial at index <span class=\"math inline\">\\(n+2\\)</span>, including root-motion and endpoint-asymptotic formulas. Integral coefficient identities and finite-field Frobenius reduction permit transfer of specified small-degree factor profiles; known periodicity of reversed Dickson polynomials is used rather than claimed new. The paper distinguishes local Newton geometry and real interlacing from global rational irreducibility; no general factorization theorem for all Lucas levels is asserted.</p>",
+        "results": [
+          {
+            "en": "For every odd prime, all negative-slope sides of the Newton polygon of the zero-companion Lucas polynomial Wₙ are determined.",
+            "ru": "Для каждого нечётного простого полностью определены стороны отрицательного наклона многоугольника Ньютона многочлена Люкаса Wₙ.",
+            "evidence": "thm:W"
+          },
+          {
+            "en": "A new explicit irreducible family is obtained: W_{p(pᵇ+1)} is irreducible over ℚ for every odd prime p and b≥0.",
+            "ru": "Получено явное неприводимое семейство: W_{p(pᵇ+1)} неприводим над ℚ для любого нечётного простого p и b≥0.",
+            "evidence": "cor:fullside"
+          },
+          {
+            "en": "For Lucas level polynomials, the exact interval of strict positive interlacing with the next index n+2 and its endpoint asymptotics are found.",
+            "ru": "Для уровневых многочленов Люкаса найден точный интервал строгого перемежения положительных корней с индексом n+2 и асимптотика его границ.",
+            "evidence": "abstract"
+          }
+        ],
+        "results_source_record_id": 23355634
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355633",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355634,
+            "version_doi": "10.5281/zenodo.23355634",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P09_CF_V6_S8.pdf",
+              "md5": "4ceefafc7f0853df337562970fe4e22c",
+              "size_bytes": 342264
+            }
+          }
+        ]
+      }
+    },
+    "P11": {
+      "identity": {
+        "title": "Truncation, Sampling, and Huber Geometry for Supremum Characteristic-Function Independence Testing",
+        "area": "statistics",
+        "topics": [
+          "independence testing",
+          "empirical characteristic function",
+          "supremum metric",
+          "Huber contamination"
+        ],
+        "keywords": [
+          "Independence testing",
+          "Characteristic-function supremum",
+          "Huber contamination",
+          "Robust statistics",
+          "Minimax separation rates",
+          "Identifiability threshold",
+          "Frequency-window truncation",
+          "Empirical processes",
+          "Total variation overlap",
+          "Row replacement contamination"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Exact Huber nonidentifiability threshold 1−1/√2, minimax separation rates and degeneracy of unrestricted empirical tests.",
+          "ru": "Точный порог неидентифицируемости Хьюбера 1−1/√2, минимаксные скорости и вырождение неограниченного эмпирического супремума."
+        },
+        "abstract_html": "<p>We analyze supremum characteristic-function tests of mutual independence, including their behavior under sampling and robust contamination. The choice of frequency window is essential: for generic finite scalar samples of even size, an unrestricted empirical supremum attains the universal population ceiling regardless of the true dependence. A fixed window instead admits explicit uniform deviations of order <span class=\"math inline\">\\(n^{-1/2}\\)</span>.</p>\n<p>For Huber contamination of two-block independence, we determine the sharp contaminated-null envelope <span class=\"math inline\">\\(b_{\\rm null}(\\varepsilon)=4\\varepsilon(1-\\varepsilon)\\)</span> when <span class=\"math inline\">\\(\\varepsilon\\le1/2\\)</span>, and <span class=\"math inline\">\\(1\\)</span> above that level. More importantly, we identify the distinct, exact clean-law nonidentifiability threshold <span class=\"math inline\">\\(\\varepsilon_c=1-1/\\sqrt2\\)</span>: at or above this contamination level, even maximally dependent clean laws can be observationally indistinguishable from independent ones. Under specified fixed-support and frequency assumptions, the local minimax separation rate is <span class=\"math inline\">\\(\\Theta(\\varepsilon+n^{-1/2})\\)</span>; the complete-row replacement model has the analogous rate <span class=\"math inline\">\\(\\Theta(\\eta+n^{-1/2})\\)</span>. The general finite-contamination clean-law overlap profile remains open. The results separate statistical consistency, robustness and geometric identifiability.</p>",
+        "results": [
+          {
+            "en": "At Huber contamination ε≥1−1/√2, even maximally dependent clean laws may mimic independent laws.",
+            "ru": "При загрязнении Хьюбера ε≥1−1/√2 даже максимально зависимые исходные законы могут быть неотличимы от независимых.",
+            "evidence": "thm:cleanoverlap"
+          },
+          {
+            "en": "Under fixed-support and frequency assumptions, Huber independence testing has minimax rate Θ(ε+n⁻¹ᐟ²).",
+            "ru": "При заданных носителе и частотах минимаксная скорость проверки независимости — Θ(ε+n⁻¹ᐟ²).",
+            "evidence": "thm:minimax"
+          },
+          {
+            "en": "For generic even empirical samples, the unrestricted frequency supremum saturates C_d regardless of dependence.",
+            "ru": "Для типичных эмпирических выборок чётного объёма супремум по частотам достигает C_d независимо от зависимости.",
+            "evidence": "prop:degenerate"
+          }
+        ],
+        "results_source_record_id": 23355657
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355656",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355657,
+            "version_doi": "10.5281/zenodo.23355657",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P11_CF_V6_S8.pdf",
+              "md5": "e6f154c3cbeba79484326fd4c73c88b0",
+              "size_bytes": 507456
+            }
+          }
+        ]
+      }
+    },
+    "P12": {
+      "identity": {
+        "title": "Harmonic observation quotients and stable recovery from translated class portraits",
+        "area": "harmonic",
+        "topics": [
+          "finite groups",
+          "harmonic analysis",
+          "conjugacy classes",
+          "translated characters"
+        ],
+        "keywords": [
+          "Non-Abelian harmonic analysis",
+          "Dihedral groups",
+          "Conjugacy-class tomography",
+          "Translated class portraits",
+          "Exact inverse reconstruction",
+          "Matrix coefficient spanning",
+          "Optimal experiment design",
+          "Spectral conditioning",
+          "Logarithmic redundancy",
+          "Finite group representations"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Four translated class portraits recover dihedral laws exactly; stable nonadaptive designs need Θ(log m) portraits.",
+          "ru": "Четыре сдвинутых портрета восстанавливают законы на диэдральных группах; для устойчивости нужно Θ(log m) портретов."
+        },
+        "abstract_html": "<p>Scalar characters on a non-Abelian group observe only the conjugacy-class quotient of a probability law. We investigate whether complete translated conjugacy-class portraits recover the original law and how many translations are needed for stable inversion. For every dihedral group <span class=\"math inline\">\\(D_{2m}\\)</span>, <span class=\"math inline\">\\(m\\ge3\\)</span>, the four portraits translated by <span class=\"math inline\">\\(1,r,s,rs\\)</span> recover every law and are minimal. Their exact design-normalized smallest Gram eigenvalue is <span class=\"math inline\">\\(\\frac12(1-\\cos(\\pi/L))\\)</span>, where <span class=\"math inline\">\\(L=m/\\gcd(m,2)\\)</span>, demonstrating that a minimal exact design becomes ill-conditioned as <span class=\"math inline\">\\(m\\)</span> increases.</p>\n<p>For fixed nonadaptive equally weighted full-portrait designs, we prove that a stable, dimension-independent condition number requires and can be achieved with <span class=\"math inline\">\\(\\Theta(\\log m)\\)</span> portraits. A general representation-theoretic spanning criterion explains which shifts identify a law and separates scalar-class information from full matrix Fourier observations. That general criterion follows standard finite-group harmonic analysis; the emphasis here is on minimal dihedral recovery, exact conditioning and optimal logarithmic redundancy. A portrait means a complete conjugacy-class distribution, not a single character evaluation or empirical sample.</p>",
+        "results": [
+          {
+            "en": "For the dihedral group D₂ₘ, four shifts are necessary and sufficient for exact recovery, but their smallest Gram eigenvalue decays with m; stable nonadaptive designs need Θ(log m) shifts.",
+            "ru": "Для диэдральной группы D₂ₘ четырёх сдвигов необходимо и достаточно для точного восстановления, но наименьшее собственное значение матрицы Грама убывает с m; устойчивым схемам нужно Θ(log m) сдвигов.",
+            "evidence": "abstract"
+          },
+          {
+            "en": "Translated full conjugacy-class portraits recover every law exactly when the representation matrices of the chosen shifts span each irreducible matrix algebra.",
+            "ru": "Полные сдвинутые портреты классов сопряжённости восстанавливают любой закон тогда и только тогда, когда матрицы выбранных сдвигов порождают все пространства матриц неприводимых представлений.",
+            "evidence": "abstract"
+          },
+          {
+            "en": "On non-Abelian compact groups, scalar characters observe only conjugacy-class information; vanishing scalar interaction detects independence only of the conjugacy-class quotients.",
+            "ru": "На неабелевых компактных группах скалярные характеры видят лишь классы сопряжённости: нулевое скалярное взаимодействие определяет независимость только соответствующих фактор-наблюдений.",
+            "evidence": "thm:conjugacy"
+          }
+        ],
+        "results_source_record_id": 23355669
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355668",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355669,
+            "version_doi": "10.5281/zenodo.23355669",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P12_CF_V6_S8.pdf",
+              "md5": "1590c32efb3165b4dabfe9daf856aede",
+              "size_bytes": 485042
+            }
+          }
+        ]
+      }
+    },
+    "P13": {
+      "identity": {
+        "title": "Sharp Wasserstein stability of a multivariate characteristic-function defect",
+        "area": "extremal",
+        "topics": [
+          "characteristic functions",
+          "sharp inequalities",
+          "quantitative extremizers",
+          "Wasserstein distance"
+        ],
+        "keywords": [
+          "Sharp stability inequalities",
+          "Wasserstein distance",
+          "Characteristic-function factorization",
+          "Extremal probability",
+          "Quantitative rigidity",
+          "Optimal exponent",
+          "Two-point extremizers",
+          "Equality orbit",
+          "Phase synchronization",
+          "Probability transport"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Optimal Wasserstein stability near maximal dependence: distance O(Δ^(1/(2p))) to the complete orbit of extremizers.",
+          "ru": "Оптимальная устойчивость Васерштейна вблизи максимальной зависимости: O(Δ^(1/(2p))) до множества экстремалей."
+        },
+        "abstract_html": "<p>For laws <span class=\"math inline\">\\(P\\)</span> on the closed unit polydisk, let <span class=\"math inline\">\\(D(P)\\)</span> denote the product-moment factorization defect and <span class=\"math inline\">\\(\\Delta(P)=C_d-D(P)\\)</span> its deficit from the sharp universal constant. We prove a quantitative inverse theorem: for each fixed <span class=\"math inline\">\\(d\\ge3\\)</span> and every finite <span class=\"math inline\">\\(p\\ge1\\)</span>, there are positive constants such that <span class=\"math inline\">\\(\\operatorname{dist}_{W_p}(P,\\mathcal E_d)\\le K_{d,p}\\Delta(P)^{1/(2p)}\\)</span> whenever the deficit is sufficiently small. Here <span class=\"math inline\">\\(\\mathcal E_d\\)</span> is the entire equality orbit of common fair-sign two-point laws, including coordinate rotations.</p>\n<p>The exponent <span class=\"math inline\">\\(1/(2p)\\)</span> is optimal even after minimizing over all phase rotations. A family of biased two-point extremizers gives matching asymptotics and an exact formula for its <span class=\"math inline\">\\(W_2\\)</span>-distance to the equality orbit. The proof identifies distinct position and mass errors; when these are measured separately, a natural structured discrepancy admits the sharper and again optimal square-root rate. We also treat nonidentical prescribed mean moduli under explicit hypotheses. The statement is a stability theorem for near-extremizers, not an unqualified global Wasserstein estimate.</p>",
+        "results": [
+          {
+            "en": "For d≥3, the deficit Δ from the universal extremum controls distance to the full equality orbit: dist_{Wₚ}≤K·Δ¹ᐟ⁽²ᵖ⁾ for every finite p≥1.",
+            "ru": "При d≥3 дефицит Δ относительно универсального максимума контролирует расстояние до всего семейства экстремалей: dist_{Wₚ}≤K·Δ¹ᐟ⁽²ᵖ⁾ для любого конечного p≥1.",
+            "evidence": "thm:main"
+          },
+          {
+            "en": "This Wasserstein exponent is optimal, even after all coordinate rotations are optimized; biased two-point laws give matching sharpness examples.",
+            "ru": "Показатель степени в оценке Васерштейна оптимален даже после оптимизации по поворотам координат; точность демонстрируют несимметрично взвешенные двухточечные законы.",
+            "evidence": "thm:main"
+          },
+          {
+            "en": "Separating positional and mass errors produces an optimal square-root stability rate for a structured discrepancy.",
+            "ru": "Раздельный учёт ошибок положения и массы даёт оптимальную оценку устойчивости порядка √Δ для структурированной меры отклонения.",
+            "evidence": "abstract"
+          }
+        ],
+        "results_source_record_id": 23355678
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355677",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355678,
+            "version_doi": "10.5281/zenodo.23355678",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P13_CF_V6_S8.pdf",
+              "md5": "90c2621db9b6aa7458dc1a07429a4b25",
+              "size_bytes": 321510
+            }
+          }
+        ]
+      }
+    },
+    "P14": {
+      "identity": {
+        "title": "Global irreducibility and Galois groups of Chebyshev–Lucas level polynomials",
+        "area": "algebra",
+        "topics": [
+          "irreducibility",
+          "Galois groups",
+          "Lucas polynomials",
+          "monodromy"
+        ],
+        "keywords": [
+          "Galois groups",
+          "Generic monodromy",
+          "Chebyshev–Lucas polynomials",
+          "Density-one irreducibility",
+          "Arithmetic specialization",
+          "Symmetric groups",
+          "Newton polygons",
+          "Local–global irreducibility",
+          "Critical values",
+          "Hilbert irreducibility"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Full generic symmetric Galois groups for Lucas levels and irreducibility of critical polynomials for density-one even indices.",
+          "ru": "Общие симметрические группы Галуа уровней Люка и неприводимость критических полиномов для почти всех чётных индексов."
+        },
+        "abstract_html": "<p>For the Chebyshev–Lucas level polynomials <span class=\"math inline\">\\(B_n(X)-q\\)</span>, we establish that the generic Galois group over <span class=\"math inline\">\\(\\mathbb Q(q)\\)</span> (and over <span class=\"math inline\">\\(\\mathbb C(q)\\)</span>) is the full symmetric group <span class=\"math inline\">\\(S_m\\)</span>, where <span class=\"math inline\">\\(m=\\lfloor(n-1)/2\\rfloor\\)</span>, for every <span class=\"math inline\">\\(n\\ge5\\)</span>. The argument uses the geometry of critical amplitudes and distinguishes generic monodromy from arithmetic specialization.</p>\n<p>For the critical level <span class=\"math inline\">\\(A_n=B_n-1\\)</span>, we further prove irreducibility for a density-one set of even indices: among even <span class=\"math inline\">\\(n\\le X\\)</span>, the number of reducible cases is <span class=\"math inline\">\\(O(X^{1/3})\\)</span>. In particular, sufficiently large even indices that are not perfect odd powers satisfy an explicit irreducibility criterion. We obtain two-prime local criteria, infinitely many specialized groups <span class=\"math inline\">\\(\\operatorname{Gal}(A_{2p+2}/\\mathbb Q)=S_p\\)</span> for primes <span class=\"math inline\">\\(p\\equiv3,5\\pmod8\\)</span>, and dense sets of rational levels with full symmetric Galois group. Reducible and irreducible specializations may coexist densely within one real-interlacing interval. These results do not claim universal irreducibility of every Chebyshev–Lucas critical polynomial.</p>",
+        "results": [
+          {
+            "en": "For every n≥5, the generic Galois group of Bₙ(X)−q is the full symmetric group Sₘ.",
+            "ru": "Для каждого n≥5 общая группа Галуа Bₙ(X)−q — полная симметрическая группа Sₘ.",
+            "evidence": "thm:generic"
+          },
+          {
+            "en": "Among even n≤X, only O(X^(1/3)) critical polynomials Aₙ are reducible: irreducibility has density one.",
+            "ru": "Среди чётных n≤X число приводимых Aₙ равно O(X^(1/3)): неприводимость имеет плотность один.",
+            "evidence": "thm:strength-densityone"
+          },
+          {
+            "en": "For primes p≡3 or 5 (mod 8), Gal(A_{2p+2}/ℚ)=Sₚ, yielding infinitely many symmetric groups.",
+            "ru": "При простых p≡3 или 5 (mod 8) верно Gal(A_{2p+2}/ℚ)=Sₚ: бесконечное семейство групп Галуа.",
+            "evidence": "cor:mod8"
+          }
+        ],
+        "results_source_record_id": 23355688
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355687",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355688,
+            "version_doi": "10.5281/zenodo.23355688",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P14_CF_V6_S8.pdf",
+              "md5": "099e9e7fad77278a1c78bf2ee66889d6",
+              "size_bytes": 361741
+            }
+          }
+        ]
+      }
+    },
+    "P15": {
+      "identity": {
+        "title": "Partition interactions and sharp binary rigidity",
+        "area": "extremal",
+        "topics": [
+          "Partition interaction",
+          "joint cumulant",
+          "Lancaster interaction",
+          "Streitberg interaction"
+        ],
+        "keywords": [
+          "Fourth-order joint cumulant",
+          "Streitberg interaction",
+          "Lancaster interaction",
+          "Partition interactions",
+          "Sharp cumulant bounds",
+          "Balanced Rademacher variables",
+          "Equality cases",
+          "Total variation stability",
+          "Higher-order dependence",
+          "Quantitative rigidity"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Sharp fourth-cumulant bound |κ₄|≤2 for balanced signs, all equality laws and quantitative total-variation rigidity.",
+          "ru": "Точная оценка |κ₄|≤2 для четвёртого кумулянта сбалансированных знаков, все экстремали и устойчивость в полной вариации."
+        },
+        "abstract_html": "<p>Higher-order dependence depends on which partition-based signed interaction measure is used. At four variables, we express the Streitberg interaction exactly as the Lancaster interaction minus the three tensor products of paired dependence defects. Thus agreement on the pure-interaction stratum does not imply that the two operators coincide for arbitrary laws.</p>\n<p>For four balanced sign variables, the fourth joint cumulant satisfies the sharp inequality <span class=\"math inline\">\\(|\\kappa_4|\\le2\\)</span>. We characterize all eight common-sign equality laws, and obtain an exact formula for total-variation distance to the full equality family through the relative-sign distribution. An exact local expansion yields the optimal leading stability coefficient <span class=\"math inline\">\\(1/4\\)</span>, while an explicit family rules out a corresponding global linear bound. We additionally compare normalized partition interactions via lower-order marginal dependence defects. Classical partition and cumulant identities provide the setting; the contribution is the sharp balanced-sign extremal geometry, complete equality classification and local quantitative rigidity.</p>",
+        "results": [
+          {
+            "en": "For four balanced signs, the joint cumulant satisfies the sharp bound |κ₄|≤2; all equality distributions are identified.",
+            "ru": "Для четырёх сбалансированных знаков получена точная оценка совместного кумулянта |κ₄|≤2 и описаны все распределения, реализующие равенство.",
+            "evidence": "thm:sharp"
+          },
+          {
+            "en": "The total-variation distance to the entire equality family is exactly 1−maxₛ qₛ, expressed through the relative-sign distribution.",
+            "ru": "Расстояние полной вариации до всего семейства экстремалей точно равно 1−maxₛ qₛ, где qₛ — распределение относительных знаков.",
+            "evidence": "prop:TV"
+          },
+          {
+            "en": "For four variables, the Streitberg and Lancaster interaction measures differ by exactly three products of pairwise dependence defects.",
+            "ru": "Для четырёх переменных меры взаимодействия Штрайтберга и Ланкастера различаются в точности на сумму трёх произведений парных дефектов зависимости.",
+            "evidence": "prop:fourth-bridge"
+          }
+        ],
+        "results_source_record_id": 23355701
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355700",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355701,
+            "version_doi": "10.5281/zenodo.23355701",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P15_CF_V6_S8.pdf",
+              "md5": "528e3cd13c1e25a7dd2cbaf73e987c77",
+              "size_bytes": 317991
+            }
+          }
+        ]
+      }
+    },
+    "P16": {
+      "identity": {
+        "title": "Query-Relative Walsh Compression: Sharp Punctured Norms and Signed Bent-Orbit Recovery",
+        "area": "harmonic",
+        "topics": [
+          "Walsh–Hadamard transform",
+          "total variation",
+          "punctured spectrum",
+          "bent function"
+        ],
+        "keywords": [
+          "Walsh–Hadamard transform",
+          "Sharp punctured Walsh norms",
+          "Total variation distance",
+          "Bent Boolean functions",
+          "Signed orbit recovery",
+          "Reed–Muller codes",
+          "Spectral compression",
+          "Finite Fourier analysis",
+          "Noise and erasure correction",
+          "Boolean spectral geometry"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Sharp punctured Walsh norms across exponents and robust recovery of signed quadratic bent-function orbits.",
+          "ru": "Точные проколотые нормы Уолша и устойчивое восстановление знаковых орбит квадратичных бент-функций."
+        },
+        "abstract_html": "<p>For signed differences of measures on <span class=\"math inline\">\\(\\mathbb F_2^m\\)</span>, we determine sharp comparisons between total variation and punctured (zero-frequency-deleted) Walsh <span class=\"math inline\">\\(L^p\\)</span> spectra. For every <span class=\"math inline\">\\(m\\)</span> and <span class=\"math inline\">\\(1\\le p\\le2\\)</span>, the optimal constant is <span class=\"math inline\">\\(\\Lambda_{m,p}=2^{m/p-1}\\)</span>. For all dimensions <span class=\"math inline\">\\(m\\le5\\)</span> we also give analytical sharp formulas throughout <span class=\"math inline\">\\(2\\le p\\le\\infty\\)</span>; in particular the five-bit formula is <span class=\"math inline\">\\(\\Lambda_{5,p}=\\frac{32^{1/p-1}}2(16\\cdot4^q+12\\cdot8^q)^{1/q}\\)</span>, where <span class=\"math inline\">\\(q=p/(p-1)\\)</span>. The result is a continuous-exponent punctured-norm theorem, not a claim that the classical five-bit endpoint value 160 or the underlying Boolean spectral catalogues were first discovered here.</p>\n<p>For observations of a known quadratic bent-function translation/sign orbit, exact identification is equivalent to affine spanning by sampled frequencies. The first-order Reed–Muller code determines optimal worst-case sign-error, erasure and Euclidean-noise thresholds. We also identify a sharp six-bit bent regime for <span class=\"math inline\">\\(p\\ge2.5590297\\ldots\\)</span> and an explicit counterexample to bent optimality for <span class=\"math inline\">\\(2\\le p&lt;2.1269266\\ldots\\)</span>; the intermediate regime remains unresolved. Sharpness for arbitrary signed differences is not automatically claimed for the more restricted class of characteristic-function dependence defects.</p>",
+        "results": [
+          {
+            "en": "For m≤5, punctured Walsh norms are sharp for all 2≤p≤∞; the five-bit endpoint 160 was already known.",
+            "ru": "При m≤5 точны проколотые нормы Уолша для 2≤p≤∞; пятибитовое предельное значение 160 известно ранее.",
+            "evidence": "thm:smallanalytic"
+          },
+          {
+            "en": "Signed quadratic bent orbits are recoverable iff affine queries span; sharp error and erasure bounds follow.",
+            "ru": "Знаковые орбиты квадратичных бент-функций восстанавливаются при аффинном порождении; пороги ошибок и стираний точны.",
+            "evidence": "thm:code"
+          },
+          {
+            "en": "For any m and 1≤p≤2, the sharp punctured Walsh–TV constant is Λₘ,ₚ=2^{m/p−1}.",
+            "ru": "При всех m и 1≤p≤2 точная константа Уолша и полной вариации равна Λₘ,ₚ=2^{m/p−1}.",
+            "evidence": "prop:lowp"
+          }
+        ],
+        "results_source_record_id": 23355709
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355708",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355709,
+            "version_doi": "10.5281/zenodo.23355709",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P16_CF_V6_S8.pdf",
+              "md5": "d28fd2b3595d42609100bf472797baaf",
+              "size_bytes": 362094
+            }
+          }
+        ]
+      }
+    },
+    "P17": {
+      "identity": {
+        "title": "Transport distance to joint mixability and quantitative characteristic-function gaps",
+        "area": "transport",
+        "topics": [
+          "joint mixability",
+          "prescribed marginals",
+          "Wasserstein distance",
+          "characteristic functions"
+        ],
+        "keywords": [
+          "Joint mixability",
+          "Wasserstein projection",
+          "Constant-sum couplings",
+          "Prescribed marginal distributions",
+          "Optimal transport",
+          "Mean-preserving transport",
+          "Quantitative Fourier gap",
+          "Gaussian marginals",
+          "Multimarginal coupling",
+          "Dependence geometry"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "An exact Wasserstein projection onto jointly mixable marginals and a positive Fourier gap for Gaussian laws.",
+          "ru": "Точная проекция Васерштейна на совместно смешиваемые маргинали и положительный Фурье-зазор для гауссовских законов."
+        },
+        "abstract_html": "<p>Joint mixability asks whether prescribed marginals admit a coupling whose weighted sum is constant. We quantify the failure of this compatibility condition by the smallest possible <span class=\"math inline\">\\(L^p\\)</span> residual of the weighted sum. For fixed <span class=\"math inline\">\\(1\\le p&lt;\\infty\\)</span> and each <span class=\"math inline\">\\(1\\le q\\le\\infty\\)</span>, we prove an exact identity between that residual <span class=\"math inline\">\\(J_{a,p}\\)</span> and the product-Wasserstein distance from the marginal tuple to the set of mean-preserving jointly mixable tuples, with the precise factor <span class=\"math inline\">\\(\\|a\\|_{\\ell^{q^*}}\\)</span>; both optima are attained. This is stronger than treating the residual merely as an upper or lower stability estimate.</p>\n<p>Under explicit frequency-isolation, Fourier log-concavity and quadratic phase-margin hypotheses, nonmixability yields a strictly positive quantitative gap below the scalar fixed-marginal characteristic-function profile. The hypotheses are verified for nondegenerate Gaussian marginals in every dimension <span class=\"math inline\">\\(d\\ge3\\)</span>, with an explicit positive lower bound expressed using a half-normal tail. An exact Bernoulli residual and smooth perturbative obstructions complement the theory. The paper does not determine the exact Gaussian coupling optimum; the projection identity and the quantitative Fourier transfer are its central contributions.</p>",
+        "results": [
+          {
+            "en": "The minimal weighted-sum residual admits an exact equality with a product-Wasserstein distance to the set of jointly mixable marginal tuples.",
+            "ru": "Минимальный остаток взвешенной суммы в точности выражается через произведённое расстояние Васерштейна до множества совместно смешиваемых наборов маргиналей.",
+            "evidence": "thm:projection"
+          },
+          {
+            "en": "Under explicit Fourier curvature and isolation assumptions (verified for Gaussian marginals when d≥3), nonmixability gives a positive quantitative gap below the fixed-marginal scalar profile.",
+            "ru": "При явных предположениях о кривизне и изоляции частот (выполненных для гауссовских маргиналей при d≥3) отсутствие смешиваемости даёт положительный количественный зазор до скалярного профиля.",
+            "evidence": "thm:gap"
+          },
+          {
+            "en": "For Bernoulli marginal components, the optimal residual is given explicitly by the fractional part of the sum of their success probabilities.",
+            "ru": "Для бернуллиевских маргинальных компонент оптимальный остаток вычислен явно через дробную часть суммы вероятностей успеха.",
+            "evidence": "prop:bernoulli"
+          }
+        ],
+        "results_source_record_id": 23355715
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355714",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355715,
+            "version_doi": "10.5281/zenodo.23355715",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P17_CF_V6_S8.pdf",
+              "md5": "0ebc9c6c590b7758b1305bd5b0da1801",
+              "size_bytes": 354162
+            }
+          }
+        ]
+      }
+    },
+    "P18": {
+      "identity": {
+        "title": "Rational moment algebras: spectral reconstruction, factorization and arithmetic rigidity",
+        "area": "algebra",
+        "topics": [
+          "moment problems",
+          "Hankel matrices",
+          "rational algebras",
+          "polynomial factorization"
+        ],
+        "keywords": [
+          "Rational moment problems",
+          "Hankel determinants",
+          "Polynomial resultants",
+          "Rational spectral algebras",
+          "Idempotent factor selectors",
+          "Discriminant gap",
+          "Smith normal form",
+          "Local–global obstruction",
+          "Laplace mixture models",
+          "Arithmetic rigidity"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Hankel–resultant identities, rational spectral recovery and quantized discriminant gaps for factor selectors.",
+          "ru": "Тождества определителей Ганкеля и результантов, восстановление рациональных спектров и дискретные зазоры факторизации."
+        },
+        "abstract_html": "<p>For rational characteristic functions with finite symmetric Laplace-mixture representations, simple poles and positive residues, we connect truncated moments to exact rational factorization data. Residue-weighted Hankel determinants recover a normalized numerator–denominator resultant, while equal spectral weights recover a polynomial discriminant. The associated finite rational spectral algebra is reconstructed from the Hankel pencil; its idempotents identify rational partitions of poles.</p>\n<p>For integral logarithmic-derivative selectors on real simple spectra, we prove a discriminant-quantized variance gap: the defect is either zero, corresponding to a genuine integral factor, or at least <span class=\"math inline\">\\(2/\\Delta\\)</span> under the stated positivity hypotheses. Smith-normal-form denominators yield an exact local reconstruction threshold. We also give explicit limits of positive-moment inference: an everywhere locally soluble factor-degree problem can fail globally, and smoothly varying positive Fourier models may have densely alternating rational splitting types and discontinuous minimal contact radii. These results distinguish recoverability of a finite algebra from certification of its arithmetic factorization. No general-purpose factorization algorithm or claim about all positive rational characteristic functions is made.</p>",
+        "results": [
+          {
+            "en": "For rational Laplace mixtures with positive residues, the Hankel determinant is a normalized numerator–denominator resultant; equal spectral weights instead yield a discriminant.",
+            "ru": "Для рациональных смесей Лапласа с положительными вычетами определитель Ганкеля равен нормированному результанту числителя и знаменателя; равные спектральные веса дают вместо него дискриминант.",
+            "evidence": "thm:determinants"
+          },
+          {
+            "en": "An integral selector has a discrete discriminant-quantized variance gap: either it represents a genuine factor or the residual is at least 2/Δ under the theorem's positivity conditions.",
+            "ru": "Для целочисленного селектора доказан дискретный порог дисперсионного дефекта: либо он задаёт настоящий множитель, либо остаток не меньше 2/Δ при условиях положительности теоремы.",
+            "evidence": "thm:quantum"
+          },
+          {
+            "en": "Finite rational moments reconstruct a rational spectral algebra by the Hankel operator H₀⁻¹H₁; its idempotents encode rational pole partitions.",
+            "ru": "Конечный набор рациональных моментов восстанавливает спектральную алгебру над ℚ через оператор Ганкеля H₀⁻¹H₁; её идемпотенты задают рациональные разбиения полюсов.",
+            "evidence": "lem:algebra"
+          }
+        ],
+        "results_source_record_id": 23355723
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355722",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355723,
+            "version_doi": "10.5281/zenodo.23355723",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P18_CF_V6_S8.pdf",
+              "md5": "74788d5cc98c978bb4f01ae8eb4d4647",
+              "size_bytes": 361990
+            }
+          }
+        ]
+      }
+    },
+    "P19": {
+      "identity": {
+        "title": "Prescribed-marginal dependence synthesis with moment and Fourier constraints",
+        "area": "transport",
+        "topics": [
+          "Prescribed marginals",
+          "dependence synthesis",
+          "characteristic function",
+          "finite moment constraints"
+        ],
+        "keywords": [
+          "Inverse dependence synthesis",
+          "Prescribed marginals",
+          "Fourier interpolation",
+          "Finite moment masking",
+          "Spectral zero constraints",
+          "Constructive probability couplings",
+          "Centered tensor perturbations",
+          "Three-sign dependence",
+          "Extremal Fourier defects",
+          "Positivity geometry"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Synthesis with fixed marginals, hidden moments and prescribed Fourier zeros; exact three-sign dependence regimes.",
+          "ru": "Синтез с заданными маргиналями, скрытыми моментами и нулями Фурье; точные режимы зависимости трёх знаков."
+        },
+        "abstract_html": "<p>We address an inverse dependence problem: construct joint probability laws with prescribed marginals while enforcing finite moment constraints, selected Fourier values and specified spectral zeros simultaneously. A centered-tensor interpolation lemma yields explicit rational lattice constructions with a computable positivity region and local complex interpolation for marginal densities bounded below on intervals. The exact feasible body is distinguished from simpler sufficient inner bounds.</p>\n<p>We construct examples with any prescribed pure Fourier-factorization defect between zero and one while matching independence through an arbitrarily chosen finite moment order and retaining two algebraic contacts. A sharp support-radius statement is provided for the specified rational signed-measure construction, not asserted for all positive couplings. For three fair signs we derive an exact dependence profile when pair correlations are equal and identify the dominant-pair regime <span class=\"math inline\">\\(2q^2\\ge R_2+\\tau^2\\)</span> for unequal correlations, where <span class=\"math inline\">\\(q=\\max|r_{ij}|\\)</span>, <span class=\"math inline\">\\(R_2=\\sum r_{ij}^2\\)</span>, and <span class=\"math inline\">\\(\\tau=\\mathbb E[X_1X_2X_3]\\)</span>. At its transition the frequency contact can be quartic along one direction and quadratic transversally. The paper makes simultaneous feasibility and the geometry of its constraints explicit rather than proposing a universal unrestricted synthesis algorithm.</p>",
+        "results": [
+          {
+            "en": "Centered-tensor constructions realize prescribed marginals together with finite moment conditions, Fourier targets and chosen spectral zeros, with explicit positivity constraints.",
+            "ru": "Конструкции с центрированными тензорами одновременно реализуют заданные маргинали, конечные моментные условия, значения Фурье и указанные спектральные нули при явных ограничениях положительности.",
+            "evidence": "abstract"
+          },
+          {
+            "en": "For three fair signs with unequal pair correlations, the Fourier defect equals the largest pair coefficient q exactly when 2q²≥R₂+τ².",
+            "ru": "Для трёх симметричных знаков с неравными парными корреляциями дефект Фурье равен наибольшему парному коэффициенту q тогда и только тогда, когда 2q²≥R₂+τ².",
+            "evidence": "thm:unequal-boundary"
+          },
+          {
+            "en": "For equal pair correlations, a complete explicit three-sign defect profile is obtained; the transition can produce quartic contact along a special frequency direction.",
+            "ru": "При равных парных корреляциях получен полный явный профиль дефекта трёх знаков; на переходной границе возможно соприкосновение четвёртого порядка вдоль особого частотного направления.",
+            "evidence": "thm:threeprofile"
+          }
+        ],
+        "results_source_record_id": 23355731
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355730",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355731,
+            "version_doi": "10.5281/zenodo.23355731",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P19_CF_V6_S8.pdf",
+              "md5": "f1e84dcc3ad04a61bd72ddb0634b9ae1",
+              "size_bytes": 344833
+            }
+          }
+        ]
+      }
+    },
+    "P20": {
+      "identity": {
+        "title": "Statistical Estimation of Extremal Characteristic-Function Functionals: Growing L^p Profiles, Random Frequency Banks, and Walsh Calibration",
+        "area": "statistics",
+        "topics": [
+          "characteristic function",
+          "dependence estimation",
+          "random frequencies",
+          "L^(p) approximation"
+        ],
+        "keywords": [
+          "Characteristic-function dependence estimation",
+          "Uniform consistency impossibility",
+          "Empirical characteristic functions",
+          "Growing Lp norms",
+          "Random frequency banks",
+          "Supremum functional estimation",
+          "Nonparametric statistics",
+          "Finite-sample confidence bounds",
+          "Morse–Bott geometry",
+          "Walsh calibration"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "No uniformly consistent estimator of unrestricted Fourier dependence on [0,1]²; consistent Lᵖ and random-frequency methods.",
+          "ru": "Нет равномерно состоятельной оценки неограниченной Фурье-зависимости на [0,1]²; есть состоятельные Lᵖ- и частотные методы."
+        },
+        "abstract_html": "<p>Consider the extremal characteristic-function dependence functional <span class=\"math inline\">\\(D_\\infty(P)=\\sup_t|\\varphi_P(t)-\\prod_j\\varphi_{P_j}(t_j)|\\)</span>. Unrestricted empirical maximization can saturate the universal extremal ceiling on generic finite samples, making a naive plug-in statistic misleading. We prove a stronger statistical limitation: no estimator of <span class=\"math inline\">\\(D_\\infty\\)</span> is uniformly consistent over all laws on <span class=\"math inline\">\\([0,1]^2\\)</span> without regularity or support-complexity restrictions, although pointwise estimation is possible.</p>\n<p>We establish two consistent regularized alternatives. For a fixed full-support frequency distribution <span class=\"math inline\">\\(W\\)</span>, an exact-integral <span class=\"math inline\">\\(L^{p_n}(W)\\)</span> estimator converges almost surely when <span class=\"math inline\">\\(p_n\\to\\infty\\)</span> and <span class=\"math inline\">\\(p_n=o(n)\\)</span>. An independent random bank of <span class=\"math inline\">\\(K_n\\)</span> frequencies provides explicit finite-sample uncertainty brackets and almost-sure consistency when <span class=\"math inline\">\\(\\log K_n=o(n)\\)</span> and <span class=\"math inline\">\\(p_n/\\log K_n\\to\\infty\\)</span>. We also derive near-maximum rates, an exact Gaussian Morse–Bott peak exponent and normal-Hessian determinant, and simultaneous Walsh confidence bounds. The guarantees distinguish deterministic Fourier observations, random frequency sampling and iid statistical estimation; they do not claim uniform consistency on the unrestricted model.</p>",
+        "results": [
+          {
+            "en": "No estimator of the unrestricted characteristic-function supremum is uniformly consistent over all probability laws on [0,1]², despite pointwise estimability.",
+            "ru": "Никакая оценка супремума дефекта характеристических функций не является равномерно состоятельной на классе всех распределений на [0,1]², хотя поточечное оценивание возможно.",
+            "evidence": "thm:nonuniform-impossibility"
+          },
+          {
+            "en": "For a fixed full-support frequency distribution W, Lᵖ(W) estimators are strongly consistent when pₙ→∞ and pₙ=o(n).",
+            "ru": "Для фиксированной меры W с полным носителем оценки через Lᵖ(W) сильно состоятельны при pₙ→∞ и pₙ=o(n).",
+            "evidence": "thm:exact-integral"
+          },
+          {
+            "en": "Independent random frequency banks yield explicit finite-sample error brackets and strong consistency if log Kₙ=o(n) and pₙ/log Kₙ→∞.",
+            "ru": "Независимые случайные банки частот дают явные конечновыборочные оценки погрешности и сильную состоятельность при log Kₙ=o(n) и pₙ/log Kₙ→∞.",
+            "evidence": "thm:bank"
+          }
+        ],
+        "results_source_record_id": 23355739
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.23355738",
+        "first_published_on": "2026-10-14",
+        "last_version_on": "2026-10-14",
+        "version_index": 1,
+        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 23355739,
+            "version_doi": "10.5281/zenodo.23355739",
+            "published_on": "2026-10-14",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P20_CF_V6_S8.pdf",
+              "md5": "3c9578ff8294fbac1557ff895286648f",
+              "size_bytes": 543483
+            }
+          }
+        ]
+      }
+    }
+  }
+}
