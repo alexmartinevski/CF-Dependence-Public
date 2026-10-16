@@ -1,0 +1,35 @@
+name: CF Dependence external scientific discovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'OPS/EXTERNAL/**'
+      - '.github/workflows/external-discovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  doi_discovery:
+    name: Check public DOI in DataCite OpenAlex Semantic Scholar
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline inputs and DOI identification tests
+        run: python OPS/EXTERNAL/doi_visibility.py --self-test
+      - name: Read-only external bibliographic index check
+        run: python OPS/EXTERNAL/doi_visibility.py --out _external-discovery/report.json
+      - name: Preserve exact externally-observed results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-visibility-${{ github.run_id }}
+          path: _external-discovery/report.json
+          if-no-files-found: warn
+          retention-days: 30
