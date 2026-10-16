@@ -378,6 +378,36 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn('if(document.body.dataset.page==="achievements")return;',script)
         self.assertIn("data-achievements-link",script)
 
+    def test_p04_leads_with_complete_nge4_result_and_verifiable_sources(self):
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        article=(ROOT/"achievements.html").read_text(encoding="utf-8")
+        script=(ROOT/"assets/site.js").read_text(encoding="utf-8")
+        marker='<article class="achievement-preview-item" data-featured-result="P04">'
+        self.assertEqual(home.count(marker),1)
+        self.assertLess(home.index(marker),
+                        home.index('class="achievement-preview-item"',home.index(marker)+1))
+        feature=home.split(marker,1)[1].split("</article>",1)[0]
+        self.assertIn("n ≥ 4",feature)
+        self.assertIn("v<sub>n</sub><sup>GHZ,XY</sup>",feature)
+        self.assertIn("ζ(2n) / ζ(n)",feature)
+        self.assertIn("v₄ = 34/105",feature)
+        self.assertIn("arbitrary finite settings",feature)
+        self.assertIn('href="https://doi.org/10.5281/zenodo.23356092"',feature)
+        self.assertIn('href="https://doi.org/10.1103/PhysRevA.109.022205"',feature)
+        self.assertIn("n = 3 remains open",feature)
+        self.assertIn("External proof and priority review is pending",feature)
+        section=article.split('id="ghz-exact"',1)[1].split("</article>",1)[0]
+        self.assertIn("v<sub>n</sub><sup>GHZ,XY</sup>",section)
+        self.assertIn('href="https://doi.org/10.5281/zenodo.23356092"',section)
+        self.assertIn("Designolle–Vértesi–Pokutta (2024)",section)
+        self.assertIn("Independent mathematical and historical reviews",section)
+        for key in ("achievementGhzExactReadPaper",
+                    "achievementGhzExactPrior2024",
+                    "achievementGhzExactCaveat"):
+            self.assertEqual(script.count('"'+key+'":'),2,key)
+        self.assertIn("для всех n ≥ 4",script)
+        self.assertIn("n = 3 остаётся открытым",script)
+
     def test_research_achievements_are_fully_bilingual(self):
         home=(ROOT/"index.html").read_text(encoding="utf-8")
         article=(ROOT/"achievements.html").read_text(encoding="utf-8")
