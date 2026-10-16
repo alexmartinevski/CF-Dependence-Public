@@ -41,13 +41,20 @@
       <div class="section-heading">
         <div><div class="overline" data-i18n="achievementHighlightLabel">SELECTED RESULTS</div><h2 id="achievements-preview-heading" data-i18n="achievementHighlightHeading">Major research achievements</h2></div>
       </div>
-      <p class="achievement-preview-intro" data-i18n="achievementHighlightIntro">Four results explained in detail on a separate page, with background and 6–7 sources for each.</p>
+      <p class="achievement-preview-intro" data-i18n="achievementHighlightIntro">Featured: the P04 exact planar GHZ formula for all n ≥ 4, with three further results. Mathematical scope and sources are documented separately.</p>
       <div class="achievement-preview-grid">
-        <article class="achievement-preview-item">
-          <div class="achievement-preview-meta">P04 <span data-i18n="achievementStateExact">Exact under stated assumptions</span></div>
-          <h3><a href="achievements.html?lang=en#ghz-exact" data-achievements-link data-i18n="achievementHighlight1Name">Exact GHZ noise threshold for four or more particles</a></h3>
-          <p data-i18n="achievementHighlight1Text">The exact threshold for the specified quantum correlations is 34/105 with four particles.</p>
-                  <div class="achievement-preview-formula" role="math">κ<sub>n</sub> = (π/2)<sup>n</sup>ζ(n) / [2(1+2<sup>−n</sup>)ζ(2n)], &nbsp; n≥4</div>
+        <article class="achievement-preview-item" data-featured-result="P04">
+          <div class="achievement-preview-meta">P04 · GHZ <span data-i18n="achievementStateExact">Exact under stated assumptions</span></div>
+          <h3><a href="achievements.html?lang=en#ghz-exact" data-achievements-link data-i18n="achievementHighlight1Name">Exact planar GHZ locality threshold for every n ≥ 4</a></h3>
+          <p data-i18n="achievementHighlight1Text">The P04 preprint derives a closed formula for all n ≥ 4 in the XY-plane, full-correlation GHZ scenario, allowing arbitrary finite settings—not just four particles. Earlier research gave bounds; v₄ = 34/105.</p>
+          <div class="achievement-preview-formula" role="math" aria-label="critical planar GHZ visibility formula for all n greater than or equal to four">
+            v<sub>n</sub><sup>GHZ,XY</sup> = 2(2/π)<sup>n</sup>(1+2<sup>−n</sup>)ζ(2n) / ζ(n), &nbsp; n ≥ 4
+          </div>
+          <div class="achievement-featured-links">
+            <a href="https://doi.org/10.5281/zenodo.23356092" target="_blank" rel="noopener noreferrer" data-i18n="achievementGhzExactReadPaper">Read published P04 preprint ↗</a>
+            <a href="https://doi.org/10.1103/PhysRevA.109.022205" target="_blank" rel="noopener noreferrer" data-i18n="achievementGhzExactPrior2024">Compare earlier 2024 bounds ↗</a>
+          </div>
+          <p class="achievement-featured-caveat" data-i18n="achievementGhzExactCaveat">Scope: planar XY measurements and full correlations only; n = 3 remains open. External proof and priority review is pending.</p>
         </article>
         <article class="achievement-preview-item">
           <div class="achievement-preview-meta">P04 <span data-i18n="achievementStatePartial">Narrowed bounds; problem still open</span></div>
