@@ -34,6 +34,7 @@ def published():
                 r"10\.5281/zenodo\.[0-9]+", doi):
             raise ValueError("Invalid canonical published DOI for " + pid)
         rows.append({"id": pid, "title": work["identity"]["title"], "doi": doi,
+                     "concept_doi": work["publication"]["concept_doi"],
                      "publication_date": latest["published_on"],
                      "record_id": latest["record_id"]})
     return rows
@@ -75,7 +76,7 @@ def doi_match(found, expected):
     return found == expected.lower()
 
 
-def classify(service, doi, payload, http_status, error):
+def classify(service, doi, payload, http_status, error, concept_doi=None):
     out = {"status": http_status}
     if error:
         out["error"] = error
@@ -95,10 +96,13 @@ def classify(service, doi, payload, http_status, error):
             stated_doi = (payload.get("externalIds") or {}).get("DOI")
             result_title = payload.get("title")
             out.update(url=payload.get("url"), citations=payload.get("citationCount"))
-        if not doi_match(stated_doi, doi):
-            out.update(status="MISMATCH", stated_doi=stated_doi)
+        out["title"] = result_title
+        if doi_match(stated_doi, doi):
+            out["status"] = "FOUND"
+        elif service == "openalex" and doi_match(stated_doi, concept_doi):
+            out.update(status="GROUPED_CONCEPT", stated_doi=stated_doi)
         else:
-            out.update(status="FOUND", title=result_title)
+            out.update(status="MISMATCH", stated_doi=stated_doi)
     except (KeyError, AttributeError, IndexError, TypeError) as e:
         out.update(status="BAD_RESPONSE", error=type(e).__name__)
     return out
@@ -112,7 +116,8 @@ def scan(rows, services=SERVICES):
                   "A 404 at a downstream provider is time-local, not permanent exclusion.",
                   "403/429/network errors are unknown, not absent records.",
                   "Citations counted here are provider-specific and may lag or be duplicates.",
-                  "Zenodo assigns DataCite DOI; successful registration is not peer review."
+                  "Zenodo assigns DataCite DOI; successful registration is not peer review.",
+                  "OpenAlex may index a Version DOI under its Zenodo Concept DOI; this is grouping, not mismatch."
               ]}
     disabled = set()
     for row in rows:
@@ -122,7 +127,25 @@ def scan(rows, services=SERVICES):
                 record["checks"][service] = {"status": "NOT_CHECKED_AFTER_RATE_LIMIT"}
                 continue
             status, data, error = get_json(url_for(service, row["doi"]))
-            answer = classify(service, row["doi"], data, status, error)
+            answer = classify(service, row["doi"], data, status, error,
+                              row["concept_doi"])
+            # Downstream indexes often normalize a Version DOI to the
+            # concept record, which is NOT a DOI collision or error.
+            if service == "openalex" and status == "NOT_FOUND":
+                state, other_data, other_error = get_json(
+                    url_for(service, row["concept_doi"]))
+                fallback = classify(service, row["concept_doi"], other_data,
+                                    state, other_error, row["concept_doi"])
+                answer["concept_fallback"] = fallback
+                if fallback["status"] == "FOUND":
+                    answer.update(status="CONCEPT_ONLY",
+                                  url=fallback.get("url"),
+                                  title=fallback.get("title"),
+                                  citations=fallback.get("citations"))
+            if answer.get("title") and isinstance(answer["title"], str):
+                simple = lambda t: re.sub(r"[^a-z0-9]+", " ", t.casefold()).strip()
+                answer["current_title_matches"] = (
+                    simple(answer["title"]) == simple(row["title"]))
             record["checks"][service] = answer
             if status in ("RATE_LIMIT",):
                 disabled.add(service)
@@ -155,6 +178,9 @@ def main():
         assert classify("datacite",items[0]["doi"],
                         {"data":{"id":items[0]["doi"],"attributes":{"titles":[{"title":"sample"}]}}},
                         "HTTP_200", None)["status"] == "FOUND"
+        assert classify("openalex",items[0]["doi"],
+                        {"doi":items[0]["concept_doi"],"title":"sample"},
+                        "HTTP_200",None,items[0]["concept_doi"])["status"] == "GROUPED_CONCEPT"
         print("External DOI audit offline checks passed:",len(items),"works")
         return 0
     report = scan(items)
