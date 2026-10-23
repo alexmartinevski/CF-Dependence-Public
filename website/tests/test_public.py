@@ -789,6 +789,11 @@ class PublicSiteTests(unittest.TestCase):
         self.assertNotRegex(homepage,
                             r"Browse scholarly abstracts and citations \(\d+\)")
 
+        self.assertIn(
+            "All published abstracts, DOI references and PDF links "
+            "are available without JavaScript",homepage)
+        self.assertNotRegex(homepage,r"All \\d+ public abstracts")
+
     def test_static_entrypoints_present(self):
         for rel in ("index.html","paper.html","achievements.html","news.html",
                     "assets/site.css","assets/site.js","assets/scholar.js",
