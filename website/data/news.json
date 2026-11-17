@@ -2,6 +2,45 @@
   "schema": "cf-publication-updates/v1",
   "entries": [
     {
+      "date": "2026-11-17",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.24293935",
+      "title": {
+        "en": "Revised sharp Fourier inequalities and GHZ bounds",
+        "ru": "Новая версия: точные Фурье-оценки и границы GHZ"
+      },
+      "summary": {
+        "en": "A stronger certified lower bound for the open three-party GHZ constant and exact centred-interaction constants; the P04 record includes its proof supplement and reproducibility files.",
+        "ru": "Усиленная проверенная нижняя граница открытой трёхчастичной GHZ-константы и точные центрированные константы; запись P04 содержит приложение с доказательствами и материалы воспроизводимости."
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.24293937",
+      "title": {
+        "en": "GHZ Bell duality and conditional zeta constraints",
+        "ru": "Двойственность GHZ и условные ограничения на нули ζ"
+      },
+      "summary": {
+        "en": "New preprint P52 gives conditional arithmetic consequences of globally admissible three-party GHZ Bell functionals. Neither the Riemann hypothesis nor the exact three-party constant is proved.",
+        "ru": "Новый препринт P52 устанавливает условные арифметические следствия глобальной допустимости GHZ-функционалов Белла. Ни гипотеза Римана, ни точная трёхчастичная константа не доказаны."
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23427282",
+      "title": {
+        "en": "P04: expanded GHZ proof supplement",
+        "ru": "P04: дополнение с GHZ-доказательствами"
+      },
+      "summary": {
+        "en": "Published second P04 version containing the GHZ proof companion as a separate PDF in the same Zenodo record.",
+        "ru": "Опубликована вторая версия P04 с отдельным PDF приложения, содержащего доказательства GHZ-результатов; DOI у основного текста и приложения общий."
+      }
+    },
+    {
       "date": "2026-10-16",
       "kind": "research_highlight",
       "source": "https://doi.org/10.5281/zenodo.23356092",

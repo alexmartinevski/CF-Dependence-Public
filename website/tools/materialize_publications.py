@@ -16,7 +16,8 @@ from pathlib import Path
 DOI = re.compile(r"10\.5281/zenodo\.([1-9][0-9]*)\Z")
 CODE = re.compile(r"P[0-9]{2}\Z")
 MD5 = re.compile(r"[0-9a-f]{32}\Z")
-PDF = re.compile(r"P[0-9]{2}_[A-Za-z0-9][A-Za-z0-9._-]*\.pdf\Z")
+PDF = re.compile(r"P[0-9]{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]*)?\.pdf\Z")
+FILE = re.compile(r"P[0-9]{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]*)?\.(?:pdf|zip)\Z")
 AREA = {"extremal", "transport", "algebra", "harmonic", "statistics"}
 MAX_PDF = 64 * 1024 * 1024
 BATCH = 6
@@ -75,7 +76,7 @@ def checked_pdf(pdf, code):
     require(isinstance(pdf, dict), code + ": PDF metadata missing")
     name = pdf.get("filename")
     require(isinstance(name, str) and PDF.fullmatch(name) and
-            name.startswith(code + "_"),
+            (name == code + ".pdf" or name.startswith(code + "_")),
             code + ": invalid PDF basename")
     require(isinstance(pdf.get("md5"), str) and MD5.fullmatch(pdf["md5"]),
             code + ": PDF MD5 required")
@@ -83,6 +84,38 @@ def checked_pdf(pdf, code):
             1000 < pdf["size_bytes"] <= MAX_PDF,
             code + ": PDF size invalid")
     return pdf
+
+
+def checked_release_files(files, pdf, code):
+    """Validate an exact published file manifest, with the main PDF pinned twice."""
+    require(isinstance(files, list) and bool(files), code + ": empty file manifest")
+    seen, main = set(), []
+    for entry in files:
+        require(isinstance(entry, dict) and
+                set(entry) == {"role", "filename", "md5", "size_bytes"},
+                code + ": invalid file manifest entry")
+        role, name = entry["role"], entry["filename"]
+        require(role in {"main", "supplement", "reproducibility"},
+                code + ": unknown publication file role")
+        require(isinstance(name, str) and FILE.fullmatch(name) and
+                (name.startswith(code + "_") or name == code + ".pdf"),
+                code + ": unsafe or cross-paper filename")
+        require(name not in seen, code + ": duplicate release file")
+        seen.add(name)
+        require((role == "reproducibility") == name.endswith(".zip"),
+                code + ": incompatible publication role and extension")
+        require(isinstance(entry["md5"], str) and MD5.fullmatch(entry["md5"]),
+                code + ": invalid file MD5")
+        require(type(entry["size_bytes"]) is int and
+                1000 < entry["size_bytes"] <= MAX_PDF,
+                code + ": invalid publication file size")
+        if role == "main":
+            main.append(entry)
+    require(len(main) == 1, code + ": exactly one main PDF required")
+    require(isinstance(pdf, dict) and
+            all(main[0][key] == pdf.get(key)
+                for key in ("filename", "md5", "size_bytes")),
+            code + ": main file and primary PDF metadata disagree")
 
 
 def project(publications):
@@ -186,6 +219,8 @@ def project(publications):
             all_versions.add(version["version_doi"])
             if "pdf" in version:
                 checked_pdf(version["pdf"], code)
+            if "files" in version:
+                checked_release_files(version["files"], version.get("pdf"), code)
         require(dates == sorted(dates),
                 code + ": releases must be ordered by publication date")
         require(dates[0] == first and dates[-1] == last,
@@ -218,6 +253,7 @@ def project(publications):
             "published_on": pub["last_version_on"],
             "version_index": index,
             "version_index_evidence": pub["version_index_evidence"],
+            "published_version_dois": [v["version_doi"] for v in releases],
         }
         if source_path:
             row["source_path"] = source_path
@@ -235,6 +271,10 @@ def project(publications):
             "pdf_filename": name,
             "pdf_md5": pdf["md5"],
             "pdf_size": pdf["size_bytes"],
+            "files": latest.get("files", [{
+                "role": "main", "filename": name,
+                "md5": pdf["md5"], "size_bytes": pdf["size_bytes"]
+            }]),
             "license": latest["license"],
             "record_id": latest["record_id"],
         }

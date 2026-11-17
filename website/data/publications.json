@@ -1,7 +1,7 @@
 {
   "schema": "cf-publications/v3",
   "source_repo": "alexmartinevski/CF-Dependence-Public",
-  "curated_on": "2026-10-16",
+  "curated_on": "2026-11-17",
   "editorial_policy": {
     "source": "Claims summarized from published manuscript snapshots, not independently re-proved",
     "latest_reconciliation": "Keep source DOI fixed until highlights are checked against a newer public version",
@@ -243,59 +243,76 @@
         "title": "Sharp constants for Fourier factorization defects: universal ceilings, strong mixing and interaction measures",
         "area": "extremal",
         "topics": [
-          "strong mixing",
-          "Grothendieck constants",
-          "sharp covariance inequalities",
-          "Fourier factorization defects"
+          "Planar GHZ correlations",
+          "Sharp probability inequalities",
+          "Strong mixing and multilinear bounds",
+          "Centred interactions"
         ],
         "keywords": [
           "Planar GHZ nonlocality",
           "Bell inequalities",
-          "Exact critical visibility",
-          "Multipartite quantum correlations",
+          "Constructive duality",
           "Sharp multilinear inequalities",
           "Strong mixing coefficients",
           "Grothendieck constants",
           "Sharp covariance inequalities",
           "Fourier factorization defects",
-          "Möbius inversion and Riemann zeta function",
-          "Lancaster interaction measures",
-          "Extremal probability theory"
+          "Möbius inversion",
+          "Centred Lancaster interactions",
+          "Extremal probability theory",
+          "Finite measurement settings"
         ]
       },
       "science": {
         "summary": {
-          "en": "Exact planar GHZ thresholds for n≥4 and new bounds for n=3; sharp 4√2 mixing covariance and multilinear constants.",
-          "ru": "Точные пороги GHZ при n≥4 и новые границы при n=3; оптимальная константа 4√2 для ковариации и мультлинейных оценок."
+          "en": "Exact planar GHZ constants for n ≥ 4, a stronger certified lower bound for n = 3, sharp mixing comparisons, and exact centred-interaction constants.",
+          "ru": "Точные константы планарных GHZ-корреляций при n ≥ 4, усиленная проверенная нижняя граница при n = 3, точные оценки перемешивания и центрированных взаимодействий."
         },
-        "abstract_html": "<p><strong>1. Exact planar GHZ nonlocality threshold for all n ≥ 4.</strong></p>\n<p>We determine the sharp supremum of violations of full-correlation Bell inequalities by the n-qubit GHZ state under planar (XY) measurements, over arbitrary finite numbers of measurement settings. The result is the exact formula</p>\n<p><strong>κₙ = (π/2)ⁿ ζ(n) / [2(1 + 2⁻ⁿ) ζ(2n)], n ≥ 4.</strong></p>\n<p>In particular, κ₄ = 105/34, corresponding to the critical visibility v₄ = 34/105. The result replaces bounds for particular finite measurement configurations with an exact analytic expression for the stated class.</p>\n<p><strong>2. Substantially improved rigorous bounds for the open three-party GHZ problem.</strong></p>\n<p>We establish</p>\n<p><strong>2.0349681535… ≤ κ₃ ≤ 105 ζ(3)/(2π³) = 2.0353294291… .</strong></p>\n<p>Both bounds improve the previously published 2024 interval. The lower bound comes from a finite-harmonic Bell witness supported by 272 reproducible exact inequalities; the upper bound follows from an explicit square-wave/Möbius local model.</p>\n<p>The conjecture that the upper bound is attained remains open. The paper discusses an obstruction involving the Möbius function and zeros of the Riemann zeta function.</p>\n<p><strong>3. Sharp covariance inequalities under strong mixing.</strong></p>\n<p>We establish the optimal coefficient 4√2 for bounded complex-valued observations, improving the classical bound 2π. More generally, the optimal Hilbert-space coefficient is 4K_G(k), where K_G(k) is the real Grothendieck constant of order k. For real scalar observations, the sharp coefficient is 4.</p>\n<p><strong>4. Sharp multilinear dependence inequalities.</strong></p>\n<p>For n-linear forms that are real-valued on real inputs, we identify the optimal real and complex comparison factors</p>\n<p><strong>2ⁿ and 2ⁿ κₙ.</strong></p>\n<p>These results strengthen classical estimates in a natural restricted class. They do not settle the more general problem for arbitrary complex multilinear forms considered by Bradley and Bryc (1985).</p>\n<p><strong>5. Asymptotically sharp growth of higher-order interaction measures.</strong></p>\n<p>For the centred Fourier–Lancaster interaction functional, we derive explicit finite-dimensional bounds and establish</p>\n<p><strong>L_d = 2ᵈ/(ed) · (1 + O(d⁻¹)).</strong></p>\n<p>Thus, unlike the universal characteristic-function factorization defect, this higher-order interaction functional admits no dimension-independent bound.</p>\n<p><strong>6. Further structural results.</strong></p>\n<p>The paper also develops restrictions to discrete phase groups, centred-interaction comparisons and quantitative links between universal Fourier factorization ceilings, strong mixing and multilinear dependence.</p>",
+        "abstract_html": "<p>The size of a Fourier factorization defect depends both on the admissible probability laws and on the observables used to test them. We determine sharp comparison constants for strong mixing, multilinear dependence inequalities and higher-order centred interactions, keeping these restrictions distinct. The results connect extremal probability laws with planar Greenberger–Horne–Zeilinger (GHZ) correlations. The accompanying proof manuscript develops the square-wave and Fourier methods behind the GHZ constants.</p>\n\n<p><strong>1. Exact planar GHZ constants.</strong> For planar full correlations of the n-qubit GHZ state, the optimal multilinear complexification constant is</p>\n<p><strong>κₙ = (π/2)ⁿ ζ(n) / [2(1 + 2⁻ⁿ) ζ(2n)], n ≥ 4.</strong></p>\n<p>In particular, κ₄ = 105/34 and the corresponding critical visibility is 34/105. Square-wave local models and Möbius inversion give the upper bound; Fourier concentration and contact estimates establish a matching global norm bound. The constant is a supremum over all finite numbers of measurement settings, not a claim of attainment at one fixed finite scenario.</p>\n\n<p><strong>2. Three-party correlations.</strong> Let D₄₁ be the positive odd squarefree integers not exceeding 41. An explicit finite Bell functional gives</p>\n<p><strong>(π³/16) Σ<sub>m∈D₄₁</sub> m⁻³ = 2.0351194490139527… ≤ κ₃ ≤ 105ζ(3)/(2π³) = 2.0353294291531319… .</strong></p>\n<p>The lower bound improves the preceding estimate and combines an analytic reduction of arbitrary measurable strategies with exact-rational computer verification. The exact value of κ₃ remains open.</p>\n\n<p><strong>3. Covariance under strong mixing.</strong> The sharp coefficient is 4 for real scalar observables, 4√2 for complex scalar observables, and 4K<sub>G</sub>(k) for real Hilbert-space observables of dimension k. Positive probability constructions establish sharpness. For products of several factors, we determine the sharp small-mixing slope, rather than the full dependence on the mixing budget.</p>\n\n<p><strong>4. Multilinear dependence inequalities.</strong> For multilinear forms that are real-valued on real inputs, the sharp real and complex comparison factors are 2ⁿ and 2ⁿκₙ. Indicator decompositions give the upper estimates, and positive probability constructions establish their sharpness. The result concerns this specified class of forms, not arbitrary complex multilinear forms.</p>\n\n<p><strong>5. Centred interactions and extremizers.</strong> For arbitrary joint laws of unit-circle variables, without fixed marginals, the maximum of |E∏<sub>j=1,…,d</sub>(Z<sub>j</sub>−EZ<sub>j</sub>)| is</p>\n<p><strong>L₂ = L₃ = 1; L<sub>d</sub> = 2ᵈ max<sub>0≤p≤1/2</sub> [p(1−p)ᵈ + (−1)ᵈ(1−p)pᵈ], d ≥ 4.</strong></p>\n<p>We classify equality, distinguishing the small-order cases from the common optimally biased sign at higher orders. After fixing the means, an affine majorant gives the bound and its contact points determine the extremizing law. Further results include the exact three-dimensional mean profile, extensions to disks and conditional laws, and an all-order asymptotic expansion with an explicit remainder. In particular, L<sub>d</sub> ∼ 2ᵈ/(ed), so there is no dimension-independent bound. These centred-interaction results do not determine the extrema of ordinary cumulants or Streitberg interactions.</p>\n\n<p><strong>6. Finite measurement settings and phase restrictions.</strong> Exact cell integration converts continuous Fourier functionals into finite Bell tensors without error in the local-norm bound. For regular grids with an optimized origin, the approximation error is O<sub>n</sub>(N⁻²); prescribed origins have a separate alias-error estimate. An explicit realization uses 130 settings per party. The main article also treats restricted phase sets and applications of the universal Fourier factorization ceiling.</p>\n\n<p>The mixing and centred-interaction theorems and the GHZ norm theorem for n ≥ 4 have analytic proofs. The three-party lower bound and its finite realization retain a computer-assisted component. The record comprises the main article and its proof supplement containing the GHZ proofs.</p>",
         "results": [
           {
-            "en": "For n≥4 the sharp complex multilinear factor is 2ⁿκₙ; an explicit zeta-function formula determines κₙ, including κ₄=105/34.",
-            "ru": "Для n≥4 точный комплексный мультлинейный множитель равен 2ⁿκₙ; константа κₙ задана явной формулой через дзета-функцию, в частности κ₄=105/34.",
-            "evidence": "abstract"
+            "en": "For every n≥4, the planar GHZ constant for arbitrary finite measurement settings is κₙ = (π/2)ⁿζ(n)/[2(1+2⁻ⁿ)ζ(2n)]; in particular κ₄ = 105/34.",
+            "ru": "Для всех n ≥ 4 планарная GHZ-константа при произвольном конечном числе настроек равна κₙ = (π/2)ⁿζ(n)/[2(1+2⁻ⁿ)ζ(2n)]; в частности κ₄ = 105/34.",
+            "evidence": "GHZ supplement, thm:largen"
           },
           {
-            "en": "The three-party constant κ₃ is bounded, not exactly determined; the strengthened lower bound uses a separately documented rational, computer-assisted verification.",
-            "ru": "Для трёх участников константа κ₃ пока ограничена сверху и снизу, но не вычислена точно; усиленная нижняя граница использует отдельно документированную компьютерную проверку с рациональной арифметикой.",
-            "evidence": "abstract"
+            "en": "For n = 3, κ₃ is not exactly determined: the finite D₄₁ Bell witness gives 2.0351194490139527… ≤ κ₃ ≤ 105ζ(3)/(2π³), with exact-rational computer verification required for the lower bound.",
+            "ru": "При n = 3 конечный функционал Белла D₄₁ даёт 2.0351194490139527… ≤ κ₃ ≤ 105ζ(3)/(2π³); нижняя граница включает точную рациональную компьютерную проверку, а точная константа остаётся неизвестной.",
+            "evidence": "GHZ supplement, D-thm:D41"
           },
           {
-            "en": "The sharp strong-mixing covariance constants include 4 for real bounded scalars and 4√2 for complex bounded scalars.",
-            "ru": "Для ограниченных вещественных и комплексных скалярных наблюдений получены точные константы ковариационной оценки через сильное перемешивание: 4 и 4√2 соответственно.",
-            "evidence": "cor:complex"
+            "en": "The centred-interaction constants are L₂ = L₃ = 1 and, for d ≥ 4, L_d = 2ᵈ max₀≤p≤1/2[p(1−p)ᵈ + (−1)ᵈ(1−p)pᵈ], with all equality laws characterized.",
+            "ru": "Для центрированных взаимодействий L₂ = L₃ = 1, а при d ≥ 4: L_d = 2ᵈ max₀≤p≤1/2[p(1−p)ᵈ + (−1)ᵈ(1−p)pᵈ]; все случаи равенства охарактеризованы.",
+            "evidence": "Main article, thm:Ld"
           }
         ],
-        "results_source_record_id": 23356092
+        "results_source_record_id": 24293935
       },
       "publication": {
         "status": "published",
         "concept_doi": "10.5281/zenodo.23356091",
         "first_published_on": "2026-10-14",
-        "last_version_on": "2026-10-14",
-        "version_index": 1,
-        "version_index_evidence": "Verified initial public release of new Zenodo lineage",
-        "changes": [],
+        "last_version_on": "2026-11-17",
+        "version_index": 3,
+        "version_index_evidence": "Public Zenodo records 23356092, 23427282 and 24293935 verified in the same concept DOI lineage 23356091; exact PDF filenames, sizes and MD5 recorded.",
+        "changes": [
+          {
+            "date": "2026-10-18",
+            "doi": "10.5281/zenodo.23427282",
+            "summary": {
+              "en": "Second published version; the GHZ proof companion is included as a separate PDF in the same Zenodo record.",
+              "ru": "Вторая опубликованная версия; приложение с GHZ-доказательствами включено отдельным PDF в ту же запись Zenodo."
+            }
+          },
+          {
+            "date": "2026-11-17",
+            "doi": "10.5281/zenodo.24293935",
+            "summary": {
+              "en": "Stronger computer-assisted D₄₁ lower bound for the three-party GHZ constant; exact all-order centred-interaction constants; revised GHZ supplement and reproducibility archive.",
+              "ru": "Усиленная компьютерно-ассистированная нижняя граница D₄₁ для трёхчастичной GHZ-константы; точные константы центрированных взаимодействий всех порядков; обновлённое приложение с доказательствами и архив воспроизводимости."
+            }
+          }
+        ],
         "releases": [
           {
             "record_id": 23356092,
@@ -307,6 +324,62 @@
               "md5": "e78f2d101773e635d00c60a8733969e2",
               "size_bytes": 436914
             }
+          },
+          {
+            "record_id": 23427282,
+            "version_doi": "10.5281/zenodo.23427282",
+            "published_on": "2026-10-18",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P04_CF_V6_S8.pdf",
+              "md5": "e78f2d101773e635d00c60a8733969e2",
+              "size_bytes": 436914
+            },
+            "files": [
+              {
+                "role": "main",
+                "filename": "P04_CF_V6_S8.pdf",
+                "md5": "e78f2d101773e635d00c60a8733969e2",
+                "size_bytes": 436914
+              },
+              {
+                "role": "supplement",
+                "filename": "P04_K2_K7_R13_PROOF_SUPPLEMENT_V2.pdf",
+                "md5": "526756b0c0fd8c8e82ee07c4c8fe9d42",
+                "size_bytes": 686516
+              }
+            ]
+          },
+          {
+            "record_id": 24293935,
+            "version_doi": "10.5281/zenodo.24293935",
+            "published_on": "2026-11-17",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P04.pdf",
+              "size_bytes": 501657,
+              "md5": "99e409ba0d68d112aa545c3e9b2df21d"
+            },
+            "files": [
+              {
+                "role": "main",
+                "filename": "P04.pdf",
+                "size_bytes": 501657,
+                "md5": "99e409ba0d68d112aa545c3e9b2df21d"
+              },
+              {
+                "role": "supplement",
+                "filename": "P04_GHZ_Companion.pdf",
+                "size_bytes": 665630,
+                "md5": "84d1c4cd7577105676ce262ce970e927"
+              },
+              {
+                "role": "reproducibility",
+                "filename": "P04_Supplementary_Material.zip",
+                "size_bytes": 5830477,
+                "md5": "a78de6e6e9c5a99173f753fb6b808d72"
+              }
+            ]
           }
         ]
       }
@@ -1539,6 +1612,87 @@
               "md5": "13630a19f1bd509fcaa0c54b3f3dbb1a",
               "size_bytes": 472077
             }
+          }
+        ]
+      }
+    },
+    "P52": {
+      "identity": {
+        "title": "The planar GHZ constant for three qubits and the zeros of the Riemann zeta function",
+        "area": "extremal",
+        "topics": [
+          "Planar three-qubit GHZ correlations",
+          "Bell functional duality",
+          "Arithmetic of Dirichlet series",
+          "Conditional zeta zero-free regions"
+        ],
+        "keywords": [
+          "Planar three-qubit GHZ correlations",
+          "Bell inequalities",
+          "Fourier multiplier duality",
+          "Square-wave contact face",
+          "Möbius inversion",
+          "Multiplicative corrections",
+          "Dirichlet series",
+          "Mellin transforms",
+          "Riemann zeta function",
+          "Conditional zero-free regions",
+          "Landau's theorem",
+          "Liouville function"
+        ]
+      },
+      "science": {
+        "summary": {
+          "en": "Conditional links between admissibility of extremal three-party GHZ Bell functionals and zero-free regions for the Riemann zeta function; no proof of RH or exact κ₃.",
+          "ru": "Условные связи допустимости экстремальных трёхчастичных GHZ-функционалов Белла с областями без нулей дзета-функции Римана; RH и точная κ₃ не доказаны."
+        },
+        "abstract_html": "<p>We investigate the relation between planar three-qubit Greenberger–Horne–Zeilinger (GHZ) correlations and the zeros of the Riemann zeta function. A square-wave local hidden-variable model bounds the associated constant κ₃ by Q(3) = 105ζ(3)/(2π³). The central question is whether this upper bound is sharp. For explicitly defined classes of candidate extremal Bell functionals, we derive arithmetic restrictions on admissibility through the zeros of ζ.</p>\n\n<p><strong>1. Sharpness and duality.</strong> Constructive duality and a separate compactness argument characterize equality κ₃ = Q(3) by the existence of a globally admissible Bell functional satisfying the full family of square-wave contact equations. Möbius inversion fixes its values at odd squarefree indices; values at nonsquarefree indices remain available as corrections. Attainment is established in the class of bounded Fourier multipliers, rather than at a prescribed finite set of measurement settings.</p>\n\n<p><strong>2. Sparse corrections.</strong> Two abscissae of absolute convergence, σ*(K) and σ<sub>y</sub>(K), measure the sparsity of the corrections. For a functional K on the full contact face with local norm at most one, we prove</p>\n<p><strong>ζ(s) ≠ 0 for Re s &gt; max{min(σ*(K), σ<sub>y</sub>(K)), 0}.</strong></p>\n<p>Thus corrections below the critical abscissa 1/2 are incompatible with admissibility, while admissibility at the critical abscissa would imply the Riemann hypothesis.</p>\n\n<p><strong>3. Contact profiles and analytic continuation.</strong> Global admissibility forces the squarefree contact profiles to be nonnegative. Their Mellin transforms yield vertex Dirichlet series that vanish as s decreases to 1. Under the stated holomorphic-continuation hypothesis on the correction series near a real segment (σ₁, 2), with 0 &lt; σ₁ &lt; 1, a Landau argument continues the vertex series to the corresponding strip. The correction series then has poles precisely at the zeros of ζ in that strip, with the same multiplicities.</p>\n\n<p><strong>4. Dense corrections.</strong> For the specified analytically continuable types, subject to uniform summability and fixed-character hypotheses, a prime-shift invariance principle identifies the components that can carry the polar part. It yields conditional zero-free conclusions when the principal-exponent −1 class is absent or consists of exact Möbius components. The argument distinguishes exact Möbius structure from perturbations that are merely close to it.</p>\n\n<p><strong>5. Quantitative contact estimates.</strong> The nonnegative profiles are symmetric, have exact mass 2 and satisfy an explicit density bound. Optimizing against the Mellin kernel gives strict contact estimates. Under the continuation hypotheses, the vertex series has a simple zero at s = 1 with derivative greater than 99/100. Without those hypotheses, the corresponding extended right limit may be infinite.</p>\n\n<p>For the Liouville candidate, global admissibility would imply both κ₃ = Q(3) and the Riemann hypothesis. This admissibility is not proved, and no admissible functional on the full contact face is constructed. The exact value of κ₃ remains open. The results are conditional implications, not a proof of the Riemann hypothesis or an equivalence criterion for it.</p>",
+        "results": [
+          {
+            "en": "The upper model bound κ₃ = Q(3) = 105ζ(3)/(2π³) is sharp if and only if a globally admissible Bell functional attaining the full square-wave contact face exists.",
+            "ru": "Верхняя модельная граница κ₃ = Q(3) = 105ζ(3)/(2π³) точна тогда и только тогда, когда существует глобально допустимый функционал Белла, достигающий всей грани контактов квадратных волн.",
+            "evidence": "thm:face"
+          },
+          {
+            "en": "For an admissible full-face functional K, ζ(s) has no zeros in Re s > max{min(σ*(K), σ_y(K)), 0}; admissibility at abscissa 1/2 would imply RH, but it is not established.",
+            "ru": "Для допустимого функционала полной грани K функция ζ(s) не имеет нулей при Re s > max{min(σ*(K), σ_y(K)), 0}; допустимость при абсциссе 1/2 повлекла бы RH, но не доказана.",
+            "evidence": "thm:G; cor:G"
+          },
+          {
+            "en": "Under explicitly stated analytic-continuation and summability hypotheses, vertex Mellin series and prime-shift invariance yield conditional constraints on zeta zeros and on dense correction types.",
+            "ru": "При явно указанных условиях аналитического продолжения и суммируемости вершинные ряды Меллина и инвариантность относительно сдвигов по простым дают условные ограничения на нули ζ и плотные типы поправок.",
+            "evidence": "thm:s1-vertex; thm:continuable"
+          }
+        ],
+        "results_source_record_id": 24293937
+      },
+      "publication": {
+        "status": "published",
+        "concept_doi": "10.5281/zenodo.24293936",
+        "first_published_on": "2026-11-17",
+        "last_version_on": "2026-11-17",
+        "version_index": 1,
+        "version_index_evidence": "Public Zenodo record 24293937 verified after manual Publish: version and concept DOI, full description, date and exact PDF MD5/size.",
+        "changes": [],
+        "releases": [
+          {
+            "record_id": 24293937,
+            "version_doi": "10.5281/zenodo.24293937",
+            "published_on": "2026-11-17",
+            "license": "cc-by-4.0",
+            "pdf": {
+              "filename": "P52_GHZ_ZETA.pdf",
+              "size_bytes": 618066,
+              "md5": "4c53045f5a9be0e36ebd122ec63e5a32"
+            },
+            "files": [
+              {
+                "role": "main",
+                "filename": "P52_GHZ_ZETA.pdf",
+                "size_bytes": 618066,
+                "md5": "4c53045f5a9be0e36ebd122ec63e5a32"
+              }
+            ]
           }
         ]
       }

@@ -29,7 +29,7 @@ AUTHOR = "Alexandr Martinevski"
 EMAIL = "math@a-martinevski.com"
 DOI = re.compile(r"^10\.5281/zenodo\.(\d+)$")
 CODE = re.compile(r"^P\d{2}$")
-PDF = re.compile(r"^P\d{2}_[A-Za-z0-9][A-Za-z0-9._-]{0,150}\.pdf$")
+PDF = re.compile(r"^P\d{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]{0,150})?\.pdf$")
 MD5 = re.compile(r"^[a-f0-9]{32}$")
 MAX_PDF = 64 * 1024 * 1024
 ALLOWED_TAGS = {"p", "strong", "em", "span", "sup", "sub", "br"}
@@ -310,6 +310,23 @@ def paper_page(p,rec,assets,has_pdf):
         data["encoding"]={"@type":"MediaObject","encodingFormat":"application/pdf","contentUrl":pdf}
     sources="".join(f'<li>{esc(x)}</li>' for x in rec["keywords"])
     facts="".join(f"<li>{esc(h['en'])}</li>" for h in p["highlights"])
+    # Include all verified non-main attachments from the published Zenodo record.
+    extra=[]
+    for item in rec.get("files",[]):
+        if item["role"]=="main":
+            continue
+        assert item["role"] in {"supplement", "reproducibility"}
+        link=(f"https://zenodo.org/records/{rec['record_id']}/files/"
+              + urllib.parse.quote(item["filename"]) + "?download=1")
+        label=(localized("Proof supplement", "Приложение с доказательствами")
+               if item["role"]=="supplement"
+               else localized("Reproducibility archive", "Архив воспроизводимости"))
+        extra.append(f'<li><a href="{esc(link)}" rel="noopener noreferrer">'
+                     + esc(label)+": "+esc(item["filename"])+"</a></li>")
+    extra_markup=("")
+    if extra:
+        extra_markup=('<h3>'+localized("Additional files", "Дополнительные файлы")
+                      +'</h3><ul class="scholar-keyword-list">'+''.join(extra)+'</ul>')
     bib_key="Martinevski"+rec["publication_date"][:4]+code
     bib=f"@misc{{{bib_key},\n  author = {{Martinevski, Alexandr}},\n  title = {{{title}}},\n  year = {{{rec['publication_date'][:4]}}},\n  doi = {{{rec['version_doi']}}},\n  url = {{{version}}}\n}}"
     head=page_head(title,plain,canonical,"../../",assets,scholar=True,record=rec,local_pdf=has_pdf)
@@ -327,6 +344,7 @@ def paper_page(p,rec,assets,has_pdf):
         '<section class="scholar-results"><h2>'+localized("Selected results","Основные результаты")+'</h2><ol>'+facts+"</ol></section>",
         '<section class="scholar-cite"><h2>'+localized("Citation and full text","Цитирование и полный текст")+'</h2>',
         f'<p><a class="news-all-link" href="{esc(download)}">{localized("Read the full PDF","Открыть полный PDF")} ↗</a></p>',
+        extra_markup,
         f'<p>{localized("Fixed version DOI","DOI фиксированной версии")}: <a href="{esc(version)}">{esc(rec["version_doi"])}</a></p>',
         f'<p>{localized("All versions (concept DOI)","Все версии (Concept DOI)")}: <a href="{esc(concept)}">{esc(rec["concept_doi"])}</a></p>',
         '<h3>BibTeX</h3><pre class="scholar-bibtex"><code>'+esc(bib)+"</code></pre>",

@@ -27,7 +27,7 @@ def seed(source,prior_artifact_dir,cache_dir):
         return 0
     papers,approved=load_data(source)
     allowed={p["code"]:approved[p["code"]] for p in papers}
-    pattern=re.compile(r"(?:\./)?publications/(P[0-9]{2})/(P[0-9]{2}_[A-Za-z0-9][A-Za-z0-9._-]{0,150}\.pdf)")
+    pattern=re.compile(r"(?:\./)?publications/(P[0-9]{2})/(P[0-9]{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]{0,150})?\.pdf)")
     restored=0
     with tarfile.open(members,"r:") as archive:
         for item in archive:
