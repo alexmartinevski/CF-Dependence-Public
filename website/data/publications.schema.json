@@ -178,7 +178,7 @@
       "properties": {
         "filename": {
           "type": "string",
-          "pattern": "^P[0-9]{2}_[A-Za-z0-9][A-Za-z0-9._-]*\\.pdf$"
+          "pattern": "^P[0-9]{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]*)?\\.pdf$"
         },
         "md5": {
           "type": "string",
@@ -216,6 +216,13 @@
         },
         "pdf": {
           "$ref": "#/$defs/pdf"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/publicationFile"
+          }
         }
       }
     },
@@ -288,6 +295,38 @@
         },
         "publication": {
           "$ref": "#/$defs/publication"
+        }
+      }
+    },
+    "publicationFile": {
+      "type": "object",
+      "required": [
+        "role",
+        "filename",
+        "md5",
+        "size_bytes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "main",
+            "supplement",
+            "reproducibility"
+          ]
+        },
+        "filename": {
+          "type": "string",
+          "pattern": "^P[0-9]{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]*)?\\.(?:pdf|zip)$"
+        },
+        "md5": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 1001,
+          "maximum": 67108864
         }
       }
     }
