@@ -41,7 +41,9 @@ def entries(root:Path):
     catalog=json.loads((root/"data/papers.json").read_text(encoding="utf-8"))
     if data.get("schema")!="cf-publication-updates/v1" or not isinstance(data.get("entries"),list):
         raise ValueError("Unsupported news schema")
-    paper_dois={p["version_doi"] for p in catalog.get("papers",[]) if p.get("status")=="published"}
+    # Historical news may cite any *published* version in a verified lineage.
+    paper_dois={doi for p in catalog.get("papers",[]) if p.get("status")=="published"
+                for doi in p.get("published_version_dois",[p["version_doi"]])}
     out=[]
     for idx,item in enumerate(data["entries"]):
         if not isinstance(item,dict) or item.get("kind") not in KIND:
