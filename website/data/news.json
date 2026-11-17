@@ -28,6 +28,19 @@
       }
     },
     {
+      "date": "2026-10-18",
+      "kind": "publication_release",
+      "source": "https://doi.org/10.5281/zenodo.23427282",
+      "title": {
+        "en": "P04: expanded GHZ proof supplement",
+        "ru": "P04: дополнение с GHZ-доказательствами"
+      },
+      "summary": {
+        "en": "Published second P04 version containing the GHZ proof companion as a separate PDF in the same Zenodo record.",
+        "ru": "Опубликована вторая версия P04 с отдельным PDF приложения, содержащего доказательства GHZ-результатов; DOI у основного текста и приложения общий."
+      }
+    },
+    {
       "date": "2026-10-16",
       "kind": "research_highlight",
       "source": "https://doi.org/10.5281/zenodo.23356092",
