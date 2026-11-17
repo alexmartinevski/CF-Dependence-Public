@@ -61,7 +61,8 @@ class SyntheticNextPaperTests(unittest.TestCase):
                     published_on="2026-10-17",version_index=1,
                     version_index_evidence="OFFLINE UNIT TEST ONLY, NEVER PUBLISHED",
                     highlights_source_doi=self.version,
-                    source_path=self.synthetic_source,changes=[])
+                    source_path=self.synthetic_source,changes=[],
+                    published_version_dois=[self.version])
         fake.pop("pdf_filename",None)
         fake.pop("record_url",None)
         source.append(fake)
