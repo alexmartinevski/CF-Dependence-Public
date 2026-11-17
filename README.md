@@ -1,64 +1,47 @@
 # CF Dependence
 
-Research manuscripts by **Alexandr Martinevski** (Independent Researcher, Lithuania).
+**Research in sharp probability inequalities, Fourier dependence and extremal geometry** by **Alexandr Martinevski**, Independent Researcher, Lithuania.
 
-ORCID: https://orcid.org/0009-0000-4230-4414  
-Email: alex.martinevski@gmail.com
+**[Research website](https://math.a-martinevski.com/)** · **[Published papers](https://math.a-martinevski.com/publications/)** · **[Selected mathematical results](https://math.a-martinevski.com/achievements.html)** · **[Publication updates](https://math.a-martinevski.com/news.html)**
 
-This repository contains the public manuscript set for the **CF Dependence** project. The three papers are ordered by logical and intended publication sequence.
+**ORCID:** [0009-0000-4230-4414](https://orcid.org/0009-0000-4230-4414) · **Contact:** math@a-martinevski.com
 
-## Papers
+## Published research
 
-### 1. A sharp universal profile for multivariate characteristic-function factorization
+The curated catalogue contains **22 published research preprints as of 17 November 2026**. Each paper has its own Zenodo publication record, permanent Version DOI and, when applicable, Concept DOI for the series of versions. The website provides English/Russian summaries, full scientific abstracts and sources for the selected results.
 
-Primary source for the sharp profile
-\[
-C_d(\mathbf r)=\prod_j r_j-\cos\!\left(\min\left\{\sum_j\arccos r_j,\pi\right\}\right)
-\]
-and the universal constant
-\[
-C_d=\max_{0\le x\le\pi}\{\cos^d(x/d)-\cos x\}=\|T_d-x^d\|_{\infty,[-1,1]}.
-\]
+The work develops several connected research directions: extremal characteristic-function inequalities and dependence profiles; fixed-marginal laws and mixability; polynomial arithmetic and irreducibility; Fourier and Gaussian geometry; and statistical inference for Fourier-based dependence.
 
-Files: [`papers/01-sharp-universal-profile/`](papers/01-sharp-universal-profile/)
+Recent publications include:
 
-### 2. Two-point extremals for characteristic-function dependence with fixed marginals
+- **[Sharp constants for Fourier factorization defects](https://doi.org/10.5281/zenodo.24293935)** — sharp mixing and centred-interaction constants, the exact planar GHZ constants for n ≥ 4, and a computer-assisted lower bound for the still-open three-party case. This release contains the main paper, a proof supplement and a reproducibility archive.
+- **[The planar GHZ constant for three qubits and the zeros of the Riemann zeta function](https://doi.org/10.5281/zenodo.24293937)** — conditional arithmetic restrictions on globally admissible GHZ Bell functionals. **It does not prove the Riemann hypothesis or determine the exact three-party constant.**
+- **[A sharp universal profile for multivariate characteristic-function factorization](https://doi.org/10.5281/zenodo.23355587)** — the latest *published* P01 version verified for this catalogue. Later reserved or draft DOIs are not presented as publications.
 
-Develops the fixed-marginal theory: two-point extremals, convex-order certificates, complete/joint mixability, exact symmetric-unimodal regimes, the price of fixing marginals, and the non-symmetric unimodal extension.
+For the complete bibliography and stable links, use [CITATION.md](CITATION.md), not internal project numbers as bibliographic titles.
 
-Files: [`papers/02-fixed-marginals/`](papers/02-fixed-marginals/)  
-Reproducibility scripts and recorded outputs: [`papers/02-fixed-marginals/supplementary/`](papers/02-fixed-marginals/supplementary/)
+## How this repository is organized
 
-### 3. Chebyshev--Lucas critical polynomials: local blocks, irreducibility and Galois groups
+| Directory or file | Purpose |
+| --- | --- |
+| [`website/`](website/) | Source for the bilingual [research website](https://math.a-martinevski.com/), search and scholarly pages |
+| [`website/data/publications.json`](website/data/publications.json) | **Single curated source** of published article metadata, version histories and selected results |
+| [`website/data/news.json`](website/data/news.json) | Verified publication announcements and scientific updates |
+| [`papers/`](papers/) | Historical public TeX/PDF snapshots for the initial P01–P03 release, plus navigation to newer publication records |
+| [`CITATION.md`](CITATION.md) | Bibliographic entries and current verified Version DOIs |
+| [`docs/PUBLICATION_DATA.md`](docs/PUBLICATION_DATA.md) | Metadata, files, reproducibility and publication gate |
+| [`RELEASE_NOTES.md`](RELEASE_NOTES.md) | Historical notes for the initial GitHub manuscript release |
 
-Studies the critical polynomial family arising from the extremal equation for \(C_d\), including local Newton polygons, irreducibility, Galois groups, and the algebraic degree of \(C_d\).
+**Important:** the PDFs under `papers/01-…` through `papers/03-…` are historical GitHub snapshots and should not be treated as mirrors of each paper's latest Zenodo release. Find the latest verified published file and any supplementary material on the paper's Zenodo record. The root `SHA256SUMS` is the historical checksum list for the 28 September 2026 release, not a checksum manifest for the current GitHub `main` branch.
 
-Files: [`papers/03-chebyshev-lucas-critical-polynomials/`](papers/03-chebyshev-lucas-critical-polynomials/)
+## Publication, proof and reproducibility
 
-## Relation between the papers
+This public repository records **published** Zenodo releases. Draft manuscripts, internal scientific checkpoints, unfinished formalization, registry queues and Zenodo operations remain outside the public research catalogue. Source files and rational verification materials are linked from a released Zenodo record when available. Computation-dependent results are identified as such; numerical exploration is not treated as analytical proof.
 
-The intended reading order is
+The P04 proof supplement is an additional file **of the same publication**, not a separate article or DOI. File roles are visible on the scientific paper page. Different published versions retain separate Version DOIs within their stable Concept DOI lineage.
 
-1. universal profile and \(C_d\);
-2. fixed marginals and two-point extremals;
-3. arithmetic of the critical Chebyshev--Lucas polynomial family.
+## Authorship and AI disclosure
 
-The separate expository synthesis *One constant, five extremal problems* is intentionally **not included in this public release** and is being held for a later overview publication.
+AI systems were used in mathematical exploration, proof critique, symbolic and numerical checking, literature search and manuscript preparation, as disclosed in the individual papers. They are not authors. Responsibility for the mathematical content rests with Alexandr Martinevski. The preprints are not represented here as journal peer-reviewed unless their records explicitly establish that status.
 
-## Reproducibility
-
-The fixed-marginal paper includes its current certification scripts and machine-readable outputs. Each manuscript directory contains the TeX source and compiled PDF used for this release.
-
-Repository-level hashes are recorded in [`SHA256SUMS`](SHA256SUMS).
-
-## AI assistance disclosure
-
-The manuscripts disclose AI assistance on their first pages. AI systems used in the research and manuscript workflow included **OpenAI GPT-5.6 Sol** and **Anthropic Claude Opus 5.5**. They were used for mathematical exploration, proof development and critique, symbolic and numerical verification, literature search, and manuscript drafting and editing. AI systems are not authors. The author reviewed the mathematical statements and proofs and takes full responsibility for the content.
-
-## Citation
-
-Please cite the specific paper used. Bibliographic records can be updated with arXiv identifiers and DOIs after they are assigned. See [`CITATION.md`](CITATION.md).
-
-## Status
-
-Public manuscript release prepared 28 September 2026. These are research manuscripts/preprints; publication or peer-review status should be checked from the corresponding paper record.
+Please [cite the individual article](CITATION.md), including its Version DOI, rather than citing the entire repository.

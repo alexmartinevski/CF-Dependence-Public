@@ -1,9 +1,10 @@
 cff-version: 1.2.0
-message: "Please cite the relevant paper listed in CITATION.md."
+message: "Please cite the individual research paper by its version DOI; see CITATION.md."
 title: "CF Dependence"
 authors:
   - family-names: "Martinevski"
     given-names: "Alexandr"
     orcid: "https://orcid.org/0009-0000-4230-4414"
-repository-code: "https://github.com/alexmartinevski/CF-Dependence"
+repository-code: "https://github.com/alexmartinevski/CF-Dependence-Public"
+url: "https://math.a-martinevski.com/"
 date-released: 2026-09-28
