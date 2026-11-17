@@ -366,7 +366,7 @@ class PublicSiteTests(unittest.TestCase):
         work=earlier["works"][0]
         self.assertEqual(work["first_page"],227)
         self.assertEqual(work["year"],2002)
-        self.assertEqual(work["authors"],["Yu. S. Kharin","A. V. Martinevskii"])
+        self.assertEqual(work["authors"],["A. V. Martinevskii","Yu. S. Kharin"])
         self.assertEqual(work["source_url"],"https://d-nb.info/964176513/04")
         self.assertNotIn("doi",work)
         self.assertNotIn("P2002",self.site["papers"])
@@ -376,7 +376,9 @@ class PublicSiteTests(unittest.TestCase):
         for body in (home,achievements):
             self.assertIn(work["source_url"],body)
         self.assertIn("earlier-work-2002",home)
-        self.assertIn("Kharin &amp; Martinevskii",achievements)
+        self.assertIn("A. V. Martinevskii; Yu. S. Kharin.",home)
+        self.assertNotIn("Yu. S. Kharin; A. V. Martinevskii.",home)
+        self.assertIn("Martinevskii &amp; Kharin",achievements)
 
     def test_research_achievements_page_and_status_boundaries(self):
         home=(ROOT/"index.html").read_text(encoding="utf-8")

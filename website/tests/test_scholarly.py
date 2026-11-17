@@ -97,6 +97,8 @@ class ScholarlyIndexingTests(unittest.TestCase):
         for page in (bibliography,author):
             self.assertIn("earlier-publications",page)
             self.assertIn(historical["title"],page)
+            self.assertIn("A. V. Martinevskii; Yu. S. Kharin.",page)
+            self.assertNotIn("Yu. S. Kharin; A. V. Martinevskii.",page)
             self.assertIn(historical["source_url"],page)
             self.assertIn("not full chapter",page)
         self.assertEqual(bibliography.count('class="scholar-list-item"'),len(self.papers))
