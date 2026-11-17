@@ -375,18 +375,22 @@ class PublicSiteTests(unittest.TestCase):
             self.assertIn('id="'+anchor+'"',article)
         self.assertIn("34/105",article)
         self.assertIn("105ζ(3)/(2π",article)
-        self.assertIn("2.034968153548",article)
+        self.assertIn("2.0351194490139527",article)
+        self.assertIn("0.49137164921",article)
+        self.assertIn("D<sub>41</sub>",article)
+        self.assertNotIn("K7 witness",article)
+        self.assertNotIn("272 exact",article)
         self.assertIn("2.035329429153",article)
         self.assertIn("4√2",article)
         self.assertIn("2π",article)
-        self.assertIn("proposed exact value",article)
-        self.assertIn("not settled",article)
+        self.assertIn("candidate equality",article)
+        self.assertIn("also unresolved",article)
         self.assertIn("Independent mathematical and historical reviews",article)
         self.assertIn('href="https://doi.org/10.1103/PhysRevA.109.022205"',article)
         self.assertIn('href="https://doi.org/10.1016/0047-259X(85)90025-9"',article)
-        concepts={p["code"]:p["concept_doi"] for p in self.site["papers"]}
-        for code in ("P01","P04","P13"):
-            self.assertIn('href="https://doi.org/'+concepts[code]+'"',article)
+        versions={p["code"]:p["version_doi"] for p in self.site["papers"]}
+        for code in ("P01","P02","P04","P13","P17","P52"):
+            self.assertIn('href="https://doi.org/'+versions[code]+'"',article)
         self.assertNotIn("P05 —",article)
         self.assertNotIn("P10 —",article)
         self.assertIn('if(document.body.dataset.page==="achievements")return;',script)
@@ -406,20 +410,22 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("ζ(2n) / ζ(n)",feature)
         self.assertIn("v₄ = 34/105",feature)
         self.assertIn("arbitrary finite settings",feature)
-        self.assertIn('href="https://doi.org/10.5281/zenodo.23356092"',feature)
+        self.assertIn('href="https://doi.org/10.5281/zenodo.24293935"',feature)
         self.assertIn('href="https://doi.org/10.1103/PhysRevA.109.022205"',feature)
         self.assertIn("n = 3 remains open",feature)
         self.assertIn("External proof and priority review is pending",feature)
         section=article.split('id="ghz-exact"',1)[1].split("</article>",1)[0]
         self.assertIn("v<sub>n</sub><sup>GHZ,XY</sup>",section)
-        self.assertIn('href="https://doi.org/10.5281/zenodo.23356092"',section)
+        self.assertIn('href="https://doi.org/10.5281/zenodo.24293935"',section)
         self.assertIn("Designolle–Vértesi–Pokutta (2024)",section)
         self.assertIn("Independent mathematical and historical reviews",section)
+        self.assertNotIn("2.034968153548",section)
         for key in ("achievementGhzExactReadPaper",
                     "achievementGhzExactPrior2024",
                     "achievementGhzExactCaveat"):
             self.assertEqual(script.count('"'+key+'":'),2,key)
         self.assertIn("для всех n ≥ 4",script)
+        self.assertEqual(script.count('"achievementGhzThreeReadP52":'),2)
         self.assertIn("n = 3 остаётся открытым",script)
 
     def test_research_achievements_are_fully_bilingual(self):
@@ -436,11 +442,11 @@ class PublicSiteTests(unittest.TestCase):
         for name in ("achievementContextText","achievementGhzThreeZeta",
                      "achievementMultilinearScope","achievementEditorialSecond"):
             self.assertIn(name,labels)
-        self.assertIn("гипотезе Римана",script)
-        self.assertIn("не решена полностью",script)
+        self.assertIn("гипотезу Римана",script)
+        self.assertIn("также не решена",script)
 
     def test_each_achievement_has_plain_language_explanation_and_own_references(self):
-        """Every result must explain the problem before its equation and cite 5–7 relevant sources."""
+        """Every result explains the problem before its theorem and cites 6–8 sources."""
         import re
         from urllib.parse import urlsplit
         article=(ROOT/"achievements.html").read_text(encoding="utf-8")
@@ -451,7 +457,7 @@ class PublicSiteTests(unittest.TestCase):
         )
         self.assertEqual(len(blocks),6)
         expected={
-            "ghz-exact":6,"ghz-three":7,"mixing":6,
+            "ghz-exact":6,"ghz-three":8,"mixing":6,
             "multilinear":6,"cf-profile":7,"stability":7
         }
         total=0
@@ -487,7 +493,7 @@ class PublicSiteTests(unittest.TestCase):
             self.assertIn('class="achievement-sources-count">('+str(expected[anchor])+')',body)
             # One original CF publication is a source in every group.
             self.assertRegex(section.group(1),r'href="https://doi\.org/10\.5281/zenodo\.\d+"')
-        self.assertEqual(total,39)
+        self.assertEqual(total,40)
         labels=set(re.findall(r'data-i18n="(achievement[A-Za-z0-9]+|sourceRole[A-Za-z0-9]+)"',article))
         for key in labels:
             self.assertEqual(script.count('"'+key+'":'),2,key)
@@ -509,7 +515,7 @@ class PublicSiteTests(unittest.TestCase):
         self.assertEqual(home.count('class="achievement-preview-formula"'),4)
         expected={
             "ghz-exact":("κ<sub>n</sub>", "ζ(s)"),
-            "ghz-three":("L<sub>3</sub>", "105ζ(3)"),
+            "ghz-three":("L<sub>D41</sub>", "105ζ(3)"),
             "mixing":("α(ℱ,𝒢)", "K<sub>G</sub>(2)"),
             "multilinear":("d<sub>∞</sub>(B)", "‖B‖<sub>ℂ</sub>"),
             "cf-profile":("𝒞<sub>d</sub>(r)", "ℙ(ε=1)"),
@@ -542,10 +548,19 @@ class PublicSiteTests(unittest.TestCase):
         self.assertEqual(script.count('"achievementMathSetupTitle":'),2)
         self.assertEqual(script.count('"achievementMathResultTitle":'),2)
         self.assertEqual(script.count('"achievementStabilityMathDetail":'),2)
-        # Regression arithmetic, not a proof or a numerical certificate.
-        q=(11,13,17,19,23,29,31)
-        low=(pi**3/16)*((28/27)*(126/125)*(344/343)+sum(z**-3 for z in q))
-        self.assertTrue(isclose(low,2.034968153548,abs_tol=1e-9))
+        # Regression arithmetic, not proof or a certificate.
+        d41=(1,3,5,7,11,13,15,17,19,21,23,29,31,33,35,37,39,41)
+        low=(pi**3/16)*sum(m**-3 for m in d41)
+        upper=105*1.2020569031595943/(2*pi**3)
+        self.assertTrue(isclose(low,2.0351194490139527,abs_tol=1e-12))
+        self.assertTrue(isclose(1/low,0.4913716492093453,abs_tol=1e-11))
+        self.assertTrue(isclose(1/upper,0.4913209555546416,abs_tol=1e-11))
+        self.assertIn("564",page)
+        self.assertIn("85",page)
+        self.assertIn("10.5281/zenodo.24293937",page)
+        self.assertNotIn("0.49140818163",page)
+        self.assertNotIn("272 precisely",script)
+        self.assertNotIn("K7 certificate",script)
         self.assertTrue(isclose(4*sqrt(2),5.65685424949,abs_tol=1e-8))
         self.assertTrue(isclose(105/34,3.088235294117647,abs_tol=1e-11))
         self.assertNotIn("mathjax",page.lower())
