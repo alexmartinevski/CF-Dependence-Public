@@ -443,7 +443,7 @@ class PublicSiteTests(unittest.TestCase):
                      "achievementMultilinearScope","achievementEditorialSecond"):
             self.assertIn(name,labels)
         self.assertIn("гипотезу Римана",script)
-        self.assertIn("не решена полностью",script)
+        self.assertIn("также не решена",script)
 
     def test_each_achievement_has_plain_language_explanation_and_own_references(self):
         """Every result explains the problem before its theorem and cites 6–8 sources."""
