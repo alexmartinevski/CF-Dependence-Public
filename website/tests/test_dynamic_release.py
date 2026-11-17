@@ -12,6 +12,7 @@ import hashlib
 import io
 import tarfile
 import json
+from datetime import date, timedelta
 from pathlib import Path
 import shutil
 import sys
@@ -47,6 +48,8 @@ class SyntheticNextPaperTests(unittest.TestCase):
         source=list(original["papers"])
         baseline={p["code"] for p in source}
         self.base_count=len(source)
+        self.synthetic_date=(date.fromisoformat(max(p["last_version_on"] for p in source))
+                             +timedelta(days=1)).isoformat()
         self.code=next(f"P{i:02d}" for i in range(21,100)
                        if f"P{i:02d}" not in baseline)
         self.assertNotIn(self.code,baseline)
@@ -57,8 +60,8 @@ class SyntheticNextPaperTests(unittest.TestCase):
         self.concept="10.5281/zenodo.999999920"
         fake.update(code=self.code,title="OFFLINE SYNTHETIC paper for release infrastructure TEST ONLY",
                     status="published",version_doi=self.version,concept_doi=self.concept,
-                    first_published_on="2026-10-17",last_version_on="2026-10-17",
-                    published_on="2026-10-17",version_index=1,
+                    first_published_on=self.synthetic_date,last_version_on=self.synthetic_date,
+                    published_on=self.synthetic_date,version_index=1,
                     version_index_evidence="OFFLINE UNIT TEST ONLY, NEVER PUBLISHED",
                     highlights_source_doi=self.version,
                     source_path=self.synthetic_source,changes=[],
@@ -67,7 +70,7 @@ class SyntheticNextPaperTests(unittest.TestCase):
         fake.pop("record_url",None)
         source.append(fake)
         original["papers"]=source
-        original["last_curated_on"]="2026-10-16"
+        original["last_curated_on"]=self.synthetic_date
         (self.site/"data/papers.json").write_text(
             json.dumps(original,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         latest=next(
@@ -80,7 +83,7 @@ class SyntheticNextPaperTests(unittest.TestCase):
         self.pdf=b"%PDF-"+b"offline-test-not-a-publication"*90
         name=f"{self.code}_CF_V8_RELEASE.pdf"
         fake_meta.update(title=fake["title"],version_doi=self.version,concept_doi=self.concept,
-                         publication_date="2026-10-17",record_id=999999921,pdf_filename=name,
+                         publication_date=self.synthetic_date,record_id=999999921,pdf_filename=name,
                          pdf_size=len(self.pdf),pdf_md5=hashlib.md5(self.pdf).hexdigest())
         shards=sorted((self.site/"data/scholarly").glob("part-*.json"))
         tail=shards[-1]
@@ -97,7 +100,7 @@ class SyntheticNextPaperTests(unittest.TestCase):
         updates=json.loads((self.site/"data/news.json").read_text(encoding="utf-8"))
         self.base_news_count=len(updates["entries"])
         updates["entries"].append({
-            "date":"2026-10-17","kind":"publication_release",
+            "date":self.synthetic_date,"kind":"publication_release",
             "source":"https://doi.org/"+self.version,
             "title":{"en":f"OFFLINE {self.code} synthetic test only","ru":f"ТЕСТ {self.code} — не публикация"},
             "summary":{"en":"Synthetic release exercise with no Zenodo writes.",
