@@ -384,7 +384,7 @@ class PublicSiteTests(unittest.TestCase):
         self.assertIn("4√2",article)
         self.assertIn("2π",article)
         self.assertIn("candidate equality",article)
-        self.assertIn("not settled",article)
+        self.assertIn("also unresolved",article)
         self.assertIn("Independent mathematical and historical reviews",article)
         self.assertIn('href="https://doi.org/10.1103/PhysRevA.109.022205"',article)
         self.assertIn('href="https://doi.org/10.1016/0047-259X(85)90025-9"',article)
