@@ -170,8 +170,9 @@ assert.ok(full[full.length-1].children.some(x=>x.href==="publications/index.html
   "Original manuscript collection should open the bibliography");
 vm.runInContext('language="en"; renderUpdates(document.getElementById("news-items"),true); renderNewsPage();',context);
 assert.equal(elements["news-items"].children.length,4);
-assert.ok(elements["news-items"].children[0].textContent.includes("Research result"),"Scientific announcement must keep its English label");
+assert.ok(elements["news-items"].children[0].textContent.includes("Publication"),"Latest published version must retain its English publication label");
 full=elements["news-full-list"].children;
+assert.ok(full.some(item=>item.textContent.includes("Research result")), "Historical scientific result must retain its English label");
 assert.equal(full.length,entries.length);
 for(let i=0;i<4;i++){
   assert.ok(elements["news-items"].children[i].textContent.includes(expectedNews[i].title.en),
