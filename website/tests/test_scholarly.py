@@ -168,11 +168,22 @@ class ScholarlyIndexingTests(unittest.TestCase):
             self.assertFalse(scholar.file_signature(local,base))
             self.assertFalse(scholar.mirror_pdf(p,base,root,dest,allow_fetch=False))
 
+    def test_p04_supplement_and_reproducibility_links(self):
+        text=(self.dest/"publications/P04/index.html").read_text(encoding="utf-8")
+        self.assertIn("P04_GHZ_Companion.pdf",text)
+        self.assertIn("P04_Supplementary_Material.zip",text)
+        self.assertIn("https://zenodo.org/records/24293935/files/",text)
+        self.assertIn("Additional files",text)
+        p52=(self.dest/"publications/P52/index.html").read_text(encoding="utf-8")
+        self.assertIn("10.5281/zenodo.24293937",p52)
+        self.assertNotIn("P04_Supplementary_Material.zip",p52)
+
     def test_source_data_rejects_nonpublic_or_swapped_identities(self):
-        for code in ("P01","P04","P14","P20"):
+        for code in ("P01","P04","P14","P20","P52"):
             source=self.metadata[code]
             self.assertEqual(source["version_doi"].split(".")[-1],str(source["record_id"]))
-            self.assertEqual(source["pdf_filename"],code+"_CF_V6_S8.pdf")
+            expected={"P04":"P04.pdf","P52":"P52_GHZ_ZETA.pdf"}
+            self.assertEqual(source["pdf_filename"],expected.get(code,code+"_CF_V6_S8.pdf"))
             self.assertRegex(source["pdf_md5"],r"^[0-9a-f]{32}$")
             self.assertLess(source["pdf_size"],5_000_000)
         self.assertEqual(len({p["version_doi"] for p in self.metadata.values()}),len(self.papers))

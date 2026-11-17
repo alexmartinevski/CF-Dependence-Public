@@ -45,7 +45,7 @@ class PublicSiteTests(unittest.TestCase):
                 record_url=p.get("record_url")
                 doi=p.get("version_doi")
                 self.assertEqual(record_url,"https://zenodo.org/records/"+doi.split(".")[-1])
-                self.assertRegex(p["pdf_filename"],r"^P\d{2}_[A-Za-z0-9][A-Za-z0-9._-]{0,150}\.pdf$")
+                self.assertRegex(p["pdf_filename"],r"^P\d{2}(?:_[A-Za-z0-9][A-Za-z0-9._-]{0,150})?\.pdf$")
                 self.assertEqual(p["pdf_filename"][:3],p["code"])
 
     def test_change_log_entries_refer_to_doi(self):
@@ -106,7 +106,10 @@ class PublicSiteTests(unittest.TestCase):
                 self.assertLessEqual(p["first_published_on"],p["last_version_on"])
             # Existing 2026-10-14 releases have fixed historical timestamps;
             # future released articles must not inherit those dates.
-            if p["code"] in {"P04","P06","P07","P08","P09","P11","P13","P14","P15","P16","P17","P18","P19","P20"}:
+            if p["code"] == "P04":
+                self.assertEqual(p["first_published_on"],"2026-10-14")
+                self.assertEqual(p["last_version_on"],"2026-11-17")
+            elif p["code"] in {"P06","P07","P08","P09","P11","P13","P14","P15","P16","P17","P18","P19","P20"}:
                 self.assertEqual(p["first_published_on"],"2026-10-14")
                 self.assertEqual(p["last_version_on"],"2026-10-14")
             elif p["code"]=="P12":

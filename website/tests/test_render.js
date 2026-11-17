@@ -130,8 +130,8 @@ assert.equal(elements["paper-count"].textContent,"0","No-match counter must be z
 assert.equal(elements["area-groups"].children.length,0,"No-match search must clear subject groups");
 vm.runInContext('location.search="?lang=ru&code=P04"; language="ru"; renderDetail();',context);
 assert.equal(elements["paper-first-published"].textContent,"2026-10-14","Detail first date");
-assert.equal(elements["paper-last-updated"].textContent,"2026-10-14","Detail latest date");
-assert.equal(elements["paper-version-number"].textContent,"Выпуск Zenodo №1","Curated initial release ordinal");
+assert.equal(elements["paper-last-updated"].textContent,"2026-11-17","Detail latest date");
+assert.equal(elements["paper-version-number"].textContent,"Выпуск Zenodo №3","Curated verified release ordinal");
 vm.runInContext('delete papers.find(p=>p.code==="P04").version_index; renderDetail();',context);
 assert.ok(elements["paper-version-number"].textContent.includes("не подтверждён"),"Unknown semantic version must not be fabricated");
 vm.runInContext('papers.find(p=>p.code==="P04").version_index=1; renderDetail();',context);
@@ -145,7 +145,7 @@ vm.runInContext('language="ru"; news=__news; newsLoaded=true; renderIndex();',co
 const expectedNews=[...entries].sort((a,b)=>b.date.localeCompare(a.date));
 const latest=elements["news-items"].children;
 assert.equal(latest.length,4,"The home page must show exactly four recent updates");
-assert.ok(latest[0].textContent.includes("Научный результат"),"P04 must be labelled as a research result, not a new release");
+assert.ok(latest[0].textContent.includes("Публикация"),"Latest P04 version must be labelled as a publication release");
 for(let i=0;i<4;i++) {
   const newsEntry=expectedNews[i];
   assert.ok(latest[i].textContent.includes(newsEntry.title.ru),
@@ -156,6 +156,7 @@ for(let i=0;i<4;i++) {
 }
 vm.runInContext('renderNewsPage();',context);
 let full=elements["news-full-list"].children;
+assert.ok(full.some(item=>item.textContent.includes("Научный результат")), "Original GHZ research highlight must remain in the historical archive");
 assert.equal(full.length,entries.length,
   "Every curated event appears exactly once; P12 history must not double-announce");
 assert.ok(full.some(item=>item.children.some(x=>x.href==="achievements.html?lang=ru#ghz-exact")),

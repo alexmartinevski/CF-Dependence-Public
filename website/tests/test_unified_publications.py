@@ -228,6 +228,47 @@ class CanonicalCatalogueTests(unittest.TestCase):
             self.assertEqual(self.doc["papers"][code]["publication"]
                              ["first_published_on"],"2026-10-16")
 
+    def test_november_p04_and_p52_public_release_and_file_roles(self):
+        p04 = self.doc["papers"]["P04"]
+        pub = p04["publication"]
+        self.assertEqual(pub["version_index"], 3)
+        self.assertEqual([v["record_id"] for v in pub["releases"]],
+                         [23356092, 23427282, 24293935])
+        self.assertEqual(pub["last_version_on"], "2026-11-17")
+        last = pub["releases"][-1]
+        self.assertEqual(last["pdf"]["filename"], "P04.pdf")
+        self.assertEqual(last["pdf"]["size_bytes"], 501657)
+        self.assertEqual(last["pdf"]["md5"], "99e409ba0d68d112aa545c3e9b2df21d")
+        self.assertEqual([f["role"] for f in last["files"]],
+                         ["main", "supplement", "reproducibility"])
+        self.assertEqual([f["filename"] for f in last["files"]],
+                         ["P04.pdf", "P04_GHZ_Companion.pdf",
+                          "P04_Supplementary_Material.zip"])
+        self.assertEqual(self.scholar["P04"]["files"], last["files"])
+        p52 = self.doc["papers"]["P52"]
+        self.assertEqual(p52["science"]["results_source_record_id"], 24293937)
+        self.assertEqual(p52["publication"]["version_index"], 1)
+        self.assertEqual(p52["publication"]["concept_doi"],
+                         "10.5281/zenodo.24293936")
+        self.assertEqual(p52["publication"]["releases"][-1]["pdf"]["md5"],
+                         "4c53045f5a9be0e36ebd122ec63e5a32")
+        self.assertIn("not a proof of the Riemann hypothesis",
+                      p52["science"]["abstract_html"])
+        # A draft P01 DOI must not be leaked into the public catalogue.
+        self.assertEqual(self.doc["papers"]["P01"]["publication"]["releases"][-1]
+                         ["record_id"], 23355587)
+        for changed in ("md5", "filename", "role"):
+            doc = copy.deepcopy(self.doc)
+            f = doc["papers"]["P04"]["publication"]["releases"][-1]["files"][0]
+            if changed == "md5":
+                f["md5"] = "a" * 32
+            elif changed == "filename":
+                f["filename"] = "P02.pdf"
+            else:
+                f["role"] = "supplement"
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                publications.project(doc)
+
     def test_json_schema_documents_stored_date_contract(self):
         schema = json.loads((ROOT / "data/publications.schema.json")
                             .read_text(encoding="utf-8"))
