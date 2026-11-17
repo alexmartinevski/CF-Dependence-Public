@@ -1,6 +1,9 @@
 "use strict";
 const COPY = {
  en: {
+  "earlierWorkHeading":"Earlier published research · 2002",
+  "earlierWorkDescription":"This historical co-authored work predates the current Zenodo preprints and belongs in the author's publication history; it has no verified chapter DOI.",
+  "earlierWorkLink":"Bibliographic source: volume table of contents ↗",
   "achievementMathSetupTitle":"Mathematical formulation",
   "achievementMathResultTitle":"Precise theorem / proven bounds",
   "achievementGhzExactMathNotation":"Let L be a nonzero real n-linear form on (ℝᵐ)ⁿ. Its real norm is maximized on sign vectors in {−1,1}ᵐ; the complexified norm is maximized on phase vectors in 𝕋ᵐ. The supremum also ranges over m.",
@@ -189,6 +192,9 @@ const COPY = {
   searchPlaceholder:"Search by title, code, result or topic",otherLang:"Русский"
  },
  ru: {
+  "earlierWorkHeading":"Ранние опубликованные исследования · 2002",
+  "earlierWorkDescription":"Эта совместная работа предшествует нынешним препринтам Zenodo и входит в библиографию автора; отдельный DOI главы пока не подтверждён.",
+  "earlierWorkLink":"Библиографический источник: оглавление сборника ↗",
   "achievementMathSetupTitle":"Математическая постановка",
   "achievementMathResultTitle":"Точный результат / доказанные границы",
   "achievementGhzExactMathNotation":"Пусть L — ненулевая вещественная n-линейная форма на (ℝᵐ)ⁿ. Её вещественная норма вычисляется на знаковых векторах {−1,1}ᵐ, а норма комплексного продолжения — на фазовых векторах 𝕋ᵐ. Супремум берётся также по m.",

@@ -20,6 +20,12 @@ Recent publications include:
 
 For the complete bibliography and stable links, use [CITATION.md](CITATION.md), not internal project numbers as bibliographic titles.
 
+## Earlier published research (2002)
+
+**Yu. S. Kharin; A. V. Martinevskii.** *Estimation of stochastic dependence and testing for the N-dimensional uniformity by sample characteristic functions.* In *Probabilistic Methods in Discrete Mathematics*, 2002, starting p. 227. [German National Library: volume contents](https://d-nb.info/964176513/04).
+
+This earlier co-authored paper is listed in the [author's publication history](https://math.a-martinevski.com/author/) and [research bibliography](https://math.a-martinevski.com/publications/). It is not assigned an internal Pxx code or counted among the 22 later Zenodo preprints. The linked source verifies the volume's contents; it is **not** a chapter full-text download, and a chapter DOI has not been verified.
+
 ## How this repository is organized
 
 | Directory or file | Purpose |
