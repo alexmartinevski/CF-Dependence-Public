@@ -354,7 +354,59 @@ def paper_page(p,rec,assets,has_pdf):
     ])
 
 
-def bibliography_page(papers,records,assets):
+def load_earlier_publications(site):
+    """A separate, clearly identified historical bibliography (not a Zenodo Pxx release)."""
+    path=Path(site)/"data/earlier_publications.json"
+    if not path.is_file():
+        # Offline N+1 synthetic tests use only the canonical Pxx fixture.
+        return []
+    doc=json.loads(path.read_text(encoding="utf-8"))
+    if doc.get("schema")!="cf-earlier-publications/v1" or not isinstance(doc.get("works"),list):
+        raise ValueError("Malformed historical bibliography")
+    result=[]
+    for work in doc["works"]:
+        if not isinstance(work,dict) or work.get("id")!="characteristic-function-dependence-2002":
+            raise ValueError("Unexpected historical work")
+        if (work.get("year")!=2002 or work.get("first_page")!=227 or
+            work.get("source_url")!="https://d-nb.info/964176513/04" or
+            work.get("authors")!=["Yu. S. Kharin","A. V. Martinevskii"] or
+            not isinstance(work.get("title"),str) or
+            not work["title"].startswith("Estimation of stochastic dependence") or
+            not isinstance(work.get("host_title"),str) or
+            not work["host_title"].startswith("Probabilistic Methods in Discrete Mathematics")):
+            raise ValueError("Historical citation not corroborated or not source-scoped")
+        result.append(work)
+    if len(result)!=1:
+        raise ValueError("Historical bibliography requires exactly one verified work")
+    return result
+
+
+def earlier_publications_section(works):
+    """Visible to crawlers without JavaScript; not counted as a Zenodo publication."""
+    if not works:
+        return ""
+    out=['<section class="scholar-earlier-work" id="earlier-publications">',
+         '<h2>'+localized("Earlier published research (2002)", "Ранние опубликованные исследования (2002)")+'</h2>',
+         '<p class="scholar-page-note">'+localized(
+           "These historical works predate the numbered CF Dependence Zenodo preprints and are not included in the Zenodo publication count.",
+           "Эти работы предшествуют нумерованным препринтам CF Dependence в Zenodo и не входят в их счётчик.")+'</p>']
+    for w in works:
+        by="; ".join(w["authors"])
+        citation=(f'{by}. {w["title"]}. In: {w["host_title"]}, '
+                  f'{w["year"]}, starting p. {w["first_page"]}.')
+        out.append('<p class="scholar-earlier-citation"><strong>'
+                   +esc(citation)+'</strong></p>')
+        out.append('<p>'+localized(w["scope_en"],w["scope_ru"])+'</p>')
+        out.append('<p><a href="'+esc(w["source_url"])
+                   +'" rel="noopener noreferrer" target="_blank">'
+                   +localized("View the volume table of contents (bibliographic source, not full chapter)",
+                              "Оглавление сборника (библиографический источник, не полный текст статьи)")
+                   +'</a></p>')
+    out.append('</section>')
+    return "\n".join(out)
+
+
+def bibliography_page(papers,records,assets,earlier=()):
     canonical=DOMAIN+"/publications/"
     count=len(papers)
     head=page_head("Research papers and scholarly abstracts",f"{count} research preprints with full abstracts, version DOIs, keywords and public PDFs.",canonical,"../",assets)
@@ -384,11 +436,12 @@ def bibliography_page(papers,records,assets):
            f"{count} научных препринтов. Для каждой работы доступна отдельная индексируемая страница с полным описанием, DOI и ссылками на Zenodo.",
            tag="span")+'</p>',
         '<ol class="scholar-papers-list">'+listing+'</ol>',
+        earlier_publications_section(earlier),
         '</article></main>',page_footer("../"),"</body></html>"
     ])
 
 
-def author_page(papers,records,assets):
+def author_page(papers,records,assets,earlier=()):
     canonical=DOMAIN+"/author/"
     head=page_head(f"{AUTHOR} — ORCID and research works",
         "Independent researcher Alexandr Martinevski; ORCID identifier and bibliographic list of published CF Dependence research preprints.",
@@ -414,6 +467,7 @@ def author_page(papers,records,assets):
                          "Области исследований: экстремальная вероятность, характеристические функции, заданные маргинали, оптимальный транспорт, гармонический анализ, алгебра и математическая статистика.")+'</p>',
         '<section><h2>'+localized("Published research works","Опубликованные научные работы")+'</h2>',
         '<ol class="scholar-author-works">'+"".join(rows)+'</ol></section>',
+        earlier_publications_section(earlier),
         f'<p>{localized("Author's scientific programme and research transparency statement:",
                         "Научная программа и информация об участии ИИ:")} '
         +langlink("../index.html#about","CF Dependence")+"</p>",
@@ -426,6 +480,7 @@ def build(source,dest,repo_root=None,fetch_pdfs=False,cache_dir=None):
     dest=Path(dest)
     repo_root=Path(repo_root) if repo_root else source.parent
     papers,records=load_data(source)
+    earlier=load_earlier_publications(source)
     styles=(dest/"assets/site.css").read_bytes()
     scholar_js=(dest/"assets/scholar.js").read_bytes()
     hashes={"css":hashlib.sha256(styles).hexdigest()[:16],"js":hashlib.sha256(scholar_js).hexdigest()[:16]}
@@ -444,10 +499,10 @@ def build(source,dest,repo_root=None,fetch_pdfs=False,cache_dir=None):
         (folder/"index.html").write_text(
             paper_page(p,records[code],hashes,pdf_status[code]),encoding="utf-8")
     (dest/"publications"/"index.html").write_text(
-        bibliography_page(papers,records,hashes),encoding="utf-8")
+        bibliography_page(papers,records,hashes,earlier),encoding="utf-8")
     (dest/"author").mkdir(parents=True,exist_ok=True)
     (dest/"author"/"index.html").write_text(
-        author_page(papers,records,hashes),encoding="utf-8")
+        author_page(papers,records,hashes,earlier),encoding="utf-8")
     # Sitemap is generated from the same verified catalogue; omit the
     # query-string legacy detail pages to avoid duplicate scholarly records.
     base=["/","/achievements.html","/news.html","/publications/","/author/"]

@@ -90,6 +90,19 @@ class ScholarlyIndexingTests(unittest.TestCase):
         self.assertNotIn("P05",codes)
         self.assertNotIn("P10",codes)
 
+    def test_earlier_publication_in_index_and_author_but_not_zenodo_pxx_count(self):
+        historical=json.loads((ROOT/"data/earlier_publications.json").read_text(encoding="utf-8"))["works"][0]
+        bibliography=(self.dest/"publications/index.html").read_text(encoding="utf-8")
+        author=(self.dest/"author/index.html").read_text(encoding="utf-8")
+        for page in (bibliography,author):
+            self.assertIn("earlier-publications",page)
+            self.assertIn(historical["title"],page)
+            self.assertIn(historical["source_url"],page)
+            self.assertIn("not full chapter",page)
+        self.assertEqual(bibliography.count('class="scholar-list-item"'),len(self.papers))
+        self.assertEqual(author.count("<li><a"),len(self.papers))
+        self.assertNotIn("P2002",self.metadata)
+
     def test_publication_index_and_author_identity_without_js(self):
         directory=(self.dest/"publications/index.html").read_text(encoding="utf-8")
         author=(self.dest/"author/index.html").read_text(encoding="utf-8")

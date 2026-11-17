@@ -358,6 +358,26 @@ class PublicSiteTests(unittest.TestCase):
         self.assertNotIn("GPT-5.6",page)
         self.assertNotIn("Claude Opus",page)
 
+    def test_historical_2002_publication_is_cited_without_fabricated_zenodo_doi(self):
+        from pathlib import Path
+        earlier=json.loads((ROOT/"data/earlier_publications.json").read_text(encoding="utf-8"))
+        self.assertEqual(earlier["schema"],"cf-earlier-publications/v1")
+        self.assertEqual(len(earlier["works"]),1)
+        work=earlier["works"][0]
+        self.assertEqual(work["first_page"],227)
+        self.assertEqual(work["year"],2002)
+        self.assertEqual(work["authors"],["Yu. S. Kharin","A. V. Martinevskii"])
+        self.assertEqual(work["source_url"],"https://d-nb.info/964176513/04")
+        self.assertNotIn("doi",work)
+        self.assertNotIn("P2002",self.site["papers"])
+        self.assertEqual(len(self.site["papers"]),22)
+        home=(ROOT/"index.html").read_text(encoding="utf-8")
+        achievements=(ROOT/"achievements.html").read_text(encoding="utf-8")
+        for body in (home,achievements):
+            self.assertIn(work["source_url"],body)
+        self.assertIn("earlier-work-2002",home)
+        self.assertIn("Kharin &amp; Martinevskii",achievements)
+
     def test_research_achievements_page_and_status_boundaries(self):
         home=(ROOT/"index.html").read_text(encoding="utf-8")
         article=(ROOT/"achievements.html").read_text(encoding="utf-8")
@@ -458,7 +478,7 @@ class PublicSiteTests(unittest.TestCase):
         self.assertEqual(len(blocks),6)
         expected={
             "ghz-exact":6,"ghz-three":8,"mixing":6,
-            "multilinear":6,"cf-profile":7,"stability":7
+            "multilinear":6,"cf-profile":8,"stability":7
         }
         total=0
         for anchor,body in blocks:
@@ -485,15 +505,18 @@ class PublicSiteTests(unittest.TestCase):
             for uri,title in links:
                 parsed=urlsplit(uri)
                 self.assertEqual(parsed.scheme,"https",anchor)
-                self.assertEqual(parsed.hostname,"doi.org",anchor)
+                self.assertIn(parsed.hostname,{"doi.org","d-nb.info"},anchor)
                 self.assertTrue(title.strip(),anchor)
                 if parsed.hostname=="doi.org":
                     self.assertTrue(parsed.path.startswith("/10."),anchor)
+                else:
+                    self.assertEqual(anchor,"cf-profile")
+                    self.assertEqual(uri,"https://d-nb.info/964176513/04")
             self.assertIn('data-i18n="achievementSourcesHeading"',body)
             self.assertIn('class="achievement-sources-count">('+str(expected[anchor])+')',body)
             # One original CF publication is a source in every group.
             self.assertRegex(section.group(1),r'href="https://doi\.org/10\.5281/zenodo\.\d+"')
-        self.assertEqual(total,40)
+        self.assertEqual(total,41)
         labels=set(re.findall(r'data-i18n="(achievement[A-Za-z0-9]+|sourceRole[A-Za-z0-9]+)"',article))
         for key in labels:
             self.assertEqual(script.count('"'+key+'":'),2,key)
