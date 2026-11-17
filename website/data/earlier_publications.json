@@ -6,8 +6,8 @@
       "year": 2002,
       "title": "Estimation of stochastic dependence and testing for the N-dimensional uniformity by sample characteristic functions",
       "authors": [
-        "Yu. S. Kharin",
-        "A. V. Martinevskii"
+        "A. V. Martinevskii",
+        "Yu. S. Kharin"
       ],
       "host_title": "Probabilistic Methods in Discrete Mathematics: Proceedings of the Fifth International Petrozavodsk Conference",
       "first_page": 227,
@@ -15,7 +15,7 @@
       "source_kind": "Digitized volume contents (bibliographic record only; not the chapter full text)",
       "scope_en": "Earlier co-authored research on stochastic dependence and tests based on sample characteristic functions. Listed separately from the numbered CF Dependence Zenodo preprints.",
       "scope_ru": "Ранняя совместная работа о стохастической зависимости и критериях по выборочным характеристическим функциям. Приведена отдельно от нумерованных препринтов CF Dependence в Zenodo.",
-      "source_order_note": "The volume contents prints A. V. Martinevskii followed by Yu. S. Kharin; author-preferred display lists Kharin first. Verify against the original chapter before claiming publisher-confirmed author order."
+      "source_order_note": "Author order follows the published 2002 volume contents: A. V. Martinevskii and Yu. S. Kharin. The original chapter title page was not inspected."
     }
   ]
 }

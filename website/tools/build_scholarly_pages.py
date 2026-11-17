@@ -369,7 +369,7 @@ def load_earlier_publications(site):
             raise ValueError("Unexpected historical work")
         if (work.get("year")!=2002 or work.get("first_page")!=227 or
             work.get("source_url")!="https://d-nb.info/964176513/04" or
-            work.get("authors")!=["Yu. S. Kharin","A. V. Martinevskii"] or
+            work.get("authors")!=["A. V. Martinevskii","Yu. S. Kharin"] or
             not isinstance(work.get("title"),str) or
             not work["title"].startswith("Estimation of stochastic dependence") or
             not isinstance(work.get("host_title"),str) or
